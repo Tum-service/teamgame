@@ -81,9 +81,7 @@ label{display:block;color:#c4b5fd;font-size:.88rem;margin-bottom:5px;font-weight
 .block-btn{position:absolute;top:3px;right:3px;width:22px;height:22px;border-radius:50%;border:none;background:rgba(220,38,38,.7);color:#fff;font-size:.7rem;cursor:pointer;padding:0;line-height:1}
 .team-group{margin-bottom:14px;padding:10px;background:rgba(45,27,78,.4);border-radius:14px;border-left:4px solid #a855f7}
 .team-group h4{color:#fb923c;font-size:1rem;margin-bottom:8px;font-weight:900}
-.arena{position:relative;background:linear-gradient(180deg,#0a0612,#1e0f38,#3b0764);border-radius:22px;padding:24px 18px;margin-bottom:14px}
 
-/* ⭐ Topbar with circular buttons */
 .host-topbar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;padding:10px 12px;background:rgba(20,10,40,.75);border-radius:18px;border:1px solid rgba(168,85,247,.3);margin-bottom:14px}
 .topbar-left{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
 .topbar-sep{width:1px;height:36px;background:rgba(168,85,247,.35);margin:0 4px}
@@ -102,7 +100,6 @@ label{display:block;color:#c4b5fd;font-size:.88rem;margin-bottom:5px;font-weight
 .snd-circle.on{background:linear-gradient(135deg,#22c55e,#15803d)}
 .snd-circle.off{background:linear-gradient(135deg,#4b5563,#374151);opacity:.75}
 
-/* ⭐ Sound button partitions */
 .snd-group{display:flex;gap:6px;align-items:center;padding:5px 10px 5px 8px;border-radius:14px;position:relative}
 .snd-group-label{font-size:.62rem;font-weight:900;text-transform:uppercase;letter-spacing:.4px;margin-right:4px;line-height:1.1;display:flex;flex-direction:column;align-items:center;gap:1px}
 .snd-group-label .ico{font-size:1rem}
@@ -212,10 +209,9 @@ h1{font-size:1.7rem}.room-code{font-size:2.6rem;letter-spacing:6px}.timer-big{fo
 .grade{flex:0 0 150px;width:150px;min-height:96px;padding:16px 12px}.g-name{font-size:1.15rem}.g-count{font-size:.7rem}.g-all{flex:0 0 100%;width:100%}}
 
 /* ═══════════════════════════════════════════════════════════════════
-   ⭐ TUG-OF-WAR ARENA — HOST (แข่งขัน 2 ฝั่ง)
-   ใช้ CSS transform + transition เพื่อให้อนิเมชั่นลื่น 60fps
+   ⭐ TUG-OF-WAR ARENA — HOST
    ═══════════════════════════════════════════════════════════════════ */
-.tug-arena{position:relative;background:linear-gradient(180deg,#1a0b2e 0%,#2d1b4e 35%,#0f0518 100%);border-radius:22px;padding:16px 18px;margin-bottom:14px;overflow:hidden;box-shadow:inset 0 0 60px rgba(0,0,0,.65),0 0 0 1.5px rgba(168,85,247,.35);will-change:transform}
+.tug-arena{position:relative;background:linear-gradient(180deg,#1a0b2e 0%,#2d1b4e 35%,#0f0518 100%);border-radius:22px;padding:16px 18px;margin-bottom:14px;overflow:hidden;box-shadow:inset 0 0 60px rgba(0,0,0,.65),0 0 0 1.5px rgba(168,85,247,.35)}
 .tug-arena::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 15% 90%,rgba(146,64,14,.28),transparent 45%),radial-gradient(circle at 85% 90%,rgba(146,64,14,.28),transparent 45%),radial-gradient(circle at 50% 100%,rgba(0,0,0,.55),transparent 60%);pointer-events:none}
 .tug-header{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px;position:relative;z-index:3}
 .tug-team-info{display:flex;align-items:center;gap:8px;padding:7px 14px;border-radius:12px;font-weight:900;font-size:.95rem;backdrop-filter:blur(4px);white-space:nowrap;max-width:45%}
@@ -229,7 +225,7 @@ h1{font-size:1.7rem}.room-code{font-size:2.6rem;letter-spacing:6px}.timer-big{fo
 .tug-center-line::after{content:"";position:absolute;top:6px;left:50%;transform:translateX(-50%);width:12px;height:12px;border-radius:50%;background:#fbbf24;box-shadow:0 0 22px rgba(251,191,36,1)}
 .tug-center-line::before{content:"";position:absolute;bottom:6px;left:50%;transform:translateX(-50%);width:12px;height:12px;border-radius:50%;background:#fbbf24;box-shadow:0 0 22px rgba(251,191,36,1)}
 .tug-rope{position:absolute;left:6%;right:6%;top:50%;height:14px;transform:translateY(-50%);background:repeating-linear-gradient(90deg,#92400e 0,#92400e 5px,#78350f 5px,#78350f 10px);border-radius:8px;box-shadow:0 4px 10px rgba(0,0,0,.6),inset 0 -2px 0 rgba(0,0,0,.45),inset 0 2px 0 rgba(251,191,36,.25);z-index:1}
-.tug-knot{position:absolute;top:50%;left:50%;width:28px;height:28px;transform:translate(-50%,-50%);background:radial-gradient(circle at 35% 35%,#fbbf24,#ea580c 60%,#7c2d12);border-radius:50%;box-shadow:0 0 22px rgba(251,191,36,.95),inset 0 -3px 5px rgba(0,0,0,.5);transition:left .7s cubic-bezier(.22,1.2,.36,1),box-shadow .3s;z-index:6;pointer-events:none}
+.tug-knot{position:absolute;top:50%;left:50%;width:28px;height:28px;transform:translate(-50%,-50%);background:radial-gradient(circle at 35% 35%,#fbbf24,#ea580c 60%,#7c2d12);border-radius:50%;box-shadow:0 0 22px rgba(251,191,36,.95),inset 0 -3px 5px rgba(0,0,0,.5);transition:box-shadow .3s;z-index:6;pointer-events:none;will-change:left}
 .tug-knot.urgent{animation:tugKnotPulse .55s infinite}
 @keyframes tugKnotPulse{0%,100%{box-shadow:0 0 22px rgba(251,191,36,.95),inset 0 -3px 5px rgba(0,0,0,.5)}50%{box-shadow:0 0 45px rgba(251,191,36,1),0 0 60px rgba(249,115,22,.7),inset 0 -3px 5px rgba(0,0,0,.5)}}
 .tug-players{position:absolute;top:50%;transform:translateY(-50%);display:flex;gap:6px;z-index:4;pointer-events:none}
@@ -259,7 +255,7 @@ h1{font-size:1.7rem}.room-code{font-size:2.6rem;letter-spacing:6px}.timer-big{fo
 @keyframes tugShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-2px)}75%{transform:translateX(2px)}}
 
 /* ═══════════════════════════════════════════════════════════════════
-   ⭐ TUG-OF-WAR ARENA — PLAYER (compact)
+   ⭐ TUG-OF-WAR ARENA — PLAYER
    ═══════════════════════════════════════════════════════════════════ */
 #pArenaContainer{margin-bottom:10px}
 .ptug-arena{position:relative;background:linear-gradient(180deg,#1a0b2e,#2d1b4e);border-radius:14px;padding:8px 10px 10px;border:1.5px solid rgba(168,85,247,.35);box-shadow:inset 0 0 22px rgba(0,0,0,.5);overflow:hidden}
@@ -273,7 +269,7 @@ h1{font-size:1.7rem}.room-code{font-size:2.6rem;letter-spacing:6px}.timer-big{fo
 .ptug-stage{position:relative;height:62px;margin:4px 0;background:radial-gradient(ellipse at 50% 100%,rgba(120,53,15,.35),transparent 65%);border-radius:10px;overflow:hidden}
 .ptug-center-line{position:absolute;left:50%;top:10%;bottom:10%;width:2px;background:rgba(251,191,36,.7);transform:translateX(-50%);box-shadow:0 0 10px rgba(251,191,36,.85);z-index:2}
 .ptug-rope{position:absolute;left:6%;right:6%;top:50%;height:9px;transform:translateY(-50%);background:repeating-linear-gradient(90deg,#92400e 0,#92400e 3px,#78350f 3px,#78350f 6px);border-radius:5px;box-shadow:0 2px 5px rgba(0,0,0,.6),inset 0 -1px 0 rgba(0,0,0,.4);z-index:1}
-.ptug-knot{position:absolute;top:50%;left:50%;width:18px;height:18px;transform:translate(-50%,-50%);background:radial-gradient(circle at 35% 35%,#fbbf24,#ea580c 60%,#7c2d12);border-radius:50%;box-shadow:0 0 14px rgba(251,191,36,.95);transition:left .7s cubic-bezier(.22,1.2,.36,1);z-index:5;pointer-events:none}
+.ptug-knot{position:absolute;top:50%;left:50%;width:18px;height:18px;transform:translate(-50%,-50%);background:radial-gradient(circle at 35% 35%,#fbbf24,#ea580c 60%,#7c2d12);border-radius:50%;box-shadow:0 0 14px rgba(251,191,36,.95);z-index:5;pointer-events:none;will-change:left}
 .ptug-players{position:absolute;top:50%;transform:translateY(-50%);display:flex;gap:3px;z-index:3;pointer-events:none}
 .ptug-players.left{left:3%}
 .ptug-players.right{right:3%;flex-direction:row-reverse}
@@ -470,7 +466,6 @@ h1{font-size:1.7rem}.room-code{font-size:2.6rem;letter-spacing:6px}.timer-big{fo
       <div style="color:#c4b5fd;font-weight:800;font-size:.9rem">⏱️ <span id="pTotalTimer">5:00</span></div>
     </div>
 
-    <!-- ⭐ Tug-of-War Arena (ผู้เล่นเห็นการดึงเชือกของทีมตัวเอง) -->
     <div id="pArenaContainer"></div>
 
     <div class="question-box">
@@ -543,7 +538,7 @@ h1{font-size:1.7rem}.room-code{font-size:2.6rem;letter-spacing:6px}.timer-big{fo
 
 <script src="https://unpkg.com/mqtt@4.3.7/dist/mqtt.min.js"></script>
 <script>
-/* ═══ VOCAB DATA (เหมือนเดิม 100%) ═══ */
+/* ═══ VOCAB DATA ═══ */
 const VOCAB_DATA = {
 p1:`ant|มด
 apple|แอปเปิ้ล
@@ -1924,7 +1919,7 @@ function shouldPlayBGM(){
   return true;
 }
 
-/* ═══ SOUND ENGINE (เหมือนเดิม 100%) ═══ */
+/* ═══ SOUND ENGINE ═══ */
 let ac=null;
 function iA(){try{if(!ac)ac=new(window.AudioContext||window.webkitAudioContext)();if(ac.state==='suspended')ac.resume()}catch(e){}}
 function t(f,st,d,tp,v,fe){if(!shouldPlayEffect())return;if(!ac)return;const t0=ac.currentTime+st;const o=ac.createOscillator(),g=ac.createGain();o.type=tp||'sine';o.frequency.setValueAtTime(f,t0);if(fe)o.frequency.exponentialRampToValueAtTime(fe,t0+d);g.gain.setValueAtTime(0.0001,t0);g.gain.exponentialRampToValueAtTime(v||0.2,t0+0.02);g.gain.exponentialRampToValueAtTime(0.0001,t0+d);o.connect(g);g.connect(ac.destination);o.start(t0);o.stop(t0+d+0.05)}
@@ -1980,7 +1975,7 @@ function stopBGM(){
   bgm=null;bgOn=false;
 }
 
-/* ═══ MQTT (เหมือนเดิม 100% — ห้ามแก้) ═══ */
+/* ═══ MQTT ═══ */
 const MQTT_BROKERS=[
   'wss://broker.hivemq.com:8884/mqtt',
   'wss://broker.emqx.io:8084/mqtt',
@@ -2158,7 +2153,7 @@ function saveQRCode(){
   }).catch(()=>{window.open(img.src,'_blank');toast('💡 กดค้างที่รูปเพื่อบันทึก',2500);});
 }
 
-/* ═══ HOST: CREATE ROOM (เหมือนเดิม 100%) ═══ */
+/* ═══ HOST: CREATE ROOM ═══ */
 function createRoom(){
   G.config.timeLimit=20;
   G.config.totalTime=(parseInt($('timeInput').value)||5)*60;
@@ -2202,7 +2197,6 @@ function hostOnJoin(d){
   }
   hostBroadcastLobby();rPL();uSB();
 }
-/* ⭐ hostOnAnswer: เพิ่ม 2 บรรทัด animation (local เท่านั้น ไม่แตะ signal) */
 function hostOnAnswer(id,d){
   if(G.gameState==='paused')return;
   const p=G.players[id];if(!p)return;
@@ -2210,7 +2204,6 @@ function hostOnAnswer(id,d){
   p.totalAnswers=(p.totalAnswers||0)+1;
   if(d.correct)p.streak=(p.streak||0)+1;else p.streak=0;
   renderArena();rLB();
-  /* ⭐ [ADDED] local animation — ไม่กระทบ MQTT */
   HostTugArena.animateAnswer(id, !!d.correct);
   const totalAns=Object.values(G.players).reduce((s,x)=>s+(x.totalAnswers||0),0);
   $('hostTotalAnswers').textContent=totalAns;
@@ -2298,7 +2291,7 @@ function showHostCountdown(cb){
   },1000);
 }
 
-/* ═══ HOST: START (เหมือนเดิม 100%) ═══ */
+/* ═══ HOST: START ═══ */
 function hostStart(){
   const a=Object.values(G.players).filter(p=>!p.blocked&&p.connected);
   if(a.length<1){toast('ต้องมีผู้เล่น');return}
@@ -2361,10 +2354,12 @@ function hostPause(){
     G.gameState='playing';G.totalDeadline=Date.now()+(G.remainingMs||0);
     pb.innerHTML='⏸';pb.title='พัก';
     if(G.hostBgmOn) startBGM();
+    HostTugArena.resume();
   }else{
     G.remainingMs=Math.max(0,G.totalDeadline-Date.now());
     G.gameState='paused';pb.innerHTML='▶';pb.title='เล่นต่อ';
     stopBGM();
+    HostTugArena.pause();
   }
   hostBroadcast({type:'pause',paused:G.gameState==='paused'});
 }
@@ -2388,11 +2383,8 @@ function hostBackToMain(){
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   ⭐ TUG-OF-WAR — HOST (visual only · ไม่อ่าน/เขียน MQTT)
-   คำนวณจาก G.players ที่มีอยู่แล้ว
+   ⭐ TUG-OF-WAR — TEAM COMPUTATION (ใช้ร่วม host + player)
    ═══════════════════════════════════════════════════════════════════ */
-
-/* คำนวณการแบ่งทีม (ใช้ร่วม host + player) */
 function computeTeams(list){
   const arr = Array.isArray(list) ? list : Object.values(list);
   const hasTeams = arr.some(p => p.team && String(p.team).trim().length > 0);
@@ -2407,7 +2399,6 @@ function computeTeams(list){
     const teams = Object.values(map).sort((a,b) => b.score - a.score);
     return { mode: 'team', teams };
   } else {
-    // แบ่งสลับตาม id — deterministic ทุก client เห็นเหมือนกัน
     const sorted = [...arr].sort((a,b) => String(a.id).localeCompare(String(b.id)));
     const A = { name: 'ทีม A', members: [], score: 0 };
     const B = { name: 'ทีม B', members: [], score: 0 };
@@ -2420,12 +2411,23 @@ function computeTeams(list){
   }
 }
 
+/* ═══════════════════════════════════════════════════════════════════
+   ⭐ TUG-OF-WAR — HOST
+   ใช้ RAF + lerp → เชือกค่อยๆ ดึงทีละนิดแบบนุ่มนวล
+   ═══════════════════════════════════════════════════════════════════ */
 const HostTugArena = {
   mounted: false,
   els: null,
   _teams: null,
-  _isTeamMode: false,
-  _lastSig: '',
+  _raf: null,
+  _lastTs: 0,
+  _current: 50,   // ตำแหน่งปมปัจจุบัน (%)
+  _target: 50,    // ตำแหน่งเป้าหมาย (%)
+  _paused: false,
+  /* ⭐ ปรับค่านี้เพื่อความเนียนของการดึง:
+     0.0003 = ช้ามาก (TC~3.3s)  |  0.0005 = ช้า (TC~2.0s) ← default
+     0.0008 = ปานกลาง (TC~1.25s) |  0.0015 = เร็ว (TC~0.67s) */
+  _lerpRate: 0.0005,
 
   build(container){
     container.innerHTML = `
@@ -2468,8 +2470,38 @@ const HostTugArena = {
       fillR:     container.querySelector('#hostTugFillR'),
       status:    container.querySelector('#hostTugStatus'),
     };
+    this._current = 50;
+    this._target = 50;
+    this._lastTs = 0;
+    this._paused = false;
     this.mounted = true;
-    this._lastSig = '';
+    this.startRaf();
+  },
+
+  /* ⭐ RAF loop — ค่อยๆ ขยับ _current เข้าหา _target ทีละนิด */
+  startRaf(){
+    if (this._raf) cancelAnimationFrame(this._raf);
+    const loop = (ts) => {
+      this._raf = requestAnimationFrame(loop);
+      if (!this.mounted) return;
+      if (document.hidden || this._paused) { this._lastTs = 0; return; }
+
+      if (!this._lastTs) this._lastTs = ts;
+      let dt = ts - this._lastTs;
+      this._lastTs = ts;
+      if (dt > 100) dt = 100; // clamp เมื่อ tab กลับมา
+
+      const diff = this._target - this._current;
+      if (Math.abs(diff) > 0.01) {
+        // frame-rate independent lerp → นุ่มนวลทุก FPS
+        const k = 1 - Math.exp(-this._lerpRate * dt);
+        this._current += diff * k;
+        if (this.els && this.els.knot) {
+          this.els.knot.style.left = this._current.toFixed(3) + '%';
+        }
+      }
+    };
+    this._raf = requestAnimationFrame(loop);
   },
 
   update(playersObj){
@@ -2477,7 +2509,6 @@ const HostTugArena = {
     if (!container) return;
     if (!this.mounted) this.build(container);
 
-    // กรอง blocked ออก (Host เก็บข้อมูลแบบ object)
     const active = {};
     Object.values(playersObj).forEach(p => { if (!p.blocked) active[p.id] = p; });
 
@@ -2485,25 +2516,22 @@ const HostTugArena = {
     let left, right;
     if (teams.length >= 2)      { left = teams[0]; right = teams[1]; }
     else if (teams.length === 1){ left = teams[0]; right = { name: 'รอทีม...', members: [], score: 0 }; }
-    else                        { left = { name: 'ทีมแดง', members: [], score: 0 }; right = { name: 'ทีมน้ำเงิน', members: [], score: 0 }; }
+    else                        { left = { name:'ทีมแดง', members:[], score:0 }; right = { name:'ทีมน้ำเงิน', members:[], score:0 }; }
 
     this._teams = { left, right, mode };
-    this._isTeamMode = mode === 'team';
 
-    // Header
     this.els.leftName.textContent  = left.name;
     this.els.leftScore.textContent = left.score;
     this.els.rightName.textContent = right.name;
     this.els.rightScore.textContent= right.score;
 
-    // Knot position: ratio ในช่วง [-1, 1]
+    // ⭐ คำนวณ "เป้าหมาย" — RAF จะค่อยๆ ดึงไปหาทีละนิด
     const total = Math.max(1, left.score + right.score);
     const ratio = (right.score - left.score) / total;
-    const knotPercent = Math.max(12, Math.min(88, 50 + ratio * 42));
-    this.els.knot.style.left = knotPercent + '%';
+    this._target = Math.max(12, Math.min(88, 50 + ratio * 42));
+
     this.els.knot.classList.toggle('urgent', Math.abs(ratio) > 0.7);
 
-    // Avatars (สูงสุด 5 ต่อฝั่ง)
     const leftSig  = left.members.map(m => m.id + m.avatar).join('|');
     const rightSig = right.members.map(m => m.id + m.avatar).join('|');
     if (this.els.leftPlayers.dataset.sig !== leftSig) {
@@ -2517,13 +2545,11 @@ const HostTugArena = {
       this.els.rightPlayers.dataset.sig = rightSig;
     }
 
-    // Power bars
     const lp = (left.score  / total) * 100;
     const rp = (right.score / total) * 100;
     this.els.fillL.style.width = lp + '%';
     this.els.fillR.style.width = rp + '%';
 
-    // Status
     const abs = Math.abs(ratio);
     let st = '⚖️ สูสี', cls = '';
     if (abs > 0.7) {
@@ -2539,7 +2565,6 @@ const HostTugArena = {
     this.els.status.className = 'tug-status-text ' + cls;
   },
 
-  /* หาว่าผู้เล่นอยู่ฝั่งไหน */
   sideOfPlayer(playerId){
     if (!this._teams) return null;
     const { left, right } = this._teams;
@@ -2562,15 +2587,21 @@ const HostTugArena = {
     });
   },
 
+  pause(){ this._paused = true; },
+  resume(){ this._paused = false; this._lastTs = 0; },
+
   destroy(){
+    if (this._raf) cancelAnimationFrame(this._raf);
+    this._raf = null;
     this.mounted = false;
     this.els = null;
     this._teams = null;
-    this._lastSig = '';
+    this._lastTs = 0;
+    this._current = 50;
+    this._target = 50;
   }
 };
 
-/* ⭐ แทน renderArena() — ใช้ Tug Arena ใหม่ (ยังคง signature เดิม) */
 function renderArena(){
   HostTugArena.update(G.players);
 }
@@ -2582,7 +2613,7 @@ function rLB(){const w=$('hostLeaderboard');if(!w)return;
     const t=p.team?` <span style="color:#86efac;font-size:.75rem">[${esc(p.team)}]</span>`:'';
     return `<div class="lb-row ${c}"><span class="lb-rank">${m}</span><span class="lb-av">${esc(p.avatar)}</span><span class="lb-name">${esc(p.name)}${t}</span><span class="lb-score">${p.score}</span></div>`}).join('')}
 
-/* ═══ HOST: END (เหมือนเดิม 100%) ═══ */
+/* ═══ HOST: END ═══ */
 function hEnd(){
   G.gameState='ended';clearInterval(G.totalTimerId);clearInterval(G.rankTimerId);stopBGM();
   let ranking;
@@ -2652,7 +2683,7 @@ function buildRankTable(elId,rank,mode){
   el.innerHTML=html;
 }
 
-/* ═══ PLAYER: JOIN (เหมือนเดิม 100%) ═══ */
+/* ═══ PLAYER: JOIN ═══ */
 function renderAv(){const g=$('avatarGrid');if(!g)return;
   g.innerHTML=AV.map((a,i)=>`<button class="avatar-btn${i===0?' active':''}" data-a="${a}" onclick="selAv(this)">${a}</button>`).join('')}
 function selAv(b){sc();document.querySelectorAll('.avatar-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');G.myAvatar=b.dataset.a}
@@ -2700,7 +2731,6 @@ function applyPlayerSoundState(){
   if(!G.playersBgmOn) stopBGM();
   else if(G.myGameActive&&!G.paused) startBGM();
 }
-/* ⭐ pOnBroadcast: เพิ่ม hook เรียก TugArenaPlayer (visual เท่านั้น) */
 function pOnBroadcast(d){
   if(!d)return;
   switch(d.type){
@@ -2708,7 +2738,7 @@ function pOnBroadcast(d){
     case 'unblocked':toast('✅ ปลดล็อก');break;
     case 'ranking':
       updatePlayerRanking(d.list);
-      TugArenaPlayer.update(d.list); // ⭐ [ADDED] visual only
+      TugArenaPlayer.update(d.list);
       break;
     case 'sound':
       G.playersEffectOn=d.playersEffectOn!==false;
@@ -2740,7 +2770,7 @@ function pOnBroadcast(d){
       $('pauseOverlay').classList.remove('on');
       pCnt(()=>{
         go('scPlayerQ');
-        TugArenaPlayer.init($('pArenaContainer')); // ⭐ [ADDED] visual only
+        TugArenaPlayer.init($('pArenaContainer'));
         pStartTimer();pQ();applyPlayerSoundState();
       });
       break;
@@ -2753,6 +2783,7 @@ function pOnBroadcast(d){
         stopBGM();
         $('pauseOverlay').classList.add('on');
         toast('⏸ ครูกดพัก');
+        TugArenaPlayer.pause();
       }else{
         G.paused=false;
         $('pauseOverlay').classList.remove('on');
@@ -2765,6 +2796,7 @@ function pOnBroadcast(d){
         }
         pStartTimer();applyPlayerSoundState();
         toast('▶ เล่นต่อ');
+        TugArenaPlayer.resume();
       }
       break;
     case 'end':
@@ -2774,7 +2806,7 @@ function pOnBroadcast(d){
       if(G.myJoinTimerId){clearTimeout(G.myJoinTimerId);G.myJoinTimerId=null}
       G.questions=[];
       $('pauseOverlay').classList.remove('on');stopBGM();
-      TugArenaPlayer.destroy(); // ⭐ [ADDED] cleanup visual
+      TugArenaPlayer.destroy();
       pEnd(d.ranking,d.mode);
       break;
     case 'silent':stopBGM();break;
@@ -2832,7 +2864,6 @@ function pQ(){
   g.innerHTML=q.options.map((o,i)=>`<button class="ans-btn ${cl[i]}" data-i="${i}" onclick="pAns(${i},this)"><span class="symbol">${sy[i]}</span><span>${esc(o)}</span></button>`).join('');
   startQTimer();
 }
-/* ⭐ pAns: เพิ่ม 2 บรรทัด local animation (ไม่แตะ pub) */
 function pAns(choice,btn){
   if(!G.myGameActive)return;
   if(G.paused){toast('⏸ รอครูกดเล่นต่อก่อน');return}
@@ -2864,17 +2895,16 @@ function pAns(choice,btn){
     $('pFbText').textContent=G.myStreak>=3?`ติดกัน x${G.myStreak}!`:'ถูก!';
     $('pFbPts').textContent=`+${pts}`;
     sCor();
-    TugArenaPlayer.triggerSelfPull();  // ⭐ [ADDED] local animation เท่านั้น
+    TugArenaPlayer.triggerSelfPull();
   }else{
     fb.classList.add('show','wrong');
     $('pFbEmoji').textContent='❌';
     $('pFbText').textContent='ผิด!';
     $('pFbPts').textContent='+0';
     sWr();
-    TugArenaPlayer.triggerSelfStumble(); // ⭐ [ADDED] local animation เท่านั้น
+    TugArenaPlayer.triggerSelfStumble();
   }
   $('pScore').textContent=G.myScore;
-  /* pub() call เหมือนเดิม 100% — ห้ามแก้ */
   pub(`tug_kv10/${G.roomCode}/player/${G.myPlayerId}/answer`,{points:pts,correct:isCorrect,qIdx:G.myCurrentQ,name:G.myName,avatar:G.myAvatar,team:G.myTeam});
   setTimeout(()=>{
     if(!G.myGameActive)return;
@@ -2917,12 +2947,24 @@ function pEnd(rank,mode){
 
 /* ═══════════════════════════════════════════════════════════════════
    ⭐ TUG-OF-WAR — PLAYER
-   ทำงานจาก ranking broadcast เท่านั้น (ไม่แตะ MQTT)
-   ทีมของตัวเองอยู่ฝั่งซ้ายเสมอ → UX ที่ดีที่สุด
+   ทีมตัวเองอยู่ฝั่งซ้ายเสมอ · RAF + lerp นุ่มนวล
    ═══════════════════════════════════════════════════════════════════ */
 const TugArenaPlayer = {
   mounted: false,
   els: null,
+  _raf: null,
+  _lastTs: 0,
+  _current: 50,
+  _target: 50,
+  _paused: false,
+  /* ⭐ player เร็วกว่า host นิดนึง เพื่อให้ feedback ตอบสนองไวกว่า */
+  _lerpRate: 0.0006,
+
+  init(container){
+    if (!container) return;
+    if (this.mounted) this.destroy();
+    this.build(container);
+  },
 
   build(container){
     container.innerHTML = `
@@ -2957,13 +2999,36 @@ const TugArenaPlayer = {
       rightPlayers: container.querySelector('#ptugRight'),
       status:    container.querySelector('#ptugStatus'),
     };
+    this._current = 50;
+    this._target = 50;
+    this._lastTs = 0;
+    this._paused = false;
     this.mounted = true;
+    this.startRaf();
   },
 
-  init(container){
-    if (!container) return;
-    if (this.mounted) this.destroy();
-    this.build(container);
+  startRaf(){
+    if (this._raf) cancelAnimationFrame(this._raf);
+    const loop = (ts) => {
+      this._raf = requestAnimationFrame(loop);
+      if (!this.mounted) return;
+      if (document.hidden || this._paused) { this._lastTs = 0; return; }
+
+      if (!this._lastTs) this._lastTs = ts;
+      let dt = ts - this._lastTs;
+      this._lastTs = ts;
+      if (dt > 100) dt = 100;
+
+      const diff = this._target - this._current;
+      if (Math.abs(diff) > 0.01) {
+        const k = 1 - Math.exp(-this._lerpRate * dt);
+        this._current += diff * k;
+        if (this.els && this.els.knot) {
+          this.els.knot.style.left = this._current.toFixed(3) + '%';
+        }
+      }
+    };
+    this._raf = requestAnimationFrame(loop);
   },
 
   update(list){
@@ -2983,7 +3048,6 @@ const TugArenaPlayer = {
         rivalTeam = teams[1] || { name: 'รอคู่แข่ง...', members: [], score: 0 };
       }
     } else {
-      // Solo: หาว่าตัวเองอยู่ทีมไหน (ตาม id sort)
       const sorted = [...list].sort((a,b) => String(a.id).localeCompare(String(b.id)));
       const myIdx = sorted.findIndex(p => p.id === G.myPlayerId);
       const iAmA = myIdx < 0 ? true : (myIdx % 2 === 0);
@@ -2994,19 +3058,16 @@ const TugArenaPlayer = {
     if (!myTeam)    myTeam    = { name: 'ทีมคุณ',   members: [], score: 0 };
     if (!rivalTeam) rivalTeam = { name: 'คู่แข่ง',  members: [], score: 0 };
 
-    // Header (ทีมตัวเอง = "ทีมคุณ" เสมอ, คู่แข่ง = "คู่แข่ง")
     this.els.leftName.textContent   = 'ทีมคุณ';
     this.els.leftScore.textContent  = myTeam.score;
     this.els.rightName.textContent  = 'คู่แข่ง';
     this.els.rightScore.textContent = rivalTeam.score;
 
-    // Knot: ทีมตัวเองอยู่ซ้าย → ratio บวก = คู่แข่งนำ → knot เลื่อนขวา
+    // ⭐ คำนวณเป้าหมาย — RAF จะค่อยๆ ดึงไปหาทีละนิด
     const total = Math.max(1, myTeam.score + rivalTeam.score);
-    const ratio = (rivalTeam.score - myTeam.score) / total; // -1 ถึง 1
-    const knotPercent = Math.max(12, Math.min(88, 50 + ratio * 42));
-    this.els.knot.style.left = knotPercent + '%';
+    const ratio = (rivalTeam.score - myTeam.score) / total;
+    this._target = Math.max(12, Math.min(88, 50 + ratio * 42));
 
-    // Avatars (สูงสุด 3 ต่อฝั่ง สำหรับจอเล็ก)
     const leftSig  = myTeam.members.map(m => m.id + m.avatar).join('|');
     const rightSig = rivalTeam.members.map(m => m.id + m.avatar).join('|');
     if (this.els.leftPlayers.dataset.sig !== leftSig) {
@@ -3020,8 +3081,7 @@ const TugArenaPlayer = {
       this.els.rightPlayers.dataset.sig = rightSig;
     }
 
-    // Status text (จากมุมมองของตัวเอง)
-    const myWin = -ratio; // + = ตัวเองนำ
+    const myWin = -ratio;
     const abs = Math.abs(myWin);
     let st = '⚖️ สูสี', cls = '';
     if (abs > 0.7) {
@@ -3038,7 +3098,6 @@ const TugArenaPlayer = {
     this.els.status.className = 'ptug-status ' + cls;
   },
 
-  /* local animation เท่านั้น — ไม่ส่งสัญญาณ */
   triggerSelfPull(){
     if (!this.els) return;
     this.els.leftPlayers.querySelectorAll('.ptug-player').forEach(a => {
@@ -3060,9 +3119,17 @@ const TugArenaPlayer = {
     }
   },
 
+  pause(){ this._paused = true; },
+  resume(){ this._paused = false; this._lastTs = 0; },
+
   destroy(){
+    if (this._raf) cancelAnimationFrame(this._raf);
+    this._raf = null;
     this.mounted = false;
     this.els = null;
+    this._lastTs = 0;
+    this._current = 50;
+    this._target = 50;
     const c = $('pArenaContainer');
     if (c) c.innerHTML = '';
   }
@@ -3091,7 +3158,7 @@ document.addEventListener('click',()=>{iA();startBGM()},{once:true});
   },{passive:true});
 })();
 
-console.log('🎃 Tug of War v13 · Tug Arena (Host + Player) · MQTT untouched');
+console.log('🎃 Tug of War v14 · Smooth lerp pull · RAF-driven · MQTT untouched');
 </script>
 </body>
 </html>
