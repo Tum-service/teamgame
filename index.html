@@ -7,9 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;700;800;900&family=Creepster&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Kanit',sans-serif;font-weight:600;min-height:100vh;
-  background:radial-gradient(circle at 20% 20%,rgba(107,33,168,.35),transparent 55%),radial-gradient(circle at 80% 80%,rgba(249,115,22,.25),transparent 55%),linear-gradient(180deg,#0a0612,#1a0b2e 50%,#2d1b4e);
-  color:#f5e6d3;overflow-x:hidden;padding:14px;-webkit-tap-highlight-color:transparent}
+body{font-family:'Kanit',sans-serif;font-weight:600;min-height:100vh;background:radial-gradient(circle at 20% 20%,rgba(107,33,168,.35),transparent 55%),radial-gradient(circle at 80% 80%,rgba(249,115,22,.25),transparent 55%),linear-gradient(180deg,#0a0612,#1a0b2e 50%,#2d1b4e);color:#f5e6d3;overflow-x:hidden;padding:14px;-webkit-tap-highlight-color:transparent}
 .screen{display:none;min-height:100vh;max-width:1200px;margin:0 auto;padding:10px}
 .screen.active{display:block}
 h1{font-family:'Creepster',cursive;font-size:2.4rem;text-align:center;background:linear-gradient(135deg,#ffedd5,#fb923c,#a855f7);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 4px 20px rgba(249,115,22,.7));letter-spacing:2px;margin-bottom:8px}
@@ -80,7 +78,6 @@ label{display:block;color:#c4b5fd;font-size:.88rem;margin-bottom:5px;font-weight
 .player-card.blocked{opacity:.4;border-color:#dc2626}
 .player-card .av{font-size:1.5rem}
 .player-card .name{font-weight:800;font-size:.88rem;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.player-card .team-tag{font-size:.7rem;color:#86efac;font-weight:700}
 .block-btn{position:absolute;top:3px;right:3px;width:22px;height:22px;border-radius:50%;border:none;background:rgba(220,38,38,.7);color:#fff;font-size:.7rem;cursor:pointer;padding:0;line-height:1}
 .team-group{margin-bottom:14px;padding:10px;background:rgba(45,27,78,.4);border-radius:14px;border-left:4px solid #a855f7}
 .team-group h4{color:#fb923c;font-size:1rem;margin-bottom:8px;font-weight:900}
@@ -156,7 +153,7 @@ h1{font-size:1.7rem}.room-code{font-size:2.6rem;letter-spacing:6px}.timer-big{fo
 <div class="screen active" id="scLanding">
   <div style="max-width:520px;margin:30px auto">
     <h1>🎃 ชักกะเย่อคำศัพท์ 🦇</h1>
-    <p style="text-align:center;color:#c4b5fd;margin-bottom:24px">เกมทายคำศัพท์แบบทีม · ออนไลน์ · เหมือน Kahoot</p>
+    <p style="text-align:center;color:#c4b5fd;margin-bottom:24px">เกมทายคำศัพท์แบบทีม · แต่ละคนเล่นอิสระ</p>
     <div class="card">
       <button class="btn btn-primary" onclick="go('scGradeSelect')">🎤 สร้างห้อง (Host)</button>
       <button class="btn btn-secondary" onclick="go('scPlayerJoin')">🎮 เข้าร่วมเกม (Player)</button>
@@ -199,9 +196,7 @@ h1{font-size:1.7rem}.room-code{font-size:2.6rem;letter-spacing:6px}.timer-big{fo
         <button class="chip mode-chip" data-m="team" onclick="setMode('team')">👥 ทีม</button>
       </div>
       <div id="teamInfoWrap" style="display:none;margin-top:14px;background:rgba(34,197,94,.12);padding:12px;border-radius:12px;border:1px solid rgba(34,197,94,.35);color:#bbf7d0;font-size:.88rem;line-height:1.6">
-        💡 <b>วิธีเล่นแบบทีม:</b><br>
-        บอกนักเรียนว่า <b>"ทุกคนในทีมเดียวกัน พิมพ์ชื่อทีมเหมือนกัน"</b><br>
-        เช่น ทีม "ฟักทอง" ให้ทุกเครื่องพิมพ์ <b>ฟักทอง</b>
+        💡 <b>วิธีเล่นแบบทีม:</b> บอกนักเรียนว่า <b>"ทุกคนในทีม พิมพ์ชื่อทีมเหมือนกัน"</b>
       </div>
     </div>
     <div class="card"><h3>⏱️ เวลาเล่นรวม</h3>
@@ -243,20 +238,13 @@ h1{font-size:1.7rem}.room-code{font-size:2.6rem;letter-spacing:6px}.timer-big{fo
         <button class="btn-small btn-success" onclick="hostAddT(30)">+30s</button>
         <button class="btn-small btn-success" onclick="hostAddT(60)">+60s</button>
       </div>
-      <div style="display:flex;gap:8px;align-items:center">
-        <div class="timer-big" id="hostTimer" style="font-size:1.6rem;padding:4px 12px">20</div>
-        <div class="timer-big" id="hostTotalTimer" style="font-size:1.4rem;padding:4px 12px;background:rgba(168,85,247,.15);border-color:rgba(168,85,247,.5);color:#c4b5fd">5:00</div>
-      </div>
-      <div style="color:#c4b5fd;font-weight:800;font-size:.9rem">ข้อ <span id="hostQNum">1</span>/<span id="hostQTotal">∞</span></div>
-      <div style="color:#86efac;font-weight:800;font-size:.9rem">✋ <span id="hostAnswered">0</span>/<span id="hostTotalPlayers">0</span></div>
+      <div class="timer-big" id="hostTotalTimer">5:00</div>
+      <div style="color:#86efac;font-weight:800;font-size:.9rem">📝 ตอบแล้ว <span id="hostTotalAnswers">0</span> ข้อ</div>
     </div>
     <div id="arenaWrap"></div>
     <div class="leaderboard" style="margin-top:16px">
       <h3 style="text-align:center">🏆 Live Leaderboard</h3>
       <div id="hostLeaderboard"></div>
-    </div>
-    <div style="text-align:center;margin-top:12px">
-      <button class="btn-small btn-primary" id="hostNextBtn" onclick="hNext()" style="display:none;padding:14px 26px;font-size:1rem">ข้อถัดไป ▶</button>
     </div>
   </div>
 </div>
@@ -281,9 +269,9 @@ h1{font-size:1.7rem}.room-code{font-size:2.6rem;letter-spacing:6px}.timer-big{fo
       <label>🔑 รหัสห้อง</label>
       <input type="text" class="code" id="joinCode" maxlength="4" placeholder="XXXX">
       <label>📝 ชื่อของคุณ</label>
-      <input type="text" id="joinName" maxlength="20" placeholder="เช่น สมชาย / น้องมิว">
+      <input type="text" id="joinName" maxlength="20" placeholder="เช่น สมชาย">
       <label>👥 ชื่อทีม (ถ้าเล่นทีม · ให้เพื่อนพิมพ์เหมือนกัน)</label>
-      <input type="text" id="joinTeam" maxlength="20" placeholder="เช่น ฟักทอง (เว้นว่าง = เดี่ยว)">
+      <input type="text" id="joinTeam" maxlength="20" placeholder="เช่น ฟักทอง">
       <label>🎭 Avatar</label>
       <div class="avatar-grid" id="avatarGrid"></div>
     </div>
@@ -312,9 +300,9 @@ h1{font-size:1.7rem}.room-code{font-size:2.6rem;letter-spacing:6px}.timer-big{fo
 <div class="screen" id="scPlayerQ">
   <div style="max-width:720px;margin:20px auto">
     <div class="host-topbar" style="margin-bottom:10px">
-      <div style="color:#fb923c;font-weight:900;font-size:.9rem">ข้อ <span id="pQNum">1</span>/<span id="pQTotal">∞</span></div>
-      <div class="timer-big" id="pTimer" style="font-size:1.7rem;padding:4px 12px">20</div>
+      <div style="color:#fb923c;font-weight:900;font-size:.9rem">ข้อ <span id="pQNum">1</span></div>
       <div style="color:#86efac;font-weight:900;font-size:.9rem">⭐ <span id="pScore">0</span></div>
+      <div style="color:#c4b5fd;font-weight:800;font-size:.9rem">⏱️ <span id="pTotalTimer">5:00</span></div>
     </div>
     <div class="question-box">
       <div class="question-text" id="pQText">...</div>
@@ -358,10 +346,11 @@ h1{font-size:1.7rem}.room-code{font-size:2.6rem;letter-spacing:6px}.timer-big{fo
 
 <div class="toast" id="toast"></div>
 
-<!-- ⭐ PeerJS (สำคัญมาก!) -->
 <script src="https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js"></script>
 <script>
-/* ═══ VOCAB DATA ═══ */
+/* ═══════════════════════════════════════════
+   VOCAB DATA — คำศัพท์ครบทุกชั้น
+   ═══════════════════════════════════════════ */
 const VOCAB_DATA = {
 p1:`ant|มด
 apple|แอ๊ปเปิ้ล
@@ -1691,7 +1680,9 @@ one hundredth|ลำดับที่หนึ่งร้อย
 one thousandth|ลำดับที่หนึ่งพัน`
 };
 
-/* ═══ PARSE ═══ */
+/* ═══════════════════════════════════════════
+   PARSE VOCAB
+   ═══════════════════════════════════════════ */
 const POOLS = {};
 for(const k in VOCAB_DATA){
   const seen = new Set();
@@ -1705,7 +1696,7 @@ POOLS.all=[];
 {const s=new Set();for(const k in POOLS){if(k==='all')continue;POOLS[k].forEach(w=>{if(!s.has(w.en.toLowerCase())){s.add(w.en.toLowerCase());POOLS.all.push(w)}})}}
 
 /* ═══ CUSTOM WORDS ═══ */
-const CK='tug_custom_v4';
+const CK='tug_custom_v8';
 let CW={};
 try{const s=localStorage.getItem(CK);CW=s?JSON.parse(s):{};if(typeof CW!=='object')CW={}}catch(e){CW={}}
 function saveCW(){try{localStorage.setItem(CK,JSON.stringify(CW))}catch(e){}}
@@ -1717,7 +1708,7 @@ function rebuildExtra(){
   for(const k in POOLS){if(k==='all')continue;POOLS[k].forEach(w=>{if(!s.has(w.en.toLowerCase())){s.add(w.en.toLowerCase());POOLS.all.push(w)}})}
 }
 
-/* ═══ SOUND ═══ */
+/* ═══ SOUND ENGINE ═══ */
 let ac=null;
 function iA(){try{if(!ac)ac=new(window.AudioContext||window.webkitAudioContext)();if(ac.state==='suspended')ac.resume()}catch(e){}}
 function t(f,st,d,tp,v,fe){if(!ac)return;const t0=ac.currentTime+st;const o=ac.createOscillator(),g=ac.createGain();o.type=tp||'sine';o.frequency.setValueAtTime(f,t0);if(fe)o.frequency.exponentialRampToValueAtTime(fe,t0+d);g.gain.setValueAtTime(0.0001,t0);g.gain.exponentialRampToValueAtTime(v||0.2,t0+0.02);g.gain.exponentialRampToValueAtTime(0.0001,t0+d);o.connect(g);g.connect(ac.destination);o.start(t0);o.stop(t0+d+0.05)}
@@ -1733,17 +1724,47 @@ function sCd(){iA();bel(880,0,0.35,0.12)}
 function sCdGo(){iA();bel(1320,0,0.5,0.16);org(440,0.05,0.4,0.14)}
 function sJoin(){iA();bel(1760,0,0.4,0.1);bel(2093,0.08,0.35,0.08)}
 function sTick(){iA();t(1200,0,0.03,'sine',0.06)}
+
+/* BGM */
 const BT=[440,392,440,349.23,329.63,349.23,392,440,392,349.23,329.63,293.66,329.63,349.23,329.63,293.66,261.63,293.66,329.63,349.23,329.63,293.66,261.63,246.94,220,246.94,261.63,293.66,329.63,293.66,261.63,246.94];
 const BB=[110,87.31,98,82.41];
 let bgm=null,bgT=null,bgS=0,bgOn=false;
-function bgmTick(){if(!bgm||!ac)return;const t0=ac.currentTime+0.06;const n=BT[bgS%BT.length];[1,2,3,4].forEach((m,i)=>{const o=ac.createOscillator();o.type='sine';o.frequency.value=n*m;const g=ac.createGain();const v=0.08/(i+1.4);g.gain.setValueAtTime(0.0001,t0);g.gain.exponentialRampToValueAtTime(v,t0+0.06);g.gain.exponentialRampToValueAtTime(v*0.5,t0+0.375);g.gain.exponentialRampToValueAtTime(0.0001,t0+0.75);o.connect(g);g.connect(bgm.master);o.start(t0);o.stop(t0+0.8)});if(bgS%8===0){const b=BB[(Math.floor(bgS/8))%BB.length];const o=ac.createOscillator(),g=ac.createGain();o.type='sine';o.frequency.value=b;g.gain.setValueAtTime(0.0001,t0);g.gain.exponentialRampToValueAtTime(0.07,t0+0.08);g.gain.exponentialRampToValueAtTime(0.0001,t0+3);o.connect(g);g.connect(bgm.master);o.start(t0);o.stop(t0+3.1)}bgS++}
-function startBGM(){iA();if(!ac||bgOn)return;bgOn=true;try{const m=ac.createGain();m.gain.setValueAtTime(0.0001,ac.currentTime);m.gain.exponentialRampToValueAtTime(0.05,ac.currentTime+2.5);m.connect(ac.destination);bgm={master:m};bgS=0;bgT=setInterval(bgmTick,380);bgmTick()}catch(e){bgm=null;bgOn=false}}
+function bgmTick(){
+  if(!bgm||!ac)return;
+  const t0=ac.currentTime+0.06;
+  const n=BT[bgS%BT.length];
+  [1,2,3,4].forEach((m,i)=>{
+    const o=ac.createOscillator();o.type='sine';o.frequency.value=n*m;
+    const g=ac.createGain();const v=0.06/(i+1.4);
+    g.gain.setValueAtTime(0.0001,t0);
+    g.gain.exponentialRampToValueAtTime(v,t0+0.06);
+    g.gain.exponentialRampToValueAtTime(v*0.5,t0+0.375);
+    g.gain.exponentialRampToValueAtTime(0.0001,t0+0.75);
+    o.connect(g);g.connect(bgm.master);o.start(t0);o.stop(t0+0.8)
+  });
+  if(bgS%8===0){
+    const b=BB[(Math.floor(bgS/8))%BB.length];
+    const o=ac.createOscillator(),g=ac.createGain();
+    o.type='sine';o.frequency.value=b;
+    g.gain.setValueAtTime(0.0001,t0);
+    g.gain.exponentialRampToValueAtTime(0.05,t0+0.08);
+    g.gain.exponentialRampToValueAtTime(0.0001,t0+3);
+    o.connect(g);g.connect(bgm.master);o.start(t0);o.stop(t0+3.1)
+  }
+  bgS++;
+}
+function startBGM(){iA();if(!ac||bgOn)return;bgOn=true;try{const m=ac.createGain();m.gain.setValueAtTime(0.0001,ac.currentTime);m.gain.exponentialRampToValueAtTime(0.035,ac.currentTime+2.5);m.connect(ac.destination);bgm={master:m};bgS=0;bgT=setInterval(bgmTick,380);bgmTick()}catch(e){bgm=null;bgOn=false}}
 
 /* ═══ STATE ═══ */
-const G={role:null,peer:null,hostConn:null,playerConns:{},players:{},roomCode:'',
+const G={
+  role:null,peer:null,hostConn:null,playerConns:{},players:{},roomCode:'',
   config:{gradeId:'p1',mode:'solo',timeLimit:20,totalTime:300},
-  selectedWords:new Set(),questions:[],currentQ:-1,gameState:'lobby',deadline:0,timerId:null,totalTimerId:null,totalDeadline:0,
-  myPlayerId:null,myName:'',myAvatar:'🎃',myTeam:'',myScore:0,myStreak:0};
+  selectedWords:new Set(),questions:[],
+  gameState:'lobby',totalDeadline:0,totalTimerId:null,remainingMs:0,
+  myCurrentQ:0,myScore:0,myStreak:0,myAnswers:[],
+  myPlayerId:null,myName:'',myAvatar:'🎃',myTeam:'',
+  myQTimerId:null,myQDeadline:0,myQStart:0,myTotalTimerId:null,
+};
 const AV=['🎃','👻','🦇','🕷️','🕸️','💀','🧙‍♀️','🧛','🧟','🐺','🦉','🐈‍⬛','🐸','🦊','🐼','🐯','🦁','🐨','🐷','🐵','🐰','🐭','🐮','🐔','🦄','🐲','🦖','🤖','👽','🦈'];
 const $=(id)=>document.getElementById(id);
 const esc=(s)=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -1751,6 +1772,24 @@ function go(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remo
 function toast(m,ms){const t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),ms||2500)}
 function gCode(){const c='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';let r='';for(let i=0;i<4;i++)r+=c[Math.floor(Math.random()*c.length)];return r}
 function shuf(a){const r=a.slice();for(let i=r.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[r[i],r[j]]=[r[j],r[i]]}return r}
+function fmtTime(sec){const m=Math.floor(sec/60),s=sec%60;return m+':'+String(s).padStart(2,'0')}
+
+/* ═══ PEERJS OPTIONS ═══ */
+const PEER_OPTS={
+  debug:1,
+  config:{
+    iceServers:[
+      {urls:'stun:stun.l.google.com:19302'},
+      {urls:'stun:stun1.l.google.com:19302'},
+      {urls:'stun:stun2.l.google.com:19302'},
+      {urls:'stun:stun3.l.google.com:19302'},
+      {urls:'stun:stun4.l.google.com:19302'},
+      {urls:'stun:global.stun.twilio.com:3478'},
+    ],
+    iceCandidatePoolSize:10,
+  },
+  pingInterval:5000,
+};
 
 /* ═══ GRADE MENU ═══ */
 const GR=[{id:'p1',name:'ป.1',c:'g1'},{id:'p2',name:'ป.2',c:'g2'},{id:'p3',name:'ป.3',c:'g3'},{id:'p4',name:'ป.4',c:'g4'},{id:'p5',name:'ป.5',c:'g5'},{id:'p6',name:'ป.6',c:'g6'},{id:'extra',name:'หมวดพิเศษ',c:'g7'}];
@@ -1774,7 +1813,7 @@ function openWP(){
   const gid=G.config.gradeId;const g=GR.find(x=>x.id===gid);
   $('wpTitle').textContent=g?g.name:'รวมทั้งหมด';
   const pool=POOLS[gid]||[];$('wpTotal').textContent=pool.length;
-  if(G.selectedWords.size === 0){pool.slice(0, Math.min(20, pool.length)).forEach(w => G.selectedWords.add(w.en));}
+  if(G.selectedWords.size===0){pool.slice(0,Math.min(20,pool.length)).forEach(w=>G.selectedWords.add(w.en))}
   const w=$('wpActions');w.innerHTML='';
   const SS=20;const nS=Math.ceil(pool.length/SS);
   for(let i=0;i<Math.min(nS,30);i++){const c=document.createElement('button');c.className='wp-chip';c.textContent=i+1;
@@ -1801,7 +1840,6 @@ function renderGrid(){
 function tog(en){sc();if(G.selectedWords.has(en))G.selectedWords.delete(en);else G.selectedWords.add(en);
   const c=document.querySelector(`.wp-card[data-en="${en.replace(/"/g,'&quot;')}"]`);if(c)c.classList.toggle('selected',G.selectedWords.has(en));updCnt()}
 function updCnt(){const n=G.selectedWords.size;$('wpSel').textContent=n;const c=$('wpCount');c.textContent=`เลือกแล้ว ${n} คำ`;c.className='wp-count'+(n<4?' warn':'');$('wpNext').disabled=n<4}
-
 function openAdd(){sc();$('awEn').value='';$('awTh').value='';$('addModal').hidden=false;setTimeout(()=>$('awEn').focus(),100)}
 function closeAdd(){sc();$('addModal').hidden=true}
 function saveAdd(){
@@ -1817,11 +1855,10 @@ function saveAdd(){
 function delC(ev,en){ev.stopPropagation();if(!confirm(`ลบ "${en}" หรือไม่?`))return;
   const gid=G.config.gradeId;if(!CW[gid])return;const i=CW[gid].findIndex(w=>w.en===en);if(i<0)return;
   CW[gid].splice(i,1);saveCW();rebuildExtra();G.selectedWords.delete(en);sWr();openWP()}
-
 function setMode(m){sc();G.config.mode=m;document.querySelectorAll('.mode-chip').forEach(c=>c.classList.toggle('active',c.dataset.m===m));$('teamInfoWrap').style.display=m==='team'?'block':'none'}
 function adjTime(d){sc();const el=$('timeInput');let v=parseInt(el.value)||5;v=Math.max(1,Math.min(60,v+d));el.value=v}
 
-/* ═══ HOST ROOM ═══ */
+/* ═══ HOST: CREATE ROOM ═══ */
 function createRoom(){
   G.config.timeLimit=20;
   G.config.totalTime=(parseInt($('timeInput').value)||5)*60;
@@ -1833,14 +1870,25 @@ function createRoom(){
   const qi=document.createElement('img');
   qi.src=`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(jU)}`;
   qi.onerror=()=>{qr.style.display='none'};qr.appendChild(qi);
-  G.peer=new Peer('tug-'+code,{debug:1,config:{iceServers:[{urls:'stun:stun.l.google.com:19302'},{urls:'stun:stun1.l.google.com:19302'},{urls:'stun:stun2.l.google.com:19302'},{urls:'stun:stun3.l.google.com:19302'},{urls:'stun:stun4.l.google.com:19302'},{urls:'stun:global.stun.twilio.com:3478'}],iceCandidatePoolSize:10}});
-  G.peer.on('open',()=>{toast('✅ สร้างห้องแล้ว! รหัส '+code,3000);go('scHostLobby');sJoin()});
-  G.peer.on('error',(e)=>{if(e.type==='unavailable-id'){toast('⚠️ รหัสซ้ำ สร้างใหม่',2000);setTimeout(createRoom,500)}else toast('❌ '+e.type,4000)});
-  G.peer.on('connection',(c)=>{G.playerConns[c.peer]=c;
-    c.on('open',()=>console.log('[H] open',c.peer));
+  G.peer=new Peer('tug-'+code,PEER_OPTS);
+  G.peer.on('open',(id)=>{console.log('[H] ready:',id);toast('✅ สร้างห้องแล้ว! รหัส '+code,3000);go('scHostLobby');sJoin()});
+  G.peer.on('error',(e)=>{
+    console.error('[H] error:',e);
+    if(e.type==='unavailable-id'){toast('⚠️ รหัสซ้ำ กำลังสร้างใหม่...',2000);setTimeout(createRoom,800)}
+    else toast('❌ '+e.type,4000)
+  });
+  G.peer.on('connection',(c)=>{
+    console.log('[H] ⭐ New connection:',c.peer);
+    G.playerConns[c.peer]=c;
+    c.on('open',()=>console.log('[H] ✅ Open:',c.peer));
     c.on('data',(d)=>hPM(c,d));
-    c.on('close',()=>{delete G.playerConns[c.peer];if(G.players[c.peer]){G.players[c.peer].connected=false;rPL();uSB()}});
-    c.on('error',(e)=>console.error('[H] err',e))});
+    c.on('close',()=>{
+      console.log('[H] ❌ Close:',c.peer);
+      delete G.playerConns[c.peer];
+      if(G.players[c.peer]){G.players[c.peer].connected=false;rPL();uSB()}
+    });
+    c.on('error',(e)=>console.error('[H] conn err:',c.peer,e));
+  });
 }
 function hPM(c,d){
   if(!d||typeof d!=='object')return;
@@ -1848,28 +1896,24 @@ function hPM(c,d){
     const name=String(d.name||'ผู้เล่น').slice(0,20),av=String(d.avatar||'🎃').slice(0,8);
     const team=String(d.team||'').slice(0,20).trim();
     if(G.players[c.peer]){G.players[c.peer].connected=true;G.players[c.peer].team=team}
-    else G.players[c.peer]={id:c.peer,name,avatar:av,team,score:0,streak:0,answers:{},blocked:false,connected:true};
+    else G.players[c.peer]={id:c.peer,name,avatar:av,team,score:0,streak:0,totalAnswers:0,blocked:false,connected:true};
     try{c.send({type:'welcome',playerId:c.peer,roomCode:G.roomCode})}catch(e){}
     rPL();uSB();sJoin();
   }else if(d.type==='answer'){
-    const p=G.players[c.peer];if(!p||G.gameState!=='playing')return;
-    const q=G.questions[G.currentQ];if(!q||p.answers[G.currentQ]!==undefined)return;
-    const tl=Math.max(0,G.deadline-Date.now());const ok=d.choice===q.correct;
-    let pts=0;
-    if(ok){const base=500;const sb=Math.round((tl/(q.timeLimit*1000))*500);pts=base+sb;
-      p.streak=(p.streak||0)+1;if(p.streak>=3)pts+=100;if(p.streak>=5)pts+=200}
-    else p.streak=0;
-    p.score+=pts;p.answers[G.currentQ]={choice:d.choice,correct:ok,points:pts};
-    try{c.send({type:'result',correct:ok,points:pts,totalScore:p.score,streak:p.streak})}catch(e){}
-    if(ok)sCor();else sWr();
-    renderArena();rLB();updAns();
+    const p=G.players[c.peer];if(!p)return;
+    p.score+=Number(d.points)||0;
+    p.totalAnswers=(p.totalAnswers||0)+1;
+    if(d.correct)p.streak=(p.streak||0)+1;else p.streak=0;
+    if(d.correct)sCor();else sWr();
+    renderArena();rLB();
+    const totalAns=Object.values(G.players).reduce((s,x)=>s+(x.totalAnswers||0),0);
+    $('hostTotalAnswers').textContent=totalAns;
   }
 }
 function rPL(){
   const g=$('playersGrid');if(!g)return;const l=Object.values(G.players);
   $('playerCount').textContent=l.length;
   if(!l.length){g.innerHTML='<p style="color:#7c6fa8;text-align:center;grid-column:1/-1;padding:16px">รอผู้เล่น...</p>';return}
-  // Group by team
   const teams={};const solo=[];
   l.forEach(p=>{if(p.team){(teams[p.team]=teams[p.team]||[]).push(p)}else solo.push(p)});
   let html='';
@@ -1896,91 +1940,59 @@ function togBlock(id){sc();const p=G.players[id];if(!p)return;p.blocked=!p.block
 function uSB(){const a=Object.values(G.players).filter(p=>!p.blocked&&p.connected);const b=$('hostStartBtn');
   b.disabled=a.length<1;b.textContent=a.length<1?'⏳ รอผู้เล่น...':`▶ เริ่มเกม! (${a.length} คน)`}
 
-/* ═══ HOST START ═══ */
+/* ═══ HOST: START ═══ */
 function hostStart(){
   const a=Object.values(G.players).filter(p=>!p.blocked&&p.connected);
   if(a.length<1){toast('ต้องมีผู้เล่น');return}
   const sel=[],pool=POOLS[G.config.gradeId]||[];
   pool.forEach(w=>{if(G.selectedWords.has(w.en))sel.push(w)});
-  G.questions=bQ(sel);
-  if(G.questions.length<1){toast('ไม่มีคำศัพท์');return}
-  // ⭐ Team mode: ถ้าไม่มีชื่อทีม → ใส่ทีม "เดี่ยว"
-  if(G.config.mode==='team'){
-    a.forEach(p=>{if(!p.team)p.team='เดี่ยว'});
-  }else a.forEach(p=>p.team='');
-  a.forEach(p=>{p.score=0;p.streak=0;p.answers={}});
-  G.currentQ=-1;G.gameState='playing';
+  const qs=bQ(sel);
+  if(qs.length<1){toast('ไม่มีคำศัพท์');return}
+  G.questions=qs;
+  a.forEach(p=>{p.score=0;p.streak=0;p.totalAnswers=0});
+  G.gameState='playing';
   G.totalDeadline=Date.now()+G.config.totalTime*1000;
-  const pd=a.map(p=>({id:p.id,name:p.name,avatar:p.avatar,team:p.team}));
-  Object.values(G.playerConns).forEach(c=>{try{c.send({type:'start',mode:G.config.mode,totalQuestions:9999,timeLimit:G.config.timeLimit,players:pd})}catch(e){}});
-  go('scHostGame');$('hostQTotal').textContent='∞';$('hostTotalPlayers').textContent=a.length;
+  const publicQs=qs.map(q=>({text:q.text,sub:q.sub,options:q.options.map(o=>o.text),correct:q.correct,timeLimit:q.timeLimit}));
+  Object.values(G.playerConns).forEach(c=>{try{c.send({type:'start',questions:publicQs,totalTime:G.config.totalTime})}catch(e){}});
+  go('scHostGame');
+  $('hostTotalAnswers').textContent='0';
+  renderArena();rLB();
   clearInterval(G.totalTimerId);
   G.totalTimerId=setInterval(()=>{
     if(G.gameState==='ended'){clearInterval(G.totalTimerId);return}
     if(G.gameState==='paused')return;
     const remain=Math.max(0,Math.ceil((G.totalDeadline-Date.now())/1000));
-    const m=Math.floor(remain/60),s=remain%60;
-    const el=$('hostTotalTimer');if(el){el.textContent=`${m}:${String(s).padStart(2,'0')}`;el.classList.toggle('warn',remain<=30)}
+    const el=$('hostTotalTimer');if(el){el.textContent=fmtTime(remain);el.classList.toggle('warn',remain<=30)}
     if(remain<=0){clearInterval(G.totalTimerId);hEnd()}
   },500);
-  hCnt(()=>setTimeout(hNext,300));
 }
 function bQ(pool){
-  if(pool.length<4)return[];const qs=[];const sh=shuf(pool);const cnt=sh.length;
+  if(pool.length<4)return[];
+  const qs=[];const sh=shuf(pool);const cnt=sh.length;
   for(let i=0;i<cnt;i++){
     const t=sh[i];const rv=Math.random()<0.5;
     const oth=pool.filter(w=>w.en!==t.en&&w.th!==t.th);const dis=shuf(oth).slice(0,3);
     if(dis.length<3)continue;
     const opts=rv?shuf([t,...dis]).map(w=>({text:w.en,ok:w.en===t.en})):shuf([t,...dis]).map(w=>({text:w.th,ok:w.th===t.th}));
     const ci=opts.findIndex(o=>o.ok);
-    qs.push({text:rv?t.th:t.en,sub:rv?'คำภาษาอังกฤษคือ?':'คำนี้แปลว่าอะไร?',options:opts,correct:ci,target:t,reverse:rv,timeLimit:G.config.timeLimit});
+    qs.push({text:rv?t.th:t.en,sub:rv?'คำภาษาอังกฤษคือ?':'คำนี้แปลว่าอะไร?',options:opts,correct:ci,timeLimit:G.config.timeLimit});
   }
   return qs;
 }
-
-function hCnt(cb){const el=$('hostCountdown'),n=$('hostCountdownNum');let c=3;el.style.display='flex';n.textContent=c;sCd();
-  const t=setInterval(()=>{c--;if(c<=0){clearInterval(t);el.style.display='none';sCdGo();cb()}else{n.textContent=c;sCd();n.style.animation='none';void n.offsetWidth;n.style.animation='cp 1s infinite'}},1000)}
-function hNext(){
-  if(Date.now()>=G.totalDeadline){hEnd();return}
-  G.currentQ++;
-  if(G.currentQ>=G.questions.length){
-    const sel=[],pool=POOLS[G.config.gradeId]||[];
-    pool.forEach(w=>{if(G.selectedWords.has(w.en))sel.push(w)});
-    const newQ=bQ(sel);
-    if(newQ.length===0){hEnd();return}
-    G.questions=G.questions.concat(newQ);
+function hostPause(){sc();
+  if(G.gameState==='paused'){
+    G.gameState='playing';G.totalDeadline=Date.now()+(G.remainingMs||0);
+    $('pauseBtn').textContent='⏸ พัก';
+  }else{
+    G.remainingMs=Math.max(0,G.totalDeadline-Date.now());
+    G.gameState='paused';$('pauseBtn').textContent='▶ เล่นต่อ';
   }
-  const q=G.questions[G.currentQ];G.gameState='playing';G.deadline=Date.now()+q.timeLimit*1000;
-  $('hostQNum').textContent=G.currentQ+1;$('hostAnswered').textContent='0';$('hostNextBtn').style.display='none';
-  const pub={type:'question',index:G.currentQ,text:q.text,sub:q.sub,options:q.options.map(o=>o.text),timeLimit:q.timeLimit,totalQuestions:9999,deadline:G.deadline};
-  Object.values(G.playerConns).forEach(c=>{try{c.send(pub)}catch(e){}});
-  clearInterval(G.timerId);let lt=-1;
-  G.timerId=setInterval(()=>{
-    if(G.gameState==='paused')return;
-    const r=Math.max(0,Math.ceil((G.deadline-Date.now())/1000));
-    const e=$('hostTimer');e.textContent=r;e.classList.toggle('warn',r<=5);
-    if(r<=5&&r!==lt&&r>0){lt=r;sTick()}
-    if(r<=0){clearInterval(G.timerId);hRev()}
-  },200);
+  Object.values(G.playerConns).forEach(c=>{try{c.send({type:'pause',paused:G.gameState==='paused'})}catch(e){}})
 }
-function hRev(){
-  if(G.gameState!=='playing')return;
-  G.gameState='reveal';clearInterval(G.timerId);
-  const q=G.questions[G.currentQ];
-  Object.values(G.playerConns).forEach(c=>{try{c.send({type:'reveal',correct:q.correct})}catch(e){}});
-  renderArena();
-  if(Date.now()>=G.totalDeadline){setTimeout(hEnd,1500);return}
-  const b=$('hostNextBtn');b.style.display='inline-block';
-  b.textContent='ข้อถัดไป ▶';
-}
-function hostPause(){sc();if(G.gameState==='paused'){G.gameState='playing';G.deadline=Date.now()+(G.remMs||0);$('pauseBtn').textContent='⏸ พัก';clearInterval(G.timerId);
-  G.timerId=setInterval(()=>{if(G.gameState==='paused')return;const r=Math.max(0,Math.ceil((G.deadline-Date.now())/1000));$('hostTimer').textContent=r;if(r<=0){clearInterval(G.timerId);hRev()}},200)}
-  else{G.remMs=Math.max(0,G.deadline-Date.now());G.gameState='paused';$('pauseBtn').textContent='▶ เล่นต่อ';clearInterval(G.timerId)}
-  Object.values(G.playerConns).forEach(c=>{try{c.send({type:'pause',paused:G.gameState==='paused'})}catch(e){}})}
-function hostAddT(s){sc();G.deadline+=s*1000;toast(`+${s} วินาที`,1500)}
+function hostAddT(s){sc();G.totalDeadline+=s*1000;toast(`+${s} วินาที`,1500)}
 function hostStop(){if(!confirm('หยุดและจบเลย?'))return;hEnd()}
 
-/* ═══ ARENA ═══ */
+/* ═══ ARENA / LEADERBOARD ═══ */
 function renderArena(){
   const w=$('arenaWrap');if(!w)return;
   if(G.config.mode==='team'){
@@ -1988,8 +2000,7 @@ function renderArena(){
     Object.values(G.players).forEach(p=>{
       if(p.blocked)return;
       const tn=p.team||'เดี่ยว';
-      teams[tn]=(teams[tn]||[]);
-      teams[tn].push(p);
+      (teams[tn]=teams[tn]||[]).push(p);
     });
     const teamList=Object.keys(teams).map(tn=>({name:tn,members:teams[tn],score:teams[tn].reduce((s,p)=>s+p.score,0)}));
     teamList.sort((a,b)=>b.score-a.score);
@@ -2029,18 +2040,17 @@ function rLB(){const w=$('hostLeaderboard');if(!w)return;
     const m=r===1?'🥇':r===2?'🥈':r===3?'🥉':`${r}.`;
     const t=p.team?` <span style="color:#86efac;font-size:.75rem">[${esc(p.team)}]</span>`:'';
     return `<div class="lb-row ${c}"><span class="lb-rank">${m}</span><span class="lb-av">${esc(p.avatar)}</span><span class="lb-name">${esc(p.name)}${t}</span><span class="lb-score">${p.score}</span></div>`}).join('')}
-function updAns(){const a=Object.values(G.players).filter(p=>!p.blocked&&p.answers[G.currentQ]!==undefined).length;$('hostAnswered').textContent=a}
 
-/* ═══ HOST END ═══ */
+/* ═══ HOST: END ═══ */
 function hEnd(){
-  G.gameState='ended';clearInterval(G.timerId);clearInterval(G.totalTimerId);
+  G.gameState='ended';clearInterval(G.totalTimerId);
   let rank;
   if(G.config.mode==='team'){
     const teams={};
     Object.values(G.players).forEach(p=>{if(p.blocked)return;const tn=p.team||'เดี่ยว';(teams[tn]=teams[tn]||[]).push(p)});
-    const teamList=Object.keys(teams).map(tn=>({name:tn,avatar:teams[tn][0]?teams[tn][0].avatar:'🎃',score:teams[tn].reduce((s,p)=>s+p.score,0)}));
-    teamList.sort((a,b)=>b.score-a.score);
-    rank=teamList.map((t,i)=>({name:'ทีม '+t.name,avatar:t.avatar,score:t.score,rank:i+1}));
+    const tl=Object.keys(teams).map(tn=>({name:tn,avatar:teams[tn][0]?teams[tn][0].avatar:'🎃',score:teams[tn].reduce((s,p)=>s+p.score,0)}));
+    tl.sort((a,b)=>b.score-a.score);
+    rank=tl.map((t,i)=>({name:'ทีม '+t.name,avatar:t.avatar,score:t.score,rank:i+1}));
   }else{
     const l=Object.values(G.players).filter(p=>!p.blocked).sort((a,b)=>b.score-a.score);
     rank=l.map((p,i)=>({name:p.name,avatar:p.avatar,score:p.score,rank:i+1}));
@@ -2060,7 +2070,7 @@ function rPodium(rank){
   $('honorableList').innerHTML=hon.length?hon.map(p=>`<div class="honorable-item"><span class="rank">#${p.rank}</span><span class="av">${esc(p.avatar)}</span><span>${esc(p.name)}</span><span class="score">${p.score}</span></div>`).join(''):'<p style="color:#7c6fa8">ไม่มี</p>';
 }
 
-/* ═══ PLAYER ═══ */
+/* ═══ PLAYER: JOIN ═══ */
 function renderAv(){const g=$('avatarGrid');if(!g)return;
   g.innerHTML=AV.map((a,i)=>`<button class="avatar-btn${i===0?' active':''}" data-a="${a}" onclick="selAv(this)">${a}</button>`).join('')}
 function selAv(b){sc();document.querySelectorAll('.avatar-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');G.myAvatar=b.dataset.a}
@@ -2071,65 +2081,189 @@ function playerJoin(){
   if(!name){$('joinMsg').textContent='⚠️ ใส่ชื่อด้วย';return}
   G.role='player';G.myName=name;G.myTeam=team;G.roomCode=code;
   $('joinBtn').disabled=true;$('joinMsg').textContent='⏳ เชื่อมต่อ...';$('joinMsg').style.color='#c4b5fd';
-  G.peer=new Peer({debug:1,config:{iceServers:[{urls:'stun:stun.l.google.com:19302'},{urls:'stun:stun1.l.google.com:19302'},{urls:'stun:stun2.l.google.com:19302'},{urls:'stun:stun3.l.google.com:19302'},{urls:'stun:stun4.l.google.com:19302'},{urls:'stun:global.stun.twilio.com:3478'}],iceCandidatePoolSize:10}});
-  G.peer.on('open',(id)=>{G.myPlayerId=id;G.hostConn=G.peer.connect('tug-'+code,{reliable:true});
-    G.hostConn.on('open',()=>{G.hostConn.send({type:'join',name,avatar:G.myAvatar,team});
-      $('joinMsg').textContent='';go('scPlayerWait');$('waitName').textContent=name;
-      $('waitTeam').textContent=team?`👥 ทีม: ${team}`:'';
-      $('waitAvatar').textContent=G.myAvatar;sJoin()});
-    G.hostConn.on('data',hHM);
-    G.hostConn.on('error',()=>{$('joinMsg').textContent='❌ เชื่อมต่อไม่ได้';$('joinMsg').style.color='#f87171';$('joinBtn').disabled=false})});
-  G.peer.on('error',(e)=>{if(e.type==='peer-unavailable')$('joinMsg').textContent='❌ ไม่พบห้อง';else $('joinMsg').textContent='❌ '+e.type;
-    $('joinMsg').style.color='#f87171';$('joinBtn').disabled=false});
-  setTimeout(()=>{if(G.hostConn&&!G.hostConn.open&&$('joinBtn').disabled){$('joinMsg').textContent='⏰ หมดเวลา';$('joinMsg').style.color='#f87171';$('joinBtn').disabled=false}},15000);
+  let attempts=0;const maxAttempts=3;
+  function tryConnect(){
+    attempts++;
+    console.log('[P] Attempt',attempts);
+    G.peer=new Peer(PEER_OPTS);
+    let opened=false;
+    G.peer.on('open',(id)=>{
+      opened=true;
+      console.log('[P] My peer:',id);
+      G.hostConn=G.peer.connect('tug-'+code,{reliable:true});
+      let connOpened=false;
+      const connTimeout=setTimeout(()=>{
+        if(!connOpened){
+          console.warn('[P] Conn timeout');
+          try{G.hostConn.close()}catch(e){}
+          retry();
+        }
+      },8000);
+      G.hostConn.on('open',()=>{
+        connOpened=true;clearTimeout(connTimeout);
+        console.log('[P] ✅ Connected');
+        G.hostConn.send({type:'join',name,avatar:G.myAvatar,team});
+        $('joinMsg').textContent='';
+        go('scPlayerWait');
+        $('waitName').textContent=name;
+        $('waitTeam').textContent=team?`👥 ทีม: ${team}`:'';
+        $('waitAvatar').textContent=G.myAvatar;
+        sJoin();
+      });
+      G.hostConn.on('data',hHM);
+      G.hostConn.on('close',()=>{console.warn('[P] Host disconnected');toast('⚠️ ครูหลุด',4000)});
+      G.hostConn.on('error',(e)=>{console.error('[P] Conn err:',e);if(!connOpened){clearTimeout(connTimeout);retry()}});
+    });
+    G.peer.on('error',(e)=>{
+      console.error('[P] Peer err:',e);
+      if(!opened){
+        if(e.type==='peer-unavailable'){
+          $('joinMsg').textContent='❌ ไม่พบห้อง "'+code+'" — ตรวจรหัส';
+          $('joinMsg').style.color='#f87171';
+          $('joinBtn').disabled=false;
+        }else retry();
+      }
+    });
+  }
+  function retry(){
+    if(attempts>=maxAttempts){
+      $('joinMsg').textContent='❌ เชื่อมต่อไม่ได้ ('+attempts+' ครั้ง) ลองรีเฟรช';
+      $('joinMsg').style.color='#f87171';
+      $('joinBtn').disabled=false;
+      return;
+    }
+    $('joinMsg').textContent=`⏳ ลองใหม่ (${attempts}/${maxAttempts})...`;
+    setTimeout(()=>{try{G.peer&&G.peer.destroy()}catch(e){};tryConnect()},1500);
+  }
+  tryConnect();
 }
 function hHM(d){
   if(!d)return;
   switch(d.type){
     case 'blocked':toast('🚫 ครูล็อก');break;
     case 'unblocked':toast('✅ ปลดล็อก');break;
-    case 'start':G.config.mode=d.mode;pCnt(()=>{$('pQTotal').textContent='∞';$('pScore').textContent='0';G.myScore=0;go('scPlayerQ')});break;
-    case 'question':pQ(d);break;
-    case 'reveal':pRev(d.correct);break;
-    case 'result':pRes(d);break;
-    case 'pause':toast(d.paused?'⏸ หยุด':'▶ เล่นต่อ');break;
+    case 'start':
+      G.questions=d.questions;
+      G.myCurrentQ=0;G.myScore=0;G.myStreak=0;G.myAnswers=[];
+      G.totalDeadline=Date.now()+d.totalTime*1000;
+      pCnt(()=>{
+        go('scPlayerQ');
+        pStartTimer();
+        pQ();
+      });
+      break;
+    case 'pause':
+      if(d.paused){if(G.myQTimerId)clearInterval(G.myQTimerId);toast('⏸ ครูหยุด')}
+      else {pStartTimer();toast('▶ เล่นต่อ')}
+      break;
     case 'end':pEnd(d.ranking);break;
   }
 }
-function pCnt(cb){go('scPlayerCountdown');let c=3;const el=$('countdownNum');el.textContent=c;sCd();
-  const t=setInterval(()=>{c--;if(c<=0){clearInterval(t);sCdGo();cb()}else{el.textContent=c;sCd();el.style.animation='none';void el.offsetWidth;el.style.animation='cp 1s infinite'}},1000)}
-let pTimer=null;
-function pQ(d){
-  go('scPlayerQ');$('pQNum').textContent=d.index+1;$('pQTotal').textContent='∞';
-  $('pQText').textContent=d.text;$('pQSub').textContent=d.sub||'';
+function pCnt(cb){
+  go('scPlayerCountdown');
+  let c=3;const el=$('countdownNum');el.textContent=c;sCd();
+  const t=setInterval(()=>{
+    c--;
+    if(c<=0){clearInterval(t);sCdGo();cb()}
+    else{el.textContent=c;sCd();el.style.animation='none';void el.offsetWidth;el.style.animation='cp 1s infinite'}
+  },1000);
+}
+function pStartTimer(){
+  if(G.myTotalTimerId)clearInterval(G.myTotalTimerId);
+  G.myTotalTimerId=setInterval(()=>{
+    const r=Math.max(0,Math.ceil((G.totalDeadline-Date.now())/1000));
+    const el=$('pTotalTimer');if(el)el.textContent=fmtTime(r);
+    if(r<=0)clearInterval(G.myTotalTimerId);
+  },500);
+}
+function pQ(){
+  if(!G.questions||G.myCurrentQ>=G.questions.length){
+    $('pQText').textContent='🎉 ตอบครบทุกข้อแล้ว!';
+    $('pQSub').textContent='รอจบเวลา...';
+    $('pAnswersGrid').innerHTML='';
+    $('pQNum').textContent='จบ';
+    return;
+  }
+  const q=G.questions[G.myCurrentQ];
+  $('pQNum').textContent=G.myCurrentQ+1;
+  $('pQText').textContent=q.text;
+  $('pQSub').textContent=q.sub||'';
+  $('pScore').textContent=G.myScore;
   $('pFeedback').classList.remove('show','correct','wrong');
   const g=$('pAnswersGrid');const sy=['▲','◆','●','■'],cl=['a0','a1','a2','a3'];
-  g.innerHTML=d.options.map((o,i)=>`<button class="ans-btn ${cl[i]}" onclick="pAns(${i},this)"><span class="symbol">${sy[i]}</span><span>${esc(o)}</span></button>`).join('');
-  clearInterval(pTimer);
-  pTimer=setInterval(()=>{const r=Math.max(0,Math.ceil((d.deadline-Date.now())/1000));const el=$('pTimer');el.textContent=r;el.classList.toggle('warn',r<=5);if(r<=0)clearInterval(pTimer)},200);
-  $('pTimer').textContent=d.timeLimit;
+  g.innerHTML=q.options.map((o,i)=>`<button class="ans-btn ${cl[i]}" data-i="${i}" onclick="pAns(${i},this)"><span class="symbol">${sy[i]}</span><span>${esc(o)}</span></button>`).join('');
+  G.myQStart=Date.now();
+  G.myQDeadline=Date.now()+(q.timeLimit*1000);
+  if(G.myQTimerId)clearInterval(G.myQTimerId);
+  G.myQTimerId=setInterval(()=>{
+    const r=Math.max(0,Math.ceil((G.myQDeadline-Date.now())/1000));
+    if(r<=0){clearInterval(G.myQTimerId);pAns(-1,null)}
+  },200);
 }
-function pAns(c,b){if(b.disabled)return;sc();document.querySelectorAll('.ans-btn').forEach(x=>x.disabled=true);b.style.transform='scale(1.05)';
-  try{G.hostConn.send({type:'answer',choice:c})}catch(e){}}
-function pRes(d){const fb=$('pFeedback');fb.classList.remove('correct','wrong');void fb.offsetWidth;
-  if(d.correct){fb.classList.add('show','correct');$('pFbEmoji').textContent=d.streak>=3?'🔥':'✅';
-    $('pFbText').textContent=d.streak>=3?`ติดกัน x${d.streak}!`:'ถูก!';$('pFbPts').textContent=`+${d.points}`;sCor()}
-  else{fb.classList.add('show','wrong');$('pFbEmoji').textContent='❌';$('pFbText').textContent='ผิด!';$('pFbPts').textContent='+0';sWr()}
-  G.myScore=d.totalScore;$('pScore').textContent=G.myScore}
-function pRev(ci){clearInterval(pTimer);document.querySelectorAll('.ans-btn').forEach((b,i)=>{
-  if(i===ci){if(!b.classList.contains('correct')&&!b.style.transform)b.classList.add('correct')}
-  else if(b.style.transform)b.classList.add('fade')})}
-function pEnd(rank){go('scPlayerEnd');const me=rank.find(r=>r.name===G.myName||r.name==='ทีม '+G.myTeam);
-  $('pFinalScore').textContent=G.myScore;$('pFinalRank').textContent=me?`อันดับ #${me.rank}`:'ขอบคุณ!';sFin()}
+function pAns(choice,btn){
+  const q=G.questions[G.myCurrentQ];if(!q)return;
+  if(G.myQTimerId)clearInterval(G.myQTimerId);
+  const isCorrect=choice===q.correct;
+  const timeLeft=Math.max(0,G.myQDeadline-Date.now());
+  let pts=0;
+  if(isCorrect){
+    pts=500+Math.round((timeLeft/(q.timeLimit*1000))*500);
+    G.myStreak++;
+    if(G.myStreak>=3)pts+=100;
+    if(G.myStreak>=5)pts+=200;
+  }else G.myStreak=0;
+  G.myScore+=pts;
+  G.myAnswers.push({qIdx:G.myCurrentQ,choice,correct:isCorrect,points:pts});
+  const btns=document.querySelectorAll('#pAnswersGrid .ans-btn');
+  btns.forEach((b,i)=>{
+    b.disabled=true;
+    if(i===q.correct)b.classList.add('correct');
+    else if(i===choice)b.classList.add('wrong');
+    else b.classList.add('fade');
+  });
+  const fb=$('pFeedback');
+  fb.classList.remove('correct','wrong');void fb.offsetWidth;
+  if(isCorrect){
+    fb.classList.add('show','correct');
+    $('pFbEmoji').textContent=G.myStreak>=3?'🔥':'✅';
+    $('pFbText').textContent=G.myStreak>=3?`ติดกัน x${G.myStreak}!`:'ถูก!';
+    $('pFbPts').textContent=`+${pts}`;
+    sCor();
+  }else{
+    fb.classList.add('show','wrong');
+    $('pFbEmoji').textContent='❌';
+    $('pFbText').textContent='ผิด!';
+    $('pFbPts').textContent='+0';
+    sWr();
+  }
+  $('pScore').textContent=G.myScore;
+  try{G.hostConn.send({type:'answer',qIndex:G.myCurrentQ,correct:isCorrect,points:pts})}catch(e){}
+  setTimeout(()=>{G.myCurrentQ++;pQ();},1500);
+}
+function pEnd(rank){
+  go('scPlayerEnd');
+  const me=rank.find(r=>r.name===G.myName||r.name==='ทีม '+G.myTeam);
+  $('pFinalScore').textContent=G.myScore;
+  $('pFinalRank').textContent=me?`อันดับ #${me.rank}`:'ขอบคุณที่เล่น!';
+  sFin();
+}
 
 /* ═══ INIT ═══ */
 renderGrades();renderAv();
-{const p=new URLSearchParams(location.search);const c=p.get('code');
-  if(c&&c.length===4){setTimeout(()=>{const el=$('joinCode');if(el)el.value=c.toUpperCase();go('scPlayerJoin')},100)}}
+{
+  const p=new URLSearchParams(location.search);const c=p.get('code');
+  if(c&&c.length===4){
+    setTimeout(()=>{
+      const el=$('joinCode');
+      if(el)el.value=c.toUpperCase();
+      go('scPlayerJoin');
+    },100);
+  }
+}
 document.addEventListener('input',(e)=>{if(e.target.id==='joinCode')e.target.value=e.target.value.toUpperCase().replace(/[^A-Z0-9]/g,'')});
 document.addEventListener('touchstart',()=>{iA();startBGM()},{once:true,passive:true});
 document.addEventListener('click',()=>{iA();startBGM()},{once:true});
-console.log('🎃 Tug of War v6 · Team names · PeerJS fixed');
+console.log('🎃 Tug of War v8 FINAL · Complete vocabulary · Independent players');
 </script>
 </body>
-</html>
+</html>  
