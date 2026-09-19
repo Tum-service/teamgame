@@ -256,6 +256,7 @@ h1{font-size:1.7rem}.room-code{font-size:2.6rem;letter-spacing:6px}.timer-big{fo
       <div class="podium-stage" id="podiumStage"></div>
       <h3 style="margin:24px 0 12px;text-align:center">👏 ชมเชย</h3>
       <div class="honorable" id="honorableList"></div>
+      <div id="fullRankTableHost"></div>
       <div style="margin-top:30px;text-align:center"><button class="btn-small btn-primary" onclick="location.reload()" style="padding:12px 24px;font-size:1rem">🔄 เล่นใหม่</button></div>
     </div>
   </div>
@@ -314,15 +315,25 @@ h1{font-size:1.7rem}.room-code{font-size:2.6rem;letter-spacing:6px}.timer-big{fo
       <div class="txt" id="pFbText">ถูกต้อง!</div>
       <div class="pts" id="pFbPts">+100</div>
     </div>
+    <div id="pRankPanel" style="margin-top:14px;background:linear-gradient(180deg,rgba(30,15,55,.85),rgba(15,7,30,.9));border-radius:14px;padding:10px 12px;border:1px solid rgba(168,85,247,.35)">
+      <div style="font-weight:900;color:#fb923c;margin-bottom:8px;font-size:.9rem;display:flex;justify-content:space-between;align-items:center">
+        <span>🏆 อันดับของคุณ</span>
+        <span id="pMyRank" style="font-family:monospace;color:#fbbf24;font-size:1.15rem">-</span>
+      </div>
+      <div id="pRankList"></div>
+    </div>
   </div>
 </div>
 
 <div class="screen" id="scPlayerEnd">
-  <div style="max-width:520px;margin:30px auto;text-align:center">
-    <div style="font-size:4rem;margin-bottom:14px">🏆</div>
-    <h2>จบเกมแล้ว!</h2>
-    <div style="font-size:3.5rem;font-weight:900;color:#fb923c;font-family:monospace;margin:16px 0" id="pFinalScore">0</div>
-    <div style="font-size:1.2rem;color:#4ade80;font-weight:900" id="pFinalRank">อันดับ #1</div>
+  <div style="max-width:900px;margin:30px auto">
+    <div style="text-align:center">
+      <div style="font-size:4rem;margin-bottom:14px">🏆</div>
+      <h2>จบเกมแล้ว!</h2>
+      <div style="font-size:3.5rem;font-weight:900;color:#fb923c;font-family:monospace;margin:16px 0" id="pFinalScore">0</div>
+      <div style="font-size:1.2rem;color:#4ade80;font-weight:900" id="pFinalRank">อันดับ #1</div>
+    </div>
+    <div id="fullRankTablePlayer" style="margin-top:24px"></div>
   </div>
 </div>
 
@@ -1738,7 +1749,7 @@ function bgmTick(){
 function startBGM(){iA();if(!ac||bgOn)return;bgOn=true;try{const m=ac.createGain();m.gain.setValueAtTime(0.0001,ac.currentTime);m.gain.exponentialRampToValueAtTime(0.035,ac.currentTime+2.5);m.connect(ac.destination);bgm={master:m};bgS=0;bgT=setInterval(bgmTick,380);bgmTick()}catch(e){bgm=null;bgOn=false}}
 
 /* ═══════════════════════════════════════════
-   MQTT CONNECTION (Robust: 2 brokers + auto-switch)
+   MQTT CONNECTION
    ═══════════════════════════════════════════ */
 const MQTT_BROKERS=[
   'wss://broker.hivemq.com:8884/mqtt',
@@ -1759,6 +1770,7 @@ const G={
   myPlayerId:null,myName:'',myAvatar:'🎃',myTeam:'',
   myQTimerId:null,myQDeadline:0,myQStart:0,myTotalTimerId:null,myGameActive:false,
   myJoinTimerId:null,
+  rankTimerId:null,
 };
 const AV=['🎃','👻','🦇','🕷️','🕸️','💀','🧙‍♀️','🧛','🧟','🐺','🦉','🐈‍⬛','🐸','🦊','🐼','🐯','🦁','🐨','🐷','🐵','🐰','🐭','🐮','🐔','🦄','🐲','🦖','🤖','👽','🦈'];
 const $=(id)=>document.getElementById(id);
@@ -1769,7 +1781,6 @@ function gCode(){const c='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';let r='';for(let i=0
 function shuf(a){const r=a.slice();for(let i=r.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[r[i],r[j]]=[r[j],r[i]]}return r}
 function fmtTime(sec){const m=Math.floor(sec/60),s=sec%60;return m+':'+String(s).padStart(2,'0')}
 
-/* ⭐ Robust MQTT Connection */
 function connectMQTT(onConnect,onFail){
   if(mqttClient){try{mqttClient.end(true)}catch(e){}}
   mqttHandlers={};
@@ -1929,10 +1940,8 @@ function createRoom(){
   qi.onerror=()=>{qr.style.display='none'};qr.appendChild(qi);
   $('hostStartBtn').textContent='⏳ กำลังเชื่อมต่อ MQTT...';
   connectMQTT(()=>{
-        sub(`tug_kv10/${code}/#`,(topic,data)=>{
+    sub(`tug_kv10/${code}/#`,(topic,data)=>{
       const parts=topic.split('/');
-      // topic = "tug_kv10/ABCD/join" → parts[2]='join'
-      // topic = "tug_kv10/ABCD/player/p_xxx/answer" → parts[2]='player', parts[3]=playerId, parts[4]='answer'
       if(parts[2]==='join'||parts[2]==='ready')hostOnJoin(data);
       else if(parts[2]==='player'&&parts[4]==='answer')hostOnAnswer(parts[3],data);
       else if(parts[2]==='player'&&parts[4]==='leave')hostOnLeave(parts[3]);
@@ -1981,6 +1990,12 @@ function hostBroadcastLobby(){
 }
 function hostBroadcast(data){
   pub(`tug_kv10/${G.roomCode}/broadcast`,data);
+}
+function broadcastRanking(){
+  const list=Object.values(G.players).filter(p=>!p.blocked)
+    .sort((a,b)=>b.score-a.score)
+    .map(p=>({id:p.id,name:p.name,avatar:p.avatar,team:p.team,score:p.score}));
+  hostBroadcast({type:'ranking',list});
 }
 function rPL(){
   const g=$('playersGrid');if(!g)return;const l=Object.values(G.players);
@@ -2038,15 +2053,30 @@ function hostStart(){
     const el=$('hostTotalTimer');if(el){el.textContent=fmtTime(remain);el.classList.toggle('warn',remain<=30)}
     if(remain<=0){clearInterval(G.totalTimerId);hEnd()}
   },500);
+  // ⭐ Broadcast ranking ทุก 2 วินาที
+  clearInterval(G.rankTimerId);
+  G.rankTimerId=setInterval(()=>{
+    if(G.gameState!=='playing'&&G.gameState!=='paused')return;
+    broadcastRanking();
+  },2000);
+  broadcastRanking();
 }
 function bQ(pool){
   if(pool.length<4)return[];
-  const qs=[];const sh=shuf(pool);const cnt=sh.length;
-  for(let i=0;i<cnt;i++){
-    const t=sh[i];const rv=Math.random()<0.5;
-    const oth=pool.filter(w=>w.en!==t.en&&w.th!==t.th);const dis=shuf(oth).slice(0,3);
-    if(dis.length<3)continue;
-    const opts=rv?shuf([t,...dis]).map(w=>({text:w.en,ok:w.en===t.en})):shuf([t,...dis]).map(w=>({text:w.th,ok:w.th===t.th}));
+  // ⭐ สร้างคำถามเยอะพอให้เล่นจนหมดเวลา (สูงสุด 500 ข้อ)
+  const qTarget=Math.max(100,Math.min(500,Math.ceil(G.config.totalTime/2)+50));
+  const qs=[];
+  let bag=shuf(pool),bi=0;
+  for(let k=0;k<qTarget;k++){
+    if(bi>=bag.length){bag=shuf(pool);bi=0}
+    const t=bag[bi++];
+    const rv=Math.random()<0.5;
+    const oth=pool.filter(w=>w.en!==t.en&&w.th!==t.th);
+    const dis=shuf(oth).slice(0,3);
+    if(dis.length<3){k--;continue}
+    const opts=rv
+      ?shuf([t,...dis]).map(w=>({text:w.en,ok:w.en===t.en}))
+      :shuf([t,...dis]).map(w=>({text:w.th,ok:w.th===t.th}));
     const ci=opts.findIndex(o=>o.ok);
     qs.push({text:rv?t.th:t.en,sub:rv?'คำภาษาอังกฤษคือ?':'คำนี้แปลว่าอะไร?',options:opts,correct:ci,timeLimit:G.config.timeLimit});
   }
@@ -2063,7 +2093,7 @@ function hostPause(){sc();
   hostBroadcast({type:'pause',paused:G.gameState==='paused'});
 }
 function hostAddT(s){sc();G.totalDeadline+=s*1000;toast(`+${s} วินาที`,1500)}
-function hostStop(){if(!confirm('หยุดและจบเลย?'))return;hEnd()}
+function hostStop(){if(!confirm('หยุดและจบเลย?'))return;clearInterval(G.rankTimerId);hEnd()}
 
 /* ═══ ARENA / LEADERBOARD ═══ */
 function renderArena(){
@@ -2116,22 +2146,37 @@ function rLB(){const w=$('hostLeaderboard');if(!w)return;
 
 /* ═══ HOST: END ═══ */
 function hEnd(){
-  G.gameState='ended';clearInterval(G.totalTimerId);
-  let rank;
+  G.gameState='ended';
+  clearInterval(G.totalTimerId);
+  clearInterval(G.rankTimerId);
+  let ranking;
   if(G.config.mode==='team'){
     const teams={};
-    Object.values(G.players).forEach(p=>{if(p.blocked)return;const tn=p.team||'เดี่ยว';(teams[tn]=teams[tn]||[]).push(p)});
-    const tl=Object.keys(teams).map(tn=>({name:tn,avatar:teams[tn][0]?teams[tn][0].avatar:'🎃',score:teams[tn].reduce((s,p)=>s+p.score,0)}));
+    Object.values(G.players).forEach(p=>{
+      if(p.blocked)return;
+      const tn=p.team||'เดี่ยว';
+      (teams[tn]=teams[tn]||[]).push(p);
+    });
+    const tl=Object.keys(teams).map(tn=>({
+      name:'ทีม '+tn,
+      teamName:tn,
+      avatar:teams[tn][0]?teams[tn][0].avatar:'🎃',
+      score:teams[tn].reduce((s,p)=>s+p.score,0),
+      members:teams[tn].map(p=>({name:p.name,avatar:p.avatar,score:p.score})).sort((a,b)=>b.score-a.score)
+    }));
     tl.sort((a,b)=>b.score-a.score);
-    rank=tl.map((t,i)=>({name:'ทีม '+t.name,avatar:t.avatar,score:t.score,rank:i+1}));
+    ranking=tl.map((t,i)=>({...t,rank:i+1}));
   }else{
     const l=Object.values(G.players).filter(p=>!p.blocked).sort((a,b)=>b.score-a.score);
-    rank=l.map((p,i)=>({name:p.name,avatar:p.avatar,score:p.score,rank:i+1}));
+    ranking=l.map((p,i)=>({name:p.name,avatar:p.avatar,score:p.score,team:p.team,rank:i+1}));
   }
-  hostBroadcast({type:'end',ranking:rank});
-  rPodium(rank);go('scHostPodium');sFin();
+  hostBroadcast({type:'end',ranking,mode:G.config.mode});
+  rPodium(ranking,G.config.mode);
+  go('scHostPodium');
+  sFin();
 }
-function rPodium(rank){
+
+function rPodium(rank,mode){
   const st=$('podiumStage');const t3=rank.slice(0,3);
   const ord=[1,0,2],cl=['p2','p1','p3'],md=['2','1','3'];
   st.innerHTML=ord.map((idx,i)=>{const p=t3[idx];
@@ -2141,6 +2186,34 @@ function rPodium(rank){
       <div class="podium-base">${md[i]}</div></div>`}).join('');
   const hon=rank.slice(3,5);
   $('honorableList').innerHTML=hon.length?hon.map(p=>`<div class="honorable-item"><span class="rank">#${p.rank}</span><span class="av">${esc(p.avatar)}</span><span>${esc(p.name)}</span><span class="score">${p.score}</span></div>`).join(''):'<p style="color:#7c6fa8">ไม่มี</p>';
+  buildRankTable('fullRankTableHost',rank,mode);
+}
+
+function buildRankTable(elId,rank,mode){
+  const el=$(elId);if(!el)return;
+  if(rank.length<=5){el.innerHTML='';return}
+  const rest=rank.slice(5);
+  let html=`<h3 style="margin:24px 0 12px;text-align:center">📋 ตารางอันดับทั้งหมด</h3>`;
+  html+=`<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;background:rgba(30,15,55,.7);border-radius:14px;overflow:hidden">
+    <thead><tr style="background:rgba(249,115,22,.28)">
+      <th style="padding:10px;color:#fb923c;font-size:.9rem">อันดับ</th>
+      <th style="padding:10px;color:#fb923c;font-size:.9rem;text-align:left">${mode==='team'?'ทีม':'ชื่อ'}</th>
+      <th style="padding:10px;color:#fb923c;font-size:.9rem">คะแนน</th>
+    </tr></thead><tbody>`;
+  rest.forEach(p=>{
+    html+=`<tr style="border-top:1px solid rgba(168,85,247,.2)">
+      <td style="padding:10px;text-align:center;color:#fb923c;font-weight:900">#${p.rank}</td>
+      <td style="padding:10px">${esc(p.avatar)} ${esc(p.name)}</td>
+      <td style="padding:10px;text-align:right;font-family:monospace;color:#4ade80;font-weight:900">${p.score}</td>
+    </tr>`;
+    if(mode==='team'&&p.members){
+      html+=`<tr><td colspan="3" style="padding:6px 14px 12px;background:rgba(45,27,78,.4);font-size:.83rem;color:#c4b5fd">
+        <b style="color:#fb923c">สมาชิก:</b> ${p.members.map(m=>`${esc(m.avatar)} ${esc(m.name)} <span style="color:#86efac;font-weight:900">${m.score}</span>`).join(' · ')}
+      </td></tr>`;
+    }
+  });
+  html+=`</tbody></table></div>`;
+  el.innerHTML=html;
 }
 
 /* ═══ PLAYER: JOIN ═══ */
@@ -2197,8 +2270,10 @@ function pOnBroadcast(d){
   switch(d.type){
     case 'blocked':toast('🚫 ครูล็อก');break;
     case 'unblocked':toast('✅ ปลดล็อก');break;
+    case 'ranking':
+      updatePlayerRanking(d.list);
+      break;
     case 'start':
-      // ⭐ Stop joining attempts
       if(G.myJoinTimerId){clearTimeout(G.myJoinTimerId);G.myJoinTimerId=null;}
       G.questions=d.questions;
       G.myCurrentQ=0;G.myScore=0;G.myStreak=0;G.myAnswers=[];
@@ -2215,14 +2290,13 @@ function pOnBroadcast(d){
       else {pStartTimer();if(G.myGameActive&&G.questions&&G.myCurrentQ<G.questions.length)startQTimer();toast('▶ เล่นต่อ')}
       break;
     case 'end':
-      // ⭐ FIX #1: Stop game immediately
       G.myGameActive=false;
       G.gameState='ended';
       if(G.myQTimerId){clearInterval(G.myQTimerId);G.myQTimerId=null;}
       if(G.myTotalTimerId){clearInterval(G.myTotalTimerId);G.myTotalTimerId=null;}
       if(G.myJoinTimerId){clearTimeout(G.myJoinTimerId);G.myJoinTimerId=null;}
-      G.questions=[];   // clear questions
-      pEnd(d.ranking);
+      G.questions=[];
+      pEnd(d.ranking,d.mode);
       break;
   }
 }
@@ -2245,7 +2319,6 @@ function pStartTimer(){
   },500);
 }
 function startQTimer(){
-  // ⭐ FIX #2: Don't start if game not active
   if(!G.myGameActive)return;
   const q=G.questions[G.myCurrentQ];if(!q)return;
   G.myQStart=Date.now();
@@ -2258,7 +2331,6 @@ function startQTimer(){
   },200);
 }
 function pQ(){
-  // ⭐ FIX #3: Check game active
   if(!G.myGameActive)return;
   if(!G.questions||G.myCurrentQ>=G.questions.length){
     $('pQText').textContent='🎉 ตอบครบทุกข้อแล้ว!';
@@ -2278,7 +2350,6 @@ function pQ(){
   startQTimer();
 }
 function pAns(choice,btn){
-  // ⭐ FIX #4: Check game active before processing
   if(!G.myGameActive)return;
   const q=G.questions[G.myCurrentQ];if(!q)return;
   if(G.myQTimerId)clearInterval(G.myQTimerId);
@@ -2318,16 +2389,38 @@ function pAns(choice,btn){
   $('pScore').textContent=G.myScore;
   pub(`tug_kv10/${G.roomCode}/player/${G.myPlayerId}/answer`,{points:pts,correct:isCorrect,qIdx:G.myCurrentQ,name:G.myName,avatar:G.myAvatar,team:G.myTeam});
   setTimeout(()=>{
-    // ⭐ FIX #5: Check game active before advancing
     if(!G.myGameActive)return;
     G.myCurrentQ++;pQ();
   },1500);
 }
-function pEnd(rank){
+function updatePlayerRanking(list){
+  if(!list||!$('pRankList'))return;
+  const myIdx=list.findIndex(p=>p.id===G.myPlayerId);
+  const myRank=myIdx>=0?myIdx+1:0;
+  $('pMyRank').textContent=myRank?`${myRank} / ${list.length}`:'-';
+  const setStart=myRank?Math.floor((myRank-1)/10)*10:0;
+  const slice=list.slice(setStart,setStart+10);
+  const rows=slice.map((p,i)=>{
+    const r=setStart+i+1;
+    const isMe=p.id===G.myPlayerId;
+    const bg=isMe?'background:linear-gradient(90deg,rgba(251,191,36,.35),rgba(251,191,36,.18));border:1.5px solid #fbbf24;box-shadow:0 0 12px rgba(251,191,36,.4)':'background:rgba(0,0,0,.2);border:1.5px solid transparent';
+    const nm=isMe?'color:#fde68a;font-weight:900':'';
+    return `<div style="display:flex;gap:8px;padding:5px 10px;border-radius:8px;${bg};margin:3px 0;align-items:center">
+      <span style="min-width:28px;color:#fb923c;font-weight:900;font-size:.82rem">#${r}</span>
+      <span style="font-size:1.05rem">${esc(p.avatar)}</span>
+      <span style="flex:1;font-weight:700;font-size:.82rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;${nm}">${esc(p.name)}${p.team?` <span style="color:#86efac;font-size:.7rem">[${esc(p.team)}]</span>`:''}</span>
+      <span style="color:#4ade80;font-weight:900;font-family:monospace;font-size:.88rem">${p.score}</span>
+      ${isMe?'<span style="font-size:1rem">⭐</span>':''}
+    </div>`;
+  }).join('');
+  $('pRankList').innerHTML=rows||'<p style="color:#7c6fa8;text-align:center;font-size:.8rem;padding:8px">-</p>';
+}
+function pEnd(rank,mode){
   go('scPlayerEnd');
-  const me=rank.find(r=>r.name===G.myName||r.name==='ทีม '+G.myTeam);
+  const me=rank.find(r=>r.name===G.myName||(mode==='team'&&r.teamName===G.myTeam));
   $('pFinalScore').textContent=G.myScore;
   $('pFinalRank').textContent=me?`อันดับ #${me.rank}`:'ขอบคุณที่เล่น!';
+  buildRankTable('fullRankTablePlayer',rank,mode||G.config.mode);
   sFin();
 }
 
@@ -2346,8 +2439,7 @@ renderGrades();renderAv();
 document.addEventListener('input',(e)=>{if(e.target.id==='joinCode')e.target.value=e.target.value.toUpperCase().replace(/[^A-Z0-9]/g,'')});
 document.addEventListener('touchstart',()=>{iA();startBGM()},{once:true,passive:true});
 document.addEventListener('click',()=>{iA();startBGM()},{once:true});
-console.log('🎃 Tug of War v10 FINAL · 5-point end-game fix · Complete vocabulary');
+console.log('🎃 Tug of War v11 · Endless play + Set-based ranking + Full rank table');
 </script>
 </body>
 </html>
-  
