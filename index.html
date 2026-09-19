@@ -3,35 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-<title>🎃 ชักกะเย่อคำศัพท์ · Tug of War</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;700;800;900&family=Creepster&display=swap" rel="stylesheet">
+<title>🎃 ชักกะเย่อคำศัพท์</title>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;700;800;900&family=Creepster&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Kanit',sans-serif;font-weight:600;min-height:100vh;
-  background:radial-gradient(circle at 20% 20%,rgba(107,33,168,.35),transparent 55%),
-    radial-gradient(circle at 80% 80%,rgba(249,115,22,.25),transparent 55%),
-    linear-gradient(180deg,#0a0612 0%,#1a0b2e 50%,#2d1b4e 100%);
+  background:radial-gradient(circle at 20% 20%,rgba(107,33,168,.35),transparent 55%),radial-gradient(circle at 80% 80%,rgba(249,115,22,.25),transparent 55%),linear-gradient(180deg,#0a0612,#1a0b2e 50%,#2d1b4e);
   color:#f5e6d3;overflow-x:hidden;padding:14px;-webkit-tap-highlight-color:transparent}
-.screen{display:none;min-height:100vh;max-width:1400px;margin:0 auto;padding:10px}
+.screen{display:none;min-height:100vh;max-width:1200px;margin:0 auto;padding:10px}
 .screen.active{display:block}
-h1{font-family:'Creepster',cursive;font-size:2.4rem;text-align:center;
-  background:linear-gradient(135deg,#ffedd5,#fb923c,#a855f7);
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-  filter:drop-shadow(0 4px 20px rgba(249,115,22,.7));letter-spacing:2px;margin-bottom:8px}
-h2{font-size:1.4rem;text-align:center;color:#fb923c;margin-bottom:14px;
-  text-shadow:0 0 12px rgba(249,115,22,.5)}
+h1{font-family:'Creepster',cursive;font-size:2.4rem;text-align:center;background:linear-gradient(135deg,#ffedd5,#fb923c,#a855f7);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 4px 20px rgba(249,115,22,.7));letter-spacing:2px;margin-bottom:8px}
+h2{font-size:1.4rem;text-align:center;color:#fb923c;margin-bottom:14px;text-shadow:0 0 12px rgba(249,115,22,.5)}
 h3{font-size:1.05rem;color:#c4b5fd;margin-bottom:10px;font-weight:800}
-.card{background:linear-gradient(180deg,rgba(30,15,55,.88),rgba(15,7,30,.94));
-  border-radius:22px;padding:20px;box-shadow:0 20px 50px -20px rgba(0,0,0,.7),
-  0 0 0 1.5px rgba(168,85,247,.35) inset,0 0 50px rgba(107,33,168,.35);
-  border:1px solid rgba(168,85,247,.3);margin-bottom:16px}
-.btn{display:block;width:100%;padding:18px;margin:10px 0;border:none;border-radius:18px;
-  font-family:inherit;font-size:1.15rem;font-weight:800;cursor:pointer;color:#fff;
-  transition:.2s;box-shadow:0 12px 26px -8px rgba(0,0,0,.5),inset 0 -4px 0 rgba(0,0,0,.25)}
-.btn:hover{transform:translateY(-2px)}
-.btn:active{transform:scale(.97)}
+.card{background:linear-gradient(180deg,rgba(30,15,55,.88),rgba(15,7,30,.94));border-radius:22px;padding:20px;box-shadow:0 0 0 1.5px rgba(168,85,247,.35) inset;border:1px solid rgba(168,85,247,.3);margin-bottom:16px}
+.btn{display:block;width:100%;padding:18px;margin:10px 0;border:none;border-radius:18px;font-family:inherit;font-size:1.15rem;font-weight:800;cursor:pointer;color:#fff;transition:.2s;box-shadow:0 12px 26px -8px rgba(0,0,0,.5),inset 0 -4px 0 rgba(0,0,0,.25)}
+.btn:hover{transform:translateY(-2px)}.btn:active{transform:scale(.97)}
 .btn-primary{background:linear-gradient(135deg,#f97316,#ea580c)}
 .btn-secondary{background:linear-gradient(135deg,#a855f7,#7c3aed)}
 .btn-success{background:linear-gradient(135deg,#22c55e,#15803d)}
@@ -39,359 +25,208 @@ h3{font-size:1.05rem;color:#c4b5fd;margin-bottom:10px;font-weight:800}
 .btn-warn{background:linear-gradient(135deg,#eab308,#ca8a04)}
 .btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
 .btn-small{padding:9px 16px;font-size:.88rem;margin:0 4px;display:inline-block;width:auto;border-radius:11px}
-input,select{width:100%;padding:14px;border-radius:13px;border:2px solid rgba(168,85,247,.4);
-  background:rgba(10,6,18,.85);color:#f5e6d3;font-family:inherit;font-size:1.05rem;
-  outline:none;margin-bottom:10px;font-weight:700}
-input:focus,select:focus{border-color:#f97316;box-shadow:0 0 0 3px rgba(249,115,22,.25)}
-input.code{text-align:center;letter-spacing:12px;font-size:1.8rem;font-weight:900;color:#fb923c;
-  text-transform:uppercase;font-family:'Courier New',monospace}
+input,select{width:100%;padding:14px;border-radius:13px;border:2px solid rgba(168,85,247,.4);background:rgba(10,6,18,.85);color:#f5e6d3;font-family:inherit;font-size:1.05rem;outline:none;margin-bottom:10px;font-weight:700}
+input:focus{border-color:#f97316;box-shadow:0 0 0 3px rgba(249,115,22,.25)}
+input.code{text-align:center;letter-spacing:12px;font-size:1.8rem;font-weight:900;color:#fb923c;text-transform:uppercase;font-family:monospace}
 label{display:block;color:#c4b5fd;font-size:.88rem;margin-bottom:5px;font-weight:700}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
-.chip{padding:11px 14px;border:2px solid rgba(168,85,247,.4);border-radius:13px;
-  background:rgba(30,15,55,.6);color:#c4b5fd;cursor:pointer;text-align:center;
-  font-weight:700;transition:.2s;font-family:inherit;font-size:.9rem}
-.chip.active,.chip:hover{border-color:#f97316;background:rgba(249,115,22,.25);color:#fff;
-  box-shadow:0 0 20px rgba(249,115,22,.5);transform:translateY(-2px)}
-.chip.selected{border-color:#22c55e;background:rgba(34,197,94,.25);color:#bbf7d0}
-
-/* WORD PICKER */
-.wp-actions{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;justify-content:center}
-.wp-chip{min-width:48px;height:48px;border-radius:50%;border:none;cursor:pointer;
-  font-family:inherit;font-weight:900;font-size:1.1rem;color:#fff;
-  display:flex;align-items:center;justify-content:center;padding:0 12px;
-  background:radial-gradient(circle at 32% 24%,#86efac,#16a34a 45%,#14532d 100%);
-  box-shadow:0 8px 16px -4px rgba(20,83,45,.7),inset 0 -5px 10px rgba(0,0,0,.3);
-  transition:.15s}
+.chip{padding:11px 14px;border:2px solid rgba(168,85,247,.4);border-radius:13px;background:rgba(30,15,55,.6);color:#c4b5fd;cursor:pointer;text-align:center;font-weight:700;transition:.2s;font-family:inherit;font-size:.9rem}
+.chip.active,.chip:hover{border-color:#f97316;background:rgba(249,115,22,.25);color:#fff;transform:translateY(-2px)}
+.grades{display:flex;flex-direction:column;gap:14px;margin-top:6px}
+.grade-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.grade{flex:0 0 178px;width:178px;min-height:110px;border-radius:50% 50% 46% 46%/42% 42% 30% 30%;border:none;cursor:pointer;font-family:inherit;color:#fff;position:relative;padding:20px 18px 16px;display:flex;flex-direction:column;justify-content:center;gap:5px;text-align:center;transition:.22s;background:radial-gradient(ellipse at 30% 22%,#fb923c,#ea580c 45%,#9a3412)}
+.grade::after{content:"";position:absolute;top:-16px;left:50%;transform:translateX(-50%);width:20px;height:14px;background:linear-gradient(180deg,#22c55e,#15803d);border-radius:6px 8px 4px 4px}
+.grade:hover{transform:translateY(-5px) scale(1.03)}
+.g-name{font-size:1.5rem;font-weight:900;color:#ffedd5}
+.g-count{font-size:.78rem;font-weight:700;align-self:center;background:rgba(0,0,0,.35);padding:3px 12px;border-radius:999px;color:#ffedd5}
+.g1{background:radial-gradient(ellipse at 30% 22%,#fdba74,#ea580c 45%,#7c2d12)!important}
+.g2{background:radial-gradient(ellipse at 30% 22%,#86efac,#16a34a 45%,#14532d)!important}
+.g3{background:radial-gradient(ellipse at 30% 22%,#fde047,#eab308 45%,#854d0e)!important}
+.g4{background:radial-gradient(ellipse at 30% 22%,#93c5fd,#2563eb 45%,#1e3a8a)!important}
+.g5{background:radial-gradient(ellipse at 30% 22%,#f9a8d4,#db2777 45%,#831843)!important}
+.g6{background:radial-gradient(ellipse at 30% 22%,#c4b5fd,#7c3aed 45%,#3b0764)!important}
+.g7{background:radial-gradient(ellipse at 30% 22%,#fda4af,#e11d48 45%,#4c0519)!important}
+.g-all{background:radial-gradient(ellipse at 30% 22%,#fb923c,#ea580c 45%,#7c2d12)!important;flex:0 0 380px;width:380px;max-width:100%}
+.wp-actions{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;justify-content:center}
+.wp-chip{min-width:52px;height:52px;border-radius:50%;border:none;cursor:pointer;font-family:inherit;font-weight:900;font-size:1.2rem;color:#fff;display:flex;align-items:center;justify-content:center;padding:0 12px;background:radial-gradient(circle at 32% 24%,#86efac,#16a34a 45%,#14532d);transition:.15s}
 .wp-chip:hover{transform:translateY(-3px) scale(1.08)}
-.wp-chip.all{min-width:auto;height:44px;padding:0 18px;border-radius:999px;font-size:.85rem;
-  background:radial-gradient(circle at 32% 24%,#67e8f9,#06b6d4 45%,#0e7490 100%)}
-.wp-chip.clear{background:radial-gradient(circle at 32% 24%,#fca5a5,#dc2626 45%,#7f1d1d 100%)}
-.wp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;
-  max-height:48vh;overflow-y:auto;padding:6px;background:rgba(15,7,30,.5);border-radius:14px}
-.wp-card{background:rgba(30,15,55,.55);border:2px solid rgba(168,85,247,.4);
-  border-radius:12px;padding:10px 8px;cursor:pointer;position:relative;transition:.15s;
-  text-align:center;font-family:inherit;color:#f5e6d3}
+.wp-chip.all{min-width:auto;height:48px;padding:0 20px;border-radius:999px;font-size:.9rem;background:radial-gradient(circle at 32% 24%,#67e8f9,#06b6d4 45%,#0e7490)}
+.wp-chip.clear{min-width:48px;height:48px;padding:0;background:radial-gradient(circle at 32% 24%,#fca5a5,#dc2626 45%,#7f1d1d);font-size:1.3rem}
+.wp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;max-height:52vh;overflow-y:auto;padding:6px}
+.wp-card{background:rgba(30,15,55,.55);border:2px solid rgba(168,85,247,.4);border-radius:12px;padding:10px 8px;cursor:pointer;position:relative;transition:.15s;text-align:center;font-family:inherit;color:#f5e6d3}
 .wp-card:hover{border-color:#fb923c;background:rgba(249,115,22,.18);transform:translateY(-2px)}
-.wp-card.selected{border-color:#22c55e;background:rgba(34,197,94,.18);
-  box-shadow:0 4px 14px rgba(34,197,94,.4)}
-.wp-card.selected::after{content:"✓";position:absolute;top:3px;right:5px;color:#16a34a;
-  font-weight:900;font-size:13px;background:#fff;border-radius:50%;width:18px;height:18px;
-  display:flex;align-items:center;justify-content:center;box-shadow:0 2px 5px rgba(0,0,0,.4)}
-.wp-card .wp-en{font-weight:800;color:#ffedd5;font-size:.9rem;word-break:break-word}
-.wp-card .wp-th{font-size:.75rem;color:#c4b5fd;margin-top:3px;word-break:break-word}
+.wp-card.selected{border-color:#22c55e;background:rgba(34,197,94,.18)}
+.wp-card.selected::after{content:"✓";position:absolute;top:3px;right:5px;color:#16a34a;font-weight:900;font-size:13px;background:#fff;border-radius:50%;width:18px;height:18px;display:flex;align-items:center;justify-content:center}
+.wp-en{font-weight:800;color:#ffedd5;font-size:.9rem;word-break:break-word}
+.wp-th{font-size:.75rem;color:#c4b5fd;margin-top:3px;word-break:break-word}
 .wp-card.custom{border-color:#f59e0b;border-style:dashed;background:rgba(251,191,36,.12)}
-.wp-card .wp-delete{position:absolute;top:2px;left:3px;width:20px;height:20px;border-radius:50%;
-  border:none;background:rgba(220,38,38,.7);color:#fff;font-size:.7rem;cursor:pointer;
-  font-family:inherit;padding:0;line-height:1;z-index:2}
-.wp-bottom{position:sticky;bottom:0;background:rgba(10,6,18,.9);padding:12px;
-  margin-top:10px;border-radius:14px;display:flex;justify-content:space-between;
-  align-items:center;gap:10px;flex-wrap:wrap;
-  box-shadow:0 -4px 20px rgba(0,0,0,.5)}
-.wp-count{font-weight:800;color:#fb923c;font-size:1rem}
-.wp-count.warn{color:#f87171}
-
-/* MODAL */
-.modal-overlay{position:fixed;inset:0;background:rgba(5,2,15,.85);backdrop-filter:blur(10px);
-  -webkit-backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;
-  z-index:1000;padding:20px}
-.modal-box{background:linear-gradient(180deg,#1e0f38,#0f0518);border-radius:22px;
-  padding:24px;max-width:440px;width:100%;box-shadow:0 30px 60px rgba(0,0,0,.8);
-  border:1.5px solid rgba(168,85,247,.5);animation:popIn .35s cubic-bezier(.34,1.56,.64,1)}
-@keyframes popIn{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}
-.modal-box h3{color:#fb923c;font-size:1.15rem;margin-bottom:14px;text-align:center}
-
-/* AVATAR */
-.avatar-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
-.avatar-btn{aspect-ratio:1;border:2px solid rgba(168,85,247,.35);border-radius:12px;
-  background:rgba(15,5,24,.6);font-size:1.8rem;cursor:pointer;transition:.2s;
-  display:flex;align-items:center;justify-content:center;padding:0;font-family:inherit}
-.avatar-btn:hover{border-color:#f97316;transform:scale(1.08)}
-.avatar-btn.active{border-color:#22c55e;background:rgba(34,197,94,.25);
-  box-shadow:0 0 22px rgba(34,197,94,.6);transform:scale(1.1)}
-
-/* ROOM */
-.room-box{text-align:center;padding:20px;background:linear-gradient(180deg,#1e0f38,#0f0518);
-  border-radius:20px;margin-bottom:16px;box-shadow:0 0 0 1.5px rgba(249,115,22,.35) inset}
-.room-code{font-size:3.8rem;font-weight:900;color:#fb923c;letter-spacing:12px;
-  font-family:'Courier New',monospace;line-height:1;text-shadow:0 0 30px rgba(249,115,22,.8);
-  margin:12px 0}
-.room-url{font-size:.85rem;color:#c4b5fd;word-break:break-all;background:rgba(0,0,0,.3);
-  padding:8px;border-radius:8px;margin-top:8px}
+.wp-del{position:absolute;top:2px;left:3px;width:20px;height:20px;border-radius:50%;border:none;background:rgba(220,38,38,.7);color:#fff;font-size:.7rem;cursor:pointer;padding:0;line-height:1;z-index:2}
+.wp-bottom{position:sticky;bottom:0;background:rgba(10,6,18,.9);padding:12px;margin-top:10px;border-radius:14px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.wp-count{font-weight:800;color:#fb923c;font-size:1rem}.wp-count.warn{color:#f87171}
+.wp-add{display:block;margin:0 auto 14px;border:none;background:linear-gradient(135deg,#a855f7,#7c3aed);color:#fff;border-radius:999px;padding:12px 26px;font-family:inherit;font-weight:800;font-size:.92rem;cursor:pointer}
+.modal-ov{position:fixed;inset:0;background:rgba(5,2,15,.85);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;z-index:1000;padding:20px}
+.modal-box{background:linear-gradient(180deg,#1e0f38,#0f0518);border-radius:22px;padding:24px;max-width:440px;width:100%;border:1.5px solid rgba(168,85,247,.5)}
+.avatar-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+.avatar-btn{aspect-ratio:1;border:2px solid rgba(168,85,247,.35);border-radius:10px;background:rgba(15,5,24,.6);font-size:1.6rem;cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center;padding:0;font-family:inherit}
+.avatar-btn.active{border-color:#22c55e;background:rgba(34,197,94,.25);transform:scale(1.1)}
+.room-box{text-align:center;padding:20px;background:linear-gradient(180deg,#1e0f38,#0f0518);border-radius:20px;margin-bottom:16px}
+.room-code{font-size:3.8rem;font-weight:900;color:#fb923c;letter-spacing:12px;font-family:monospace;line-height:1;text-shadow:0 0 30px rgba(249,115,22,.8);margin:12px 0}
+.room-url{font-size:.85rem;color:#c4b5fd;word-break:break-all;background:rgba(0,0,0,.3);padding:8px;border-radius:8px;margin-top:8px}
 #qrcode{display:inline-block;padding:10px;background:#fff;border-radius:12px;margin:10px 0}
 #qrcode img{display:block;width:180px;height:180px}
-
-/* PLAYERS */
-.players-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
-  gap:10px;max-height:320px;overflow-y:auto;padding:6px}
-.player-card{background:rgba(45,27,78,.7);padding:10px;border-radius:12px;
-  border:2px solid rgba(168,85,247,.35);display:flex;align-items:center;gap:8px;
-  animation:popIn .3s ease;position:relative}
+.players-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;max-height:320px;overflow-y:auto;padding:6px}
+.player-card{background:rgba(45,27,78,.7);padding:10px;border-radius:12px;border:2px solid rgba(168,85,247,.35);display:flex;align-items:center;gap:8px;position:relative}
 .player-card.blocked{opacity:.4;border-color:#dc2626}
-.player-card .av{font-size:1.6rem}
-.player-card .info{flex:1;min-width:0}
-.player-card .name{font-weight:800;font-size:.88rem;overflow:hidden;
-  text-overflow:ellipsis;white-space:nowrap}
-.player-card .block-btn{position:absolute;top:3px;right:3px;width:22px;height:22px;
-  border-radius:50%;border:none;background:rgba(220,38,38,.7);color:#fff;font-size:.7rem;
-  cursor:pointer;font-family:inherit;padding:0;line-height:1}
-
-/* ARENA */
-.arena{position:relative;background:linear-gradient(180deg,#0a0612,#1e0f38,#3b0764);
-  border-radius:22px;padding:24px 18px;margin-bottom:14px;overflow:hidden;
-  box-shadow:inset 0 0 80px rgba(0,0,0,.5),0 0 0 2px rgba(168,85,247,.4)}
-.rope-track{position:relative;height:52px;background:linear-gradient(180deg,rgba(139,69,19,.6),rgba(87,43,10,.8));
-  border-radius:26px;border:3px solid #4a2c0f;margin-bottom:18px;
-  box-shadow:inset 0 4px 10px rgba(0,0,0,.6)}
-.rope-knot{position:absolute;top:50%;left:50%;width:60px;height:60px;
-  transform:translate(-50%,-50%);border-radius:50%;
-  background:radial-gradient(circle at 35% 30%,#fbbf24,#dc2626 60%,#7f1d1d);
-  box-shadow:0 0 40px rgba(251,146,60,.9),0 0 80px rgba(220,38,38,.5);
-  transition:left .8s cubic-bezier(.34,1.2,.64,1);z-index:10;
-  display:flex;align-items:center;justify-content:center;font-size:1.7rem}
+.player-card .av{font-size:1.5rem}
+.player-card .name{font-weight:800;font-size:.88rem;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.block-btn{position:absolute;top:3px;right:3px;width:22px;height:22px;border-radius:50%;border:none;background:rgba(220,38,38,.7);color:#fff;font-size:.7rem;cursor:pointer;padding:0;line-height:1}
+.arena{position:relative;background:linear-gradient(180deg,#0a0612,#1e0f38,#3b0764);border-radius:22px;padding:24px 18px;margin-bottom:14px}
+.rope-track{position:relative;height:52px;background:linear-gradient(180deg,rgba(139,69,19,.6),rgba(87,43,10,.8));border-radius:26px;border:3px solid #4a2c0f;margin-bottom:18px}
+.rope-knot{position:absolute;top:50%;left:50%;width:60px;height:60px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle at 35% 30%,#fbbf24,#dc2626 60%,#7f1d1d);box-shadow:0 0 40px rgba(251,146,60,.9);transition:left .8s cubic-bezier(.34,1.2,.64,1);z-index:10;display:flex;align-items:center;justify-content:center;font-size:1.7rem}
 .arena-sides{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.side{padding:16px;border-radius:16px;text-align:center;transition:.3s}
-.side.left{background:linear-gradient(135deg,rgba(34,197,94,.25),rgba(20,83,45,.4));
-  border:2px solid rgba(34,197,94,.5)}
-.side.right{background:linear-gradient(135deg,rgba(220,38,38,.25),rgba(127,29,29,.4));
-  border:2px solid rgba(220,38,38,.5)}
-.side-name{font-size:1.2rem;font-weight:900;margin-bottom:4px}
-.side-score{font-size:2.4rem;font-weight:900;font-family:'Courier New',monospace;
-  text-shadow:0 0 20px currentColor}
-.side.left .side-score{color:#4ade80}
-.side.right .side-score{color:#f87171}
+.side{padding:16px;border-radius:16px;text-align:center}
+.side.left{background:linear-gradient(135deg,rgba(34,197,94,.25),rgba(20,83,45,.4));border:2px solid rgba(34,197,94,.5)}
+.side.right{background:linear-gradient(135deg,rgba(220,38,38,.25),rgba(127,29,29,.4));border:2px solid rgba(220,38,38,.5)}
+.side-name{font-size:1.2rem;font-weight:900}
+.side-score{font-size:2.4rem;font-weight:900;font-family:monospace}
+.side.left .side-score{color:#4ade80}.side.right .side-score{color:#f87171}
 .side-members{margin-top:8px;display:flex;flex-wrap:wrap;gap:4px;justify-content:center}
 .side-member{font-size:1.2rem}
-
-/* TOPBAR */
-.host-topbar{display:flex;justify-content:space-between;align-items:center;
-  flex-wrap:wrap;gap:8px;margin-bottom:14px}
-.timer-big{font-size:2.4rem;font-weight:900;color:#fb923c;font-family:'Courier New',monospace;
-  padding:4px 16px;background:rgba(249,115,22,.15);border-radius:14px;
-  border:2px solid rgba(249,115,22,.5);text-shadow:0 0 20px rgba(249,115,22,.7)}
-.timer-big.warn{color:#f87171;border-color:rgba(220,38,38,.7);animation:timerPulse .5s infinite}
-@keyframes timerPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
-
-/* LEADERBOARD */
-.leaderboard{background:rgba(30,15,55,.7);border-radius:18px;padding:14px;
-  box-shadow:0 0 0 1.5px rgba(168,85,247,.3) inset}
-.lb-row{display:flex;align-items:center;gap:10px;padding:8px 12px;margin:5px 0;
-  background:rgba(45,27,78,.6);border-radius:11px;transition:.4s;
-  border-left:4px solid transparent;font-size:.95rem}
+.host-topbar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.timer-big{font-size:2.4rem;font-weight:900;color:#fb923c;font-family:monospace;padding:4px 16px;background:rgba(249,115,22,.15);border-radius:14px;border:2px solid rgba(249,115,22,.5)}
+.timer-big.warn{color:#f87171;border-color:rgba(220,38,38,.7);animation:tp .5s infinite}
+@keyframes tp{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+.leaderboard{background:rgba(30,15,55,.7);border-radius:18px;padding:14px}
+.lb-row{display:flex;align-items:center;gap:10px;padding:8px 12px;margin:5px 0;background:rgba(45,27,78,.6);border-radius:11px;border-left:4px solid transparent;font-size:.95rem}
 .lb-row.top1{border-left-color:#f1c40f;background:rgba(241,196,15,.12)}
-.lb-row.top2{border-left-color:#bdc3c7;background:rgba(189,195,199,.1)}
-.lb-row.top3{border-left-color:#cd7f32;background:rgba(205,127,50,.1)}
+.lb-row.top2{border-left-color:#bdc3c7}
+.lb-row.top3{border-left-color:#cd7f32}
 .lb-rank{font-weight:900;color:#fb923c;min-width:28px;text-align:center}
 .lb-av{font-size:1.3rem}
 .lb-name{flex:1;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.lb-score{font-family:'Courier New',monospace;font-weight:900;color:#4ade80;font-size:1rem}
-
-/* QUESTION */
-.question-box{background:linear-gradient(180deg,#2d1b4e,#1a0b2e);
-  padding:24px 18px;border-radius:20px;text-align:center;margin-bottom:14px;
-  box-shadow:0 0 0 2px rgba(249,115,22,.4) inset}
+.lb-score{font-family:monospace;font-weight:900;color:#4ade80;font-size:1rem}
+.question-box{background:linear-gradient(180deg,#2d1b4e,#1a0b2e);padding:24px 18px;border-radius:20px;text-align:center;margin-bottom:14px}
 .question-text{font-size:1.6rem;font-weight:900;color:#ffedd5;line-height:1.35}
 .question-sub{color:#c4b5fd;font-size:.9rem;margin-top:6px}
 .answers-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
 @media(max-width:520px){.answers-grid{grid-template-columns:1fr}}
-.ans-btn{padding:20px;border:none;border-radius:16px;font-family:inherit;font-weight:800;
-  font-size:1.05rem;color:#fff;cursor:pointer;transition:.15s;text-align:left;
-  box-shadow:0 8px 20px rgba(0,0,0,.4),inset 0 -4px 0 rgba(0,0,0,.25);
-  display:flex;align-items:center;gap:10px;min-height:68px}
+.ans-btn{padding:20px;border:none;border-radius:16px;font-family:inherit;font-weight:800;font-size:1.05rem;color:#fff;cursor:pointer;text-align:left;display:flex;align-items:center;gap:10px;min-height:68px}
 .ans-btn .symbol{font-size:1.4rem}
-.ans-btn:hover:not(:disabled){transform:translateY(-2px)}
 .ans-btn:disabled{cursor:default;opacity:.75}
 .ans-btn.a0{background:linear-gradient(135deg,#e74c3c,#c0392b)}
 .ans-btn.a1{background:linear-gradient(135deg,#3498db,#2471a3)}
 .ans-btn.a2{background:linear-gradient(135deg,#f1c40f,#d4ac0d);color:#333}
 .ans-btn.a3{background:linear-gradient(135deg,#27ae60,#1e8449)}
-.ans-btn.correct{animation:correctFlash .8s;box-shadow:0 0 40px #22c55e,0 0 80px #22c55e inset}
-.ans-btn.wrong{animation:wrongShake .4s;background:linear-gradient(135deg,#7f1d1d,#450a0a)!important}
+.ans-btn.correct{box-shadow:0 0 40px #22c55e}
+.ans-btn.wrong{background:linear-gradient(135deg,#7f1d1d,#450a0a)!important}
 .ans-btn.fade{opacity:.3}
-@keyframes correctFlash{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
-@keyframes wrongShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
-
-.feedback-big{text-align:center;padding:24px 18px;border-radius:20px;margin-bottom:14px;
-  animation:popIn .4s;display:none}
+.feedback-big{text-align:center;padding:24px 18px;border-radius:20px;margin-bottom:14px;display:none}
 .feedback-big.show{display:block}
-.feedback-big.correct{background:linear-gradient(135deg,rgba(34,197,94,.4),rgba(20,83,45,.6));
-  box-shadow:0 0 60px rgba(34,197,94,.6)}
-.feedback-big.wrong{background:linear-gradient(135deg,rgba(220,38,38,.4),rgba(127,29,29,.6));
-  box-shadow:0 0 60px rgba(220,38,38,.6)}
-.feedback-big .emoji{font-size:4rem;margin-bottom:4px;display:block}
+.feedback-big.correct{background:linear-gradient(135deg,rgba(34,197,94,.4),rgba(20,83,45,.6))}
+.feedback-big.wrong{background:linear-gradient(135deg,rgba(220,38,38,.4),rgba(127,29,29,.6))}
+.feedback-big .emoji{font-size:4rem;display:block}
 .feedback-big .txt{font-size:1.3rem;font-weight:900}
-.feedback-big .pts{font-size:1.6rem;font-family:'Courier New',monospace;color:#fbbf24;
-  margin-top:6px;text-shadow:0 0 20px rgba(251,191,36,.8)}
-
-/* PODIUM */
+.feedback-big .pts{font-size:1.6rem;font-family:monospace;color:#fbbf24;margin-top:6px}
 .podium-screen{text-align:center;padding:14px}
-.podium-title{font-family:'Creepster',cursive;font-size:3rem;color:#fb923c;
-  text-shadow:0 0 40px rgba(249,115,22,.9);margin-bottom:24px;letter-spacing:3px}
-.podium-stage{display:flex;justify-content:center;align-items:flex-end;
-  gap:16px;margin:30px 0;min-height:360px}
-.podium-place{display:flex;flex-direction:column;align-items:center;
-  animation:riseUp 1.2s ease forwards;opacity:0;transform:translateY(80px)}
-.podium-place.p1{animation-delay:.8s}
-.podium-place.p2{animation-delay:.2s}
-.podium-place.p3{animation-delay:1.4s}
-@keyframes riseUp{to{opacity:1;transform:translateY(0)}}
-.podium-avatar{font-size:4rem;margin-bottom:8px;display:block;
-  animation:dance 1.5s infinite;transform-origin:center bottom}
-@keyframes dance{0%,100%{transform:rotate(-8deg) scale(1)}
-  50%{transform:rotate(8deg) scale(1.12)}}
-.podium-name{font-size:1rem;font-weight:800;color:#ffedd5;margin-bottom:3px;
-  max-width:160px;overflow:hidden;text-overflow:ellipsis}
-.podium-score{font-size:1.2rem;font-weight:900;color:#4ade80;
-  font-family:'Courier New',monospace;margin-bottom:10px}
-.podium-base{border-radius:14px 14px 0 0;padding:12px;
-  display:flex;align-items:flex-start;justify-content:center;font-size:1.8rem;font-weight:900;
-  box-shadow:inset 0 6px 20px rgba(255,255,255,.2),0 10px 30px rgba(0,0,0,.6)}
-.podium-place.p1 .podium-base{width:160px;height:200px;
-  background:linear-gradient(180deg,#fbbf24,#d97706);color:#7c2d12}
-.podium-place.p2 .podium-base{width:140px;height:140px;
-  background:linear-gradient(180deg,#cbd5e1,#94a3b8);color:#334155}
-.podium-place.p3 .podium-base{width:130px;height:100px;
-  background:linear-gradient(180deg,#d97706,#92400e);color:#fef3c7}
+.podium-title{font-family:'Creepster',cursive;font-size:3rem;color:#fb923c;margin-bottom:24px;letter-spacing:3px}
+.podium-stage{display:flex;justify-content:center;align-items:flex-end;gap:16px;margin:30px 0;min-height:360px}
+.podium-place{display:flex;flex-direction:column;align-items:center;animation:ru 1.2s ease forwards;opacity:0;transform:translateY(80px)}
+.podium-place.p1{animation-delay:.8s}.podium-place.p2{animation-delay:.2s}.podium-place.p3{animation-delay:1.4s}
+@keyframes ru{to{opacity:1;transform:translateY(0)}}
+.podium-avatar{font-size:4rem;margin-bottom:8px;display:block;animation:dance 1.5s infinite;transform-origin:center bottom}
+@keyframes dance{0%,100%{transform:rotate(-8deg) scale(1)}50%{transform:rotate(8deg) scale(1.12)}}
+.podium-name{font-size:1rem;font-weight:800;color:#ffedd5;margin-bottom:3px;max-width:160px;overflow:hidden;text-overflow:ellipsis}
+.podium-score{font-size:1.2rem;font-weight:900;color:#4ade80;font-family:monospace;margin-bottom:10px}
+.podium-base{border-radius:14px 14px 0 0;padding:12px;display:flex;align-items:flex-start;justify-content:center;font-size:1.8rem;font-weight:900}
+.podium-place.p1 .podium-base{width:160px;height:200px;background:linear-gradient(180deg,#fbbf24,#d97706);color:#7c2d12}
+.podium-place.p2 .podium-base{width:140px;height:140px;background:linear-gradient(180deg,#cbd5e1,#94a3b8);color:#334155}
+.podium-place.p3 .podium-base{width:130px;height:100px;background:linear-gradient(180deg,#d97706,#92400e);color:#fef3c7}
 .honorable{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:16px}
-.honorable-item{background:rgba(30,15,55,.7);padding:12px 18px;border-radius:14px;
-  border:2px solid rgba(168,85,247,.4);display:flex;align-items:center;gap:8px;
-  animation:popIn .6s ease backwards}
-.honorable-item:nth-child(1){animation-delay:1.8s}
-.honorable-item:nth-child(2){animation-delay:2s}
+.honorable-item{background:rgba(30,15,55,.7);padding:12px 18px;border-radius:14px;border:2px solid rgba(168,85,247,.4);display:flex;align-items:center;gap:8px}
 .honorable-item .rank{font-weight:900;color:#fb923c}
 .honorable-item .av{font-size:1.5rem}
-.honorable-item .score{font-family:'Courier New',monospace;color:#86efac;font-weight:900}
-
-/* MISC */
-.toast{position:fixed;top:20px;left:50%;transform:translate(-50%,-100px);
-  background:rgba(10,6,18,.95);color:#ffedd5;padding:12px 20px;border-radius:12px;
-  font-weight:700;z-index:9999;transition:transform .4s;border:2px solid rgba(249,115,22,.6);
-  box-shadow:0 10px 30px rgba(0,0,0,.6);max-width:90vw;text-align:center}
+.honorable-item .score{font-family:monospace;color:#86efac;font-weight:900}
+.toast{position:fixed;top:20px;left:50%;transform:translate(-50%,-100px);background:rgba(10,6,18,.95);color:#ffedd5;padding:12px 20px;border-radius:12px;font-weight:700;z-index:9999;transition:transform .4s;border:2px solid rgba(249,115,22,.6);max-width:90vw;text-align:center}
 .toast.show{transform:translate(-50%,0)}
-.spinner{display:inline-block;width:44px;height:44px;border:5px solid rgba(168,85,247,.3);
-  border-top-color:#f97316;border-radius:50%;animation:spin 1s linear infinite;margin:16px auto}
+.spinner{display:inline-block;width:44px;height:44px;border:5px solid rgba(168,85,247,.3);border-top-color:#f97316;border-radius:50%;animation:spin 1s linear infinite;margin:16px auto}
 @keyframes spin{to{transform:rotate(360deg)}}
 .waiting-big{text-align:center;padding:50px 20px}
-.waiting-big h2{font-size:1.8rem;margin-bottom:10px}
-.countdown{font-family:'Courier New',monospace;font-size:7rem;font-weight:900;
-  color:#fb923c;text-align:center;text-shadow:0 0 60px rgba(249,115,22,.9);
-  animation:countPulse 1s infinite}
-@keyframes countPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+.countdown{font-family:monospace;font-size:7rem;font-weight:900;color:#fb923c;text-align:center;text-shadow:0 0 60px rgba(249,115,22,.9);animation:cp 1s infinite}
+@keyframes cp{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
 @media(max-width:640px){
-  h1{font-size:1.7rem}
-  .room-code{font-size:2.6rem;letter-spacing:6px}
-  .rope-knot{width:44px;height:44px;font-size:1.3rem}
-  .side-score{font-size:1.6rem}
-  .timer-big{font-size:1.8rem}
-  .podium-title{font-size:2.2rem}
-  .podium-avatar{font-size:3rem}
-  .podium-stage{gap:8px}
-  .avatar-grid{grid-template-columns:repeat(5,1fr)}
-}
+h1{font-size:1.7rem}.room-code{font-size:2.6rem;letter-spacing:6px}.rope-knot{width:44px;height:44px;font-size:1.3rem}.side-score{font-size:1.6rem}.timer-big{font-size:1.8rem}.podium-title{font-size:2.2rem}.podium-avatar{font-size:3rem}.podium-stage{gap:8px}.avatar-grid{grid-template-columns:repeat(5,1fr)}
+.grade{flex:0 0 150px;width:150px;min-height:96px;padding:16px 12px}.g-name{font-size:1.15rem}.g-count{font-size:.7rem}.g-all{flex:0 0 100%;width:100%}}
 </style>
 </head>
 <body>
 
-<!-- ═════ LANDING ═════ -->
 <div class="screen active" id="scLanding">
   <div style="max-width:520px;margin:30px auto">
     <h1>🎃 ชักกะเย่อคำศัพท์ 🦇</h1>
-    <p style="text-align:center;color:#c4b5fd;margin-bottom:24px;font-size:1rem">
-      เกมทายคำศัพท์แบบทีม · ออนไลน์ · เหมือน Kahoot
-    </p>
+    <p style="text-align:center;color:#c4b5fd;margin-bottom:24px">เกมทายคำศัพท์แบบทีม · ออนไลน์ · เหมือน Kahoot</p>
     <div class="card">
-      <button class="btn btn-primary" onclick="showScreen('scHostSetup')">🎤 สร้างห้อง (Host)</button>
-      <button class="btn btn-secondary" onclick="showScreen('scPlayerJoin')">🎮 เข้าร่วมเกม (Player)</button>
+      <button class="btn btn-primary" onclick="go('scGradeSelect')">🎤 สร้างห้อง (Host)</button>
+      <button class="btn btn-secondary" onclick="go('scPlayerJoin')">🎮 เข้าร่วมเกม (Player)</button>
     </div>
-    <p style="text-align:center;color:#7c6fa8;font-size:.82rem;line-height:1.6">
-      ใช้ PeerJS · ฟรี 100% · ไม่เก็บข้อมูล<br>
-      รันบน GitHub Pages ได้ทันที
-    </p>
   </div>
 </div>
 
-<!-- ═════ HOST SETUP ═════ -->
-<div class="screen" id="scHostSetup">
+<div class="screen" id="scGradeSelect">
   <div style="max-width:900px;margin:20px auto">
-    <button class="btn-small btn-secondary" onclick="showScreen('scLanding')">← กลับ</button>
-    <h1>⚙️ ตั้งค่าเกม</h1>
-    <div class="card">
-      <h3>📖 เลือกระดับชั้น</h3>
-      <div class="grid" id="gradeChips"></div>
-    </div>
+    <button class="btn-small btn-secondary" onclick="go('scLanding')">← กลับ</button>
+    <h1>📚 เลือกระดับชั้น</h1>
+    <div class="grades" id="gradeList"></div>
   </div>
 </div>
 
-<!-- ═════ WORD PICKER ═════ -->
 <div class="screen" id="scWordPicker">
   <div style="max-width:1000px;margin:20px auto">
-    <button class="btn-small btn-secondary" onclick="showScreen('scHostSetup')">← กลับ</button>
-    <h1>📝 เลือกคำศัพท์</h1>
-    <p style="text-align:center;color:#c4b5fd;margin-bottom:12px;font-size:.9rem">
-      เลือกอย่างน้อย 4 คำ · <span id="wpTotal">0</span> คำ · เลือกแล้ว <b id="wpSelCount">0</b> คำ
+    <button class="btn-small btn-secondary" onclick="go('scGradeSelect')">← กลับ</button>
+    <h1 id="wpTitle">ป.1</h1>
+    <p style="text-align:center;color:#c4b5fd;margin-bottom:14px;font-size:.9rem">
+      เลือกอย่างน้อย 4 คำ · ทั้งหมด <span id="wpTotal">0</span> คำ · เลือกแล้ว <b id="wpSel">0</b> คำ
     </p>
-
-    <div style="text-align:center;margin-bottom:10px">
-      <button class="btn-small btn-success" onclick="openAddWordModal()">➕ เพิ่มคำศัพท์เอง</button>
-    </div>
-
+    <div style="text-align:center"><button class="wp-add" onclick="openAdd()">➕ เพิ่มคำศัพท์</button></div>
     <div class="wp-actions" id="wpActions"></div>
-
     <div class="wp-grid" id="wpGrid"></div>
-
     <div class="wp-bottom">
       <span class="wp-count" id="wpCount">เลือกแล้ว 0 คำ</span>
-      <div>
-        <button class="btn-small btn-danger" onclick="clearAllWords()" style="margin-right:6px">🗑 ล้าง</button>
-        <button class="btn btn-success" id="wpNextBtn" onclick="openGameConfig()" disabled
-          style="display:inline-block;width:auto;padding:12px 22px;font-size:1rem">
-          ถัดไป ▶
-        </button>
-      </div>
+      <button class="wp-chip all" id="wpNext" onclick="go('scGameConfig')" disabled>ถัดไป ▶</button>
     </div>
   </div>
 </div>
 
-<!-- ═════ GAME CONFIG ═════ -->
 <div class="screen" id="scGameConfig">
   <div style="max-width:700px;margin:20px auto">
-    <button class="btn-small btn-secondary" onclick="showScreen('scWordPicker')">← กลับ</button>
+    <button class="btn-small btn-secondary" onclick="go('scWordPicker')">← กลับ</button>
     <h1>⚙️ ตั้งค่าเกม</h1>
-
-    <div class="card">
-      <h3>👥 โหมดการเล่น</h3>
+    <div class="card"><h3>👥 โหมด</h3>
       <div class="grid">
-        <button class="chip mode-chip active" data-mode="solo" onclick="selectMode('solo')">🎮 เดี่ยว</button>
-        <button class="chip mode-chip" data-mode="team" onclick="selectMode('team')">👥 ทีม</button>
+        <button class="chip mode-chip active" data-m="solo" onclick="setMode('solo')">🎮 เดี่ยว</button>
+        <button class="chip mode-chip" data-m="team" onclick="setMode('team')">👥 ทีม (A vs B)</button>
       </div>
     </div>
-
-    <div class="card">
-      <h3>⏱️ เวลาต่อข้อ</h3>
+    <div class="card"><h3>⏱️ เวลาต่อข้อ</h3>
       <div style="display:flex;gap:10px;align-items:center">
-        <button class="btn-small btn-danger" onclick="adjustTime(-5)">− 5</button>
-        <input type="number" id="timeInput" value="20" min="5" max="300"
-          style="text-align:center;font-size:1.4rem;font-weight:900;margin-bottom:0">
-        <button class="btn-small btn-success" onclick="adjustTime(5)">+ 5</button>
-        <span style="color:#c4b5fd;font-size:.95rem">วินาที</span>
+        <button class="btn-small btn-danger" onclick="adjTime(-5)">− 5</button>
+        <input type="number" id="timeInput" value="20" min="5" max="300" style="text-align:center;font-size:1.4rem;font-weight:900;margin-bottom:0">
+        <button class="btn-small btn-success" onclick="adjTime(5)">+ 5</button>
+        <span style="color:#c4b5fd">วินาที</span>
       </div>
     </div>
-
-    <div class="card">
-      <h3>📝 จำนวนคำถาม</h3>
+    <div class="card"><h3>📝 จำนวนข้อ</h3>
       <div class="grid">
-        <button class="chip qcount-chip active" data-q="10" onclick="selectQCount(10)">10 ข้อ</button>
-        <button class="chip qcount-chip" data-q="20" onclick="selectQCount(20)">20 ข้อ</button>
-        <button class="chip qcount-chip" data-q="30" onclick="selectQCount(30)">30 ข้อ</button>
-        <button class="chip qcount-chip" data-q="0" onclick="selectQCount(0)">ทั้งหมด</button>
+        <button class="chip qcount-chip active" data-q="10" onclick="setQ(10)">10 ข้อ</button>
+        <button class="chip qcount-chip" data-q="20" onclick="setQ(20)">20 ข้อ</button>
+        <button class="chip qcount-chip" data-q="30" onclick="setQ(30)">30 ข้อ</button>
+        <button class="chip qcount-chip" data-q="50" onclick="setQ(50)">50 ข้อ</button>
+        <button class="chip qcount-chip" data-q="0" onclick="setQ(0)">ทั้งหมด</button>
       </div>
     </div>
-
-    <button class="btn btn-primary" onclick="createHostRoom()"
-      style="font-size:1.3rem;padding:22px">🚀 สร้างห้องเลย!</button>
+    <button class="btn btn-primary" onclick="createRoom()" style="font-size:1.3rem;padding:22px">🚀 สร้างห้องเลย!</button>
   </div>
 </div>
 
-<!-- ═════ HOST LOBBY ═════ -->
 <div class="screen" id="scHostLobby">
   <div style="max-width:1000px;margin:20px auto">
     <h1>🎤 ห้องของคุณ</h1>
@@ -402,36 +237,26 @@ label{display:block;color:#c4b5fd;font-size:.88rem;margin-bottom:5px;font-weight
       <div class="room-url" id="roomUrlDisplay"></div>
     </div>
     <div class="card">
-      <h3>👥 ผู้เล่นในห้อง (<span id="playerCount">0</span>)</h3>
-      <div class="players-grid" id="playersGrid">
-        <p style="color:#7c6fa8;text-align:center;grid-column:1/-1;padding:16px">
-          รอผู้เล่นเข้าร่วม...
-        </p>
-      </div>
+      <h3>👥 ผู้เล่น (<span id="playerCount">0</span>)</h3>
+      <div class="players-grid" id="playersGrid"><p style="color:#7c6fa8;text-align:center;grid-column:1/-1;padding:16px">รอผู้เล่น...</p></div>
     </div>
-    <button class="btn btn-success" id="hostStartBtn" onclick="hostStartGame()" disabled
-      style="font-size:1.3rem;padding:22px">▶ เริ่มเกมเลย!</button>
-    <button class="btn btn-secondary" onclick="location.reload()">🔄 ยกเลิกและเริ่มใหม่</button>
+    <button class="btn btn-success" id="hostStartBtn" onclick="hostStart()" disabled style="font-size:1.3rem;padding:22px">▶ เริ่มเกม!</button>
+    <button class="btn btn-secondary" onclick="location.reload()">🔄 ยกเลิก</button>
   </div>
 </div>
 
-<!-- ═════ HOST GAME ═════ -->
 <div class="screen" id="scHostGame">
   <div style="max-width:1300px;margin:20px auto">
     <div class="host-topbar">
       <div>
-        <button class="btn-small btn-secondary" onclick="hostStopGame()">⏹ หยุดเกม</button>
-        <button class="btn-small btn-warn" id="pauseBtn" onclick="hostTogglePause()">⏸ พัก</button>
-        <button class="btn-small btn-success" onclick="hostAddTime(30)">+30s</button>
-        <button class="btn-small btn-success" onclick="hostAddTime(60)">+60s</button>
+        <button class="btn-small btn-secondary" onclick="hostStop()">⏹ หยุด</button>
+        <button class="btn-small btn-warn" id="pauseBtn" onclick="hostPause()">⏸ พัก</button>
+        <button class="btn-small btn-success" onclick="hostAddT(30)">+30s</button>
+        <button class="btn-small btn-success" onclick="hostAddT(60)">+60s</button>
       </div>
       <div class="timer-big" id="hostTimer">20</div>
-      <div style="color:#c4b5fd;font-weight:800;font-size:.9rem">
-        ข้อ <span id="hostQNum">1</span>/<span id="hostQTotal">10</span>
-      </div>
-      <div style="color:#86efac;font-weight:800;font-size:.9rem">
-        ✋ <span id="hostAnswered">0</span>/<span id="hostTotalPlayers">0</span>
-      </div>
+      <div style="color:#c4b5fd;font-weight:800;font-size:.9rem">ข้อ <span id="hostQNum">1</span>/<span id="hostQTotal">10</span></div>
+      <div style="color:#86efac;font-weight:800;font-size:.9rem">✋ <span id="hostAnswered">0</span>/<span id="hostTotalPlayers">0</span></div>
     </div>
     <div id="arenaWrap"></div>
     <div class="leaderboard" style="margin-top:16px">
@@ -439,13 +264,11 @@ label{display:block;color:#c4b5fd;font-size:.88rem;margin-bottom:5px;font-weight
       <div id="hostLeaderboard"></div>
     </div>
     <div style="text-align:center;margin-top:12px">
-      <button class="btn-small btn-primary" id="hostNextBtn" onclick="hostNextQuestion()"
-        style="display:none;padding:14px 26px;font-size:1rem">ข้อถัดไป ▶</button>
+      <button class="btn-small btn-primary" id="hostNextBtn" onclick="hostNext()" style="display:none;padding:14px 26px;font-size:1rem">ข้อถัดไป ▶</button>
     </div>
   </div>
 </div>
 
-<!-- ═════ HOST PODIUM ═════ -->
 <div class="screen" id="scHostPodium">
   <div style="max-width:1000px;margin:20px auto">
     <div class="podium-screen">
@@ -453,34 +276,28 @@ label{display:block;color:#c4b5fd;font-size:.88rem;margin-bottom:5px;font-weight
       <div class="podium-stage" id="podiumStage"></div>
       <h3 style="margin:24px 0 12px;text-align:center">👏 ชมเชย</h3>
       <div class="honorable" id="honorableList"></div>
-      <div style="margin-top:30px;text-align:center">
-        <button class="btn-small btn-primary" onclick="location.reload()"
-          style="padding:12px 24px;font-size:1rem">🔄 เล่นใหม่</button>
-      </div>
+      <div style="margin-top:30px;text-align:center"><button class="btn-small btn-primary" onclick="location.reload()" style="padding:12px 24px;font-size:1rem">🔄 เล่นใหม่</button></div>
     </div>
   </div>
 </div>
 
-<!-- ═════ PLAYER JOIN ═════ -->
 <div class="screen" id="scPlayerJoin">
   <div style="max-width:520px;margin:20px auto">
-    <button class="btn-small btn-secondary" onclick="showScreen('scLanding')">← กลับ</button>
+    <button class="btn-small btn-secondary" onclick="go('scLanding')">← กลับ</button>
     <h1>🎮 เข้าร่วมเกม</h1>
     <div class="card">
       <label>🔑 รหัสห้อง</label>
-      <input type="text" class="code" id="joinRoomInput" maxlength="4" placeholder="XXXX" autocomplete="off">
-      <label>📝 ชื่อของคุณ</label>
-      <input type="text" id="joinNameInput" maxlength="20" placeholder="เช่น ทีมฟักทอง" autocomplete="off">
-      <label>🎭 เลือก Avatar</label>
+      <input type="text" class="code" id="joinCode" maxlength="4" placeholder="XXXX">
+      <label>📝 ชื่อ</label>
+      <input type="text" id="joinName" maxlength="20" placeholder="เช่น ทีมฟักทอง">
+      <label>🎭 Avatar</label>
       <div class="avatar-grid" id="avatarGrid"></div>
     </div>
-    <button class="btn btn-success" id="joinBtn" onclick="playerJoin()"
-      style="font-size:1.2rem;padding:20px">🚀 เข้าร่วม!</button>
+    <button class="btn btn-success" id="joinBtn" onclick="playerJoin()" style="font-size:1.2rem;padding:20px">🚀 เข้าร่วม!</button>
     <div id="joinMsg" style="text-align:center;color:#f87171;font-weight:700;min-height:22px;font-size:.9rem"></div>
   </div>
 </div>
 
-<!-- ═════ PLAYER WAIT ═════ -->
 <div class="screen" id="scPlayerWait">
   <div class="waiting-big">
     <div class="spinner"></div>
@@ -490,7 +307,6 @@ label{display:block;color:#c4b5fd;font-size:.88rem;margin-bottom:5px;font-weight
   </div>
 </div>
 
-<!-- ═════ PLAYER COUNTDOWN ═════ -->
 <div class="screen" id="scPlayerCountdown">
   <div style="padding:70px 20px">
     <div class="countdown" id="countdownNum">3</div>
@@ -498,19 +314,16 @@ label{display:block;color:#c4b5fd;font-size:.88rem;margin-bottom:5px;font-weight
   </div>
 </div>
 
-<!-- ═════ PLAYER QUESTION ═════ -->
 <div class="screen" id="scPlayerQ">
   <div style="max-width:720px;margin:20px auto">
     <div class="host-topbar" style="margin-bottom:10px">
-      <div style="color:#fb923c;font-weight:900;font-size:.9rem">
-        ข้อ <span id="pQNum">1</span>/<span id="pQTotal">10</span>
-      </div>
+      <div style="color:#fb923c;font-weight:900;font-size:.9rem">ข้อ <span id="pQNum">1</span>/<span id="pQTotal">10</span></div>
       <div class="timer-big" id="pTimer" style="font-size:1.7rem;padding:4px 12px">20</div>
       <div style="color:#86efac;font-weight:900;font-size:.9rem">⭐ <span id="pScore">0</span></div>
     </div>
     <div class="question-box">
-      <div class="question-text" id="pQuestionText">...</div>
-      <div class="question-sub" id="pQuestionSub"></div>
+      <div class="question-text" id="pQText">...</div>
+      <div class="question-sub" id="pQSub"></div>
     </div>
     <div class="answers-grid" id="pAnswersGrid"></div>
     <div class="feedback-big" id="pFeedback">
@@ -521,2274 +334,1261 @@ label{display:block;color:#c4b5fd;font-size:.88rem;margin-bottom:5px;font-weight
   </div>
 </div>
 
-<!-- ═════ PLAYER END ═════ -->
 <div class="screen" id="scPlayerEnd">
   <div style="max-width:520px;margin:30px auto;text-align:center">
     <div style="font-size:4rem;margin-bottom:14px">🏆</div>
     <h2>จบเกมแล้ว!</h2>
-    <div style="font-size:3.5rem;font-weight:900;color:#fb923c;
-      font-family:'Courier New',monospace;margin:16px 0" id="pFinalScore">0</div>
+    <div style="font-size:3.5rem;font-weight:900;color:#fb923c;font-family:monospace;margin:16px 0" id="pFinalScore">0</div>
     <div style="font-size:1.2rem;color:#4ade80;font-weight:900" id="pFinalRank">อันดับ #1</div>
-    <p style="color:#c4b5fd;margin-top:16px">ดูผลอย่างเป็นทางการได้ที่จอครู 🎉</p>
   </div>
 </div>
 
-<!-- ═════ HOST COUNTDOWN OVERLAY ═════ -->
-<div id="hostCountdown" style="display:none;position:fixed;inset:0;background:rgba(10,6,18,.95);
-  z-index:9998;align-items:center;justify-content:center">
+<div id="hostCountdown" style="display:none;position:fixed;inset:0;background:rgba(10,6,18,.95);z-index:9998;align-items:center;justify-content:center">
   <div class="countdown" id="hostCountdownNum">3</div>
 </div>
 
-<!-- ═════ ADD WORD MODAL ═════ -->
-<div class="modal-overlay" id="addWordModal" hidden>
+<div class="modal-ov" id="addModal" hidden>
   <div class="modal-box">
-    <h3>➕ เพิ่มคำศัพท์ใหม่</h3>
+    <h3 style="color:#fb923c;text-align:center;margin-bottom:14px">➕ เพิ่มคำศัพท์</h3>
     <label>คำศัพท์ (EN)</label>
     <input type="text" id="awEn" placeholder="เช่น apple">
     <label>คำแปล (TH)</label>
     <input type="text" id="awTh" placeholder="เช่น แอ๊ปเปิ้ล">
     <div style="display:flex;gap:8px;margin-top:8px">
-      <button class="btn-small btn-danger" onclick="closeAddWordModal()" style="flex:1;padding:12px">ยกเลิก</button>
-      <button class="btn-small btn-success" onclick="saveAddWord()" style="flex:1;padding:12px">บันทึก</button>
+      <button class="btn-small btn-danger" onclick="closeAdd()" style="flex:1;padding:12px">ยกเลิก</button>
+      <button class="btn-small btn-success" onclick="saveAdd()" style="flex:1;padding:12px">บันทึก</button>
     </div>
   </div>
 </div>
 
 <div class="toast" id="toast"></div>
 
-<!-- ═══════════════════════════════════════════ -->
-<!--                    JS                        -->
-<!-- ═══════════════════════════════════════════ -->
-<script src="https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js"></script>
 <script>
-/* ═══════════════════════════════════════════
-   VOCAB DATA
-   ═══════════════════════════════════════════ */
+/* ═══ VOCAB DATA (เต็มทุกคำ) ═══ */
 const VOCAB_DATA = {
 p1:`ant|มด
 apple|แอ๊ปเปิ้ล
-bag|กระเป๋า
+bag|กระเป๋า,ย่าม
 ball|ลูกบอล
 banana|กล้วย
 bat|ค้างคาว
+bean|ต้นถั่ว,ฝักถั่ว
 bear|หมี
 bee|ผึ้ง
 big|ใหญ่
+bin|ถังขยะ
 bird|นก
+birthday|วันเกิด
 book|หนังสือ
 box|กล่อง
 boy|เด็กผู้ชาย
 bread|ขนมปัง
+broom|ไม้กวาด
+brother|พี่ชาย,น้องชาย
 bus|รถประจำทาง
 cake|ขนมเค้ก
+candle|เทียนไข
 car|รถยนต์
 cat|แมว
 chair|เก้าอี้
-cow|วัวตัวเมีย
+class|ชั้นเรียน
+close|ปิด
+count|นับ
+cry|ร้องไห้
+crayon|สีเทียน
 cup|ถ้วยกาแฟ
+cut|ตัด
 dad|พ่อ
+dance|เต้นรำ
+desk|โต๊ะเรียน
 dog|สุนัข
 door|ประตู
+dot|จุด
+ear|หู
 egg|ไข่
+eraser|ยางลบ
 eye|ตา
+face|หน้า,ใบหน้า
+fan|พัดลม
 fish|ปลา
 flower|ดอกไม้
 food|อาหาร
+foot|เท้า
 fox|สุนัขจิ้งจอก
 fruit|ผลไม้
+fun|ความสนุกสนาน
+giraffe|ยีราฟ
 girl|เด็กผู้หญิง
+glass|แก้วน้ำ
+go|ไป
 goat|แพะ
 good|ดี
+goodbye|ลาก่อน
+hair|ผม
+ham|เนื้อขาหมูรมควัน
 happy|มีความสุข
+head|ศีรษะ
+hello|สวัสดี
 house|บ้าน
+ice|น้ำแข็ง
+ice cream|ไอศกรีม
+jar|โอ่ง
+key|ลูกกุญแจ
+kick|เตะ
 king|พระราชา
+kid|เด็ก
+leg|ขา
+lemon|มะนาว
+line|เส้น,บรรทัด
 lion|สิงโต
+listen|ฟัง
+long|ยาว
+look|ดู,มองดู
+love|รัก
+meet|พบ,เจอ
+man|ผู้ชาย
+map|แผนที่
 milk|นม
+mom|แม่
 monkey|ลิง
+moon|ดวงจันทร์
 mother|มารดา
-pig|หมู
+mouth|ปาก
+farm|ไร่นา,ฟาร์ม
+farmer|ชาวนา
+father|บิดา
+orange|ส้ม
+owl|นกฮูก
+pan|กระทะ
+panda|หมีแพนด้า
+papaya|มะละกอ
+park|สวนสาธารณะ
+pear|ลูกแพร์
+pen|ปากกา
+pencil|ดินสอ
+pet|สัตว์เลี้ยง
+play|เล่น
+point|ชี้,คะแนน,จุด
+pool|สระน้ำ
+queen|ราชินี
 rabbit|กระต่าย
+rat|หนู
+ring|แหวน
+roof|หลังคา
+room|ห้อง
+ruler|ไม้บรรทัด
+sad|เศร้า
+salad|สลัดผัก
+say|พูด
+school|โรงเรียน
+see|เห็น
+sheep|แกะ
+ship|เรือ
+short|สั้น,เตี้ย
+show|แสดง
+sing|ร้องเพลง
+sister|พี่สาว,น้องสาว
+sit|นั่ง
+small|เล็ก
+smell|ได้กลิ่น,ดมกลิ่น
+snake|งู
+song|เพลง
+stand|ยืน
+star|ดวงดาว
+start|เริ่ม
+stop|หยุด
+student|นักเรียน
 sun|ดวงอาทิตย์
-tiger|เสือ
+name|ชื่อ
+nose|จมูก
+open|เปิด
+thank you|การแสดงความขอบคุณ
+tomato|มะเขือเทศ
+top|ลูกข่าง
+toy|ของเล่น
 tree|ต้นไม้
+ugly|น่าเกลียด
+van|รถตู้
+walk|เดิน
 water|น้ำ
+wig|ผมปลอม
+woman|ผู้หญิง
+zebra|ม้าลาย
 zoo|สวนสัตว์`,
 p2:`again|อีกครั้ง
+alphabet|พยัญชนะ
 animal|สัตว์
-answer|คำตอบ
+answer|การตอบคำถาม,คำตอบ
 arm|แขน
 artist|ศิลปิน
+ask|ถาม
 aunt|ป้า
+bakery|ร้านขายขนมอบ
 balloon|ลูกโป่ง
 bank|ธนาคาร
 bed|เตียงนอน
+board|กระดาน
 boat|เรือ
+boots|รองเท้าอุ้มข้อหรืออุ้มขา
 bottle|ขวด
 bowl|ชาม
 butterfly|ผีเสื้อ
+can|กระป๋อง,สามารถ
 candy|ลูกอม
 cap|หมวกแก้ป
 card|บัตรอวยพร
+chant|บทพูดเข้าจังหวะ
+chat|คุยเล่น
+check|ตรวจสอบ,การตรวจสอบ
 cheese|เนยแข็ง
 cherry|ผลเชอร์รี่
-chicken|ไก่
+swim|ว่ายน้ำ
+T.V.|โทรทัศน์
+table|โต๊ะ
+tall|สูง
+tea|น้ำชา
+teacher|ครู
 clean|สะอาด
 clock|นาฬิกาติดผนัง
 cook|ปรุงหรือทำอาหาร
+cookie|ขนมอบ
+cool|เย็น
+cow|วัวตัวเมีย
+dish|จาน
 donkey|ลา
 elephant|ช้าง
+enjoy|สนุกสนาน
 family|ครอบครัว
-farmer|ชาวนา
-finish|เสร็จ
+far|ไกล
+fat|อ้วน
+favorite|เป็นที่ชื่นชอบ
+fin|ครีบ
+fine|ดี,ค่าปรับ
+finish|เสร็จ,สำเร็จ
+floor|พื้นห้อง,ชั้นของตึก
+fly|บิน
 friend|เพื่อน
 frog|กบ
-garden|สวน
+gate|ประตู
+get up|ตื่น
+gloves|ถุงมือ
+glue|กาว
+grandma|คุณย่าหรือคุณยาย
+grandpa|คุณปู่หรือคุณตา
 grape|องุ่น
+group|กลุ่ม
+gum|หมากฝรั่ง
 hand|มือ
 hat|หมวก
 help|ช่วยเหลือ
-honey|น้ำผึ้ง
-horse|ม้า
-jacket|เสื้อแจ็คแก็ต
-kitchen|ครัว
+hen|แม่ไก่
+hide|แอบ,ซ่อน
+hot|ร้อน
+hot dog|ฮอทดอก
+hungry|หิวกระหาย
+idea|ความนึกคิด,ความคิดเห็น
+chicken|ไก่,เนื้อไก่
+children|เด็กหลายคน
+chilli|พริก
+chip|แผ่นมันฝรั่งทอดกรอบ
+circle|วงกลม
+clap|ปรบมือ
+like|ชื่นชอบ
+magic|มายากล,เวทย์มนต์
+make|ทำ
+mango|มะม่วง
+match|การเข้าชุดกัน
 music|ดนตรี
+new|ใหม่ สด แปลก
 notebook|สมุดบันทึก
-pencil|ดินสอ
+number|จำนวน,หมายเลข
+old|แก่,ชรา
+page|หน้าหนังสือ
+paint|ระบายสี
+paper|แผ่นกระดาษ
+pea|ถั่ว
+peach|ลูกพีช
+pencil case|กล่องดินสอ
+people|คน,ประชาชน
+person|คน,บุคคล
+pick|เลือก,หยิบ,จับ
+picture|รูปภาพ
+pig|หมู
+pillow|หมอน
 pineapple|สัปปะรด
-sister|พี่สาว
-sleep|นอนหลับ
-teacher|ครู
+place|สถานที่
+puppy|ลูกสุนัข
+put|วาง,ตั้ง
+quiet|เงียบ
+race|การแข่งด้านความเร็ว
+radio|วิทยุ
+rain|ฝน
+ready|พร้อม,พร้อมแล้ว
+relax|รู้สึกผ่อนคลาย
+replace|เปลี่ยนที่,แทนที่
+rice|ข้าว
+right|ความถูกต้อง
+robot|หุ่นยนต์
+rock|หิน,โขดหิน
+rope|เชือก,บ่วง
+round|กลม,เป็นวงกลม
+jam|แยม,ผลไม้กวนกับน้ำตาล
+job|งาน,อาชีพ
+jug|เหยือก
+kite|ว่าว
+knee|เข่า
+knife|มีด
+lady|ผู้หญิง สุภาพสตรี
+left|ข้างซ้าย
+letter|จดหมาย
+socks|ถุงเท้า
+sorry|ขอโทษ,ขออภัย
+spell|สะกด
+stamp|ดวงตราไปรษณียากร
+stand up|ยืนขึ้น
+store|ร้านค้า,คลังสินค้า
+story|เรื่องราว,เรื่องเล่า
+strawberry|ผลสตรอเบอร์รี่
+subject|วิชา
+tell|บอก
+tennis|กีฬาเทนนิส
+thumb|นิ้วหัวแม่มือ
+today|วันนี้
+toe|นิ้วเท้า
+touch|สัมผัส
+town|เมือง,ชุมชน
+T-shirt|เสื้อยืดคอกลม
 umbrella|ร่ม
+uncle|ลุง
+video|วีดีทัศน์
 watermelon|แตงโม
-zebra|ม้าลาย`,
-p3:`act|การแสดง
+week|สัปดาห์
+weekend|วันหยุดสุดสัปดาห์
+welcome|ซึ่งต้อนรับด้วยความยินดี
+whale|วาฬ
+window|หน้าต่าง
+worm|หนอน
+young|อ่อน,อายุน้อย
+yourself|ตัวของเธอเอง`,
+p3:`act|การแสดง,การกระทำ
 air|อากาศ
 airplane|เครื่องบิน
-basket|ตะกร้า
-beautiful|สวย
-bedroom|ห้องนอน
-bell|กระดิ่ง
-bicycle|รถจักรยาน
-blackboard|กระดานดำ
-body|ร่างกาย
+around|โดยรอบ,รอบด้าน
+run|วิ่ง
+sandals|รองเท้าสาน,รองเท้ามีสายรัด
+sandwich|ขนมปังแซนด์วิช
+scooter|ยานยนต์แบบจักรยานขนาดเล็ก
+shark|ฉลาม
+shirt|เสื้อเชิ้ต
+shoes|รองเท้า
+sit down|นั่งลง
+skirt|กระโปรง
+bookcase|ชั้นหนังสือ
+borrow|ขอยืม
+bottom|ก้น
+breakfast|อาหารมื้อเช้า
+bug|แมลงปีกแข็ง
+buy|ซื้อ
+cabbage|กะหล่ำปลี
 carrot|แครอท
 castle|ปราสาท
-chance|โอกาส
-climb|ปีน
+chalk|ชอล์ก
+chance|โอกาส,โชค
+change|เปลี่ยน,สลับ
+classroom|ห้องเรียน
 coffee|กาแฟ
 computer|คอมพิวเตอร์
-dance|เต้นรำ
+correct|ถูกต้อง
+cross|เครื่องหมายกากบาท
+cucumber|แตงกวา
 daughter|ลูกสาว
+dice|ลูกเต๋า
 dinner|อาหารมื้อเย็น
+dirty|สกปรก
 doctor|แพทย์
+double|เป็นสองเท่า
+drink|ดื่ม
 drum|กลอง
 duck|เป็ด
+durian|ทุเรียน
+eat|กิน,รับประทาน
 English|ภาษาอังกฤษ
+False|ผิด,ไม่ถูกต้อง
+finger|นิ้วมือ
+fishing|กีฬาตกปลา
 flag|ธง
+garden|สวน,สนามหญ้า
 give|ให้
-grandfather|ปู่
-grandmother|ย่า
-grass|หญ้า
-guitar|กีตาร์
-hippo|ฮิปโป
+art|ศิลปะ
+basket|ตะกร้า
+bathroom|ห้องน้ำ
+beautiful|สวย
+bedroom|ห้องนอน
+beef|เนื้อวัว
+bell|กระดิ่ง,ระฆัง
+bicycle|รถจักรยาน
+bike|รถจักรยาน
+blackboard|กระดานดำ
+blank|ว่าง,ว่างเปล่า
+body|ร่างกาย
 homework|การบ้าน
-library|ห้องสมุด
+honey|น้ำผึ้ง
+hop|กระโดด
+horse|ม้า
+hut|กระท่อม
+ink|หมึก น้ำหมึก
+jacket|เสื้อแจ็คแก็ต
+jeans|กางเกงยีนส์
+join|เข้าด้วยกัน
+juice|น้ำผลไม้
+keep|เก็บรักษา
+kitten|ลูกแมว
+living-room|ห้องนั่งเล่น
+lock|กุญแจ แม่กุญแจ
+log|ซุง ท่อนซุง
 lunch|อาหารมื้อกลางวัน
+math|วิชาคณิตศาสตร์
+meat|เนื้อสัตว์
 mirror|กระจก
-morning|เวลาเช้า
+month|เดือน
+mop|ไม้ถูพื้น
+move|ย้าย เคลื่อนย้าย เคลื่อนที่
+musician|นักดนตรี
+neck|คอ
+nest|รัง
+noodle|ก๋วยเตี๋ยว
+noon|เที่ยงวัน
 nurse|นางพยาบาล
+ox|วัวตัวผู้
+pair|คู่
+parrot|นกแก้ว
+path|ทางเดิน
 penguin|นกเพนกวิน
+goldfish|ปลาทอง
+golf|กีฬากอล์ฟ
+goose|ห่าน
+grandfather|ปู่,ตา
+grandmother|ย่า,ยาย
+grass|หญ้า
+great|ยิ่งใหญ่
+guitar|กีตาร์
+gun|ปืน
+hippo|ฮิปโปโปเตมัส
+hit|ตี
+hold|ถือ,จับ
+sand|ทราย
+sauce|น้ำจิ้ม
+sausage|ไส้กรอก
+seal|แมวน้ำ
+shampoo|ยาสระผม
+sharpener|กบเหลาดินสอ
+shorts|กางเกงขาสั้น
+shoulder|หัวไหล่
+skate|สเก็ต
+sleep|นอนหลับ
+slide|ลื่นไถล,ไถล
+smile|ยิ้ม
+snail|หอยทาก
+soap|สบู่
+sofa|โซฟา
+soldier|ทหาร
+son|ลูกชาย
+soup|น้ำแกง
+speak|พูด
+stick|กิ่งไม้,ก้านไม้
+study|เรียน
+sweet|หวาน
+swing|ชิงช้า
+telephone|โทรศัพท์
+thirsty|กระหาย
+tiger|เสือ
+toothbrush|แปรงสีฟัน
+toothpaste|ยาสีฟัน
+tortoise|เต่า
+truck|รถบรรทุก
+true|จริง,ถูก
+turtle|เต่าทะเล
+use|ใช้
 photo|รูปภาพ
 piano|เปียโน
+pie|ขนมพาย
 pizza|พิซซ่า
+plastic|พลาสติก
+pomelo|ส้มโอ
 pork|เนื้อหมู
+postman|บุรุษไปรษณีย์
 potato|มันฝรั่ง
 question|คำถาม
+rainy|ฝนตกชุก
+reach|ไปถึง,เข้าถึง
 read|อ่าน
-rice|ข้าว
 river|แม่น้ำ
-sandwich|แซนด์วิช
-school|โรงเรียน
-shoulder|หัวไหล่
-skirt|กระโปรง
-snail|หอยทาก
-sofa|โซฟา
-soup|น้ำแกง
-violin|ไวโอลิน
-wolf|หมาป่า
-wood|ไม้`,
-p4:`airport|สนามบิน
-autumn|ฤดูใบไม้ร่วง
-bamboo|ต้นไผ่
-beef|เนื้อวัว
+salt|เกลือ
+awake|ตื่นนอน
+baht|หน่วยเงินตราของไทย
+bamboo|ต้นไผ่,ไม้ไผ่
+barbecue|เตาย่างอาหารกลางแจ้ง
+beak|จงอยปากนก
+beverage|เครื่องดื่ม
+bomb|ระเบิด
 blanket|ผ้าห่ม
-bone|กระดูก
+blind|ซึ่งตาบอด
+blouse|เสื้อผ้าสตรี
+bone|กระดูก,ก้าง
+bored|ทำให้เบื่อ
 boxing|การชกมวย
+branch|กิ่งไม้,สาขา
+brush|พู่กัน,แปรง
 buffalo|ควาย
 butter|เนยเหลว
 camel|อูฐ
+camp|ค่ายพัก,เพิงพัก
 canteen|ร้านอาหารโรงเรียน
-cheap|ถูก
+careless|ประมาท,สะเพร่า
+centimeter|เซนติเมตร
+cheap|ถูก,ราคาถูก
 chin|คาง
 chocolate|ชอกโกแลต
+choose|เลือก
 cinema|โรงภาพยนตร์
+clear|โปร่งใส,ชัดเจน
 clever|ฉลาด
-coconut|มะพร้าว
-coin|เหรียญ
-comb|หวี
-cover|ปกคลุม
-crocodile|จระเข้
-curtain|ผ้าม่าน
+climb|ปีน,ตะกาย
+violin|ไวโอลิน
+want|ต้องการ
+wash|ซักล้าง
+watch|นาฬิกาข้อมือ
+wing|ปีก
+wolf|หมาป่า
+wood|ไม้
+write|เขียน
+wrong|ผิด`,
+p4:`ache|อาการปวด
+afternoon|เวลาบ่าย
+airport|สนามบิน
+autumn|ฤดูใบไม้ร่วง
 desert|ทะเลทราย
+divide|แบ่ง
+diary|ไดอารี่,สมุดบันทึกประจำวัน
 dictionary|พจนานุกรม
 dolphin|ปลาโลมา
 doughnut|ขนมโดนัท
+drive|ขับขี่(รถยนต์)
 dry|แห้ง
 dust|ฝุ่น
-earth|โลก
+earring|ตุ้มหู
+earth|โลก,พื้นผิวโลก
+easy|ง่าย
+entertain|ทำให้สนุกสนาน เพลิดเพลิน
 evening|ตอนเย็น
-exercise|ออกกำลังกาย
-feed|ให้อาหาร
+example|ตัวอย่าง
+exercise|ออกกำลังกาย,ฝึกหัด
+expensive|แพง
+fall|ฤดูใบไม้ร่วง,ตก,หล่น
+feed|ให้อาหาร(สัตว์),เลี้ยง
 feel|รู้สึก
 female|เพศหญิง
 fence|รั้ว
 festival|งานฉลอง
-funny|สนุก
+file|ตู้,แฟ้มเก็บเอกสาร
+fill|เติม,บรรจุ
+film|ฟิล์ม,ภาพยนตร์
+find|หา,ค้น,พบ
+fish sauce|น้ำปลา
+flash|ไฟกระพริบ
+flour|แป้ง
+closet|ตู้
+clothes|เสื้อผ้า
+cloudy|เมฆหนา,เมฆมาก
+clown|ตัวตลก
+club|สโมสร
+coat|เสื้อคลุม
+coconut|มะพร้าว
+coin|เหรียญ
+cold|เย็น
+comb|หวี,หวีผม
+copy|สำเนา
+cousin|ลูกพี่ลูกน้อง
+cover|ปกคลุม
+crossword|ปริศนาอักษรไขว้
+cupcake|เค้กชิ้นเล็ก
+dark|มืด,ค่ำ
+deep|ลึก
+dentist|ทันตแพทย์
+hip|สะโพก
+holiday|วันหยุด
+hospital|โรงพยาบาล
+hotel|โรงแรม
+husband|สามี
+internet|อินเตอร์เน็ต
+insect|แมลง
+jelly|วุ้น
+jungle|ป่า
+kangaroo|จิงโจ้
+kayak|เรือแคนนูขนาดเล็ก
+kilo|กิโลกรัม
+kitchen|ครัว
+know|รู้
+lab|ห้องปฏิบัติการ
+leaf|ใบไม้
+lemonade|น้ำมะนาว
+lettuce|ผักกาดหอม
+library|ห้องสมุด
+life|ชีวิต
+lips|ริมฝีปาก
+litter|เล็กน้อย,เศษขยะ
+longan|ลำไย
+lotus|ดอกบัว
+male|ผู้ชาย
+mall|ห้างสรรพสินค้า
+mangosteen|มังคุด
+flute|ขลุ่ย
+foggy|หมอกหนา
+forecast|พยากรณ์
+fork|ส้อม
+funny|สนุก,ตลก
 game|เกม
 garage|โรงรถ
 ghost|ผี
 gift|ของขวัญ
 glasses|แว่นตา
-grow|เติบโต
+grocery|ร้านขายของชำ
+grow|เจริญงอกงาม,เติบโต,งอก
 gym|โรงยิม
+hall|ห้องประชุม,ห้องโถง
 health|สุขภาพ
+healthy|ซึ่งเป็นประโยชน์ต่อร่างกาย
 heart|หัวใจ
 hill|เนินเขา
-hospital|โรงพยาบาล
-hotel|โรงแรม
-husband|สามี
-insect|แมลง
-jelly|วุ้น
-jungle|ป่า
-kangaroo|จิงโจ้
-ladder|บันได
-lemonade|น้ำมะนาว
-mango|มะม่วง
-medal|เหรียญรางวัล
-medicine|ยา
+office|สำนักงาน
+omelet|ไข่เจียว
+onion|หัวหอมใหญ่
+orchid|กล้วยไม้
+P.E.|วิชาพละศึกษา
+pants|กางเกงขายาว
+parents|พ่อ แม่,ผู้ปกครอง
+pass|ผ่าน
+paste|วาง
+pepper|พริกไทย
+pill|ยาเม็ด
+planet|ดาวเคราะห์
+plant|พืช
+playground|สนามเด็กเล่น
+plum|ต้นพลัม
+plumber|ช่างประปา
+pocket|กระเป๋าหรือถุงใบเล็กๆ
+poem|โคลง กลอน
+poll|การสำรวจความคิดเห็น
+porridge|อาหารเช้าที่ทำจากข้าวโอ๊ต
+powder|ผง แป้ง ฝุ่น
+practice|ซ้อม,ฝึกซ้อม,ฝึกหัด
+prawn|กุ้ง
+present|ของขวัญ
+pretty|สวย,น่ารัก
+price|ราคา
+print|พิมพ์
+market|ตลาด
+medicine|แพทย์ศาสตร์,ยา
+melon|แคนตาลูป
+member|สมาชิก,ชาวคณะ
+midnight|เที่ยงคืน,ความมืดสนิท
 monk|พระสงฆ์
 monster|สัตว์ประหลาด
-motorcycle|รถจักรยานยนต์
+morning|เวลาเช้า
 mountain|ภูเขา
 movie|ภาพยนตร์
-museum|พิพิธภัณฑ์
-nest|รัง
-newspaper|หนังสือพิมพ์
-ocean|มหาสมุทร
-onion|หัวหอม
-oven|เตาอบ
-painting|ภาพวาด
-parrot|นกแก้ว
-peacock|นกยูง
-pharmacy|ร้านขายยา
-picnic|ปิกนิก
-pilot|นักบิน
-planet|ดาวเคราะห์
-plumber|ช่างประปา
-postman|บุรุษไปรษณีย์
-puppy|ลูกสุนัข
-rainbow|รุ้งกินน้ำ
-robot|หุ่นยนต์
+mug|แก้วขนาดใหญ่มีหูจับ
+nail|เล็บ
+nationality|เชื้อชาติ,สัญชาติ
+nephew|หลานชาย
+nice|ดี,นิสัยดี,น่าคบ
+niece|หลานสาว
+night|กลางคืน
+note|หมายเหตุ,ข้อความ
+now|ในขณะนี้,เดี๋ยวนี้
+nun|แม่ชี
+octopus|ปลาหมึกยักษ์
+sew|เย็บ
+shake|สั่น,เขย่า
+shelf|ชั้นวางของ,หิ้งวางของ
+shop|ร้านค้า
+shopping mall|ห้างสรรพสินค้า
+sick|ป่วย
+ski|กระดานสกี
+slow|ช้า
+smoke|ควัน
+snack|อาหารว่าง
+snowy|ปกคลุมไปด้วยหิมะ
+social|เกี่ยวกับสังคม
+soda|โซดา
+sore|เจ็บปวด
+sour|รสเปรี้ยว
+space|อวกาศ
+space ship|ยานอวกาศ
+special|เฉพาะ
+spend|ใช้เงิน
+spicy|รสเผ็ด
+spoon|ช้อน
+spring|ฤดูใบไม้ผลิ
+square|สี่เหลี่ยมจตุรัส
+station|สถานี
+pull|ดึง
+push|ผลัก
+quick|รวดเร็ว,เร่งรีบ
+rainbow|สายรุ้ง,รุ้งกินน้ำ
+repeat|พูดซ้ำ
+rescue|ช่วยชีวิต,การช่วยชีวิต
+restaurant|ร้านอาหาร,ภัตตาคาร
+ride|ขี่
+road|ถนน
+rob|ปล้น
+rocket|จรวด
+root|ราก
 rose|ดอกกุหลาบ
-sailor|กะลาสีเรือ
-sausage|ไส้กรอก
+routine|กิจวัตรประจำวัน
+satellite|ดาวเทียม
 scarf|ผ้าพันคอ
+science|วิชาวิทยาศาสตร์
 sea|ทะเล
-shark|ฉลาม
-shell|เปลือกหอย
-singer|นักร้อง
-soldier|ทหาร
-spider|แมงมุม
-star|ดวงดาว
-strawberry|สตรอว์เบอร์รี่
-sunflower|ดอกทานตะวัน
-sunset|พระอาทิตย์ตก
-tent|เต็นท์
-theater|โรงละคร
-tomato|มะเขือเทศ
-toothbrush|แปรงสีฟัน
-towel|ผ้าเช็ดตัว
-turtle|เต่าทะเล
-volcano|ภูเขาไฟ
-wallet|กระเป๋าสตางค์
-watch|นาฬิกาข้อมือ
-waterfall|น้ำตก
-whale|วาฬ
-windmill|กังหันลม
-winter|ฤดูหนาว`,
+seed|เมล็ด
+sell|ขาย
+send|ส่ง
+weather|อากาศ
+wet|เปียก
+wife|ภรรยา
+windy|ซึ่งมีลมแรง
+winter|ฤดูหนาว
+work|ทำงาน
+year|ปี,ขวบ
+yesterday|เมื่อวานนี้
+yogurt|โยเกิร์ต
+yolk|ไข่แดง
+yummy|มีรสชาดี`,
 p5:`accountant|พนักงานบัญชี
 actor|นักแสดงชาย
 actress|นักแสดงหญิง
 adventure|การผจญภัย
-architect|สถาปนิก
-astronaut|นักบินอวกาศ
-bakery|ร้านขนมปัง
-balcony|ระเบียง
-barbecue|บาร์บีคิว
-binoculars|กล้องส่องทางไกล
-biscuit|บิสกิต
-blizzard|พายุหิมะ
-broccoli|บล็อคโคลี่
-cafeteria|โรงอาหาร
-calculator|เครื่องคิดเลข
-camera|กล้องถ่ายภาพ
-career|อาชีพ
-cashier|พนักงานเก็บเงิน
-champion|แชมป์
-chef|เชฟ
-chemistry|เคมี
-chess|หมากรุก
-clinic|คลินิก
-college|วิทยาลัย
-comedy|ตลก
-concert|คอนเสิร์ต
-cough|ไอ
-countryside|ชนบท
-cream|ครีม
-crowd|ฝูงชน
-cucumber|แตงกวา
-cycling|การขี่จักรยาน
-dessert|ของหวาน
-diamond|เพชร
-dinosaur|ไดโนเสาร์
-diploma|ประกาศนียบัตร
-dishwasher|เครื่องล้างจาน
-dragon|มังกร
-driver|คนขับรถ
-drummer|มือกลอง
-earthquake|แผ่นดินไหว
-electricity|ไฟฟ้า
-elevator|ลิฟต์
-emerald|มรกต
-engineer|วิศวกร
-envelope|ซองจดหมาย
-escalator|บันไดเลื่อน
-factory|โรงงาน
-falcon|เหยี่ยว
-feather|ขนนก
-firefighter|นักดับเพลิง
-fireworks|ดอกไม้ไฟ
-flamingo|นกฟลามิงโก้
-florist|คนขายดอกไม้
-football|ฟุตบอล
-fountain|น้ำพุ
-galaxy|กาแล็กซี่
-gazelle|ละมั่ง
-geography|ภูมิศาสตร์
-ginger|ขิง
-glacier|ธารน้ำแข็ง
-goggles|แว่นตากันลม
-gorilla|กอริลลา
-hairdresser|ช่างทำผม
-hamburger|แฮมเบอร์เกอร์
-harmonica|หีบเพลงปาก
-helicopter|เฮลิคอปเตอร์
-honeybee|ผึ้งน้ำหวาน
-horizon|ขอบฟ้า
-iceberg|ภูเขาน้ำแข็ง
-instrument|เครื่องดนตรี
-inventor|นักประดิษฐ์
-jaguar|เสือจากัวร์
-journalist|นักข่าว
-kettle|กาต้มน้ำ
-keyboard|คีย์บอร์ด
-knitting|การถักนิตติ้ง
-laboratory|ห้องแล็บ
-lantern|โคมไฟ
-laptop|แล็ปท็อป
-lava|ลาวา
-lighthouse|ประภาคาร
-lobster|กุ้งมังกร
-lotus|ดอกบัว
-magnet|แม่เหล็ก
-mansion|คฤหาสน์
-marathon|มาราธอน
-mechanic|ช่างเครื่อง
-mermaid|เงือก
-meteor|ดาวตก
-microphone|ไมโครโฟน
-microscope|กล้องจุลทรรศน์
-miner|คนงานเหมือง
-musician|นักดนตรี
-necklace|สร้อยคอ
-novelist|นักเขียนนวนิยาย
-octopus|ปลาหมึกยักษ์
-olive|มะกอก
-omelet|ไข่เจียว
-orchestra|วงดนตรี
-origami|ศิลปะพับกระดาษ
-palace|พระราชวัง
-panda|แพนด้า
-parachute|ร่มชูชีพ
-passport|หนังสือเดินทาง
-pasta|พาสต้า
-peanut|ถั่วลิสง
-perfume|น้ำหอม
-pharmacist|เภสัชกร
-photographer|ช่างภาพ
-pianist|นักเปียโน
-pillow|หมอน
-popcorn|ป๊อปคอร์น
-porcupine|เม่น
-pottery|เครื่องปั้นดินเผา
-puzzle|ปริศนา
-pyramid|พีระมิด
-queen|ราชินี
-quilt|ผ้านวม
-raccoon|แรคคูน
-reindeer|กวางเรนเดียร์
-rhinoceros|แรด
-rooster|ไก่ตัวผู้
-sailboat|เรือใบ
-salad|สลัด
-saxophone|แซกโซโฟน
-scarecrow|หุ่นไล่กา
-scooter|สกู๊ตเตอร์
-seahorse|ม้าน้ำ
-seatbelt|เข็มขัดนิรภัย
-shampoo|แชมพู
-sheep|แกะ
-shelter|ที่พักพิง
-skyscraper|ตึกระฟ้า
-snowman|ตุ๊กตาหิมะ
-soccer|ฟุตบอล
-spine|กระดูกสันหลัง
-squirrel|กระรอก
-stadium|สนามกีฬา
-stamp|แสตมป์
-starfish|ดาวทะเล
-statue|รูปปั้น
-stethoscope|เครื่องฟังหัวใจ
-submarine|เรือดำน้ำ
-suitcase|กระเป๋าเดินทาง
-sunglasses|แว่นกันแดด
-supermarket|ซูเปอร์มาร์เก็ต
+appear|ปรากฏ
+area|พื้นที่ บริเวณ
+author|นักเขียน,นักประพันธ์
+behind|ข้างหลัง,ด้านหลัง
+blow|พัด,เป่า,พ่น
+bridge|สะพาน
+buddy|เพื่อนคู่
+stem|ลำต้น
+straw|กองฟาง
+street|ถนน
+sugar|น้ำตาล
+summer|ฤดูร้อน
+sunny|แดดจ้า
 sweater|เสื้อกันหนาว
-teapot|กาน้ำชา
-telescope|กล้องโทรทรรศน์
-temple|วัด
-thermometer|เทอร์โมมิเตอร์
-thunder|ฟ้าผ่า
-tornado|พายุทอร์นาโด
-traffic|การจราจร
-train|รถไฟ
-trampoline|แทรมโพลีน
-treasure|สมบัติ
-treehouse|บ้านต้นไม้
-trophy|ถ้วยรางวัล
-tunnel|อุโมงค์
-turkey|ไก่งวง
-unicorn|ยูนิคอร์น
-university|มหาวิทยาลัย
-vampire|แวมไพร์
-vase|แจกัน
-volleyball|วอลเลย์บอล
-waitress|บริกรหญิง
-warehouse|โกดัง
-warrior|นักรบ
-wedding|งานแต่งงาน
-wheelchair|รถเข็นคนพิการ
-whistle|นกหวีด
-workshop|โรงงาน
-xylophone|ระนาด
-yacht|เรือยอชต์
-yogurt|โยเกิร์ต
-zeppelin|เรือเหาะ
-zigzag|ซิกแซก
-zipper|ซิป
-zombie|ซอมบี้`,
-p6:`acrobat|นักกายกรรม
-advertisement|การโฆษณา
-aeroplane|เครื่องบิน
-almanac|หนังสือประจำปี
-amphibian|สัตว์ครึ่งบกครึ่งน้ำ
-anchor|สมอเรือ
-antenna|เสาอากาศ
-aquarium|ตู้ปลา
-archery|การยิงธนู
-asteroid|ดาวเคราะห์น้อย
-astronomy|ดาราศาสตร์
-athlete|นักกีฬา
-atmosphere|ชั้นบรรยากาศ
-avocado|อะโวคาโด
-backpack|เป้สะพายหลัง
-baggage|กระเป๋าเดินทาง
-bandage|ผ้าพันแผล
-barbell|บาร์เบล
-barcode|บาร์โค้ด
-battery|แบตเตอรี่
-beaver|บีเวอร์
-beehive|รังผึ้ง
-biography|ชีวประวัติ
-biology|ชีววิทยา
-bison|ไบซัน
-blackbird|นกแบล็คเบิร์ด
-blacksmith|ช่างตีเหล็ก
-blueprint|พิมพ์เขียว
-bonsai|บอนไซ
-botanist|นักพฤกษศาสตร์
-bouquet|ช่อดอกไม้
-braille|อักษรเบรลล์
-brochure|แผ่นพับ
-bronze|ทองสัมฤทธิ์
-bubble|ฟองอากาศ
-cabinet|ตู้
-cactus|กระบองเพชร
-calcium|แคลเซียม
-calorie|แคลอรี่
-cameraman|ช่างกล้อง
-camouflage|การพรางตัว
-canyon|หุบเขาลึก
-capsule|แคปซูล
-captain|กัปตัน
-caravan|คาราวาน
-cardboard|กระดาษแข็ง
-carnival|งานรื่นเริง
-carpenter|ช่างไม้
-casserole|หม้ออบ
-caterpillar|หนอนผีเสื้อ
-cathedral|มหาวิหาร
-cauldron|หม้อต้มขนาดใหญ่
-caviar|คาเวียร์
-celebrity|คนดัง
-cellar|ห้องใต้ดิน
-cemetery|สุสาน
-chameleon|กิ้งก่า
-chandelier|โคมระย้า
-charcoal|ถ่าน
-chart|แผนภูมิ
-cheetah|เสือชีตาห์
-chessboard|กระดานหมากรุก
-chimney|ปล่องไฟ
-chimpanzee|ชิมแปนซี
-chisel|สิ่ว
-choreography|ท่าเต้น
-chronology|ลำดับเวลา
-cinnamon|อบเชย
-circus|ละครสัตว์
-clarinet|คลาริเน็ต
-cliff|หน้าผา
-clockmaker|ช่างนาฬิกา
-clover|ใบโคลเวอร์
-cockroach|แมลงสาบ
-cocoon|รังไหม
-column|เสา
-compass|เข็มทิศ
-composer|นักแต่งเพลง
-compost|ปุ๋ยหมัก
-conductor|ตัวนำไฟฟ้า
-constellation|กลุ่มดาว
-continent|ทวีป
-copperhead|งูหัวทองแดง
-coral|ปะการัง
-corkscrew|ที่เปิดจุก
-cornfield|ไร่ข้าวโพด
-corridor|ทางเดิน
-cosmos|จักรวาล
-costume|เครื่องแต่งกาย
-cotton|ฝ้าย
-crayfish|กุ้งน้ำจืด
-crescent|เสี้ยว
-cricket|จิ้งหรีด
-crossbow|หน้าไม้
-crown|มงกุฎ
-crystal|คริสตัล
-cupboard|ตู้กับข้าว
-curator|ภัณฑารักษ์
-currency|สกุลเงิน
-custard|คัสตาร์ด
-cyclone|พายุหมุน
-dagger|กริช
-dandelion|ดอกแดนดิไลออน
-dashboard|แผงหน้าปัด
-decibel|เดซิเบล
-detective|นักสืบ
-detergent|ผงซักฟอก
-dew|น้ำค้าง
-diagonal|เส้นทแยงมุม
-diesel|ดีเซล
-directory|สมุดโทรศัพท์
-discount|ส่วนลด
-domino|โดมิโน
-doorbell|กริ่งประตู
-dragonfly|แมลงปอ
-dumpling|เกี๊ยว
-dungeon|คุกใต้ดิน
-dynamite|ไดนาไมต์
-eagle|อินทรี
-easel|ขาตั้งวาดรูป
-eclipse|สุริยุปราคา
-eel|ปลาไหล
-electrician|ช่างไฟฟ้า
-electron|อิเล็กตรอน
-embassy|สถานทูต
-encyclopedia|สารานุกรม
-engine|เครื่องยนต์
-equator|เส้นศูนย์สูตร
-eraser|ยางลบ
-escargot|หอยทาก
-espresso|เอสเปรสโซ
-evolution|วิวัฒนาการ
-exhibition|นิทรรศการ
-expedition|การสำรวจ
-fabric|ผ้า
-fang|เขี้ยว
-farmhouse|บ้านไร่
-fashion|แฟชั่น
-ferry|เรือข้ามฟาก
-fiddle|ซอ
-firecracker|ประทัด
-fireplace|เตาผิง
-flashlight|ไฟฉาย
-flute|ขลุ่ย
-folklore|คติชน
-footprint|รอยเท้า
-fortress|ป้อมปราการ
-fossil|ฟอสซิล
-fragment|เศษชิ้นส่วน
-framework|โครงสร้าง
-freckle|กระ
-freezer|ตู้แช่แข็ง
-frequency|ความถี่
-friction|แรงเสียดทาน
-gallop|การควบม้า
-gargoyle|รูปปั้นสัตว์ประหลาด
-garland|พวงมาลัย
-gasoline|น้ำมันเบนซิน
-gateway|ประตูทางเข้า
-geyser|น้ำพุร้อน
-gingerbread|ขนมปังขิง
-giraffe|ยีราฟ
-gladiator|นักสู้โรมัน
-globe|ลูกโลก
-gondola|กระเช้าลอยฟ้า
-gorge|หุบเขาลึก
-gourmet|นักชิมอาหาร
-granite|หินแกรนิต
-gravity|แรงโน้มถ่วง
-greenhouse|เรือนกระจก
-grotto|ถ้ำ
-guillotine|กิโยติน
-gutter|รางน้ำ
-gymnast|นักยิมนาสติก
-gyroscope|ไจโรสโคป
-habitat|ที่อยู่อาศัย
-hailstone|ลูกเห็บ
-hairbrush|แปรงผม
-hallway|ทางเดิน
-hamster|แฮมสเตอร์
-hammock|เปลญวน
-handcuff|กุญแจมือ
-hanger|ไม้แขวนเสื้อ
-harbor|ท่าเรือ
-harpoon|ฉมวก
-harvest|การเก็บเกี่ยว
-hawk|เหยี่ยว
-headphone|หูฟัง
-hearth|เตาผิง
-hedgehog|เม่นแคระ
-hemisphere|ซีกโลก
-hermit|ฤๅษี
-hexagon|หกเหลี่ยม
-hibiscus|ชบา
-hieroglyph|อักษรภาพ
-hive|รังผึ้ง
-hologram|โฮโลแกรม
-honeycomb|รังผึ้ง
-hoodie|เสื้อฮู้ด
-hook|ตะขอ
-hornet|แตน
-horoscope|ดวงชะตา
-horsepower|แรงม้า
-hose|สายยาง
-hospitality|การต้อนรับ
-hourglass|นาฬิกาทราย
-humidity|ความชื้น
-hummingbird|นกฮัมมิงเบิร์ด
-hurricane|พายุเฮอริเคน
-husky|สุนัขฮัสกี้
-hydrant|หัวดับเพลิง
-hyena|ไฮยีน่า
-iguana|อีกัวน่า
-illusion|ภาพลวงตา
-impala|อิมพาลา
-incense|ธูป
-inhaler|เครื่องพ่นยา
-inkwell|ที่ใส่หมึก
-insulation|ฉนวน
-invention|สิ่งประดิษฐ์
-iris|ม่านตา
-island|เกาะ
-ivory|งาช้าง
-ivy|ไม้เลื้อย
-jasmine|มะลิ
-jaw|กราม
-jazz|แจ๊ส
-jellyfish|แมงกะพรุน
-jewel|อัญมณี
-jigsaw|จิ๊กซอว์
-journal|วารสาร
-journey|การเดินทาง
-joystick|จอยสติ๊ก
-judo|ยูโด
-juggle|การเล่นกล
-jukebox|ตู้เพลง
-junction|ชุมทาง
-juniper|จูนิเปอร์
-kaleidoscope|กล้องคาไลโดสโคป
-kayak|คายัค
-kennel|บ้านสุนัข
-kernel|เมล็ด
-kerosene|น้ำมันก๊าด
-ketchup|ซอสมะเขือเทศ
-keyhole|รูเสียบกุญแจ
-keystone|หินกุญแจ
-kimono|กิโมโน
-kindergarten|โรงเรียนอนุบาล
-kingdom|อาณาจักร
-kiosk|แผงลอย
-kitten|ลูกแมว
-kiwi|กีวี
-kneecap|กระดูกสะบ้า
-knight|อัศวิน
-knocker|ที่เคาะประตู
-knot|ปม
-koala|หมีโคอาลา
-labyrinth|เขาวงกต
-lagoon|ทะเลสาบน้ำเค็ม
-lamp|โคมไฟ
-lamppost|เสาไฟ
-landmark|สถานที่สำคัญ
-landscape|ภูมิทัศน์
-lapel|ปกเสื้อ
-larva|ตัวอ่อน
-lasagna|ลาซานญ่า
-laser|เลเซอร์
-lasso|บ่วงบาศ
-latitude|ละติจูด
-lavender|ลาเวนเดอร์
-lawyer|ทนายความ
-leaflet|แผ่นพับ
-leak|รอยรั่ว
-lecture|การบรรยาย
-leech|ทากดูดเลือด
-legend|ตำนาน
-legume|พืชตระกูลถั่ว
-leisure|การพักผ่อน
-leopard|เสือดาว
-lettuce|ผักกาดหอม
-lever|คันโยก
-liberty|อิสรภาพ
-license|ใบอนุญาต
-lifeguard|เจ้าหน้าที่ช่วยชีวิต
-lightning|ฟ้าแลบ
-lily|ลิลลี่
-limousine|รถลีมูซีน
-linen|ผ้าลินิน
-lipstick|ลิปสติก
-literature|วรรณคดี
-lithium|ลิเทียม
-litter|ขยะ
-lizard|กิ้งก่า
-llama|ลามา
-locket|จี้
-locomotive|หัวรถจักร
-lodging|ที่พัก
-logbook|สมุดบันทึก
-lollipop|อมยิ้ม
-lottery|ลอตเตอรี่
-loudspeaker|ลำโพง
-lounge|ห้องนั่งเล่น
-lubricant|สารหล่อลื่น
-luggage|กระเป๋าเดินทาง
-lumberjack|คนตัดไม้
-lunar|เกี่ยวกับดวงจันทร์
-lunchbox|กล่องข้าว
-luxury|ความหรูหรา
-lychee|ลิ้นจี่
-lyrics|เนื้อเพลง
-macaw|มาคอว์
-machine|เครื่องจักร
-mackerel|ปลาแมคเคอเรล
-magazine|นิตยสาร
-magician|นักมายากล
-magma|หินหนืด
-magnifier|แว่นขยาย
-mahogany|ไม้มะฮอกกานี
-maid|สาวใช้
-mailbox|ตู้จดหมาย
-mammal|สัตว์เลี้ยงลูกด้วยนม
-mammoth|แมมมอธ
-manatee|พะยูน
-mandarin|ส้มแมนดาริน
-manuscript|ต้นฉบับ
-maple|เมเปิล
-maracas|มาราคาส
-marble|หินอ่อน
-margarine|เนยเทียม
-marigold|ดาวเรือง
-marina|ท่าเรือยอชต์
-marionette|หุ่นกระบอก
-marmalade|แยมส้ม
-maroon|สีแดงเข้ม
-marquee|ป้ายไฟ
-marsupial|สัตว์มีกระเป๋าหน้าท้อง
-mask|หน้ากาก
-mason|ช่างก่ออิฐ
-massage|การนวด
-mast|เสากระโดงเรือ
-mattress|ที่นอน
-mayonnaise|มายองเนส
-mayor|นายกเทศมนตรี
-maze|เขาวงกต
-meadow|ทุ่งหญ้า
-measles|โรคหัด
-medal|เหรียญ
-megaphone|โทรโข่ง
-memorial|อนุสรณ์
-menagerie|สวนสัตว์เล็ก
-meteor|ดาวตก
-meter|มิเตอร์
-mildew|เชื้อรา
-milestone|หลักไมล์
-milkshake|มิลค์เชค
-millipede|กิ้งกือ
-mimic|การเลียนแบบ
-mineral|แร่ธาตุ
-miniature|ขนาดจิ๋ว
-minister|รัฐมนตรี
-minnow|ปลาเล็กๆ
-mint|สะระแหน่
-minute|นาที
-mirage|ภาพลวงตา
-mistletoe|มิสเซิลโท
-mitten|ถุงมือไม่มีนิ้ว
-mockingbird|นกม็อกกิ้งเบิร์ด
-module|โมดูล
-mohawk|ทรงผมโมฮอว์ก
-moisture|ความชื้น
-molar|ฟันกราม
-molasses|กากน้ำตาล
-monarch|กษัตริย์
-monastery|อาราม
-monocle|แว่นตาข้างเดียว
-monogram|อักษรย่อ
-monologue|บทพูดคนเดียว
-monorail|รางเดียว
-monsoon|มรสุม
-moonbeam|แสงจันทร์
-moonstone|หินมูนสโตน
-moped|มอเตอร์ไซค์เล็ก
-mosaic|โมเสก
-mosque|มัสยิด
-mosquito|ยุง
-moss|มอส
-motel|โมเทล
-moth|ผีเสื้อกลางคืน
-motto|คติพจน์
-mound|เนินดิน
-mousetrap|กับดักหนู
-moustache|หนวด
-mouthpiece|ที่เป่า
-mudflat|ที่ราบโคลน
-muffin|มัฟฟิน
-mule|ล่อ
-mullet|ปลากระบอก
-mummy|มัมมี่
-mural|ภาพจิตรกรรมฝาผนัง
-muscle|กล้ามเนื้อ
-mushroom|เห็ด
-musketeer|ทหารเสือ
-muslin|ผ้ามัสลิน
-mustang|ม้าป่า
-mustard|มัสตาร์ด
-mutation|การกลายพันธุ์
-myrrh|มดยอบ
-myrtle|เมอร์เทิล
-mystery|ความลึกลับ
-myth|ตำนาน
-nachos|นาโชส
-nectar|น้ำหวาน
-nectarines|เนคทารีน
-needle|เข็ม
-neighbor|เพื่อนบ้าน
-neon|นีออน
-nerve|เส้นประสาท
-net|ตาข่าย
-newsstand|แผงหนังสือพิมพ์
-niche|ช่องเฉพาะ
-nickel|นิกเกิล
-nickname|ชื่อเล่น
-nightingale|นกไนติงเกล
-nimble|ว่องไว
-ninja|นินจา
-nitrogen|ไนโตรเจน
-nocturnal|ออกหากินกลางคืน
-nomad|ชนเผ่าเร่ร่อน
-nominee|ผู้เข้าชิง
-noodles|ก๋วยเตี๋ยว
-nordic|นอร์ดิก
-nosebleed|เลือดกำเดา
-notary|พนักงานรับรอง
-notes|บันทึก
-notify|แจ้งเตือน
-novice|มือใหม่
-nuclear|นิวเคลียร์
-nugget|ก้อนทอง
-nuisance|สิ่งรบกวน
-numeral|ตัวเลข
-nutmeg|ลูกจันทน์เทศ
-nutrient|สารอาหาร
-nylon|ไนลอน
-oasis|โอเอซิส
-oatmeal|ข้าวโอ๊ต
-obelisk|เสาโอเบลิสก์
-objective|วัตถุประสงค์
-oboe|โอโบ
-observation|การสังเกต
-obsidian|หินออบซิเดียน
-ocarina|ขลุ่ยดินเผา
-ocelot|โอเซลอต
-octagon|แปดเหลี่ยม
-oculist|จักษุแพทย์
-odometer|มาตรวัดระยะทาง
-offering|เครื่องสังเวย
-offspring|ลูกหลาน
-ogre|ยักษ์
-oil|น้ำมัน
-ointment|ครีมทา
-omnivore|สัตว์ที่กินทั้งพืชและเนื้อ
-onlooker|ผู้ชม
-onyx|นิล
-opal|หินโอปอล
-opera|โอเปร่า
-opossum|โอพอสซัม
-optician|ช่างแว่นตา
-optimist|ผู้มองโลกในแง่ดี
-oracle|ผู้วิเศษ
-orangutan|อุรังอุตัง
-orbit|วงโคจร
-orchard|สวนผลไม้
-orchid|กล้วยไม้
-ordnance|อาวุธยุทโธปกรณ์
-oregano|ออริกาโน
-organ|อวัยวะ
-ornament|เครื่องประดับ
-orphan|เด็กกำพร้า
-oscar|ออสการ์
+syrup|น้ำเชื่อม
+tail|หาง
+talk|คุย
+teach|สอน
+team|ทีม,กลุ่ม,คณะ
+theater|โรงละคร
+thin|ผอม,บาง
+ticket|ตั๋ว บัตรผ่านประตู
+time|เวลา
+tofu|เต้าหู้
+tomorrow|วันพรุ่งนี้
+tonight|คืนนี้
+tour|การท่องเที่ยว การทัศนาจร
+underline|ขีดเส้นใต้
+uniform|เครื่องแบบ
+vegetable|ผัก
+wear|สวม,ใส่
+control|ควบคุม
+conversation|บทสนทนา
+country|ประเทศ,ชนบท
+craft|งานศิลปะที่ทำด้วยมือ
+crisps|มันฝรั่งทอดกรอบ
+crocodile|จระเข้
+curly|ลอน,เกลียว
+curry|แกงเผ็ด
+curtain|ผ้าม่าน
+cycling|การขี่จักรยาน
+dangerous|อันตราย
+dare|ความกล้า,กล้า
+dear|ที่รัก
+delicious|อร่อย
+dialogue|การสนทนา
+diet|อาหาร,โภชนาการ
+different|ที่แตกต่าง
+dining room|ห้องรับประทานอาหาร
+dinosaur|ไดโนเสาร์
+director|ผู้กำกับ,ผู้ควบคุม
+dove|นกเขา
+build|สร้าง,ก่อสร้าง
+burn|เผาไหม้
+busy|ยุ่ง,ไม่ว่าง
+button|กระดุม
+calculator|เครื่องคิดเลข
+calendar|ปฏิทิน
+camera|กล้องถ่ายภาพ
+canal|คลองขุด,ร่องน้ำ
+caramel|คาราเมล,ลูกกวาด น้ำตาลไหม้
+careful|ระมัดระวัง
+career|อาชีพ
+carpet|พรม
+carry|ถือ,แบก,หิ้ว
+CD player|เครื่องเล่นแผ่นเสียง
+cell|ห้องขัง,กฎิ,เซลล์ของสิ่งมีชีวิต
+center|ใจกลาง,ศูนย์กลาง
+cereal|อาหารเช้าที่ทำจากธัญพืช
+chopsticks|ตะเกียบ
+clinic|คลินิก
+coconut milk|น้ำกะทิ
+collect|สะสม
+company|บริษัท
+complete|สมบูรณ์
+container|บรรจุภัณฑ์
+hang glider|เครื่องร่อน
+happen|เกิดขึ้น
+hear|ได้ยิน
+heavy|หนัก หนักแน่นมาก
+hero|วีรบุรุษ
+hiking|การเดินเขา
+history|ประวัติศาสตร์
+hobby|งานอดิเรก
+hole|หลุม
+horn|แตร,เขาสัตว์
+house ware|เครื่องใช้ในบ้าน
+iron|เหล็ก,เตารีด,ตะกั่ว
+itch|อาการคัน โรคคัน
+jackfruit|ขนุน
+jasmine|ดอกมะลิ
+jewelry|อัญมณี
+kind|ใจดี
+kiwi|ผลกีวี
+knock|เคาะ
+koala|หมีโคอาล่า
+lake|ทะเลสาบ
+down town|ใจกลางเมือง
+downstairs|ชั้นล่าง
+dream|ความฝัน,ฝัน
+dress up|แต่งตัว
+driver|คนขับรถ
+eggplant|มะเขือยาว
+elder brother|พี่ชาย
+elder sister|พี่สาว
+end|จุดจบ ปลายสุด
+envelope|ซองจดหมาย
+factory|โรงงาน
+fair|งานนิทรรศการ,การแสดงสินค้า
+famous|ที่มีชื่อเสียง
+fire fighter|พนักงานดับเพลิง
+fitness|ศูนย์สุขภาพ
+float|ลอย
+follow|ตาม
+food court|ศูนย์อาหาร
+forest|ป่า
+frightening|น่ากลัว
+fur|ขน(สัตว์ เช่น หมี สุนัข)
+guava|ฝรั่ง
+guide|คนนำทาง,มัคคุเทศก์,แนะนำ
+gymnastic|กีฬายิมนาสติก
+habit|นิสัย
+haircut|การตัดผม
+half|ครึ่ง,ส่วนหนึ่ง
+ocean|มหาสมุทร
+operator|พนักงานต่อโทรศัพท์
+order|คำสั่ง,ลำดับที่,สั่ง,ออกคำสั่ง
 ostrich|นกกระจอกเทศ
-otter|นาก
-ottoman|เก้าอี้ไม่มีพนัก
-ounce|ออนซ์
-outpost|ด่านหน้า
-outlet|ร้านค้า
-output|ผลลัพธ์
-outrigger|เสาค้ำเรือ
-ovation|การปรบมือ
-overalls|ชุดเอี๊ยม
-overcoat|เสื้อโค้ท
-owl|นกฮูก
-oxbow|โค้งน้ำ
-oxygen|ออกซิเจน
-oyster|หอยนางรม
-ozone|โอโซน
-pacemaker|เครื่องกระตุ้นหัวใจ
-pacific|แปซิฟิก
-package|พัสดุ
-paddle|ไม้พาย
-paddock|คอกม้า
-padlock|กุญแจ
-pageant|การประกวด
-pagoda|เจดีย์
-paintbrush|แปรงทาสี
+oven|เตาอบ
 pajamas|ชุดนอน
-palate|เพดานปาก
-palette|จานสี
-palm|ต้นปาล์ม
-pamphlet|แผ่นพับ
-pan|กระทะ
-pancake|แพนเค้ก
-pandemic|การระบาดใหญ่
-pane|กระจกหน้าต่าง
-panel|แผง
-pangolin|ตัวนิ่ม
-panorama|ภาพพาโนรามา
-panther|เสือดำ
-pantry|ห้องเก็บของ
-papaya|มะละกอ
-papyrus|กระดาษพาไพรัส
+paper clip|ที่หนีบกระดาษ
 parade|ขบวนแห่
-paradise|สวรรค์
-paraffin|พาราฟิน
-paraglider|ร่มร่อน
-paralegal|ผู้ช่วยทนาย
-parasol|ร่มกันแดด
-parcel|พัสดุ
-parchment|กระดาษหนัง
-parka|เสื้อกันหนาวมีฮู้ด
-parliament|รัฐสภา
-parsley|ผักชีฝรั่ง
-parsnip|แครอทขาว
-partridge|นกกระทา
-passage|ทางเดิน
-passenger|ผู้โดยสาร
-passion|ความหลงใหล
-pastel|สีพาสเทล
-pastry|ขนมอบ
-pasture|ทุ่งหญ้าเลี้ยงสัตว์
-patch|แผ่นปะ
-patent|สิทธิบัตร
-pathway|ทางเดิน
-patient|คนไข้
-patio|ลานกลางแจ้ง
-patriot|ผู้รักชาติ
-patrol|การลาดตระเวน
-pattern|ลวดลาย
-pavilion|ศาลา
-paw|อุ้งเท้า
-pawn|เบี้ยหมากรุก
-paycheck|เช็คเงินเดือน
-pearl|ไข่มุก
-peasant|ชาวนา
-pecan|พีแคน
-pedal|แป้นเหยียบ
-pedestal|แท่น
-pedestrian|คนเดินถนน
-pediatrician|กุมารแพทย์
-peek|แอบดู
-peel|เปลือก
-pegasus|ม้าบิน
-pelican|นกกระทุง
-pellet|เม็ด
-penalty|บทลงโทษ
-pendant|จี้ห้อยคอ
-pendulum|ลูกตุ้ม
-peninsula|คาบสมุทร
-pennant|ธงสามเหลี่ยม
-penny|เพนนี
-pension|บำนาญ
-pentagon|ห้าเหลี่ยม
-peony|ดอกโบตั๋น
-peppermint|มิ้นต์
-perch|นกเกาะ
-periscope|กล้องดูเรือดำน้ำ
-periwinkle|ดอกแพงพวย
-permit|ใบอนุญาต
-persimmon|ลูกพลับ
-petal|กลีบดอกไม้
-petition|คำร้อง
-petrol|น้ำมันเบนซิน
-pewter|พิวเตอร์
-pharaoh|ฟาโรห์
-pheasant|ไก่ฟ้า
-phobia|โรคกลัว
-phoenix|ฟีนิกซ์
-phrase|วลี
-physician|แพทย์
-piccolo|ปิคโคโล
-pickle|ผักดอง
-pickpocket|นักล้วงกระเป๋า
-pier|ท่าเทียบเรือ
-pigeon|นกพิราบ
-piglet|ลูกหมู
-pigment|สี
-pigtail|ผมเปีย
-pike|ปลาไพก์
-pilgrim|ผู้แสวงบุญ
-pillar|เสา
-pin|เข็มหมุด
-pinecone|ลูกสน
-pinnacle|ยอดสูงสุด
-pioneer|ผู้บุกเบิก
-pipe|ท่อ
-pipeline|ท่อส่ง
-pirate|โจรสลัด
-pistachio|พิสตาชิโอ
-piston|ลูกสูบ
-pitcher|เหยือก
-pitchfork|คราด
-pixel|พิกเซล
-placard|ป้ายประกาศ
-plague|โรคระบาด
-plain|ที่ราบ
-plan|แผน
-plank|แผ่นกระดาน
-plaque|แผ่นโลหะ
-plasma|พลาสมา
-plaster|ปูนปลาสเตอร์
-plateau|ที่ราบสูง
-platinum|แพลตินัม
-playwright|นักเขียนบทละคร
-plaza|ลานกว้าง
-pledge|คำสัญญา
-pliers|คีม
-plot|โครงเรื่อง
-plow|คันไถ
-plume|ขนนก
-plunger|ที่ปั๊มชักโครก
-plywood|ไม้อัด
-poacher|พรานเถื่อน
-podcast|พอดแคสต์
-poet|กวี
-pointer|ตัวชี้
-poison|พิษ
-poker|ไพ่โป๊กเกอร์
-polar|ขั้วโลก
-police|ตำรวจ
-polish|ขัดเงา
-pollution|มลพิษ
-polo|โปโล
-pomegranate|ทับทิม
-poncho|เสื้อคลุม
-pony|ม้าแคระ
-poodle|พุดเดิ้ล
-poppy|ดอกป๊อปปี้
-popular|เป็นที่นิยม
-porcelain|เครื่องเคลือบ
-porch|ระเบียง
-porpoise|โลมา
-porridge|โจ๊ก
-port|ท่าเรือ
-portable|พกพา
-portal|ประตู
+part|ส่วน,ชิ้นส่วน,ส่วนประกอบ
+past|ผ่านไป,สมัยก่อน,แต่ก่อน
+pay|จ่าย,ชำระ
+peak|ยอดเขา,จุดสุดยอด
+peacock|นกยูง
+pharmacy|ร้านขายยา
+laugh|หัวเราะ
+law|กฎหมาย
+learn|เรียนรู้
+leave|จากไป ออกจาก
+lend|ให้ยืม
+light|แสง,เบา
+magazine|นิตยสาร
+mail carrier|บุรุษไปรษณีย์
+marker|ปากกา,สิ่งที่ใช้ทำเครื่องหมาย
+marry|แต่งงาน
+meal|มื้ออาหาร
+menu|รายการอาหาร
+meter|เมตร
+microwave|เตาอบคลื่นแม่เหล็กไฟฟ้า
+minute|นาที
+miss|คิดถึง,พลาด
+mix|ผสม รวมกัน
+model|ต้นแบบ แบบอย่าง นางแบบ
+money|เงิน
+mosquito|ยุง
+museum|พิพิธภัณฑ์
+napkin|ผ้ากันเปื้อน
+neat|เรียบร้อย
+necklace|สร้อยคอ
+newspaper|หนังสือพิมพ์
+noise|เสียงดัง(รบกวน)
+occupation|อาชีพ
+set|ชุด,ตั้ง,ตั้งค่า,(ดวงอาทิตย์)ตก
+shallow|ตื้น
+sharp|คม แหลม
+shout|ตะโกน
+shrimp|กุ้งขนาดเล็ก
+silent|เงียบสงัด
+single|โสด,เดี่ยว
+sink|อ่างล้างจาน,จม
+skip|ข้าม,เขย่ง,กระโดด
+slippers|รองเท้าแตะ
+slippery|ลื่น
+smart|ฉลาด
+sound|เสียง
+staff|คณะผู้ทำงาน
+picnic|การไปเที่ยวและนำอาหารไปทานนอกบ้าน
+pilot|นักบิน
+plan|แผนการ,วางแผน
+plate|จาน
+plug|จุก,เสียบ
+pole|ขั้วโลก
+poor|จน,น่าสงสาร
+popular|ที่มีชื่อเสียง
 portfolio|แฟ้มสะสมผลงาน
-portrait|ภาพเหมือน
-possum|โอพอสซัม
-postage|ค่าไปรษณีย์
-postcard|ไปรษณียบัตร
-pot|หม้อ
-pouch|กระเป๋าเล็ก
-poultry|สัตว์ปีก
-powder|ผง
-prairie|ทุ่งหญ้า
-prayer|การสวดมนต์
-preacher|นักเทศน์
-precipice|หน้าผา
-predator|ผู้ล่า
-preface|คำนำ
-prefix|คำอุปสรรค
-pregnancy|การตั้งครรภ์
-premium|พรีเมียม
-prescription|ใบสั่งยา
-president|ประธานาธิบดี
-pretzel|เพรทเซล
-prey|เหยื่อ
-priest|นักบวช
-primary|ประถม
-primate|ไพรเมต
-prince|เจ้าชาย
-princess|เจ้าหญิง
-principal|อาจารย์ใหญ่
-printer|เครื่องพิมพ์
-prism|ปริซึม
-prison|คุก
-prisoner|นักโทษ
-privacy|ความเป็นส่วนตัว
-proboscis|งวง
-produce|ผลผลิต
-professor|ศาสตราจารย์
-profile|โปรไฟล์
-program|โปรแกรม
-project|โครงการ
-projector|เครื่องฉาย
-promenade|ทางเดินเล่น
-promise|สัญญา
-proof|หลักฐาน
-propeller|ใบพัด
-property|ทรัพย์สิน
-prophet|ศาสดา
-proposal|ข้อเสนอ
-prose|ร้อยแก้ว
-prosperity|ความเจริญรุ่งเรือง
-protect|ป้องกัน
-protein|โปรตีน
-protest|การประท้วง
-protocol|พิธีการ
-prototype|ต้นแบบ
-proud|ภูมิใจ
-province|จังหวัด
-provision|เสบียง
-prune|ลูกพรุน
-psychology|จิตวิทยา
-pub|ผับ
-pudding|พุดดิ้ง
-puddle|แอ่งน้ำ
-puffin|นกพัฟฟิน
-pulley|รอก
-pulp|เยื่อกระดาษ
-pulse|ชีพจร
-pump|ปั๊ม
-pumpkin|ฟักทอง
-punch|ต่อย
-puppet|หุ่นเชิด
-purchase|ซื้อ
-puree|ซอสข้น
-purple|สีม่วง
-purse|กระเป๋าสตางค์
-pyjamas|ชุดนอน
-python|งูหลาม
-quail|นกกระทา
-quarry|เหมืองหิน
-quartz|ควอตซ์
-quay|ท่าเทียบเรือ
-quill|ขนนกเขียน
-quince|ลูกควินซ์
-quiver|แล่งธนู
-quiz|แบบทดสอบ
-quota|โควต้า
-quotation|คำพูด
-racetrack|ลู่แข่ง
-racket|ไม้ตี
-radar|เรดาร์
-radiator|หม้อน้ำ
-radio|วิทยุ
-radish|หัวไชเท้า
-rafter|คาน
-rag|ผ้าขี้ริ้ว
-rage|ความโกรธ
-raid|การจู่โจม
-rail|ราง
-railing|ราวบันได
-railroad|ทางรถไฟ
-raincoat|เสื้อกันฝน
-raisin|ลูกเกด
-rake|คราด
-ram|แกะตัวผู้
-ramp|ทางลาด
-ranch|ฟาร์มปศุสัตว์
-rancher|เจ้าของฟาร์ม
-ranger|เจ้าหน้าที่ป่าไม้
-rank|อันดับ
-ransom|ค่าไถ่
-rapids|น้ำเชี่ยว
-rascal|คนเกเร
-raspberry|ราสเบอร์รี่
-rat|หนู
-rattle|ของเล่นเด็ก
-raven|นกกา
-ravine|หุบเขาลึก
-rayon|เรยอน
-razor|มีดโกน
-realtor|นายหน้า
-ream|รีมกระดาษ
-rebel|กบฏ
-receipt|ใบเสร็จ
-reception|แผนกต้อนรับ
-recipe|สูตรอาหาร
-recital|การแสดงเดี่ยว
-reckless|ประมาท
-recliner|เก้าอี้เอน
-record|บันทึก
-recorder|เครื่องบันทึก
-rectangle|สี่เหลี่ยมผืนผ้า
-recycle|รีไซเคิล
-redwood|ไม้เซควาญา
-reef|แนวปะการัง
-referee|ผู้ตัดสิน
-reflector|แผ่นสะท้อนแสง
-reflex|ปฏิกิริยาสะท้อน
-refrigerator|ตู้เย็น
-refuge|ที่หลบภัย
-regatta|การแข่งเรือ
-region|ภูมิภาค
-register|ทะเบียน
-regret|ความเสียใจ
-rehearsal|การซ้อม
-reign|รัชสมัย
-relay|การวิ่งผลัด
-relic|โบราณวัตถุ
-relief|การบรรเทา
-religion|ศาสนา
-remedy|การรักษา
-reminder|เครื่องเตือน
-remodel|ปรับปรุง
-renaissance|ยุคฟื้นฟูศิลปวิทยา
-rendezvous|การนัดพบ
-renegade|ผู้ทรยศ
-rent|ค่าเช่า
-repair|ซ่อมแซม
-reporter|ผู้สื่อข่าว
-reptile|สัตว์เลื้อยคลาน
-republic|สาธารณรัฐ
-rescue|การช่วยเหลือ
-research|การวิจัย
-reservoir|อ่างเก็บน้ำ
-residence|ที่พักอาศัย
-resin|ยางไม้
-resort|รีสอร์ท
-resource|ทรัพยากร
-respect|ความเคารพ
-restaurant|ร้านอาหาร
-restroom|ห้องน้ำ
-resume|ประวัติย่อ
-retail|ขายปลีก
-retina|จอประสาทตา
-retreat|การถอยทัพ
-reunion|การกลับมาพบกัน
-revenue|รายได้
-reverie|ความเพ้อฝัน
-reverse|ย้อนกลับ
-revolution|การปฏิวัติ
-revolver|ปืนพก
-rhinestone|คริสตัล
+poster|ป้าย,ป้ายประกาศ
+pour|เท
+power|พลังงาน
+pray|สวดมนต์
+punch|น้ำผลไม้
+purse|กระเป๋าถือสตรี
+quarter|หนึ่งในสี่ส่วน
+queue|คิว,แถว
+rent|เช่า
+reporter|ผู้สื่อสาร,ผู้รายงาน
+rest|พักผ่อน,การพักผ่อน
+return|กลับ,คืนกลับ
 rhino|แรด
-rhododendron|กุหลาบพันปี
-rhubarb|รูบาร์บ
-rhyme|สัมผัส
-rhythm|จังหวะ
-ribbon|ริบบิ้น
-rickshaw|รถลาก
-rider|ผู้ขี่
-ridge|สันเขา
-rifle|ปืนยาว
-rim|ขอบ
-rink|ลานสเก็ต
-riot|จลาจล
-ripple|ระลอกคลื่น
-risk|ความเสี่ยง
-ritual|พิธีกรรม
-rival|คู่แข่ง
-rivet|หมุดย้ำ
-road|ถนน
-roast|ย่าง
-robin|นกโรบิน
-rock|หิน
-rocket|จรวด
-rodent|สัตว์ฟันแทะ
-rodeo|โรดีโอ
-roller|ลูกกลิ้ง
-roof|หลังคา
-rook|เรือหมากรุก
-rooster|ไก่ตัวผู้
-root|ราก
-rope|เชือก
-rosemary|โรสแมรี่
-roster|รายชื่อ
-rotor|ใบพัด
-rouge|ลิปสติก
-route|เส้นทาง
-routine|กิจวัตร
-rowboat|เรือพาย
-royal|ราชวงศ์
-rubber|ยาง
-rubbish|ขยะ
-ruby|ทับทิม
-rudder|หางเสือ
+ribbon|รีบบิ้น,โบว์
+rich|รวย,อุดมสมบูรณ์
+roll|ม้วนเอกสาร,ม้วน
+rubber band|ยางรัด
 rug|พรม
-rugby|รักบี้
-ruin|ซากปรักหักพัง
-ruler|ไม้บรรทัด
-rumble|เสียงคำราม
-rumor|ข่าวลือ
-runner|นักวิ่ง
-runway|ทางวิ่ง
-rural|ชนบท
-rusk|ขนมปังกรอบ
-rust|สนิม
-rustic|บ้านนอก
-saddle|อาน
-safe|ปลอดภัย
-saffron|หญ้าฝรั่น
-sage|เสจ
-sail|ใบเรือ
-sailboat|เรือใบ
-sailor|กะลาสี
-salad|สลัด
-salami|ซาลามี่
-salary|เงินเดือน
-salmon|ปลาแซลมอน
+safe|ตู้นิรภัย,ปลอดภัย
+sailor|กะลาสีเรือ
 salon|ร้านเสริมสวย
-saloon|รถเก๋ง
-salt|เกลือ
-salute|การทำความเคารพ
-salvage|การกู้
-sample|ตัวอย่าง
-sanctuary|เขตรักษาพันธุ์
-sand|ทราย
-sandal|รองเท้าแตะ
-sandwich|แซนด์วิช
-sanitary|สุขอนามัย
-sapphire|ไพลิน
-sardine|ปลาซาร์ดีน
-sashimi|ซาซิมิ
-satellite|ดาวเทียม
-satin|ผ้าซาติน
-satire|การเสียดสี
-sauce|ซอส
-saucer|จานรองถ้วย
-sausage|ไส้กรอก
-savage|ดุร้าย
-savanna|ทุ่งหญ้าสะวันนา
-sawdust|ขี้เลื่อย
-saxophone|แซกโซโฟน
-scaffold|นั่งร้าน
-scale|ตาชั่ง
-scallop|หอยเชลล์
-scalp|หนังศีรษะ
-scarecrow|หุ่นไล่กา
-scarlet|สีแดงสด
-scenery|ทิวทัศน์
-scent|กลิ่น
-schedule|ตารางเวลา
-scheme|แผนการ
-scholar|นักวิชาการ
-school|โรงเรียน
-science|วิทยาศาสตร์
-scissors|กรรไกร
-scooter|สกู๊ตเตอร์
-scorpion|แมงป่อง
-scout|ลูกเสือ
-scrapbook|สมุดตัดแปะ
-screw|สกรู
-screwdriver|ไขควง
-scribble|การเขียนขยุกขยิก
-script|บท
-scroll|ม้วนกระดาษ
-sculptor|ประติมากร
-sculpture|ประติมากรรม
-sea|ทะเล
-seafood|อาหารทะเล
-seagull|นกนางนวล
-seahorse|ม้าน้ำ
-seal|แมวน้ำ
-seamstress|ช่างเย็บ
-seashell|เปลือกหอย
+scare|ตกใจ,กลัว
 season|ฤดู
 seat|ที่นั่ง
-seaweed|สาหร่ายทะเล
-secret|ความลับ
 secretary|เลขานุการ
-section|ส่วน
-security|ความปลอดภัย
-seed|เมล็ด
-seesaw|กระดานหก
-segment|ส่วน
-semaphore|การให้สัญญาณ
-semicircle|ครึ่งวงกลม
-seminar|การสัมมนา
-senator|วุฒิสมาชิก
-sensation|ความรู้สึก
-sensor|เซนเซอร์
-sentence|ประโยค
-sentinel|ยาม
-sepal|กลีบเลี้ยง
-sequel|ภาคต่อ
-sequence|ลำดับ
-serpent|งูใหญ่
-servant|คนรับใช้
-sesame|งา
-settee|โซฟา
-settlement|การตั้งถิ่นฐาน
-sewage|น้ำเสีย
-sewer|ท่อระบายน้ำ
-shack|กระท่อม
-shade|ร่มเงา
-shadow|เงา
-shampoo|แชมพู
-shanty|กระท่อม
-shape|รูปร่าง
-shard|เศษ
-share|ส่วนแบ่ง
-shark|ฉลาม
-shaving|การโกน
-shawl|ผ้าคลุมไหล่
-shears|กรรไกรตัด
-shed|เพิง
-sheep|แกะ
-sheet|ผ้าปูที่นอน
-shelf|ชั้นวาง
-shell|เปลือก
-shelter|ที่พักพิง
-shepherd|คนเลี้ยงแกะ
-sheriff|นายอำเภอ
-shield|โล่
-shift|กะ
-shin|แข้ง
-ship|เรือ
-shirt|เสื้อ
-shoal|ฝูงปลา
-shoe|รองเท้า
-shoemaker|ช่างทำรองเท้า
-shoot|ยิง
-shop|ร้าน
-shore|ชายฝั่ง
-short|สั้น
-shoulder|ไหล่
-shout|ตะโกน
-shovel|พลั่ว
-show|การแสดง
-shower|ฝักบัว
-shredder|เครื่องทำลายเอกสาร
-shrimp|กุ้ง
-shrine|ศาลเจ้า
-shrub|ไม้พุ่ม
-shutter|บานเกล็ด
-shuttle|กระสวย
-sibling|พี่น้อง
-sickle|เคียว
-sidewalk|ทางเท้า
-sideways|ด้านข้าง
-sieve|กระชอน
-sigh|ถอนหายใจ
-sight|การมองเห็น
-sign|ป้าย
-signal|สัญญาณ
-signature|ลายเซ็น
-silhouette|เงา
-silk|ไหม
-silo|ไซโล
-silver|เงิน
-similar|คล้ายกัน
-simmer|เคี่ยว
-simple|ง่าย
-sinew|เอ็น
-singer|นักร้อง
-sip|จิบ
-siren|ไซเรน
-sister|พี่สาว
-site|สถานที่
-sitting|นั่ง
-skateboard|สเก็ตบอร์ด
-skeleton|โครงกระดูก
-sketch|ภาพร่าง
-ski|สกี
-skill|ทักษะ
-skin|ผิวหนัง
-skirt|กระโปรง
-skull|กะโหลก
-skunk|สกั๊งค์
-sky|ท้องฟ้า
-skyscraper|ตึกระฟ้า
-slate|กระดานชนวน
-slave|ทาส
-sled|เลื่อน
-sleep|นอน
-sleeve|แขนเสื้อ
-sleigh|เลื่อน
-slice|ชิ้น
-slide|สไลเดอร์
-sling|สลิง
-slipper|รองเท้าแตะ
-slogan|สโลแกน
-slope|ความลาดชัน
-slot|ช่อง
-slug|ทาก
-slum|สลัม
-small|เล็ก
-smile|ยิ้ม
-smith|ช่างตีเหล็ก
-smoke|ควัน
-smooth|เรียบ
-smuggler|ผู้ลักลอบ
-snack|ขนม
-snail|หอยทาก
-snake|งู
-snapdragon|ดอกไม้
-snare|กับดัก
-sneaker|รองเท้าผ้าใบ
-sneeze|จาม
-snorkel|ท่อหายใจ
-snow|หิมะ
-snowball|ก้อนหิมะ
-snowflake|เกล็ดหิมะ
-snowman|ตุ๊กตาหิมะ
-snuggle|กอด
-soap|สบู่
-soapstone|หินสบู่
-soar|บินสูง
-soccer|ฟุตบอล
-social|สังคม
-sock|ถุงเท้า
-socket|เต้ารับ
-sofa|โซฟา
-software|ซอฟต์แวร์
-soil|ดิน
-solar|พลังงานแสงอาทิตย์
-soldier|ทหาร
-sole|ฝ่าเท้า
-solid|ของแข็ง
-solstice|อายัน
-solution|สารละลาย
-sombrero|หมวกปีกกว้าง
-sonata|โซนาตา
-song|เพลง
-songbird|นกที่ร้องเพลง
-sonnet|กลอนซอนเน็ต
-soot|เขม่า
-soprano|โซปราโน
-sorbet|ซอร์เบต์
-sorcerer|พ่อมด
-sore|เจ็บ
-sorghum|ข้าวฟ่าง
-sorrel|ต้นซอร์เรล
-sorrow|ความเศร้า
-soul|วิญญาณ
-sound|เสียง
-soup|ซุป
-source|แหล่งที่มา
-south|ทิศใต้
-souvenir|ของที่ระลึก
-soy|ถั่วเหลือง
-space|อวกาศ
-spade|พลั่ว
-spaghetti|สปาเก็ตตี้
-spanner|ประแจ
-sparrow|นกกระจอก
-spatula|ตะหลิว
-speaker|ลำโพง
-spear|หอก
-special|พิเศษ
-spectacle|การแสดง
-spectator|ผู้ชม
-spectrum|สเปกตรัม
-speech|คำพูด
-speed|ความเร็ว
-spell|สะกดคำ
-sphere|ทรงกลม
-sphinx|สฟิงซ์
-spice|เครื่องเทศ
-spider|แมงมุม
-spike|ตะปู
-spinach|ผักโขม
-spine|กระดูกสันหลัง
-spiral|เกลียว
-spirit|วิญญาณ
-spit|น้ำลาย
-splash|การสาด
-spleen|ม้าม
-splinter|เศษไม้
-sponge|ฟองน้ำ
-sponsor|ผู้สนับสนุน
-spoon|ช้อน
-sport|กีฬา
-spot|จุด
-spouse|คู่สมรส
-sprain|เคล็ด
-spray|สเปรย์
-spring|ฤดูใบไม้ผลิ
-sprinkler|เครื่องพรมน้ำ
-sprout|ต้นอ่อน
-spy|สายลับ
-square|สี่เหลี่ยม
-squash|สควอช
-squid|ปลาหมึก
-squirrel|กระรอก
-stable|คอกม้า
-stadium|สนามกีฬา
-staff|พนักงาน
-stage|เวที
-stagecoach|รถม้า
-stain|คราบ
-staircase|บันได
-stake|หลัก
-stalk|ก้าน
-stallion|ม้าตัวผู้
-stamp|แสตมป์
-stand|ยืน
-standard|มาตรฐาน
-star|ดาว
-starfish|ดาวทะเล
-starling|นกเอี้ยง
-statue|รูปปั้น
-stature|ความสูง
-steak|สเต็ก
-steam|ไอน้ำ
-steel|เหล็ก
-steeple|ยอดแหลม
-steer|วัวหนุ่ม
-stem|ก้าน
-stencil|แบบฉลุ
-step|ก้าว
-stereo|เครื่องเสียง
-sterling|เงินสเตอร์ลิง
-stethoscope|เครื่องฟังเสียงหัวใจ
-stew|สตูว์
-sticker|สติกเกอร์
-sting|ต่อย
-stingray|ปลากระเบน
-stirrup|โกลน
-stitch|การเย็บ
-stocking|ถุงน่อง
-stomach|กระเพาะ
-stone|หิน
-stool|เก้าอี้ stool
-stopwatch|นาฬิกาจับเวลา
-store|ร้านค้า
-stork|นกกระสา
-storm|พายุ
-story|เรื่องราว
-stove|เตา
-stowaway|ผู้แอบโดยสาร
-straight|ตรง
-strainer|กระชอน
-strand|เส้น
-stranger|คนแปลกหน้า
-strap|สายรัด
-straw|หลอด
-strawberry|สตรอว์เบอร์รี่
-stream|ลำธาร
-street|ถนน
-strength|ความแข็งแรง
-stress|ความเครียด
-stretcher|เปลหาม
-strike|การนัดหยุดงาน
-string|เชือก
-stripe|ลายทาง
-stroller|รถเข็นเด็ก
-strong|แข็งแรง
-structure|โครงสร้าง
-struggle|การต่อสู้
-stub|เศษ
-student|นักเรียน
-studio|สตูดิโอ
-study|เรียน
-stuff|สิ่งของ
-stump|ตอไม้
-stunt|การแสดงผาดโผน
-sturdy|แข็งแรง
-style|สไตล์
-submarine|เรือดำน้ำ
-submerge|จมน้ำ
-suburb|ชานเมือง
-subway|รถไฟใต้ดิน
-success|ความสำเร็จ
-succulent|พืชอวบน้ำ
-sudden|กะทันหัน
-suede|หนังกลับ
-suffix|คำต่อท้าย
-sugar|น้ำตาล
-suit|ชุด
-suitcase|กระเป๋าเดินทาง
-sulfur|กำมะถัน
-summer|ฤดูร้อน
-summit|ยอดเขา
-sun|ดวงอาทิตย์
-sunbeam|ลำแสงอาทิตย์
-sunburn|ผิวไหม้แดด
-sundial|นาฬิกาแดด
-sunflower|ทานตะวัน
-sunglasses|แว่นกันแดด
-sunrise|พระอาทิตย์ขึ้น
-sunset|พระอาทิตย์ตก
-sunshine|แสงแดด
-supermarket|ซูเปอร์มาร์เก็ต
-supper|อาหารเย็น
-supply|อุปทาน
-surf|โต้คลื่น
-surface|พื้นผิว
-surgeon|ศัลยแพทย์
-surname|นามสกุล
-surprise|ความประหลาดใจ
-survey|การสำรวจ
-sushi|ซูชิ
-suspender|สายเอี๊ยม
-swallow|กลืน
-swamp|หนองน้ำ
-swan|หงส์
-swap|แลกเปลี่ยน
-swarm|ฝูง
-sweater|เสื้อกันหนาว
-sweatshirt|เสื้อสเวตเตอร์
-sweep|กวาด
-sweet|หวาน
-swim|ว่ายน้ำ
-swing|ชิงช้า
-switch|สวิตช์
-sword|ดาบ
-syllable|พยางค์
-symbol|สัญลักษณ์
-symphony|ซิมโฟนี
-syringe|เข็มฉีดยา
-syrup|น้ำเชื่อม
-system|ระบบ
-table|โต๊ะ
-tablet|แท็บเล็ต
-tackle|การจัดการ
-tadpole|ลูกอ๊อด
-taffy|ทอฟฟี่
-tail|หาง
-tailor|ช่างตัดเสื้อ
-talent|พรสวรรค์
-talisman|เครื่องราง
-talking|การพูด
-tall|สูง
-tambourine|แทมบูริน
-tandem|แทนเดม
-tangerine|ส้มเขียวหวาน
-tangle|ความยุ่งเหยิง
-tank|ถัง
-tanker|เรือบรรทุก
-tantrum|อารมณ์โกรธ
-tape|เทป
-taper|เทียนเล่มเล็ก
-tapestry|พรมทอ
-tarantula|แมงมุมทารันทูล่า
-target|เป้าหมาย
-tart|ทาร์ต
-task|งาน
-tassel|พู่
-taste|รสชาติ
-tattoo|รอยสัก
-tavern|โรงเตี๊ยม
-tax|ภาษี
-taxi|แท็กซี่
-tea|ชา
-teacher|ครู
-teacup|ถ้วยชา
-team|ทีม
-teapot|กาน้ำชา
-tear|น้ำตา
-tease|แซว
-technology|เทคโนโลยี
-teeth|ฟัน
-telescope|กล้องโทรทรรศน์
-television|โทรทัศน์
-teller|พนักงานรับฝากเงิน
-temper|อารมณ์
-temperature|อุณหภูมิ
-tempest|พายุ
-template|แม่แบบ
-temple|วัด
-temporary|ชั่วคราว
-temptation|การล่อลวง
-tenant|ผู้เช่า
-tender|อ่อนโยน
-tennis|เทนนิส
-tension|ความตึงเครียด
-tent|เต็นท์
-tentacle|หนวด
-termite|ปลวก
-terrace|ระเบียง
-terrain|ภูมิประเทศ
-terrarium|ตู้เลี้ยงสัตว์
-terrier|สุนัขเทอร์เรีย
-territory|อาณาเขต
-terror|ความหวาดกลัว
-test|การทดสอบ
-textbook|หนังสือเรียน
-textile|สิ่งทอ
-texture|พื้นผิว
-thank|ขอบคุณ
-theater|โรงละคร
-theft|การโจรกรรม
-theme|ธีม
-theory|ทฤษฎี
-therapy|การบำบัด
-thermometer|เทอร์โมมิเตอร์
-thermos|กระติกน้ำ
-thicket|ดงไม้
-thief|ขโมย
-thigh|ต้นขา
-thimble|ปลอกนิ้ว
-thistle|พืชมีหนาม
-thorn|หนาม
-thought|ความคิด
-thread|ด้าย
-threat|ภัยคุกคาม
-threshold|ธรณีประตู
-throat|คอ
-throne|บัลลังก์
-throng|ฝูงชน
-throttle|คันเร่ง
-thumb|นิ้วหัวแม่มือ
-thunder|ฟ้าร้อง
-thyme|ไทม์
-ticket|ตั๋ว
-tickle|จั๊กจี้
-tide|น้ำขึ้นน้ำลง
-tidy|เรียบร้อย
-tie|เน็คไท
-tiger|เสือ
-tight|แน่น
-tile|กระเบื้อง
-till|จนกระทั่ง
-timber|ไม้
-time|เวลา
-timer|ตัวจับเวลา
-timetable|ตารางเวลา
-tin|ดีบุก
-tinsel|ประดิษฐ์ด้วยทอง
-tint|สีอ่อน
-tiny|เล็กมาก
-tip|ปลาย
-tiptoe|เขย่ง
-tire|ยางรถ
-tissue|กระดาษทิชชู่
-title|ชื่อเรื่อง
-toad|คางคก
-toast|ขนมปังปิ้ง
-tobacco|ยาสูบ
-toddler|เด็กวัยหัดเดิน
-toe|นิ้วเท้า
-toffee|ทอฟฟี่
-toga|เสื้อคลุมโรมัน
-toilet|ห้องน้ำ
-token|โทเค็น
-tomato|มะเขือเทศ
-tomb|หลุมฝังศพ
-tom-tom|กลอง
-tone|เสียง
-tongs|คีมคีบ
-tongue|ลิ้น
-tool|เครื่องมือ
-tooth|ฟัน
-toothbrush|แปรงสีฟัน
-toothpaste|ยาสีฟัน
-top|ยอด
-topaz|บุษราคัม
-topic|หัวข้อ
-torch|คบไฟ
-tornado|ทอร์นาโด
-torpedo|ตอร์ปิโด
-torrent|กระแสน้ำเชี่ยว
-tortoise|เต่าบก
-toss|การโยน
-totem|โทเทม
-touch|การสัมผัส
-tour|การท่องเที่ยว
-tourist|นักท่องเที่ยว
-tournament|การแข่งขัน
-towel|ผ้าเช็ดตัว
-tower|หอคอย
-town|เมือง
-toy|ของเล่น
-trace|ร่องรอย
-track|ราง
-tractor|รถแทรกเตอร์
-traffic|การจราจร
-trail|เส้นทาง
-train|รถไฟ
-trainer|ผู้ฝึกสอน
-tram|รถราง
-trampoline|แทรมโพลีน
-trance|ภวังค์
-transfer|การโอน
-transformer|หม้อแปลง
-transit|การขนส่ง
-translate|แปล
-transparent|โปร่งใส
-transport|การขนส่ง
-trap|กับดัก
-trapeze|ราวห้อย
-trash|ขยะ
-travel|การเดินทาง
-tray|ถาด
-treasure|สมบัติ
-treat|การรักษา
-tree|ต้นไม้
-trek|การเดินทางไกล
-tremble|สั่น
-trench|คูน้ำ
-trend|แนวโน้ม
-triangle|สามเหลี่ยม
-tribe|ชนเผ่า
-tribunal|ศาล
-tribute|การแสดงความเคารพ
-trick|กลอุบาย
-tricycle|รถสามล้อ
-trigger|ไกปืน
-trim|ตัด
-trio|คณะสามคน
-trip|การเดินทาง
-triple|สามเท่า
-triumph|ชัยชนะ
-trolley|รถราง
-trombone|ทรอมโบน
-troop|กองทหาร
-trophy|ถ้วยรางวัล
-tropic|เขตร้อน
-trot|การวิ่งเหยาะๆ
-trouble|ปัญหา
-trousers|กางเกงขายาว
-truck|รถบรรทุก
-trumpet|ทรัมเป็ต
-trunk|ลำต้น
-trust|ความไว้วางใจ
-truth|ความจริง
-tsunami|สึนามิ
-tub|อ่างอาบน้ำ
-tuba|ทูบา
-tube|ท่อ
-tugboat|เรือลาก
-tulip|ทิวลิป
-tumble|การกลิ้ง
-tumor|เนื้องอก
-tuna|ปลาทูน่า
-tundra|ทุนดรา
-tunnel|อุโมงค์
-turban|ผ้าโพกหัว
-turbine|กังหัน
-turkey|ไก่งวง
-turmeric|ขมิ้น
-turquoise|เทอร์ควอยซ์
-turret|หอคอย
-turtle|เต่าทะเล
-tusk|งาช้าง
-tutor|ครูสอนพิเศษ
-tuxedo|ทักซิโด้
-twig|กิ่งไม้เล็ก
-twilight|พลบค่ำ
-twin|แฝด
-twine|เชือกเส้นเล็ก
-twinkle|การกะพริบ
-twister|พายุทอร์นาโด
-typewriter|เครื่องพิมพ์ดีด
-typhoon|ไต้ฝุ่น
-typical|โดยทั่วไป
-tyrant|ทรราช
-udder|เต้านมวัว
-ukulele|อูคูเลเล่
-ultrasound|อัลตราซาวด์
-umbrella|ร่ม
-umpire|กรรมการ
-uncle|ลุง
-unicorn|ยูนิคอร์น
-uniform|เครื่องแบบ
-universe|จักรวาล
-university|มหาวิทยาลัย
-upgrade|อัปเกรด
-upholstery|เบาะ
-upside|ด้านบน
 upstairs|ชั้นบน
-urchin|เด็กจรจัด
-urn|โกศ
-utensil|เครื่องครัว
-vacation|วันหยุด
-vaccine|วัคซีน
-vacuum|เครื่องดูดฝุ่น
-valley|หุบเขา
-valve|วาล์ว
-vampire|แวมไพร์
-van|รถตู้
-vandal|ผู้ทำลาย
-vanilla|วานิลลา
-vapor|ไอระเหย
-vaporize|ระเหย
-varnish|น้ำมันเคลือบ
-vase|แจกัน
-vat|ถังใหญ่
-vault|ห้องนิรภัย
-veal|เนื้อลูกวัว
-vegetable|ผัก
-vehicle|ยานพาหนะ
-veil|ผ้าคลุมหน้า
-vein|เส้นเลือดดำ
-velocity|ความเร็ว
-velvet|ผ้ากำมะหยี่
-vendor|พ่อค้า
-veneer|แผ่นไม้บาง
-venison|เนื้อกวาง
-vent|ช่องระบายอากาศ
-ventriloquist|นักพากย์หุ่น
-venture|การเสี่ยง
-venue|สถานที่จัดงาน
-veranda|ระเบียง
-verb|คำกริยา
-verdict|คำตัดสิน
-verge|ขอบ
-verify|ตรวจสอบ
-verse|บทกลอน
-version|เวอร์ชัน
-vertex|ยอด
-vessel|เรือ
-vest|เสื้อกั๊ก
-veteran|ทหารผ่านศึก
-veto|การยับยั้ง
-vial|ขวดเล็ก
-vibrate|สั่น
-vice|คีมจับ
-victim|เหยื่อ
-victory|ชัยชนะ
-video|วิดีโอ
-view|ทิวทัศน์
-vigil|การเฝ้า
-villa|วิลล่า
-village|หมู่บ้าน
-vine|เถาวัลย์
-vinegar|น้ำส้มสายชู
-vineyard|ไร่องุ่น
-vinyl|ไวนิล
-viola|วิโอลา
-violin|ไวโอลิน
-viper|งูพิษ
-viscount|ไวเคานต์
-vision|การมองเห็น
-visitor|ผู้มาเยือน
-visor|กระบังหน้า
-vital|สำคัญ
-vitamin|วิตามิน
-vocal|เสียงร้อง
-vodka|วอดก้า
-voice|เสียง
-volcano|ภูเขาไฟ
-volleyball|วอลเลย์บอล
-voltage|แรงดันไฟ
-volume|ปริมาณ
-voucher|บัตรกำนัล
-vow|คำสาบาน
-voyage|การเดินทาง
-vulture|นกแร้ง
-waffle|วาฟเฟิล
-wagon|รถบรรทุก
-waist|เอว
+vacation|วันหยุดยาว
+value|มูลค่า,คุณค่า
+vet|สัตวแพทย์
+visit|เยี่ยมเยียน,เยี่ยมชม
+vocabulary|คำศัพท์
+voice|เสียงพูด
+vowel|เสียงสระ
+wait|รอ,รอคอย
 waiter|บริกรชาย
+staple|ลวดเย็บกระดาษ,เย็บด้วยลวดเย็บกระดาษ
+stapler|ที่เย็บกระดาษ
+steal|ขโมย
+sticker|รูปลอกภาพ
+stir|คนให้เข้ากัน,กวน
+storm|พายุ
+stone|หิน
+stove|เตา
+strange|แปลก
+strong|แข็งแรง
+stripe|แถบ,ลายเนื้อผ้า
+suit|ชุดเสื้อผ้า,เข้ากัน
+sunflower|ดอกทานตะวัน
+sure|แน่นอน
+surname|นามสกุล
+surprise|ประหลาดใจ
+sweep|กวาด
+table tennis|กีฬาปิงปอง
+take|เอาไป
+tape|เทปกาว,แถบบันทึกเสียง
+television|โทรทัศน์
+tent|เต็นท์
+term|ภาคเรียน ระยะเวลาที่กำหนด
+theme|หัวข้อ,ประเด็น
+thick|หนา
+think|คิด
+tissue|กระดาษชำระ,เนื้อเยื่อ
+towel|ผ้าเช็ดตัว
+trash|ขยะ
+trip|การเดินทาง
+trouble|ปัญหา,ความยุ่งยาก
+turn off|ปิดไฟ
+turn on|เปิดไฟ
+brain|สมอง
+brave|กล้าหาญ
+breath|ลมหายใจ
+bride|เจ้าสาว
+brilliant|ฉลาดมาก,ปราดเปรื่อง
+brother in law|พี่เขย,น้องเขย
+Buddhist|พุทธศาสนิกชน
+business|ธุรกิจ
+cafeteria|โรงอาหาร
+capital|เมืองหลวง
 waitress|บริกรหญิง
-waiver|การสละสิทธิ์
-wake|ตื่น
-walk|เดิน
-wall|กำแพง
-wallaby|วอลลาบี้
-wallet|กระเป๋าสตางค์
-walnut|วอลนัท
-walrus|วอลรัส
-wand|ไม้กายสิทธิ์
-wander|เดินเตร่
-wanted|ต้องการ
-war|สงคราม
-warden|ผู้คุม
-wardrobe|ตู้เสื้อผ้า
-warehouse|โกดัง
-warfare|การทำสงคราม
-warm|อบอุ่น
-warranty|การประกัน
-warrior|นักรบ
-wasp|ตัวต่อ
-waste|ขยะ
-watch|นาฬิกาข้อมือ
-watchdog|สุนัขเฝ้าบ้าน
-water|น้ำ
-waterfall|น้ำตก
-watermelon|แตงโม
-watershed|ลุ่มน้ำ
-watt|วัตต์
-wax|ขี้ผึ้ง
-way|ทาง
-weak|อ่อนแอ
-weapon|อาวุธ
-weasel|เพียงพอน
-weather|สภาพอากาศ
-weaver|ช่างทอผ้า
-web|ใยแมงมุม
-wedding|งานแต่งงาน
-wedge|ลิ่ม
-weed|วัชพืช
-week|สัปดาห์
-weekend|สุดสัปดาห์
-weigh|ชั่งน้ำหนัก
+wallet|กระเป๋าสตางค์บุรุษ
+want|ต้องการ
+wand|ไม้เรียว,ไม้คทา
+wave|คลื่น,โบกมือ
+wavy|ซึ่งเป็นคลื่น
 weight|น้ำหนัก
-weird|แปลก
-welder|ช่างเชื่อม
-welfare|สวัสดิการ
-well|บ่อน้ำ
-west|ทิศตะวันตก
-wetland|พื้นที่ชุ่มน้ำ
-whale|วาฬ
-wharf|ท่าเทียบเรือ
-wheat|ข้าวสาลี
-wheel|ล้อ
-wheelbarrow|รถเข็น
-wheelchair|รถเข็นคนพิการ
-whim|อารมณ์
-whimper|เสียงสะอื้น
-whine|เสียงครวญคราง
-whip|แส้
-whirl|การหมุน
-whirlpool|น้ำวน
-whisker|หนวด
-whisper|กระซิบ
-whistle|นกหวีด
-white|ขาว
-whoop|เสียงโห่
-wick|ไส้เทียน
-wicket|ประตูเล็ก
-widget|วิดเจ็ต
-widow|หญิงม่าย
-width|ความกว้าง
-wig|วิกผม
-wildcat|แมวป่า
-wilderness|ถิ่นทุรกันดาร
-wildlife|สัตว์ป่า
-willow|ต้นหลิว
-wind|ลม
-windmill|กังหันลม
-window|หน้าต่าง
-windsock|ถุงลมบอกทิศ
-wine|ไวน์
-wing|ปีก
-wink|ขยิบตา
-winner|ผู้ชนะ
-winter|ฤดูหนาว
-wire|ลวด
-wireless|ไร้สาย
-wisdom|ปัญญา
-witch|แม่มด
-withdraw|ถอน
-witness|พยาน
-wizard|พ่อมด
-wolf|หมาป่า
-woman|ผู้หญิง
-wonder|ความมหัศจรรย์
-wood|ไม้
-woodpecker|นกหัวขวาน
-wool|ขนสัตว์
-word|คำ
-work|งาน
-workshop|โรงงาน
+win|ชนะ
+wheel|ล้อรถ
+worksheet|ใบงาน
 world|โลก
-worm|หนอน
-worry|กังวล
-wound|บาดแผล
-wreath|พวงมาลา
-wreck|ซากเรือ
-wrench|ประแจ
-wrestler|นักมวยปล้ำ
-wrinkle|ริ้วรอย
-wrist|ข้อมือ
-writer|นักเขียน
-xylophone|ระนาด
-yacht|เรือยอชต์
-yak|จามรี
-yam|มันเทศ
-yard|สวนหลังบ้าน
-yarn|เส้นด้าย
 yawn|หาว
-year|ปี
-yeast|ยีสต์
-yellow|สีเหลือง
-yeti|เยติ
-yield|ผลผลิต
-yodel|การร้องเพลงแบบโยเดล
-yoga|โยคะ
-yogurt|โยเกิร์ต
-yolk|ไข่แดง
-young|หนุ่มสาว
-youth|เยาวชน
-yoyo|โยโย่
-zebra|ม้าลาย
-zenith|จุดสูงสุด
-zephyr|ลมตะวันตก
-zeppelin|เรือเหาะ
-zigzag|ซิกแซก
-zinc|สังกะสี
-zipper|ซิป
-zither|พิณ
-zodiac|จักรราศี
-zombie|ซอมบี้
-zone|เขต
-zoo|สวนสัตว์
-zoology|สัตววิทยา
-zoom|การซูม
-zucchini|บวบ`,
+younger brother|น้องชาย
+younger sister|น้องสาว
+youth|เยาวชน`,
+p6:`advertisement|การโฆษณา
+aeroplane|เครื่องบิน
+afraid|กลัว
+ahead|ข้างหน้า
+amusement|สันทนาการ
+ancient|เก่าแก่,โบราณ
+animate|เคลื่อนไหว,มีชีวิต
+aquarium|ตู้ปลา
+architect|สถาปนิก
+arrange|จัด,เตรียม
+arrive|มา,มาถึง
+astronaut|นักบินอวกาศ
+astronomy|วิชาดาราศาสตร์
+attraction|การดึงดูด,เสน่ห์
+autograph|ลายเซ็นต์ของผู้มีชื่อเสียง
+backpack|เป้สะพายหลัง
+beat|ตี
+bill|ใบแจ้งหนี้
+biography|ชีวประวัติ
+bleed|เลือดไหล
+bracelet|สร้อยข้อมือ,กำไลข้อมือ
+democracy|ประชาธิปไตย
+depart|ออกเดินทาง
+describe|บรรยาย พรรณา
+dessert|ของหวาน
+detective|นักสืบ
+diagram|แผนภูมิ,แผนภาพ
+diarrhea|โรคท้องเสีย,โรคท้องร่วง
+cash|เงินสด
+catch|จับ,คว้า
+celebrate|เฉลิมฉลอง
+cell phone|โทรศัพท์เคลื่อนที่
+century|ศตวรรษ
+ceremony|พิธีการ งานพิธี
+character|ลักษณะ,บทบาทในละคร
+charity|การกุศล,ความใจบุญ
+charming|มีเสน่ห์
+chemist|นักเคมี
+classify|จัดกลุ่ม
+classmate|เพื่อนร่วมชั้นเรียน
+clear|ชัดเจน โปร่งใส
+clever|ฉลาด,มีไหวพริบ
+column|คอลัมน์
+community|ชุมชน
+competition|การแข่งขัน
+complain|บ่น,กล่าวหา
+concert|การแสดงดนตรี
+confident|ซึ่งไว้วางใจ,มั่นใจ
+congratulations|การแสดงความยินดี
+consist of|ประกอบด้วย
+contact|การติดต่อ
+coral reef|แนวปะการัง
+costume|เครื่องแต่งกาย
+cough|ไอ
+creative|มีความคิดสร้างสรรค์
+crosswalk|ทางเดินข้ามถนน
+crowd|กลุ่ม,ฝูงชน
+crown|มงกุฎ
+cruel|โหดร้าย
+culture|วัฒนธรรม
+damage|การทำลาย,ความเสียหาย
+deaf|ซึ่งหูหนวก
+death|ความตาย
+debate|โต้วาที,กลเกียง,อภิปราย
+decide|ตัดสินใจ
+decorate|ตกแต่ง ประดับ
+friendship|มิตรภาพ
+gallery|หอจัดแสดง
+garbage|ขยะ
+garlic|กระเทียม
+gentleman|สุภาพบุรุษ
+geography|ภูมิศาสตร์
+godmother|แม่อุปถัมภ์
+difficult|ยาก
+digital|ดิจิทัล
+direction|ทิศทาง,คำแนะนำ
+discuss|อภิปราย พิจารณา
+distance|ระยะทาง
+divorce|การหย่าร้าง
+dollar|หน่วยเงินตราดอลล่าร์
+donate|บริจาค
+dragonfly|แมลงปอ
+dustbin|ถังขยะ
+earache|อาการเจ็บหู
+education|การศึกษา
+effect|ผลกระทบ
+electricity|ไฟฟ้า
+energy|พลังงาน
+engineer|วิศวกร
+entrance|ประตูทางเข้า
+environment|สิ่งแวดล้อม
+escape|หนี
+exact|ถูกต้อง,แม่นยำ
+excellent|ดีมาก
+exciting|น่าตื่นเต้น
+exhibition|นิทรรศการ
+exit|ทางออก
+expect|คาดหวัง
+explode|ระเบิด
+explore|สำรวจ,ค้นหา
+fantastic|ยอดเยี่ยม,วิเศษ
+fashion|แฟชั่น,รูปแบบ
+father in law|พ่อตา
+feather|ขนนก
+ferry|ท่าเรือข้ามฟาก
+fever|ไข้
+figure|รูปร่าง
+flight attendant|พนักงานบนเครื่องบิน
+flood|น้ำท่วม
+florist|คนขายดอกไม้
+fluent|คล่องแคล่ว
+forehead|หน้าผาก
+freeze|แช่แข็ง
+fresh|สดชื่น
+modern|ทันสมัย
+monument|อนุสาวรีย์
+mother in law|แม่ยาย,แม่สามี
+narrow|แคบ
+grain|เมล็ดข้าว
+groom|เจ้าบ่าว
+guard|ยาม
+habitat|ที่อยู่อาศัย
+hairdryer|เครื่องเป่าผม
+handkerchief|ผ้าเช็ดหน้า
+handsome|หล่อ
+harmful|เป็นอันตราย
+helmet|หมวกกันน็อค
+helpful|ซึ่งเป็นประโยชน์
+honor|เกียรติยศ
+horoscope|ดวงชะตาราศี
+immediately|ทันทีทันใด
+important|สำคัญ
+improve|พัฒนา,ปรับปรุง
+information|ข้อมูล,ข่าวสาร
+ingredient|ส่วนผสม,ส่วนประกอบ
+instruction|การแนะนำ
+intelligent|ฉลาด,ซึ่งมีสติปัญญา
+interview|สัมภาษณ์
+introduce|แนะนำ
+invent|ประดิษฐ์,สร้างสรรค์
+invite|เชื้อเชิญ,ขอร้อง
+jail|คุก
+journey|การเดินทาง
+kingdom|อาณาจักร
+knowledge|ความรู้
+label|ป้าย,ฉลาก
+labor|แรงงาน
+language|ภาษา
+laundry|สถานที่ซักรีดเสื้อผ้า
+leather|หนัง
+length|ความยาว,ส่วนยาว
+liquid|ของเหลว
+location|สถานที่ตั้ง
+lottery|ล็อตเตอรี่
+marble|ลูกแก้ว,หินอ่อน,ลูกหิน
+message|ข้อความ,ข่าวสาร
+messy|ยุ่งเหยิง,ไม่เรียบร้อย
+mistake|ความผิดพลาด
+mix|ผสม
+semester|ภาคเรียน
+shore|ชายฝั่ง
+silly|โง่
+sister in law|น้องสะใภ้
+neighbor|เพื่อนบ้าน
+notice|ประกาศ,แจ้ง
+observe|สังเกต,เฝ้าดู
+opinion|ความคิดเห็น
+opposite|ตรงกันข้าม
+palace|พระราชวัง
+paragraph|ข้อความในหนึ่งย่อหน้า
+passport|หนังสือเดินทาง
+peace|สันติภาพ
+period|รอบ,ระยะเวลา
+personality|บุคลิกภาพ
+photographer|ช่างถ่ายภาพ
+planetarium|หอดูดาว,ท้องฟ้าจำลอง
+plump|อ้วน
+poison|ยาพิษ
+polite|สุภาพ,เรียบร้อย
+pollution|มลพิษ
+predict|พยากรณ์
+president|ประธานาธิบดี,ประธาน
+prince|เจ้าชาย
+princess|เจ้าหญิง
+prize|รางวัล
+problem|ปัญหา
+professional|ผู้เชี่ยวชาญ
+pronounce|ออกเสียง,เปล่งเสียง
+publish|จัดพิมพ์ ตีพิมพ์
+quiz|การทดสอบความรู้
+reason|เหตุผล
+recipe|ตำราอาหาร
+reduce|ลดลง ย่อลง
+refrigerator|ตู้เย็น
+refuse|ปฏิเสธ
+region|พื้นที่,บริเวณ,ขอบเขต
+regular|ตามปกติ
+relative|ญาติพี่น้อง
+remember|จดจำ
+reuse|นำกลับมาใช้
+review|ทบทวน
+route|เส้นทาง
+rubbish|ขยะ
+rule|กฎ
+save|ประหยัด รักษา เก็บ
+scream|หวีดร้อง
+search|ค้นหา
+situation|สถานการณ์
+smooth|นุ่ม,เรียบเนียน
+sneakers|รองเท้ากีฬา
+sneeze|จาม
+soft|นุ่ม
+soil|พื้นดิน,ผิวดิน
+solve|แก้ปัญหา,แก้ไข
+souvenir|ของที่ระลึก
+sparrow|นกกระจอก
+sponge|ฟองน้ำ
+stepfather|พ่อเลี้ยง
+stepmother|แม่เลี้ยง
+string|เชือก
+survey|สำรวจ
+teaspoon|ช้อนชา
+thief|ขโมย
+tidy|เรียบร้อย,สะอาด
+timetable|ตารางเวลา
+tongue|ลิ้น
+tourist|นักท่องเที่ยว
+traffic|การจราจร
+transport|ขนส่ง
+upset|ทำให้เสีย,ก่อกวน
+useful|มีประโยชน์
+valuable|มีคุณค่า
+vehicle|ยานพาหนะ
+vision|วิสัยทัศน์
+vocation|อาชีพ
+volcano|ภูเขาไฟ
+whisper|กระซิบ
+wide|กว้าง
+wonderful|น่าอัศจรรย์
+worry|กังวล,เครียด`,
 extra:`navy-blue|สีกรมท่า
 white|สีขาว
 green|สีเขียว
@@ -2797,6 +1597,7 @@ pink|สีชมพู
 black|สีดำ
 red|สีแดง
 grey|สีเทา
+dark grey|สีเทาเข้ม
 blue|สีน้ำเงิน
 brown|สีน้ำตาล
 sky blue|สีฟ้า
@@ -2812,7 +1613,7 @@ hexagon|หกเหลี่ยม
 oval|วงรี
 cube|สี่เหลี่ยมลูกบาศก์
 cone|กรวย
-crescent|เสี้ยว
+crescent|รูปพระจันทร์เสี้ยว
 diamond|สี่เหลี่ยมข้าวหลามตัด
 Sunday|วันอาทิตย์
 Monday|วันจันทร์
@@ -2862,1346 +1663,423 @@ eighty|แปดสิบ
 ninety|เก้าสิบ
 one hundred|หนึ่งร้อย
 one thousand|หนึ่งพัน
-first|ที่หนึ่ง
-second|ที่สอง
-third|ที่สาม
-fourth|ที่สี่
-fifth|ที่ห้า
-sixth|ที่หก
-seventh|ที่เจ็ด
-eighth|ที่แปด
-ninth|ที่เก้า
-tenth|ที่สิบ`
+first|ลำดับที่หนึ่ง
+second|ลำดับที่สอง
+third|ลำดับที่สาม
+fourth|ลำดับที่สี่
+fifth|ลำดับที่ห้า
+sixth|ลำดับที่หก
+seventh|ลำดับที่เจ็ด
+eighth|ลำดับที่แปด
+ninth|ลำดับที่เก้า
+tenth|ลำดับที่สิบ
+eleventh|ลำดับที่สิบเอ็ด
+twelfth|ลำดับที่สิบสอง
+thirteenth|ลำดับที่สิบสาม
+fourteenth|ลำดับที่สิบสี่
+fifteenth|ลำดับที่สิบห้า
+sixteenth|ลำดับที่สิบหก
+seventeenth|ลำดับที่สิบเจ็ด
+eighteenth|ลำดับที่สิบแปด
+nineteenth|ลำดับที่สิบเก้า
+twentieth|ลำดับที่ยี่สิบ
+thirtieth|ลำดับที่สามสิบ
+fortieth|ลำดับที่สี่สิบ
+fiftieth|ลำดับที่ห้าสิบ
+sixtieth|ลำดับที่หกสิบ
+seventieth|ลำดับที่เจ็ดสิบ
+eightieth|ลำดับที่แปดสิบ
+ninetieth|ลำดับที่เก้าสิบ
+one hundredth|ลำดับที่หนึ่งร้อย
+one thousandth|ลำดับที่หนึ่งพัน`
 };
 
-/* ═════ PARSE VOCAB ═════ */
+/* ═══ PARSE ═══ */
 const POOLS = {};
 for(const k in VOCAB_DATA){
   const seen = new Set();
-  POOLS[k] = VOCAB_DATA[k].trim().split('\n').map(line => {
-    const [en, th] = line.split('|').map(s => (s||'').trim());
-    if(!en || !th || seen.has(en.toLowerCase())) return null;
-    seen.add(en.toLowerCase());
-    return { en, th };
+  POOLS[k] = VOCAB_DATA[k].trim().split('\n').map(line=>{
+    const [en,th]=line.split('|').map(s=>(s||'').trim());
+    if(!en||!th||seen.has(en.toLowerCase()))return null;
+    seen.add(en.toLowerCase()); return {en,th};
   }).filter(Boolean);
 }
-POOLS.all = [];
-{
-  const seen = new Set();
-  for(const k in POOLS){
-    if(k === 'all') continue;
-    POOLS[k].forEach(w => {
-      if(!seen.has(w.en.toLowerCase())){
-        seen.add(w.en.toLowerCase());
-        POOLS.all.push(w);
-      }
-    });
-  }
+POOLS.all=[];
+{const s=new Set();for(const k in POOLS){if(k==='all')continue;POOLS[k].forEach(w=>{if(!s.has(w.en.toLowerCase())){s.add(w.en.toLowerCase());POOLS.all.push(w)}})}}
+
+/* ═══ CUSTOM WORDS ═══ */
+const CK='tug_custom_v4';
+let CW={};
+try{const s=localStorage.getItem(CK);CW=s?JSON.parse(s):{};if(typeof CW!=='object')CW={}}catch(e){CW={}}
+function saveCW(){try{localStorage.setItem(CK,JSON.stringify(CW))}catch(e){}}
+function rebuildExtra(){
+  const base=POOLS.extra.filter(w=>!w.custom);
+  const extra=(CW.extra||[]).filter(w=>!base.some(b=>b.en.toLowerCase()===w.en.toLowerCase()));
+  POOLS.extra=[...base,...extra.map(w=>({...w,custom:true}))];
+  POOLS.all=[];const s=new Set();
+  for(const k in POOLS){if(k==='all')continue;POOLS[k].forEach(w=>{if(!s.has(w.en.toLowerCase())){s.add(w.en.toLowerCase());POOLS.all.push(w)}})}
 }
 
-/* ═════ CUSTOM WORDS (localStorage) ═════ */
-const CUSTOM_KEY = 'tug_custom_words_v1';
-let customWords = [];
-try {
-  const s = localStorage.getItem(CUSTOM_KEY);
-  customWords = s ? JSON.parse(s) : [];
-  if(!Array.isArray(customWords)) customWords = [];
-} catch(e){ customWords = []; }
-
-function saveCustomWords(){
-  try { localStorage.setItem(CUSTOM_KEY, JSON.stringify(customWords)); } catch(e){}
-}
-function rebuildExtraPool(){
-  const base = VOCAB_DATA.extra.trim().split('\n').map(line => {
-    const [en, th] = line.split('|').map(s => (s||'').trim());
-    return (en && th) ? { en, th } : null;
-  }).filter(Boolean);
-  POOLS.extra = [...base, ...customWords];
-  // rebuild all
-  POOLS.all = [];
-  const seen = new Set();
-  for(const k in POOLS){
-    if(k === 'all') continue;
-    POOLS[k].forEach(w => {
-      if(!seen.has(w.en.toLowerCase())){
-        seen.add(w.en.toLowerCase());
-        POOLS.all.push(w);
-      }
-    });
-  }
-}
-rebuildExtraPool();
-
-/* ═════ SOUND ENGINE ═════ */
-let actx = null;
-function initAudio(){
-  try {
-    if(!actx) actx = new (window.AudioContext || window.webkitAudioContext)();
-    if(actx.state === 'suspended') actx.resume();
-  } catch(e){}
-}
-function tone(freq, start, dur, type, vol, freqEnd){
-  if(!actx) return;
-  const t0 = actx.currentTime + start;
-  const o = actx.createOscillator(); const g = actx.createGain();
-  o.type = type || 'sine';
-  o.frequency.setValueAtTime(freq, t0);
-  if(freqEnd) o.frequency.exponentialRampToValueAtTime(freqEnd, t0 + dur);
-  g.gain.setValueAtTime(0.0001, t0);
-  g.gain.exponentialRampToValueAtTime(vol || 0.2, t0 + 0.02);
-  g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
-  o.connect(g); g.connect(actx.destination);
-  o.start(t0); o.stop(t0 + dur + 0.05);
-}
-function organ(freq, start, dur, vol){
-  if(!actx) return;
-  const t0 = actx.currentTime + start;
-  [1,2,3,4].forEach((mult,i) => {
-    const o = actx.createOscillator(); const g = actx.createGain();
-    o.type = 'sine';
-    o.frequency.setValueAtTime(freq*mult, t0);
-    const v = (vol||0.16) * (1/(i+1.3));
-    g.gain.setValueAtTime(0.0001, t0);
-    g.gain.exponentialRampToValueAtTime(v, t0 + 0.05);
-    g.gain.exponentialRampToValueAtTime(v*0.55, t0 + dur*0.4);
-    g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
-    o.connect(g); g.connect(actx.destination);
-    o.start(t0); o.stop(t0 + dur + 0.05);
-  });
-}
-function ghostLaugh(start, vol){
-  if(!actx) return;
-  const t0 = actx.currentTime + (start||0);
-  for(let i=0;i<5;i++){
-    const o = actx.createOscillator(); const g = actx.createGain();
-    o.type = 'sine';
-    const base = 400 + Math.random()*80;
-    o.frequency.setValueAtTime(base, t0 + i*0.11);
-    o.frequency.exponentialRampToValueAtTime(base*0.55, t0 + i*0.11 + 0.14);
-    g.gain.setValueAtTime(0.0001, t0 + i*0.11);
-    g.gain.exponentialRampToValueAtTime((vol||0.12), t0 + i*0.11 + 0.02);
-    g.gain.exponentialRampToValueAtTime(0.0001, t0 + i*0.11 + 0.14);
-    o.connect(g); g.connect(actx.destination);
-    o.start(t0 + i*0.11); o.stop(t0 + i*0.11 + 0.18);
-  }
-}
-function thunder(start, vol){
-  if(!actx) return;
-  const t0 = actx.currentTime + (start||0);
-  const bufSize = actx.sampleRate * 1.6;
-  const buf = actx.createBuffer(1, bufSize, actx.sampleRate);
-  const data = buf.getChannelData(0);
-  for(let i=0;i<bufSize;i++) data[i] = (Math.random()*2-1) * Math.pow(1-i/bufSize, 2);
-  const src = actx.createBufferSource();
-  src.buffer = buf;
-  const lp = actx.createBiquadFilter();
-  lp.type = 'lowpass';
-  lp.frequency.setValueAtTime(220, t0);
-  lp.frequency.exponentialRampToValueAtTime(60, t0 + 1.4);
-  const g = actx.createGain();
-  g.gain.setValueAtTime(0.0001, t0);
-  g.gain.exponentialRampToValueAtTime((vol||0.28), t0 + 0.06);
-  g.gain.exponentialRampToValueAtTime(0.0001, t0 + 1.5);
-  src.connect(lp); lp.connect(g); g.connect(actx.destination);
-  src.start(t0); src.stop(t0 + 1.7);
-}
-function bell(freq, start, dur, vol){
-  if(!actx) return;
-  const t0 = actx.currentTime + (start||0);
-  [1,2.76,5.4,8.9].forEach((mult,i)=>{
-    const o = actx.createOscillator(); const g = actx.createGain();
-    o.type = 'sine';
-    o.frequency.setValueAtTime(freq*mult, t0);
-    const v = (vol||0.14) / Math.pow(1.9, i);
-    g.gain.setValueAtTime(0.0001, t0);
-    g.gain.exponentialRampToValueAtTime(v, t0 + 0.005);
-    g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur * (1 - i*0.14));
-    o.connect(g); g.connect(actx.destination);
-    o.start(t0); o.stop(t0 + dur + 0.05);
-  });
-}
-function ghostWail(start, dur, vol){
-  if(!actx) return;
-  const t0 = actx.currentTime + (start||0);
-  const o = actx.createOscillator(); const g = actx.createGain();
-  o.type = 'sine';
-  o.frequency.setValueAtTime(1400, t0);
-  o.frequency.exponentialRampToValueAtTime(320, t0 + (dur||0.5));
-  g.gain.setValueAtTime(0.0001, t0);
-  g.gain.exponentialRampToValueAtTime((vol||0.12), t0 + 0.03);
-  g.gain.exponentialRampToValueAtTime(0.0001, t0 + (dur||0.5));
-  o.connect(g); g.connect(actx.destination);
-  o.start(t0); o.stop(t0 + (dur||0.5) + 0.05);
-}
-
-function sfxClick(){ initAudio(); if(!actx) return;
-  const t0 = actx.currentTime;
-  const o = actx.createOscillator(); const g = actx.createGain();
-  o.type = 'square';
-  o.frequency.setValueAtTime(1400, t0);
-  o.frequency.exponentialRampToValueAtTime(650, t0 + 0.05);
-  g.gain.setValueAtTime(0.14, t0);
-  g.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.06);
-  o.connect(g); g.connect(actx.destination);
-  o.start(t0); o.stop(t0 + 0.08);
-}
-function sfxCorrect(){ initAudio(); [261.63, 329.63, 392.00, 523.25].forEach((f,i)=> organ(f, i*0.10, 0.55, 0.14)); ghostLaugh(0.55, 0.12); }
-function sfxWrong(){ initAudio(); organ(196.00, 0, 0.45, 0.16); organ(130.81, 0.22, 0.55, 0.16);
-  const t0 = actx.currentTime + 0.1;
-  const bufSize = actx.sampleRate * 0.55;
-  const buf = actx.createBuffer(1, bufSize, actx.sampleRate);
-  const data = buf.getChannelData(0);
-  for(let i=0;i<bufSize;i++) data[i] = (Math.random()*2-1) * Math.pow(1-i/bufSize, 1.4);
-  const src = actx.createBufferSource(); src.buffer = buf;
-  const lp = actx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 400;
-  const g = actx.createGain();
-  g.gain.setValueAtTime(0.18, t0);
-  g.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.5);
-  src.connect(lp); lp.connect(g); g.connect(actx.destination);
-  src.start(t0); src.stop(t0 + 0.6);
-}
-function sfxFinish(){ initAudio(); [261.63, 329.63, 392.00, 523.25, 659.25].forEach((f,i)=> organ(f, i*0.13, 0.65, 0.16)); thunder(0.55, 0.28); ghostLaugh(0.9, 0.10); }
-function sfxCountdown(){ initAudio(); bell(880, 0, 0.35, 0.12); }
-function sfxCountdownGo(){ initAudio(); bell(1320, 0, 0.5, 0.16); organ(440, 0.05, 0.4, 0.14); }
-function sfxJoin(){ initAudio(); bell(1760, 0, 0.4, 0.10); bell(2093, 0.08, 0.35, 0.08); }
-function sfxTick(){ initAudio(); tone(1200, 0, 0.03, 'sine', 0.06); }
+/* ═══ SOUND ═══ */
+let ac=null;
+function iA(){try{if(!ac)ac=new(window.AudioContext||window.webkitAudioContext)();if(ac.state==='suspended')ac.resume()}catch(e){}}
+function t(f,st,d,tp,v,fe){if(!ac)return;const t0=ac.currentTime+st;const o=ac.createOscillator(),g=ac.createGain();o.type=tp||'sine';o.frequency.setValueAtTime(f,t0);if(fe)o.frequency.exponentialRampToValueAtTime(fe,t0+d);g.gain.setValueAtTime(0.0001,t0);g.gain.exponentialRampToValueAtTime(v||0.2,t0+0.02);g.gain.exponentialRampToValueAtTime(0.0001,t0+d);o.connect(g);g.connect(ac.destination);o.start(t0);o.stop(t0+d+0.05)}
+function org(f,st,d,v){if(!ac)return;const t0=ac.currentTime+st;[1,2,3,4].forEach((m,i)=>{const o=ac.createOscillator(),g=ac.createGain();o.type='sine';o.frequency.setValueAtTime(f*m,t0);const vv=(v||0.16)*(1/(i+1.3));g.gain.setValueAtTime(0.0001,t0);g.gain.exponentialRampToValueAtTime(vv,t0+0.05);g.gain.exponentialRampToValueAtTime(vv*0.55,t0+d*0.4);g.gain.exponentialRampToValueAtTime(0.0001,t0+d);o.connect(g);g.connect(ac.destination);o.start(t0);o.stop(t0+d+0.05)})}
+function bel(f,st,d,v){if(!ac)return;const t0=ac.currentTime+(st||0);[1,2.76,5.4,8.9].forEach((m,i)=>{const o=ac.createOscillator(),g=ac.createGain();o.type='sine';o.frequency.setValueAtTime(f*m,t0);const vv=(v||0.14)/Math.pow(1.9,i);g.gain.setValueAtTime(0.0001,t0);g.gain.exponentialRampToValueAtTime(vv,t0+0.005);g.gain.exponentialRampToValueAtTime(0.0001,t0+d*(1-i*0.14));o.connect(g);g.connect(ac.destination);o.start(t0);o.stop(t0+d+0.05)})}
+function gl(st,v){if(!ac)return;const t0=ac.currentTime+(st||0);for(let i=0;i<5;i++){const o=ac.createOscillator(),g=ac.createGain();o.type='sine';const b=400+Math.random()*80;o.frequency.setValueAtTime(b,t0+i*0.11);o.frequency.exponentialRampToValueAtTime(b*0.55,t0+i*0.11+0.14);g.gain.setValueAtTime(0.0001,t0+i*0.11);g.gain.exponentialRampToValueAtTime(v||0.12,t0+i*0.11+0.02);g.gain.exponentialRampToValueAtTime(0.0001,t0+i*0.11+0.14);o.connect(g);g.connect(ac.destination);o.start(t0+i*0.11);o.stop(t0+i*0.11+0.18)}}
+function thu(st,v){if(!ac)return;const t0=ac.currentTime+(st||0);const bs=ac.sampleRate*1.6;const buf=ac.createBuffer(1,bs,ac.sampleRate);const d=buf.getChannelData(0);for(let i=0;i<bs;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/bs,2);const sr=ac.createBufferSource();sr.buffer=buf;const lp=ac.createBiquadFilter();lp.type='lowpass';lp.frequency.setValueAtTime(220,t0);lp.frequency.exponentialRampToValueAtTime(60,t0+1.4);const g=ac.createGain();g.gain.setValueAtTime(0.0001,t0);g.gain.exponentialRampToValueAtTime(v||0.28,t0+0.06);g.gain.exponentialRampToValueAtTime(0.0001,t0+1.5);sr.connect(lp);lp.connect(g);g.connect(ac.destination);sr.start(t0);sr.stop(t0+1.7)}
+function sc(){iA();if(!ac)return;const t0=ac.currentTime;const o=ac.createOscillator(),g=ac.createGain();o.type='square';o.frequency.setValueAtTime(1400,t0);o.frequency.exponentialRampToValueAtTime(650,t0+0.05);g.gain.setValueAtTime(0.14,t0);g.gain.exponentialRampToValueAtTime(0.0001,t0+0.06);o.connect(g);g.connect(ac.destination);o.start(t0);o.stop(t0+0.08)}
+function sCor(){iA();[261.63,329.63,392,523.25].forEach((f,i)=>org(f,i*0.1,0.55,0.14));gl(0.55,0.12)}
+function sWr(){iA();org(196,0,0.45,0.16);org(130.81,0.22,0.55,0.16)}
+function sFin(){iA();[261.63,329.63,392,523.25,659.25].forEach((f,i)=>org(f,i*0.13,0.65,0.16));thu(0.55,0.28);gl(0.9,0.1)}
+function sCd(){iA();bel(880,0,0.35,0.12)}
+function sCdGo(){iA();bel(1320,0,0.5,0.16);org(440,0.05,0.4,0.14)}
+function sJoin(){iA();bel(1760,0,0.4,0.1);bel(2093,0.08,0.35,0.08)}
+function sTick(){iA();t(1200,0,0.03,'sine',0.06)}
 
 /* BGM */
-const BGM_TUNE = [
-  440.00, 392.00, 440.00, 349.23, 329.63, 349.23, 392.00, 440.00,
-  392.00, 349.23, 329.63, 293.66, 329.63, 349.23, 329.63, 293.66,
-  261.63, 293.66, 329.63, 349.23, 329.63, 293.66, 261.63, 246.94,
-  220.00, 246.94, 261.63, 293.66, 329.63, 293.66, 261.63, 246.94
-];
-const BGM_BASS = [110.00, 87.31, 98.00, 82.41];
-const BGM_BEAT_MS = 380;
-let bgmNodes = null;
-let bgmTimer = null;
-let bgmStep = 0;
-let bgmStarted = false;
+const BT=[440,392,440,349.23,329.63,349.23,392,440,392,349.23,329.63,293.66,329.63,349.23,329.63,293.66,261.63,293.66,329.63,349.23,329.63,293.66,261.63,246.94,220,246.94,261.63,293.66,329.63,293.66,261.63,246.94];
+const BB=[110,87.31,98,82.41];
+let bgm=null,bgT=null,bgS=0,bgOn=false;
+function bgmTick(){if(!bgm||!ac)return;const t0=ac.currentTime+0.06;const n=BT[bgS%BT.length];[1,2,3,4].forEach((m,i)=>{const o=ac.createOscillator();o.type='sine';o.frequency.value=n*m;const g=ac.createGain();const v=0.08/(i+1.4);g.gain.setValueAtTime(0.0001,t0);g.gain.exponentialRampToValueAtTime(v,t0+0.06);g.gain.exponentialRampToValueAtTime(v*0.5,t0+0.375);g.gain.exponentialRampToValueAtTime(0.0001,t0+0.75);o.connect(g);g.connect(bgm.master);o.start(t0);o.stop(t0+0.8)});if(bgS%8===0){const b=BB[(Math.floor(bgS/8))%BB.length];const o=ac.createOscillator(),g=ac.createGain();o.type='sine';o.frequency.value=b;g.gain.setValueAtTime(0.0001,t0);g.gain.exponentialRampToValueAtTime(0.07,t0+0.08);g.gain.exponentialRampToValueAtTime(0.0001,t0+3);o.connect(g);g.connect(bgm.master);o.start(t0);o.stop(t0+3.1)}bgS++}
+function startBGM(){iA();if(!ac||bgOn)return;bgOn=true;try{const m=ac.createGain();m.gain.setValueAtTime(0.0001,ac.currentTime);m.gain.exponentialRampToValueAtTime(0.05,ac.currentTime+2.5);m.connect(ac.destination);bgm={master:m};bgS=0;bgT=setInterval(bgmTick,380);bgmTick()}catch(e){bgm=null;bgOn=false}}
 
-function playBGMOrgan(freq, time, dur, gainVal){
-  if(!actx || !bgmNodes) return;
-  try {
-    [1,2,3,4].forEach((mult, i) => {
-      const o = actx.createOscillator();
-      o.type = 'sine';
-      o.frequency.value = freq * mult;
-      const g = actx.createGain();
-      const v = gainVal * (1/(i + 1.4));
-      g.gain.setValueAtTime(0.0001, time);
-      g.gain.exponentialRampToValueAtTime(v, time + 0.06);
-      g.gain.exponentialRampToValueAtTime(v * 0.5, time + dur * 0.5);
-      g.gain.exponentialRampToValueAtTime(0.0001, time + dur);
-      o.connect(g); g.connect(bgmNodes.master);
-      o.start(time); o.stop(time + dur + 0.05);
-    });
-  } catch(e){}
-}
-function playBGMBass(freq, time, dur, gainVal){
-  if(!actx || !bgmNodes) return;
-  try {
-    const o = actx.createOscillator();
-    o.type = 'sine';
-    o.frequency.value = freq;
-    const g = actx.createGain();
-    g.gain.setValueAtTime(0.0001, time);
-    g.gain.exponentialRampToValueAtTime(gainVal, time + 0.08);
-    g.gain.exponentialRampToValueAtTime(0.0001, time + dur);
-    o.connect(g); g.connect(bgmNodes.master);
-    o.start(time); o.stop(time + dur + 0.05);
-  } catch(e){}
-}
-function bgmTick(){
-  if(!bgmNodes || !actx) return;
-  try {
-    const t = actx.currentTime + 0.06;
-    const note = BGM_TUNE[bgmStep % BGM_TUNE.length];
-    playBGMOrgan(note, t, 0.75, 0.08);
-    if(bgmStep % 8 === 0){
-      const bass = BGM_BASS[(Math.floor(bgmStep / 8)) % BGM_BASS.length];
-      playBGMBass(bass, t, 3.0, 0.07);
-    }
-    bgmStep++;
-  } catch(e){}
-}
-function startBGM(){
-  initAudio();
-  if(!actx || bgmStarted) return;
-  bgmStarted = true;
-  try {
-    const master = actx.createGain();
-    master.gain.setValueAtTime(0.0001, actx.currentTime);
-    master.gain.exponentialRampToValueAtTime(0.05, actx.currentTime + 2.5);
-    master.connect(actx.destination);
-    bgmNodes = { master };
-    bgmStep = 0;
-    bgmTimer = setInterval(bgmTick, BGM_BEAT_MS);
-    bgmTick();
-  } catch(e){ bgmNodes = null; bgmStarted = false; }
-}
+/* ═══ STATE ═══ */
+const G={role:null,peer:null,hostConn:null,playerConns:{},players:{},roomCode:'',
+  config:{gradeId:'p1',mode:'solo',timeLimit:20,qCount:10},
+  selectedWords:new Set(),questions:[],currentQ:-1,gameState:'lobby',deadline:0,timerId:null,
+  myPlayerId:null,myName:'',myAvatar:'🎃',myScore:0,myStreak:0,ropePosition:50,leftScore:0,rightScore:0};
+const AV=['🎃','👻','🦇','🕷️','🕸️','💀','🧙‍♀️','🧛','🧟','🐺','🦉','🐈‍⬛','🐸','🦊','🐼','🐯','🦁','🐨','🐷','🐵','🐰','🐭','🐮','🐔','🦄','🐲','🦖','🤖','👽','🦈'];
+const $=(id)=>document.getElementById(id);
+const esc=(s)=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function go(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));$(id).classList.add('active');window.scrollTo(0,0)}
+function toast(m,ms){const t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),ms||2500)}
+function gCode(){const c='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';let r='';for(let i=0;i<4;i++)r+=c[Math.floor(Math.random()*c.length)];return r}
+function shuf(a){const r=a.slice();for(let i=r.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[r[i],r[j]]=[r[j],r[i]]}return r}
 
-/* ═════ STATE ═════ */
-const G = {
-  role: null,
-  peer: null,
-  hostConn: null,
-  playerConns: {},
-  players: {},
-  roomCode: '',
-  config: {
-    gradeId: 'all',
-    mode: 'solo',
-    timeLimit: 20,
-    qCount: 10,
-  },
-  selectedWordIds: new Set(),   // "en" strings
-  questions: [],
-  currentQ: -1,
-  gameState: 'lobby',
-  deadline: 0,
-  timerId: null,
-  myPlayerId: null,
-  myName: '',
-  myAvatar: '🎃',
-  myScore: 0,
-  myStreak: 0,
-  ropePosition: 50,
-  leftScore: 0,
-  rightScore: 0,
-};
+/* ═══ GRADE MENU ═══ */
+const GR=[{id:'p1',name:'ป.1',c:'g1'},{id:'p2',name:'ป.2',c:'g2'},{id:'p3',name:'ป.3',c:'g3'},{id:'p4',name:'ป.4',c:'g4'},{id:'p5',name:'ป.5',c:'g5'},{id:'p6',name:'ป.6',c:'g6'},{id:'extra',name:'หมวดพิเศษ',c:'g7'}];
+function renderGrades(){
+  const w=$('gradeList');w.innerHTML='';
+  const r0=document.createElement('div');r0.className='grade-row';
+  const a=document.createElement('button');a.className='grade g-all';
+  a.innerHTML=`<div class="g-name">🌟 รวมทั้งหมด</div><div class="g-count">${POOLS.all.length} คำ</div>`;
+  a.onclick=()=>{sc();pickG('all')};r0.appendChild(a);w.appendChild(r0);
+  const r1=document.createElement('div');r1.className='grade-row';
+  const r2=document.createElement('div');r2.className='grade-row';
+  GR.forEach((g,i)=>{const b=document.createElement('button');b.className='grade '+g.c;const cnt=POOLS[g.id]?POOLS[g.id].length:0;
+    b.innerHTML=`<div class="g-name">${g.name}</div><div class="g-count">${cnt} คำ</div>`;
+    b.onclick=()=>{sc();pickG(g.id)};if(i<4)r1.appendChild(b);else r2.appendChild(b)});
+  w.appendChild(r1);w.appendChild(r2);
+}
+function pickG(id){G.config.gradeId=id;G.selectedWords=new Set();openWP()}
 
-const AVATARS = ['🎃','👻','🦇','🕷️','🕸️','💀','🧙‍♀️','🧛','🧟','🐺','🦉','🐈‍⬛','🐸','🦊','🐼','🐯','🦁','🐨','🐷','🐵','🐰','🐭','🐮','🐔','🦄','🐲','🦖','🤖','👽','🦈'];
+/* ═══ WORD PICKER ═══ */
+function openWP(){
+  const gid=G.config.gradeId;const g=GR.find(x=>x.id===gid);
+  $('wpTitle').textContent=g?g.name:'รวมทั้งหมด';
+  const pool=POOLS[gid]||[];$('wpTotal').textContent=pool.length;
+  const w=$('wpActions');w.innerHTML='';
+  const SS=20;const nS=Math.ceil(pool.length/SS);
+  for(let i=0;i<Math.min(nS,30);i++){const c=document.createElement('button');c.className='wp-chip';c.textContent=i+1;
+    c.title=`ชุด ${i+1}`;c.onclick=()=>{sc();setSet(pool.slice(i*SS,(i+1)*SS))};w.appendChild(c)}
+  const ab=document.createElement('button');ab.className='wp-chip all';ab.textContent='ทั้งหมด';
+  ab.onclick=()=>{sc();pool.forEach(x=>G.selectedWords.add(x.en));renderGrid()};w.appendChild(ab);
+  const cl=document.createElement('button');cl.className='wp-chip clear';cl.textContent='🗑';
+  cl.onclick=()=>{sc();G.selectedWords.clear();renderGrid()};w.appendChild(cl);
+  renderGrid();go('scWordPicker');
+}
+function setSet(ws){G.selectedWords.clear();ws.forEach(x=>G.selectedWords.add(x.en));renderGrid()}
+function renderGrid(){
+  const gid=G.config.gradeId;const pool=POOLS[gid]||[];const grid=$('wpGrid');
+  grid.innerHTML=pool.map(w=>{
+    const isC=w.custom||(CW[gid]&&CW[gid].some(c=>c.en===w.en));
+    const sel=G.selectedWords.has(w.en);
+    const safeEn=esc(w.en).replace(/'/g,"\\'");
+    return `<button class="wp-card${sel?' selected':''}${isC?' custom':''}" data-en="${esc(w.en)}" onclick="tog('${safeEn}')">
+      ${isC?`<button class="wp-del" onclick="delC(event,'${safeEn}')" title="ลบ">🗑</button>`:''}
+      <div class="wp-en">${esc(w.en)}</div><div class="wp-th">${esc(w.th)}</div>
+    </button>`}).join('');
+  updCnt();
+}
+function tog(en){sc();if(G.selectedWords.has(en))G.selectedWords.delete(en);else G.selectedWords.add(en);
+  const c=document.querySelector(`.wp-card[data-en="${en.replace(/"/g,'&quot;')}"]`);if(c)c.classList.toggle('selected',G.selectedWords.has(en));updCnt()}
+function updCnt(){const n=G.selectedWords.size;$('wpSel').textContent=n;const c=$('wpCount');c.textContent=`เลือกแล้ว ${n} คำ`;c.className='wp-count'+(n<4?' warn':'');$('wpNext').disabled=n<4}
 
-/* ═════ UTILS ═════ */
-function $(id){ return document.getElementById(id); }
-function showScreen(id){
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  const el = $(id);
-  if(el) el.classList.add('active');
-  window.scrollTo(0,0);
+/* ═══ ADD/DELETE WORD ═══ */
+function openAdd(){sc();$('awEn').value='';$('awTh').value='';$('addModal').hidden=false;setTimeout(()=>$('awEn').focus(),100)}
+function closeAdd(){sc();$('addModal').hidden=true}
+function saveAdd(){
+  const en=$('awEn').value.trim();const th=$('awTh').value.trim();
+  if(!en||!th){toast('⚠️ กรอกให้ครบ');return}
+  const gid=G.config.gradeId;if(gid==='all'){toast('⚠️ เลือกชั้นก่อน');return}
+  if(!CW[gid])CW[gid]=[];
+  if(POOLS[gid].some(w=>w.en.toLowerCase()===en.toLowerCase())){toast('⚠️ มีอยู่แล้ว');return}
+  CW[gid].push({en,th});saveCW();rebuildExtra();
+  if(POOLS[gid]&&!POOLS[gid].some(w=>w.en===en))POOLS[gid].push({en,th,custom:true});
+  G.selectedWords.add(en);closeAdd();sCor();toast('✅ เพิ่มแล้ว!');openWP();
 }
-function esc(s){ return String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
-function toast(msg, ms){
-  const t = $('toast');
-  if(!t) return;
-  t.textContent = msg;
-  t.classList.add('show');
-  clearTimeout(t._t);
-  t._t = setTimeout(() => t.classList.remove('show'), ms || 2500);
-}
-function genCode(){
-  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-  let c = '';
-  for(let i=0;i<4;i++) c += chars[Math.floor(Math.random()*chars.length)];
-  return c;
-}
-function shuffle(a){
-  const r = a.slice();
-  for(let i=r.length-1;i>0;i--){ const j = Math.floor(Math.random()*(i+1)); [r[i],r[j]]=[r[j],r[i]]; }
-  return r;
-}
+function delC(ev,en){ev.stopPropagation();if(!confirm(`ลบ "${en}" หรือไม่?`))return;
+  const gid=G.config.gradeId;if(!CW[gid])return;const i=CW[gid].findIndex(w=>w.en===en);if(i<0)return;
+  CW[gid].splice(i,1);saveCW();rebuildExtra();G.selectedWords.delete(en);sWr();openWP()}
 
-/* ═════ SETUP: GRADE CHIPS ═════ */
-function renderGradeChips(){
-  const wrap = $('gradeChips');
-  if(!wrap) return;
-  const grades = [
-    {id:'all', name:'🌟 ทั้งหมด'},
-    {id:'p1', name:'📘 ป.1'},
-    {id:'p2', name:'📗 ป.2'},
-    {id:'p3', name:'📙 ป.3'},
-    {id:'p4', name:'📕 ป.4'},
-    {id:'p5', name:'📔 ป.5'},
-    {id:'p6', name:'📓 ป.6'},
-    {id:'extra', name:'🎨 พิเศษ'},
-  ];
-  wrap.innerHTML = grades.map(g => 
-    `<button class="chip grade-chip${g.id==='all'?' active':''}" data-g="${g.id}" onclick="selectGrade('${g.id}')">${g.name} (${POOLS[g.id]?POOLS[g.id].length:0})</button>`
-  ).join('');
-}
-function selectGrade(id){
-  sfxClick();
-  G.config.gradeId = id;
-  G.selectedWordIds = new Set();
-  document.querySelectorAll('.grade-chip').forEach(c => c.classList.toggle('active', c.dataset.g === id));
-  setTimeout(() => openWordPicker(), 100);
-}
+/* ═══ CONFIG ═══ */
+function setMode(m){sc();G.config.mode=m;document.querySelectorAll('.mode-chip').forEach(c=>c.classList.toggle('active',c.dataset.m===m))}
+function setQ(n){sc();G.config.qCount=n;document.querySelectorAll('.qcount-chip').forEach(c=>c.classList.toggle('active',parseInt(c.dataset.q)===n))}
+function adjTime(d){sc();const el=$('timeInput');let v=parseInt(el.value)||20;v=Math.max(5,Math.min(300,v+d));el.value=v}
 
-/* ═════ WORD PICKER ═════ */
-function openWordPicker(){
-  const grade = G.config.gradeId;
-  const pool = POOLS[grade] || POOLS.all;
-  $('wpTotal').textContent = pool.length;
-  $('wpSelCount').textContent = G.selectedWordIds.size;
-  
-  // Preset chips
-  const wrap = $('wpActions');
-  wrap.innerHTML = '';
-  const setSize = 20;
-  const numSets = Math.ceil(pool.length / setSize);
-  for(let i=0; i<Math.min(numSets, 12); i++){
-    const chip = document.createElement('button');
-    chip.className = 'wp-chip';
-    chip.textContent = String(i+1);
-    chip.title = `ชุดที่ ${i+1}`;
-    chip.onclick = () => { sfxClick(); selectSet(pool.slice(i*setSize, (i+1)*setSize)); };
-    wrap.appendChild(chip);
-  }
-  const allBtn = document.createElement('button');
-  allBtn.className = 'wp-chip all';
-  allBtn.textContent = 'ทั้งหมด';
-  allBtn.onclick = () => { sfxClick(); pool.forEach(w => G.selectedWordIds.add(w.en)); renderWordGrid(); };
-  wrap.appendChild(allBtn);
-  const clr = document.createElement('button');
-  clr.className = 'wp-chip clear';
-  clr.textContent = '🗑';
-  clr.onclick = () => { sfxClick(); clearAllWords(); };
-  wrap.appendChild(clr);
-  
-  renderWordGrid();
-  showScreen('scWordPicker');
+/* ═══ HOST ROOM ═══ */
+function createRoom(){
+  G.config.timeLimit=parseInt($('timeInput').value)||20;G.role='host';
+  const code=gCode();G.roomCode=code;$('roomCodeDisplay').textContent=code;
+  const url=new URL(location.href);url.searchParams.set('code',code);const jU=url.toString();
+  $('roomUrlDisplay').innerHTML=`📱 <b>${esc(jU)}</b>`;
+  const qr=$('qrcode');qr.innerHTML='';
+  const qi=document.createElement('img');
+  qi.src=`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(jU)}`;
+  qi.onerror=()=>{qr.style.display='none'};qr.appendChild(qi);
+  G.peer=new Peer('tug-'+code,{debug:1,config:{iceServers:[{urls:'stun:stun.l.google.com:19302'},{urls:'stun:stun1.l.google.com:19302'},{urls:'stun:stun2.l.google.com:19302'},{urls:'stun:stun3.l.google.com:19302'},{urls:'stun:stun4.l.google.com:19302'},{urls:'stun:global.stun.twilio.com:3478'}],iceCandidatePoolSize:10}});
+  G.peer.on('open',()=>{toast('✅ สร้างห้องแล้ว! รหัส '+code,3000);go('scHostLobby');sJoin()});
+  G.peer.on('error',(e)=>{if(e.type==='unavailable-id'){toast('⚠️ รหัสซ้ำ สร้างใหม่',2000);setTimeout(createRoom,500)}else toast('❌ '+e.type,4000)});
+  G.peer.on('connection',(c)=>{G.playerConns[c.peer]=c;
+    c.on('open',()=>console.log('[H] open',c.peer));
+    c.on('data',(d)=>hPM(c,d));
+    c.on('close',()=>{delete G.playerConns[c.peer];if(G.players[c.peer]){G.players[c.peer].connected=false;rPL();uSB()}});
+    c.on('error',(e)=>console.error('[H] err',e))});
 }
-function selectSet(words){
-  G.selectedWordIds.clear();
-  words.forEach(w => G.selectedWordIds.add(w.en));
-  renderWordGrid();
-}
-function renderWordGrid(){
-  const grade = G.config.gradeId;
-  const pool = POOLS[grade] || POOLS.all;
-  const grid = $('wpGrid');
-  grid.innerHTML = pool.map(w => {
-    const isCustom = customWords.some(c => c.en === w.en);
-    const selected = G.selectedWordIds.has(w.en);
-    return `<button class="wp-card${selected?' selected':''}${isCustom?' custom':''}" data-en="${esc(w.en)}" onclick="toggleWord('${esc(w.en).replace(/'/g,"\\'")}')">
-      ${isCustom ? `<button class="wp-delete" onclick="deleteCustomWord(event,'${esc(w.en).replace(/'/g,"\\'")}')" title="ลบ">✕</button>` : ''}
-      <div class="wp-en">${esc(w.en)}</div>
-      <div class="wp-th">${esc(w.th)}</div>
-    </button>`;
-  }).join('');
-  updateWpCounter();
-}
-function toggleWord(en){
-  sfxClick();
-  if(G.selectedWordIds.has(en)) G.selectedWordIds.delete(en);
-  else G.selectedWordIds.add(en);
-  // Just update the one card visually
-  const card = document.querySelector(`.wp-card[data-en="${en.replace(/"/g,'&quot;')}"]`);
-  if(card) card.classList.toggle('selected', G.selectedWordIds.has(en));
-  updateWpCounter();
-}
-function updateWpCounter(){
-  const n = G.selectedWordIds.size;
-  $('wpSelCount').textContent = n;
-  const cnt = $('wpCount');
-  cnt.textContent = `เลือกแล้ว ${n} คำ`;
-  cnt.className = 'wp-count' + (n < 4 ? ' warn' : '');
-  $('wpNextBtn').disabled = n < 4;
-}
-function clearAllWords(){
-  G.selectedWordIds.clear();
-  renderWordGrid();
-}
-
-/* ═════ ADD WORD MODAL ═════ */
-function openAddWordModal(){
-  sfxClick();
-  $('awEn').value = '';
-  $('awTh').value = '';
-  $('addWordModal').hidden = false;
-  setTimeout(() => $('awEn').focus(), 100);
-}
-function closeAddWordModal(){
-  sfxClick();
-  $('addWordModal').hidden = true;
-}
-function saveAddWord(){
-  const en = $('awEn').value.trim();
-  const th = $('awTh').value.trim();
-  if(!en || !th){ toast('⚠️ กรุณากรอกให้ครบ'); return; }
-  if(POOLS.all.some(w => w.en.toLowerCase() === en.toLowerCase())){ toast('⚠️ คำนี้มีอยู่แล้ว'); return; }
-  customWords.push({ en, th });
-  saveCustomWords();
-  rebuildExtraPool();
-  // switch to extra grade if not already
-  if(G.config.gradeId !== 'extra'){
-    G.config.gradeId = 'extra';
-    document.querySelectorAll('.grade-chip').forEach(c => c.classList.toggle('active', c.dataset.g === 'extra'));
-  }
-  G.selectedWordIds.add(en);
-  closeAddWordModal();
-  sfxCorrect();
-  toast('✅ เพิ่มคำศัพท์แล้ว!');
-  renderWordGrid();
-}
-function deleteCustomWord(ev, en){
-  ev.stopPropagation();
-  if(!confirm(`ลบคำ "${en}" หรือไม่?`)) return;
-  const idx = customWords.findIndex(w => w.en === en);
-  if(idx < 0) return;
-  customWords.splice(idx, 1);
-  saveCustomWords();
-  rebuildExtraPool();
-  G.selectedWordIds.delete(en);
-  sfxWrong();
-  renderWordGrid();
-}
-
-/* ═════ GAME CONFIG ═════ */
-function openGameConfig(){
-  if(G.selectedWordIds.size < 4){ toast('ต้องเลือกอย่างน้อย 4 คำ'); return; }
-  sfxClick();
-  showScreen('scGameConfig');
-}
-function selectMode(mode){
-  sfxClick();
-  G.config.mode = mode;
-  document.querySelectorAll('.mode-chip').forEach(c => c.classList.toggle('active', c.dataset.mode === mode));
-}
-function selectQCount(n){
-  sfxClick();
-  G.config.qCount = n;
-  document.querySelectorAll('.qcount-chip').forEach(c => c.classList.toggle('active', parseInt(c.dataset.q) === n));
-}
-function adjustTime(delta){
-  sfxClick();
-  const el = $('timeInput');
-  let v = parseInt(el.value) || 20;
-  v = Math.max(5, Math.min(300, v + delta));
-  el.value = v;
-}
-
-/* ═════ CREATE HOST ROOM ═════ */
-function createHostRoom(){
-  G.config.timeLimit = parseInt($('timeInput').value) || 20;
-  G.role = 'host';
-  const code = genCode();
-  G.roomCode = code;
-  
-  $('roomCodeDisplay').textContent = code;
-  const url = new URL(location.href);
-  url.searchParams.set('code', code);
-  const joinUrl = url.toString();
-  $('roomUrlDisplay').innerHTML = `📱 <b>${esc(joinUrl)}</b>`;
-  
-  // QR
-  const qr = $('qrcode');
-  qr.innerHTML = '';
-  const qrImg = document.createElement('img');
-  qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(joinUrl)}`;
-  qrImg.alt = 'QR';
-  qrImg.onerror = () => { qr.style.display = 'none'; };
-  qr.appendChild(qrImg);
-  
-  // ⭐ PeerJS with STUN servers (สำหรับ WiFi โรงเรียน)
-  const peerConfig = {
-    debug: 1,
-    config: {
-      iceServers: [
-        { urls: 'stun:stun.l.google.com:19302' },
-        { urls: 'stun:stun1.l.google.com:19302' },
-        { urls: 'stun:stun2.l.google.com:19302' },
-        { urls: 'stun:stun3.l.google.com:19302' },
-        { urls: 'stun:stun4.l.google.com:19302' },
-        { urls: 'stun:global.stun.twilio.com:3478' }
-      ],
-      iceCandidatePoolSize: 10,
-    },
-    // ⭐ 'serialization: binary' ทำงานได้ดีกว่า json บนเครือข่ายช้า
-    serialization: 'json',
-  };
-  
-  G.peer = new Peer('tug-' + code, peerConfig);
-  
-  G.peer.on('open', (id) => {
-    console.log('[Host] Ready:', id);
-    toast('✅ สร้างห้องสำเร็จ! รหัส ' + code, 3000);
-    showScreen('scHostLobby');
-    sfxJoin();
-  });
-  
-  G.peer.on('error', (err) => {
-    console.error('[Host] Peer error:', err);
-    if(err.type === 'unavailable-id'){
-      toast('⚠️ รหัสซ้ำ กำลังสร้างใหม่...', 2000);
-      setTimeout(createHostRoom, 500);
-    } else {
-      toast('❌ ข้อผิดพลาด: ' + err.type, 4000);
-    }
-  });
-  
-  // ⭐ Connection handler ที่ทำงานได้หลายคน
-  G.peer.on('connection', (conn) => {
-    console.log('[Host] ⭐ New connection from:', conn.peer);
-    
-    // เก็บ connection ทันที (ไม่รอ open)
-    G.playerConns[conn.peer] = conn;
-    
-    conn.on('open', () => {
-      console.log('[Host] ✅ Connection open:', conn.peer);
-    });
-    
-    conn.on('data', (data) => {
-      console.log('[Host] Data from', conn.peer, ':', data.type);
-      handlePlayerMsg(conn, data);
-    });
-    
-    conn.on('close', () => {
-      console.log('[Host] ❌ Connection closed:', conn.peer);
-      delete G.playerConns[conn.peer];
-      if(G.players[conn.peer]){
-        G.players[conn.peer].connected = false;
-        renderHostPlayerList();
-        updateHostStartBtn();
-      }
-    });
-    
-    conn.on('error', (err) => {
-      console.error('[Host] Conn error:', conn.peer, err);
-    });
-  });
-}
-
-function handlePlayerMsg(conn, data){
-  if(!data || typeof data !== 'object') return;
-  
-  switch(data.type){
-    case 'join': {
-      const name = String(data.name || 'ผู้เล่น').slice(0, 20);
-      const avatar = String(data.avatar || '🎃').slice(0, 8);
-      if(G.players[conn.peer]){
-        G.players[conn.peer].connected = true;
-      } else {
-        G.players[conn.peer] = {
-          id: conn.peer,
-          name, avatar,
-          score: 0, streak: 0,
-          answers: {},
-          blocked: false,
-          connected: true,
-          team: null,
-        };
-      }
-      try {
-        conn.send({
-          type: 'welcome',
-          playerId: conn.peer,
-          roomCode: G.roomCode,
-          mode: G.config.mode,
-        });
-      } catch(e){}
-      renderHostPlayerList();
-      updateHostStartBtn();
-      sfxJoin();
-      break;
-    }
-    case 'answer': {
-      const p = G.players[conn.peer];
-      if(!p || G.gameState !== 'playing') return;
-      const q = G.questions[G.currentQ];
-      if(!q) return;
-      if(p.answers[G.currentQ] !== undefined) return;
-      const timeLeft = Math.max(0, G.deadline - Date.now());
-      const isCorrect = data.choice === q.correct;
-      let pts = 0;
-      if(isCorrect){
-        const base = 500;
-        const speedBonus = Math.round((timeLeft / (q.timeLimit * 1000)) * 500);
-        pts = base + speedBonus;
-        p.streak = (p.streak || 0) + 1;
-        if(p.streak >= 3) pts += 100;
-        if(p.streak >= 5) pts += 200;
-      } else {
-        p.streak = 0;
-      }
-      p.score += pts;
-      p.answers[G.currentQ] = { choice: data.choice, correct: isCorrect, points: pts };
-      
-      try {
-        conn.send({
-          type: 'result',
-          correct: isCorrect,
-          points: pts,
-          totalScore: p.score,
-          streak: p.streak,
-        });
-      } catch(e){}
-      
-      // Sound effect on host
-      if(isCorrect) sfxCorrect();
-      else sfxWrong();
-      
-      updateTugOfWar();
-      renderHostLeaderboard();
-      updateHostAnswered();
-      break;
-    }
+function hPM(c,d){
+  if(!d||typeof d!=='object')return;
+  if(d.type==='join'){
+    const name=String(d.name||'ผู้เล่น').slice(0,20),av=String(d.avatar||'🎃').slice(0,8);
+    if(G.players[c.peer])G.players[c.peer].connected=true;
+    else G.players[c.peer]={id:c.peer,name,avatar:av,score:0,streak:0,answers:{},blocked:false,connected:true,team:null};
+    try{c.send({type:'welcome',playerId:c.peer,roomCode:G.roomCode})}catch(e){}
+    rPL();uSB();sJoin();
+  }else if(d.type==='answer'){
+    const p=G.players[c.peer];if(!p||G.gameState!=='playing')return;
+    const q=G.questions[G.currentQ];if(!q||p.answers[G.currentQ]!==undefined)return;
+    const tl=Math.max(0,G.deadline-Date.now());const ok=d.choice===q.correct;
+    let pts=0;
+    if(ok){const base=500;const sb=Math.round((tl/(q.timeLimit*1000))*500);pts=base+sb;
+      p.streak=(p.streak||0)+1;if(p.streak>=3)pts+=100;if(p.streak>=5)pts+=200}
+    else p.streak=0;
+    p.score+=pts;p.answers[G.currentQ]={choice:d.choice,correct:ok,points:pts};
+    try{c.send({type:'result',correct:ok,points:pts,totalScore:p.score,streak:p.streak})}catch(e){}
+    if(ok)sCor();else sWr();
+    updTug();rLB();updAns();
   }
 }
+function rPL(){const g=$('playersGrid');if(!g)return;const l=Object.values(G.players);
+  $('playerCount').textContent=l.length;
+  if(!l.length){g.innerHTML='<p style="color:#7c6fa8;text-align:center;grid-column:1/-1;padding:16px">รอผู้เล่น...</p>';return}
+  g.innerHTML=l.map(p=>`<div class="player-card ${p.blocked?'blocked':''}">
+    <span class="av">${esc(p.avatar)}</span><div class="name">${esc(p.name)}</div>
+    <button class="block-btn" onclick="togBlock('${p.id}')">${p.blocked?'✓':'✕'}</button></div>`).join('')}
+function togBlock(id){sc();const p=G.players[id];if(!p)return;p.blocked=!p.blocked;rPL();uSB();
+  try{const c=G.playerConns[id];if(c)c.send({type:p.blocked?'blocked':'unblocked'})}catch(e){}}
+function uSB(){const a=Object.values(G.players).filter(p=>!p.blocked&&p.connected);const b=$('hostStartBtn');
+  b.disabled=a.length<1;b.textContent=a.length<1?'⏳ รอผู้เล่น...':`▶ เริ่มเกม! (${a.length} คน)`}
 
-function renderHostPlayerList(){
-  const grid = $('playersGrid');
-  if(!grid) return;
-  const list = Object.values(G.players);
-  $('playerCount').textContent = list.length;
-  if(list.length === 0){
-    grid.innerHTML = '<p style="color:#7c6fa8;text-align:center;grid-column:1/-1;padding:16px">รอผู้เล่นเข้าร่วม...</p>';
-    return;
-  }
-  grid.innerHTML = list.map(p => `
-    <div class="player-card ${p.blocked ? 'blocked' : ''}">
-      <span class="av">${esc(p.avatar)}</span>
-      <div class="info">
-        <div class="name">${esc(p.name)}</div>
-      </div>
-      <button class="block-btn" onclick="hostToggleBlock('${p.id}')" title="${p.blocked ? 'ปลดบล็อก' : 'บล็อก'}">
-        ${p.blocked ? '✓' : '✕'}
-      </button>
-    </div>
-  `).join('');
+/* ═══ HOST START ═══ */
+function hostStart(){
+  const a=Object.values(G.players).filter(p=>!p.blocked&&p.connected);
+  if(a.length<1){toast('ต้องมีผู้เล่น');return}
+  const sel=[],pool=POOLS[G.config.gradeId]||[];
+  pool.forEach(w=>{if(G.selectedWords.has(w.en))sel.push(w)});
+  let qs=bQ(sel);if(G.config.qCount>0)qs=qs.slice(0,G.config.qCount);
+  G.questions=qs;
+  if(G.config.mode==='team'){const sh=shuf(a.slice());sh.forEach((p,i)=>{p.team=i%2===0?'A':'B'})}
+  else a.forEach(p=>p.team=null);
+  a.forEach(p=>{p.score=0;p.streak=0;p.answers={}});
+  G.leftScore=0;G.rightScore=0;G.ropePosition=50;G.currentQ=-1;G.gameState='playing';
+  const pd=a.map(p=>({id:p.id,name:p.name,avatar:p.avatar,team:p.team}));
+  Object.values(G.playerConns).forEach(c=>{try{c.send({type:'start',mode:G.config.mode,totalQuestions:G.questions.length,timeLimit:G.config.timeLimit,players:pd})}catch(e){}});
+  go('scHostGame');$('hostQTotal').textContent=G.questions.length;$('hostTotalPlayers').textContent=a.length;
+  hCnt(()=>setTimeout(hNext,300));
 }
-function hostToggleBlock(playerId){
-  sfxClick();
-  const p = G.players[playerId];
-  if(!p) return;
-  p.blocked = !p.blocked;
-  renderHostPlayerList();
-  updateHostStartBtn();
-  try {
-    const conn = G.playerConns[playerId];
-    if(conn) conn.send({ type: p.blocked ? 'blocked' : 'unblocked' });
-  } catch(e){}
-}
-function updateHostStartBtn(){
-  const active = Object.values(G.players).filter(p => !p.blocked && p.connected);
-  const btn = $('hostStartBtn');
-  if(!btn) return;
-  btn.disabled = active.length < 1;
-  btn.textContent = active.length < 1 
-    ? '⏳ รอผู้เล่น...' 
-    : `▶ เริ่มเกมเลย! (${active.length} คน)`;
-}
-
-/* ═════ HOST: START ═════ */
-function hostStartGame(){
-  const active = Object.values(G.players).filter(p => !p.blocked && p.connected);
-  if(active.length < 1){ toast('ต้องมีผู้เล่น'); return; }
-  
-  // Build questions from selected words
-  const selectedWords = [];
-  const pool = POOLS[G.config.gradeId] || POOLS.all;
-  pool.forEach(w => { if(G.selectedWordIds.has(w.en)) selectedWords.push(w); });
-  
-  let questions = buildQuestions(selectedWords);
-  if(G.config.qCount > 0) questions = questions.slice(0, G.config.qCount);
-  G.questions = questions;
-  
-  // Assign teams
-  if(G.config.mode === 'team'){
-    const shuffled = shuffle(active.slice());
-    shuffled.forEach((p, i) => { p.team = i % 2 === 0 ? 'A' : 'B'; });
-  } else {
-    active.forEach(p => p.team = null);
-  }
-  
-  active.forEach(p => { p.score = 0; p.streak = 0; p.answers = {}; });
-  G.leftScore = 0; G.rightScore = 0; G.ropePosition = 50;
-  G.currentQ = -1;
-  G.gameState = 'playing';
-  
-  // Send start
-  const playerData = active.map(p => ({ id: p.id, name: p.name, avatar: p.avatar, team: p.team }));
-  Object.values(G.playerConns).forEach(conn => {
-    try {
-      conn.send({
-        type: 'start',
-        mode: G.config.mode,
-        totalQuestions: G.questions.length,
-        timeLimit: G.config.timeLimit,
-        players: playerData,
-      });
-    } catch(e){}
-  });
-  
-  showScreen('scHostGame');
-  $('hostQTotal').textContent = G.questions.length;
-  $('hostTotalPlayers').textContent = active.length;
-  
-  hostShowCountdown(() => {
-    setTimeout(() => hostNextQuestion(), 300);
-  });
-}
-
-function buildQuestions(pool){
-  if(pool.length < 4) return [];
-  const qs = [];
-  const shuffled = shuffle(pool);
-  const count = Math.min(shuffled.length, 100);
-  for(let i=0;i<count;i++){
-    const target = shuffled[i];
-    const reverse = Math.random() < 0.4;
-    const others = pool.filter(w => w.en !== target.en && w.th !== target.th);
-    const distractors = shuffle(others).slice(0, 3);
-    if(distractors.length < 3) continue;
-    
-    const options = reverse
-      ? shuffle([target, ...distractors]).map(w => ({ text: w.en, isCorrect: w.en === target.en }))
-      : shuffle([target, ...distractors]).map(w => ({ text: w.th, isCorrect: w.th === target.th }));
-    const correctIdx = options.findIndex(o => o.isCorrect);
-    
-    qs.push({
-      text: reverse ? target.th : target.en,
-      sub: reverse ? 'คำภาษาอังกฤษคือ?' : 'คำนี้แปลว่าอะไร?',
-      options,
-      correct: correctIdx,
-      target,
-      reverse,
-      timeLimit: G.config.timeLimit,
-    });
+function bQ(pool){
+  if(pool.length<4)return[];const qs=[];const sh=shuf(pool);const cnt=Math.min(sh.length,100);
+  for(let i=0;i<cnt;i++){
+    const t=sh[i];const rv=Math.random()<0.4;
+    const oth=pool.filter(w=>w.en!==t.en&&w.th!==t.th);const dis=shuf(oth).slice(0,3);
+    if(dis.length<3)continue;
+    const opts=rv?shuf([t,...dis]).map(w=>({text:w.en,ok:w.en===t.en})):shuf([t,...dis]).map(w=>({text:w.th,ok:w.th===t.th}));
+    const ci=opts.findIndex(o=>o.ok);
+    qs.push({text:rv?t.th:t.en,sub:rv?'คำภาษาอังกฤษคือ?':'คำนี้แปลว่าอะไร?',options:opts,correct:ci,target:t,reverse:rv,timeLimit:G.config.timeLimit});
   }
   return qs;
 }
 
-/* ═════ HOST: GAME LOOP ═════ */
-function hostShowCountdown(cb){
-  const el = $('hostCountdown');
-  const num = $('hostCountdownNum');
-  let n = 3;
-  el.style.display = 'flex';
-  num.textContent = n;
-  sfxCountdown();
-  const t = setInterval(() => {
-    n--;
-    if(n <= 0){
-      clearInterval(t);
-      el.style.display = 'none';
-      sfxCountdownGo();
-      if(cb) cb();
-    } else {
-      num.textContent = n;
-      sfxCountdown();
-      num.style.animation = 'none';
-      void num.offsetWidth;
-      num.style.animation = 'countPulse 1s infinite';
-    }
-  }, 1000);
+/* ═══ HOST GAME LOOP ═══ */
+function hCnt(cb){const el=$('hostCountdown'),n=$('hostCountdownNum');let c=3;el.style.display='flex';n.textContent=c;sCd();
+  const t=setInterval(()=>{c--;if(c<=0){clearInterval(t);el.style.display='none';sCdGo();cb()}else{n.textContent=c;sCd();n.style.animation='none';void n.offsetWidth;n.style.animation='cp 1s infinite'}},1000)}
+function hNext(){
+  G.currentQ++;if(G.currentQ>=G.questions.length){hEnd();return}
+  const q=G.questions[G.currentQ];G.gameState='playing';G.deadline=Date.now()+q.timeLimit*1000;
+  $('hostQNum').textContent=G.currentQ+1;$('hostAnswered').textContent='0';$('hostNextBtn').style.display='none';
+  const pub={type:'question',index:G.currentQ,text:q.text,sub:q.sub,options:q.options.map(o=>o.text),timeLimit:q.timeLimit,totalQuestions:G.questions.length,deadline:G.deadline};
+  Object.values(G.playerConns).forEach(c=>{try{c.send(pub)}catch(e){}});
+  clearInterval(G.timerId);let lt=-1;
+  G.timerId=setInterval(()=>{
+    if(G.gameState==='paused')return;
+    const r=Math.max(0,Math.ceil((G.deadline-Date.now())/1000));
+    const e=$('hostTimer');e.textContent=r;e.classList.toggle('warn',r<=5);
+    if(r<=5&&r!==lt&&r>0){lt=r;sTick()}
+    if(r<=0){clearInterval(G.timerId);hRev()}
+  },200);
 }
-
-function hostNextQuestion(){
-  G.currentQ++;
-  if(G.currentQ >= G.questions.length){ hostEndGame(); return; }
-  
-  const q = G.questions[G.currentQ];
-  G.gameState = 'playing';
-  G.deadline = Date.now() + q.timeLimit * 1000;
-  
-  $('hostQNum').textContent = G.currentQ + 1;
-  $('hostAnswered').textContent = '0';
-  $('hostNextBtn').style.display = 'none';
-  
-  const publicQ = {
-    type: 'question',
-    index: G.currentQ,
-    text: q.text,
-    sub: q.sub,
-    options: q.options.map(o => o.text),
-    timeLimit: q.timeLimit,
-    totalQuestions: G.questions.length,
-    deadline: G.deadline,
-  };
-  Object.values(G.playerConns).forEach(c => { try { c.send(publicQ); } catch(e){} });
-  
-  clearInterval(G.timerId);
-  let lastTick = -1;
-  G.timerId = setInterval(() => {
-    if(G.gameState === 'paused') return;
-    const remain = Math.max(0, Math.ceil((G.deadline - Date.now())/1000));
-    const el = $('hostTimer');
-    el.textContent = remain;
-    el.classList.toggle('warn', remain <= 5);
-    if(remain <= 5 && remain !== lastTick && remain > 0){
-      lastTick = remain;
-      sfxTick();
-    }
-    if(remain <= 0){
-      clearInterval(G.timerId);
-      hostReveal();
-    }
-  }, 200);
+function hRev(){
+  if(G.gameState!=='playing')return;
+  G.gameState='reveal';clearInterval(G.timerId);
+  const q=G.questions[G.currentQ];
+  Object.values(G.playerConns).forEach(c=>{try{c.send({type:'reveal',correct:q.correct})}catch(e){}});
+  updTug();
+  if(G.ropePosition<=0||G.ropePosition>=100){setTimeout(hEnd,1500);return}
+  const b=$('hostNextBtn');b.style.display='inline-block';
+  b.textContent=(G.currentQ+1>=G.questions.length)?'🏆 ดูผล':'ข้อถัดไป ▶';
 }
+function hostPause(){sc();if(G.gameState==='paused'){G.gameState='playing';G.deadline=Date.now()+(G.remMs||0);$('pauseBtn').textContent='⏸ พัก';clearInterval(G.timerId);
+  G.timerId=setInterval(()=>{if(G.gameState==='paused')return;const r=Math.max(0,Math.ceil((G.deadline-Date.now())/1000));$('hostTimer').textContent=r;if(r<=0){clearInterval(G.timerId);hRev()}},200)}
+  else{G.remMs=Math.max(0,G.deadline-Date.now());G.gameState='paused';$('pauseBtn').textContent='▶ เล่นต่อ';clearInterval(G.timerId)}
+  Object.values(G.playerConns).forEach(c=>{try{c.send({type:'pause',paused:G.gameState==='paused'})}catch(e){}})}
+function hostAddT(s){sc();G.deadline+=s*1000;toast(`+${s} วินาที`,1500)}
+function hostStop(){if(!confirm('หยุดและจบเลย?'))return;hEnd()}
 
-function hostReveal(){
-  if(G.gameState !== 'playing') return;
-  G.gameState = 'reveal';
-  clearInterval(G.timerId);
-  
-  const q = G.questions[G.currentQ];
-  Object.values(G.playerConns).forEach(c => {
-    try { c.send({ type: 'reveal', correct: q.correct }); } catch(e){}
-  });
-  
-  updateTugOfWar(true);
-  
-  if(G.ropePosition <= 0 || G.ropePosition >= 100){
-    setTimeout(() => hostEndGame(), 1500);
-    return;
+/* ═══ TUG OF WAR ═══ */
+function updTug(){
+  if(G.config.mode==='team'){
+    let a=0,b=0;Object.values(G.players).forEach(p=>{if(p.blocked)return;if(p.team==='A')a+=p.score;if(p.team==='B')b+=p.score});
+    G.leftScore=a;G.rightScore=b;const t=a+b;
+    G.ropePosition=t===0?50:Math.max(2,Math.min(98,50+((a-b)/Math.max(t,500))*40));
+  }else{
+    const act=Object.values(G.players).filter(p=>!p.blocked).sort((a,b)=>b.score-a.score);
+    const t=act[0]?act[0].score:0,s=act[1]?act[1].score:0;
+    G.leftScore=t;G.rightScore=s;
+    G.ropePosition=t===0?50:Math.max(2,Math.min(98,50+((t-s)/Math.max(t,500))*40));
   }
-  
-  const btn = $('hostNextBtn');
-  btn.style.display = 'inline-block';
-  btn.textContent = (G.currentQ + 1 >= G.questions.length) ? '🏆 ดูผลสุดท้าย' : 'ข้อถัดไป ▶';
+  renderArena();
+  Object.values(G.playerConns).forEach(c=>{try{c.send({type:'rope',pos:G.ropePosition,left:G.leftScore,right:G.rightScore})}catch(e){}});
 }
-
-function hostTogglePause(){
-  sfxClick();
-  if(G.gameState === 'paused'){
-    G.gameState = 'playing';
-    G.deadline = Date.now() + (G.remainingMs || 0);
-    $('pauseBtn').textContent = '⏸ พัก';
-    clearInterval(G.timerId);
-    G.timerId = setInterval(() => {
-      if(G.gameState === 'paused') return;
-      const remain = Math.max(0, Math.ceil((G.deadline - Date.now())/1000));
-      $('hostTimer').textContent = remain;
-      if(remain <= 0){ clearInterval(G.timerId); hostReveal(); }
-    }, 200);
-  } else {
-    G.remainingMs = Math.max(0, G.deadline - Date.now());
-    G.gameState = 'paused';
-    $('pauseBtn').textContent = '▶ เล่นต่อ';
-    clearInterval(G.timerId);
-  }
-  Object.values(G.playerConns).forEach(c => {
-    try { c.send({ type: 'pause', paused: G.gameState === 'paused' }); } catch(e){}
-  });
-}
-function hostAddTime(sec){
-  sfxClick();
-  G.deadline += sec * 1000;
-  toast(`+${sec} วินาที`, 1500);
-}
-function hostStopGame(){
-  if(!confirm('หยุดเกมและจบเลยหรือไม่?')) return;
-  hostEndGame();
-}
-
-/* ═════ TUG OF WAR ═════ */
-function updateTugOfWar(){
-  if(G.config.mode === 'team'){
-    let sumA = 0, sumB = 0;
-    Object.values(G.players).forEach(p => {
-      if(p.blocked) return;
-      if(p.team === 'A') sumA += p.score;
-      if(p.team === 'B') sumB += p.score;
-    });
-    G.leftScore = sumA;
-    G.rightScore = sumB;
-    const total = sumA + sumB;
-    if(total === 0) G.ropePosition = 50;
-    else G.ropePosition = 50 + ((sumA - sumB) / Math.max(total, 500)) * 40;
-    G.ropePosition = Math.max(2, Math.min(98, G.ropePosition));
-  } else {
-    const active = Object.values(G.players).filter(p => !p.blocked);
-    const sorted = active.slice().sort((a,b) => b.score - a.score);
-    const top = sorted[0] ? sorted[0].score : 0;
-    const second = sorted[1] ? sorted[1].score : 0;
-    G.leftScore = top;
-    G.rightScore = second;
-    if(top === 0) G.ropePosition = 50;
-    else G.ropePosition = 50 + ((top - second) / Math.max(top, 500)) * 40;
-    G.ropePosition = Math.max(2, Math.min(98, G.ropePosition));
-  }
-  renderHostArena();
-  Object.values(G.playerConns).forEach(c => {
-    try { c.send({ type: 'rope', pos: G.ropePosition, left: G.leftScore, right: G.rightScore }); } catch(e){}
-  });
-}
-
-function renderHostArena(){
-  const wrap = $('arenaWrap');
-  if(!wrap) return;
-  
-  if(G.config.mode === 'team'){
-    const playersA = Object.values(G.players).filter(p => !p.blocked && p.team === 'A');
-    const playersB = Object.values(G.players).filter(p => !p.blocked && p.team === 'B');
-    wrap.innerHTML = `
-      <div class="arena">
-        <div class="rope-track">
-          <div class="rope-knot" id="ropeKnot" style="left:${G.ropePosition}%">🪢</div>
-        </div>
-        <div class="arena-sides">
-          <div class="side left">
-            <div class="side-name">🟢 ทีม A</div>
-            <div class="side-score">${G.leftScore}</div>
-            <div class="side-members">${playersA.map(p => `<span class="side-member" title="${esc(p.name)}">${esc(p.avatar)}</span>`).join('')}</div>
-          </div>
-          <div class="side right">
-            <div class="side-name">🔴 ทีม B</div>
-            <div class="side-score">${G.rightScore}</div>
-            <div class="side-members">${playersB.map(p => `<span class="side-member" title="${esc(p.name)}">${esc(p.avatar)}</span>`).join('')}</div>
-          </div>
-        </div>
-      </div>`;
-  } else {
-    const active = Object.values(G.players).filter(p => !p.blocked);
-    const sorted = active.slice().sort((a,b) => b.score - a.score).slice(0, 10);
-    const maxScore = Math.max(100, ...sorted.map(p => p.score));
-    const rows = sorted.map(p => {
-      const pct = Math.min(100, (p.score / maxScore) * 100);
+function renderArena(){
+  const w=$('arenaWrap');if(!w)return;
+  if(G.config.mode==='team'){
+    const pA=Object.values(G.players).filter(p=>!p.blocked&&p.team==='A');
+    const pB=Object.values(G.players).filter(p=>!p.blocked&&p.team==='B');
+    w.innerHTML=`<div class="arena"><div class="rope-track"><div class="rope-knot" style="left:${G.ropePosition}%">🪢</div></div>
+      <div class="arena-sides">
+        <div class="side left"><div class="side-name">🟢 ทีม A</div><div class="side-score">${G.leftScore}</div>
+          <div class="side-members">${pA.map(p=>`<span class="side-member">${esc(p.avatar)}</span>`).join('')}</div></div>
+        <div class="side right"><div class="side-name">🔴 ทีม B</div><div class="side-score">${G.rightScore}</div>
+          <div class="side-members">${pB.map(p=>`<span class="side-member">${esc(p.avatar)}</span>`).join('')}</div></div>
+      </div></div>`;
+  }else{
+    const act=Object.values(G.players).filter(p=>!p.blocked).sort((a,b)=>b.score-a.score).slice(0,10);
+    const mx=Math.max(100,...act.map(p=>p.score));
+    const rows=act.map(p=>{const pct=Math.min(100,(p.score/mx)*100);
       return `<div style="display:flex;align-items:center;gap:8px;margin:6px 0">
         <span style="font-size:1.3rem;min-width:28px">${esc(p.avatar)}</span>
         <span style="min-width:100px;font-weight:800;font-size:.85rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(p.name)}</span>
         <div style="flex:1;height:20px;background:rgba(45,27,78,.6);border-radius:10px;overflow:hidden">
-          <div style="height:100%;width:${pct}%;background:linear-gradient(90deg,#a855f7,#f97316);transition:width .5s;box-shadow:0 0 15px rgba(249,115,22,.6)"></div>
-        </div>
-        <span style="font-family:'Courier New',monospace;font-weight:900;color:#4ade80;min-width:60px;text-align:right">${p.score}</span>
-      </div>`;
-    }).join('');
-    wrap.innerHTML = `
-      <div class="arena">
-        <h3 style="text-align:center;margin-bottom:10px">🏁 เดี่ยว · Top 10</h3>
-        ${rows || '<p style="text-align:center;color:#7c6fa8">ยังไม่มีผู้เล่น</p>'}
-      </div>`;
+          <div style="height:100%;width:${pct}%;background:linear-gradient(90deg,#a855f7,#f97316);transition:width .5s"></div></div>
+        <span style="font-family:monospace;font-weight:900;color:#4ade80;min-width:60px;text-align:right">${p.score}</span>
+      </div>`}).join('');
+    w.innerHTML=`<div class="arena"><h3 style="text-align:center;margin-bottom:10px">🏁 เดี่ยว · Top 10</h3>${rows||'<p style="text-align:center;color:#7c6fa8">ยังไม่มีผู้เล่น</p>'}</div>`;
   }
 }
+function rLB(){const w=$('hostLeaderboard');if(!w)return;
+  const l=Object.values(G.players).filter(p=>!p.blocked).sort((a,b)=>b.score-a.score).slice(0,10);
+  w.innerHTML=l.map((p,i)=>{const r=i+1;const c=r===1?'top1':r===2?'top2':r===3?'top3':'';
+    const m=r===1?'🥇':r===2?'🥈':r===3?'🥉':`${r}.`;
+    const t=p.team?` <span style="color:#86efac;font-size:.75rem">[${esc(p.team)}]</span>`:'';
+    return `<div class="lb-row ${c}"><span class="lb-rank">${m}</span><span class="lb-av">${esc(p.avatar)}</span><span class="lb-name">${esc(p.name)}${t}</span><span class="lb-score">${p.score}</span></div>`}).join('')}
+function updAns(){const a=Object.values(G.players).filter(p=>!p.blocked&&p.answers[G.currentQ]!==undefined).length;$('hostAnswered').textContent=a}
 
-function renderHostLeaderboard(){
-  const wrap = $('hostLeaderboard');
-  if(!wrap) return;
-  const list = Object.values(G.players).filter(p => !p.blocked).sort((a,b) => b.score - a.score).slice(0, 10);
-  wrap.innerHTML = list.map((p, i) => {
-    const rank = i + 1;
-    const cls = rank === 1 ? 'top1' : rank === 2 ? 'top2' : rank === 3 ? 'top3' : '';
-    const medal = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : `${rank}.`;
-    const teamTag = p.team ? ` <span style="color:#86efac;font-size:.75rem">[${esc(p.team)}]</span>` : '';
-    return `<div class="lb-row ${cls}">
-      <span class="lb-rank">${medal}</span>
-      <span class="lb-av">${esc(p.avatar)}</span>
-      <span class="lb-name">${esc(p.name)}${teamTag}</span>
-      <span class="lb-score">${p.score}</span>
-    </div>`;
-  }).join('');
+/* ═══ HOST END ═══ */
+function hEnd(){G.gameState='ended';clearInterval(G.timerId);
+  const l=Object.values(G.players).filter(p=>!p.blocked).sort((a,b)=>b.score-a.score);
+  const rank=l.map((p,i)=>({name:p.name,avatar:p.avatar,score:p.score,rank:i+1}));
+  Object.values(G.playerConns).forEach(c=>{try{c.send({type:'end',ranking:rank})}catch(e){}});
+  rPodium(rank);go('scHostPodium');sFin();
+}
+function rPodium(rank){
+  const st=$('podiumStage');const t3=rank.slice(0,3);
+  const ord=[1,0,2],cl=['p2','p1','p3'],md=['2','1','3'];
+  st.innerHTML=ord.map((idx,i)=>{const p=t3[idx];
+    if(!p)return `<div class="podium-place ${cl[i]}"><span class="podium-avatar">❓</span><div class="podium-name">-</div><div class="podium-score">0</div><div class="podium-base">${md[i]}</div></div>`;
+    return `<div class="podium-place ${cl[i]}"><span class="podium-avatar">${esc(p.avatar)}</span>
+      <div class="podium-name">${esc(p.name)}</div><div class="podium-score">${p.score}</div>
+      <div class="podium-base">${md[i]}</div></div>`}).join('');
+  const hon=rank.slice(3,5);
+  $('honorableList').innerHTML=hon.length?hon.map(p=>`<div class="honorable-item"><span class="rank">#${p.rank}</span><span class="av">${esc(p.avatar)}</span><span>${esc(p.name)}</span><span class="score">${p.score}</span></div>`).join(''):'<p style="color:#7c6fa8">ไม่มี</p>';
 }
 
-function updateHostAnswered(){
-  const answered = Object.values(G.players).filter(p => !p.blocked && p.answers[G.currentQ] !== undefined).length;
-  $('hostAnswered').textContent = answered;
-}
-
-/* ═════ HOST END ═════ */
-function hostEndGame(){
-  G.gameState = 'ended';
-  clearInterval(G.timerId);
-  
-  const list = Object.values(G.players).filter(p => !p.blocked).sort((a,b) => b.score - a.score);
-  const ranking = list.map((p, i) => ({ name: p.name, avatar: p.avatar, score: p.score, rank: i+1 }));
-  Object.values(G.playerConns).forEach(c => {
-    try { c.send({ type: 'end', ranking }); } catch(e){}
-  });
-  
-  renderHostPodium(ranking);
-  showScreen('scHostPodium');
-  sfxFinish();
-}
-
-function renderHostPodium(ranking){
-  const stage = $('podiumStage');
-  const top3 = ranking.slice(0, 3);
-  const order = [1, 0, 2];
-  const classes = ['p2', 'p1', 'p3'];
-  const medals = ['2', '1', '3'];
-  stage.innerHTML = order.map((idx, i) => {
-    const p = top3[idx];
-    const cls = classes[i];
-    const medal = medals[i];
-    if(!p){
-      return `<div class="podium-place ${cls}">
-        <span class="podium-avatar">❓</span>
-        <div class="podium-name">-</div>
-        <div class="podium-score">0</div>
-        <div class="podium-base">${medal}</div>
-      </div>`;
-    }
-    return `<div class="podium-place ${cls}">
-      <span class="podium-avatar">${esc(p.avatar)}</span>
-      <div class="podium-name">${esc(p.name)}</div>
-      <div class="podium-score">${p.score}</div>
-      <div class="podium-base">${medal}</div>
-    </div>`;
-  }).join('');
-  
-  const hon = ranking.slice(3, 5);
-  const honList = $('honorableList');
-  honList.innerHTML = hon.length ? hon.map(p => `
-    <div class="honorable-item">
-      <span class="rank">#${p.rank}</span>
-      <span class="av">${esc(p.avatar)}</span>
-      <span>${esc(p.name)}</span>
-      <span class="score">${p.score}</span>
-    </div>
-  `).join('') : '<p style="color:#7c6fa8">ไม่มี</p>';
-}
-
-/* ═════ PLAYER ═════ */
-function renderAvatarPicker(){
-  const grid = $('avatarGrid');
-  if(!grid) return;
-  grid.innerHTML = AVATARS.map((a, i) => 
-    `<button class="avatar-btn${i===0?' active':''}" data-a="${a}" onclick="selectAvatar(this)">${a}</button>`
-  ).join('');
-}
-function selectAvatar(btn){
-  sfxClick();
-  document.querySelectorAll('.avatar-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  G.myAvatar = btn.dataset.a;
-}
-
+/* ═══ PLAYER ═══ */
+function renderAv(){const g=$('avatarGrid');if(!g)return;
+  g.innerHTML=AV.map((a,i)=>`<button class="avatar-btn${i===0?' active':''}" data-a="${a}" onclick="selAv(this)">${a}</button>`).join('')}
+function selAv(b){sc();document.querySelectorAll('.avatar-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');G.myAvatar=b.dataset.a}
 function playerJoin(){
-  const code = $('joinRoomInput').value.trim().toUpperCase();
-  const name = $('joinNameInput').value.trim();
-  if(code.length !== 4){ $('joinMsg').textContent = '⚠️ รหัสห้องต้อง 4 ตัวอักษร'; return; }
-  if(!name){ $('joinMsg').textContent = '⚠️ กรุณาใส่ชื่อ'; return; }
-  
-  G.role = 'player';
-  G.myName = name;
-  G.roomCode = code;
-  
-  $('joinBtn').disabled = true;
-  $('joinMsg').textContent = '⏳ กำลังเชื่อมต่อ...';
-  $('joinMsg').style.color = '#c4b5fd';
-  
-  // ⭐ PeerJS with STUN servers
-  const peerConfig = {
-    debug: 1,
-    config: {
-      iceServers: [
-        { urls: 'stun:stun.l.google.com:19302' },
-        { urls: 'stun:stun1.l.google.com:19302' },
-        { urls: 'stun:stun2.l.google.com:19302' },
-        { urls: 'stun:stun3.l.google.com:19302' },
-        { urls: 'stun:stun4.l.google.com:19302' },
-        { urls: 'stun:global.stun.twilio.com:3478' }
-      ],
-      iceCandidatePoolSize: 10,
-    },
-    serialization: 'json',
-  };
-  
-  G.peer = new Peer(peerConfig);
-  
-  G.peer.on('open', (myId) => {
-    G.myPlayerId = myId;
-    console.log('[Player] My ID:', myId);
-    console.log('[Player] Connecting to host: tug-' + code);
-    
-    G.hostConn = G.peer.connect('tug-' + code, { reliable: true });
-    
-    G.hostConn.on('open', () => {
-      console.log('[Player] ✅ Connected to host');
-      G.hostConn.send({ type: 'join', name, avatar: G.myAvatar });
-      $('joinMsg').textContent = '';
-      showScreen('scPlayerWait');
-      $('waitName').textContent = name;
-      $('waitAvatar').textContent = G.myAvatar;
-      sfxJoin();
-    });
-    
-    G.hostConn.on('data', handleHostMsg);
-    
-    G.hostConn.on('error', (err) => {
-      console.error('[Player] Conn error:', err);
-      $('joinMsg').textContent = '❌ เชื่อมต่อไม่ได้';
-      $('joinMsg').style.color = '#f87171';
-      $('joinBtn').disabled = false;
-    });
-    
-    G.hostConn.on('close', () => {
-      console.warn('[Player] Host disconnected');
-    });
-  });
-  
-  G.peer.on('error', (err) => {
-    console.error('[Player] Peer error:', err);
-    if(err.type === 'peer-unavailable'){
-      $('joinMsg').textContent = '❌ ไม่พบห้อง หรือรหัสผิด';
-    } else {
-      $('joinMsg').textContent = '❌ ข้อผิดพลาด: ' + err.type;
-    }
-    $('joinMsg').style.color = '#f87171';
-    $('joinBtn').disabled = false;
-  });
-  
-  setTimeout(() => {
-    if(G.hostConn && !G.hostConn.open && $('joinBtn').disabled){
-      $('joinMsg').textContent = '⏰ เชื่อมต่อหมดเวลา ลองใหม่';
-      $('joinMsg').style.color = '#f87171';
-      $('joinBtn').disabled = false;
-    }
-  }, 15000);
+  const code=$('joinCode').value.trim().toUpperCase();const name=$('joinName').value.trim();
+  if(code.length!==4){$('joinMsg').textContent='⚠️ รหัส 4 ตัว';return}
+  if(!name){$('joinMsg').textContent='⚠️ ใส่ชื่อด้วย';return}
+  G.role='player';G.myName=name;G.roomCode=code;
+  $('joinBtn').disabled=true;$('joinMsg').textContent='⏳ เชื่อมต่อ...';$('joinMsg').style.color='#c4b5fd';
+  G.peer=new Peer({debug:1,config:{iceServers:[{urls:'stun:stun.l.google.com:19302'},{urls:'stun:stun1.l.google.com:19302'},{urls:'stun:stun2.l.google.com:19302'},{urls:'stun:stun3.l.google.com:19302'},{urls:'stun:stun4.l.google.com:19302'},{urls:'stun:global.stun.twilio.com:3478'}],iceCandidatePoolSize:10}});
+  G.peer.on('open',(id)=>{G.myPlayerId=id;G.hostConn=G.peer.connect('tug-'+code,{reliable:true});
+    G.hostConn.on('open',()=>{G.hostConn.send({type:'join',name,avatar:G.myAvatar});
+      $('joinMsg').textContent='';go('scPlayerWait');$('waitName').textContent=name;$('waitAvatar').textContent=G.myAvatar;sJoin()});
+    G.hostConn.on('data',hHM);
+    G.hostConn.on('error',()=>{$('joinMsg').textContent='❌ เชื่อมต่อไม่ได้';$('joinMsg').style.color='#f87171';$('joinBtn').disabled=false})});
+  G.peer.on('error',(e)=>{if(e.type==='peer-unavailable')$('joinMsg').textContent='❌ ไม่พบห้อง';else $('joinMsg').textContent='❌ '+e.type;
+    $('joinMsg').style.color='#f87171';$('joinBtn').disabled=false});
+  setTimeout(()=>{if(G.hostConn&&!G.hostConn.open&&$('joinBtn').disabled){$('joinMsg').textContent='⏰ หมดเวลา';$('joinMsg').style.color='#f87171';$('joinBtn').disabled=false}},15000);
 }
-
-function handleHostMsg(data){
-  if(!data || typeof data !== 'object') return;
-  console.log('[Player] From host:', data.type);
-  switch(data.type){
-    case 'welcome': break;
-    case 'blocked':
-      toast('🚫 ครูบล็อกคุณก่อนเริ่มเกม');
-      break;
-    case 'unblocked':
-      toast('✅ ครูปลดบล็อกแล้ว');
-      break;
-    case 'start':
-      G.config.mode = data.mode;
-      playerShowCountdown(() => {
-        $('pQTotal').textContent = data.totalQuestions;
-        $('pScore').textContent = '0';
-        G.myScore = 0;
-        showScreen('scPlayerQ');
-      });
-      break;
-    case 'question': playerShowQuestion(data); break;
-    case 'reveal': playerReveal(data.correct); break;
-    case 'result': playerResult(data); break;
-    case 'pause': toast(data.paused ? '⏸ หยุดชั่วคราว' : '▶ เล่นต่อ'); break;
-    case 'end': playerEnd(data.ranking); break;
+function hHM(d){
+  if(!d)return;
+  switch(d.type){
+    case 'blocked':toast('🚫 ครูล็อก');break;
+    case 'unblocked':toast('✅ ปลดล็อก');break;
+    case 'start':G.config.mode=d.mode;pCnt(()=>{$('pQTotal').textContent=d.totalQuestions;$('pScore').textContent='0';G.myScore=0;go('scPlayerQ')});break;
+    case 'question':pQ(d);break;
+    case 'reveal':pRev(d.correct);break;
+    case 'result':pRes(d);break;
+    case 'pause':toast(d.paused?'⏸ หยุด':'▶ เล่นต่อ');break;
+    case 'end':pEnd(d.ranking);break;
   }
 }
-
-function playerShowCountdown(cb){
-  showScreen('scPlayerCountdown');
-  let n = 3;
-  const el = $('countdownNum');
-  el.textContent = n;
-  sfxCountdown();
-  const t = setInterval(() => {
-    n--;
-    if(n <= 0){ clearInterval(t); sfxCountdownGo(); if(cb) cb(); }
-    else {
-      el.textContent = n;
-      sfxCountdown();
-      el.style.animation = 'none';
-      void el.offsetWidth;
-      el.style.animation = 'countPulse 1s infinite';
-    }
-  }, 1000);
+function pCnt(cb){go('scPlayerCountdown');let c=3;const el=$('countdownNum');el.textContent=c;sCd();
+  const t=setInterval(()=>{c--;if(c<=0){clearInterval(t);sCdGo();cb()}else{el.textContent=c;sCd();el.style.animation='none';void el.offsetWidth;el.style.animation='cp 1s infinite'}},1000)}
+let pTimer=null;
+function pQ(d){
+  go('scPlayerQ');$('pQNum').textContent=d.index+1;$('pQTotal').textContent=d.totalQuestions;
+  $('pQText').textContent=d.text;$('pQSub').textContent=d.sub||'';
+  $('pFeedback').classList.remove('show','correct','wrong');
+  const g=$('pAnswersGrid');const sy=['▲','◆','●','■'],cl=['a0','a1','a2','a3'];
+  g.innerHTML=d.options.map((o,i)=>`<button class="ans-btn ${cl[i]}" onclick="pAns(${i},this)"><span class="symbol">${sy[i]}</span><span>${esc(o)}</span></button>`).join('');
+  clearInterval(pTimer);
+  pTimer=setInterval(()=>{const r=Math.max(0,Math.ceil((d.deadline-Date.now())/1000));const el=$('pTimer');el.textContent=r;el.classList.toggle('warn',r<=5);if(r<=0)clearInterval(pTimer)},200);
+  $('pTimer').textContent=d.timeLimit;
 }
+function pAns(c,b){if(b.disabled)return;sc();document.querySelectorAll('.ans-btn').forEach(x=>x.disabled=true);b.style.transform='scale(1.05)';
+  try{G.hostConn.send({type:'answer',choice:c})}catch(e){}}
+function pRes(d){const fb=$('pFeedback');fb.classList.remove('correct','wrong');void fb.offsetWidth;
+  if(d.correct){fb.classList.add('show','correct');$('pFbEmoji').textContent=d.streak>=3?'🔥':'✅';
+    $('pFbText').textContent=d.streak>=3?`ติดกัน x${d.streak}!`:'ถูก!';$('pFbPts').textContent=`+${d.points}`;sCor()}
+  else{fb.classList.add('show','wrong');$('pFbEmoji').textContent='❌';$('pFbText').textContent='ผิด!';$('pFbPts').textContent='+0';sWr()}
+  G.myScore=d.totalScore;$('pScore').textContent=G.myScore}
+function pRev(ci){clearInterval(pTimer);document.querySelectorAll('.ans-btn').forEach((b,i)=>{
+  if(i===ci){if(!b.classList.contains('correct')&&!b.style.transform)b.classList.add('correct')}
+  else if(b.style.transform)b.classList.add('fade')})}
+function pEnd(rank){go('scPlayerEnd');const me=rank.find(r=>r.name===G.myName);
+  $('pFinalScore').textContent=G.myScore;$('pFinalRank').textContent=me?`อันดับ #${me.rank}`:'ขอบคุณ!';sFin()}
 
-let playerTimerId = null;
-function playerShowQuestion(data){
-  showScreen('scPlayerQ');
-  $('pQNum').textContent = data.index + 1;
-  $('pQTotal').textContent = data.totalQuestions;
-  $('pQuestionText').textContent = data.text;
-  $('pQuestionSub').textContent = data.sub || '';
-  
-  const fb = $('pFeedback');
-  fb.classList.remove('show', 'correct', 'wrong');
-  
-  const grid = $('pAnswersGrid');
-  const symbols = ['▲', '◆', '●', '■'];
-  const classes = ['a0','a1','a2','a3'];
-  grid.innerHTML = data.options.map((opt, i) => 
-    `<button class="ans-btn ${classes[i]}" data-i="${i}" onclick="playerAnswer(${i}, this)">
-      <span class="symbol">${symbols[i]}</span>
-      <span>${esc(opt)}</span>
-    </button>`
-  ).join('');
-  
-  clearInterval(playerTimerId);
-  playerTimerId = setInterval(() => {
-    const remain = Math.max(0, Math.ceil((data.deadline - Date.now())/1000));
-    const el = $('pTimer');
-    el.textContent = remain;
-    el.classList.toggle('warn', remain <= 5);
-    if(remain <= 0) clearInterval(playerTimerId);
-  }, 200);
-  $('pTimer').textContent = data.timeLimit;
-}
-
-function playerAnswer(choice, btn){
-  if(btn.disabled) return;
-  sfxClick();
-  document.querySelectorAll('.ans-btn').forEach(b => b.disabled = true);
-  btn.style.transform = 'scale(1.05)';
-  try { G.hostConn.send({ type: 'answer', choice }); } catch(e){}
-}
-
-function playerResult(data){
-  const fb = $('pFeedback');
-  fb.classList.remove('correct', 'wrong');
-  void fb.offsetWidth;
-  if(data.correct){
-    fb.classList.add('show', 'correct');
-    $('pFbEmoji').textContent = data.streak >= 3 ? '🔥' : '✅';
-    $('pFbText').textContent = data.streak >= 3 ? `ตอบถูกติดกัน x${data.streak}!` : 'ถูกต้อง!';
-    $('pFbPts').textContent = `+${data.points}`;
-    sfxCorrect();
-  } else {
-    fb.classList.add('show', 'wrong');
-    $('pFbEmoji').textContent = '❌';
-    $('pFbText').textContent = 'ผิด!';
-    $('pFbPts').textContent = `+0`;
-    sfxWrong();
-  }
-  G.myScore = data.totalScore;
-  $('pScore').textContent = G.myScore;
-}
-
-function playerReveal(correctIdx){
-  clearInterval(playerTimerId);
-  const btns = document.querySelectorAll('.ans-btn');
-  btns.forEach((b, i) => {
-    if(i === correctIdx){
-      if(!b.classList.contains('correct') && !b.style.transform){
-        b.classList.add('correct');
-      }
-    } else if(b.style.transform){
-      b.classList.add('fade');
-    }
-  });
-}
-
-function playerEnd(ranking){
-  showScreen('scPlayerEnd');
-  const me = ranking.find(r => r.name === G.myName);
-  $('pFinalScore').textContent = G.myScore;
-  if(me) $('pFinalRank').textContent = `อันดับ #${me.rank}`;
-  else $('pFinalRank').textContent = 'ขอบคุณที่เล่น!';
-  sfxFinish();
-}
-
-/* ═════ INIT ═════ */
-renderGradeChips();
-renderAvatarPicker();
-
-// Auto-fill code from URL
-{
-  const params = new URLSearchParams(location.search);
-  const code = params.get('code');
-  if(code && code.length === 4){
-    setTimeout(() => {
-      const el = $('joinRoomInput');
-      if(el) el.value = code.toUpperCase();
-      showScreen('scPlayerJoin');
-    }, 100);
-  }
-}
-
-// Auto-uppercase code
-document.addEventListener('input', (e) => {
-  if(e.target.id === 'joinRoomInput'){
-    e.target.value = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
-  }
-});
-
-// Start BGM on first interaction
-document.addEventListener('touchstart', () => { initAudio(); startBGM(); }, { once: true, passive: true });
-document.addEventListener('click', () => { initAudio(); startBGM(); }, { once: true });
-
-console.log('🎃 Tug of War v2 loaded · Multi-player fix · Sound effects · Word picker');
+/* ═══ INIT ═══ */
+renderGrades();renderAv();
+{const p=new URLSearchParams(location.search);const c=p.get('code');
+  if(c&&c.length===4){setTimeout(()=>{const el=$('joinCode');if(el)el.value=c.toUpperCase();go('scPlayerJoin')},100)}}
+document.addEventListener('input',(e)=>{if(e.target.id==='joinCode')e.target.value=e.target.value.toUpperCase().replace(/[^A-Z0-9]/g,'')});
+document.addEventListener('touchstart',()=>{iA();startBGM()},{once:true,passive:true});
+document.addEventListener('click',()=>{iA();startBGM()},{once:true});
+console.log('🎃 Tug of War v4 · Full vocab');
 </script>
 </body>
 </html>
