@@ -346,19 +346,20 @@ h1{font-size:1.7rem}.room-code{font-size:2.6rem;letter-spacing:6px}.timer-big{fo
 
 <div class="toast" id="toast"></div>
 
-<script src="https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js"></script>
+<!-- ⭐ MQTT -->
+<script src="https://unpkg.com/mqtt@5.3.0/dist/mqtt.min.js"></script>
 <script>
 /* ═══════════════════════════════════════════
    VOCAB DATA — คำศัพท์ครบทุกชั้น
    ═══════════════════════════════════════════ */
 const VOCAB_DATA = {
 p1:`ant|มด
-apple|แอ๊ปเปิ้ล
+apple|แอปเปิ้ล
 bag|กระเป๋า,ย่าม
 ball|ลูกบอล
 banana|กล้วย
 bat|ค้างคาว
-bean|ต้นถั่ว,ฝักถั่ว
+bean|ต้นถั่ว,ฝักถั่ว,ถั่ว
 bear|หมี
 bee|ผึ้ง
 big|ใหญ่
@@ -1679,7 +1680,7 @@ ninetieth|ลำดับที่เก้าสิบ
 one hundredth|ลำดับที่หนึ่งร้อย
 one thousandth|ลำดับที่หนึ่งพัน`
 };
-
+  
 /* ═══════════════════════════════════════════
    PARSE VOCAB
    ═══════════════════════════════════════════ */
@@ -1696,7 +1697,7 @@ POOLS.all=[];
 {const s=new Set();for(const k in POOLS){if(k==='all')continue;POOLS[k].forEach(w=>{if(!s.has(w.en.toLowerCase())){s.add(w.en.toLowerCase());POOLS.all.push(w)}})}}
 
 /* ═══ CUSTOM WORDS ═══ */
-const CK='tug_custom_v8';
+const CK='tug_custom_v10';
 let CW={};
 try{const s=localStorage.getItem(CK);CW=s?JSON.parse(s):{};if(typeof CW!=='object')CW={}}catch(e){CW={}}
 function saveCW(){try{localStorage.setItem(CK,JSON.stringify(CW))}catch(e){}}
@@ -1724,46 +1725,40 @@ function sCd(){iA();bel(880,0,0.35,0.12)}
 function sCdGo(){iA();bel(1320,0,0.5,0.16);org(440,0.05,0.4,0.14)}
 function sJoin(){iA();bel(1760,0,0.4,0.1);bel(2093,0.08,0.35,0.08)}
 function sTick(){iA();t(1200,0,0.03,'sine',0.06)}
-
-/* BGM */
 const BT=[440,392,440,349.23,329.63,349.23,392,440,392,349.23,329.63,293.66,329.63,349.23,329.63,293.66,261.63,293.66,329.63,349.23,329.63,293.66,261.63,246.94,220,246.94,261.63,293.66,329.63,293.66,261.63,246.94];
 const BB=[110,87.31,98,82.41];
 let bgm=null,bgT=null,bgS=0,bgOn=false;
 function bgmTick(){
   if(!bgm||!ac)return;
-  const t0=ac.currentTime+0.06;
-  const n=BT[bgS%BT.length];
-  [1,2,3,4].forEach((m,i)=>{
-    const o=ac.createOscillator();o.type='sine';o.frequency.value=n*m;
-    const g=ac.createGain();const v=0.06/(i+1.4);
-    g.gain.setValueAtTime(0.0001,t0);
-    g.gain.exponentialRampToValueAtTime(v,t0+0.06);
-    g.gain.exponentialRampToValueAtTime(v*0.5,t0+0.375);
-    g.gain.exponentialRampToValueAtTime(0.0001,t0+0.75);
-    o.connect(g);g.connect(bgm.master);o.start(t0);o.stop(t0+0.8)
-  });
-  if(bgS%8===0){
-    const b=BB[(Math.floor(bgS/8))%BB.length];
-    const o=ac.createOscillator(),g=ac.createGain();
-    o.type='sine';o.frequency.value=b;
-    g.gain.setValueAtTime(0.0001,t0);
-    g.gain.exponentialRampToValueAtTime(0.05,t0+0.08);
-    g.gain.exponentialRampToValueAtTime(0.0001,t0+3);
-    o.connect(g);g.connect(bgm.master);o.start(t0);o.stop(t0+3.1)
-  }
+  const t0=ac.currentTime+0.06;const n=BT[bgS%BT.length];
+  [1,2,3,4].forEach((m,i)=>{const o=ac.createOscillator();o.type='sine';o.frequency.value=n*m;const g=ac.createGain();const v=0.06/(i+1.4);g.gain.setValueAtTime(0.0001,t0);g.gain.exponentialRampToValueAtTime(v,t0+0.06);g.gain.exponentialRampToValueAtTime(v*0.5,t0+0.375);g.gain.exponentialRampToValueAtTime(0.0001,t0+0.75);o.connect(g);g.connect(bgm.master);o.start(t0);o.stop(t0+0.8)});
+  if(bgS%8===0){const b=BB[(Math.floor(bgS/8))%BB.length];const o=ac.createOscillator(),g=ac.createGain();o.type='sine';o.frequency.value=b;g.gain.setValueAtTime(0.0001,t0);g.gain.exponentialRampToValueAtTime(0.05,t0+0.08);g.gain.exponentialRampToValueAtTime(0.0001,t0+3);o.connect(g);g.connect(bgm.master);o.start(t0);o.stop(t0+3.1)}
   bgS++;
 }
 function startBGM(){iA();if(!ac||bgOn)return;bgOn=true;try{const m=ac.createGain();m.gain.setValueAtTime(0.0001,ac.currentTime);m.gain.exponentialRampToValueAtTime(0.035,ac.currentTime+2.5);m.connect(ac.destination);bgm={master:m};bgS=0;bgT=setInterval(bgmTick,380);bgmTick()}catch(e){bgm=null;bgOn=false}}
 
-/* ═══ STATE ═══ */
+/* ═══════════════════════════════════════════
+   MQTT CONNECTION (Robust: 2 brokers + auto-switch)
+   ═══════════════════════════════════════════ */
+const MQTT_BROKERS=[
+  'wss://broker.hivemq.com:8884/mqtt',
+  'wss://broker.emqx.io:8084/mqtt',
+];
+let currentBrokerIdx=0;
+let mqttClient=null;
+let mqttHandlers={};
+let mqttConnected=false;
+
 const G={
-  role:null,peer:null,hostConn:null,playerConns:{},players:{},roomCode:'',
+  role:null,roomCode:'',
   config:{gradeId:'p1',mode:'solo',timeLimit:20,totalTime:300},
   selectedWords:new Set(),questions:[],
   gameState:'lobby',totalDeadline:0,totalTimerId:null,remainingMs:0,
+  players:{},
   myCurrentQ:0,myScore:0,myStreak:0,myAnswers:[],
   myPlayerId:null,myName:'',myAvatar:'🎃',myTeam:'',
-  myQTimerId:null,myQDeadline:0,myQStart:0,myTotalTimerId:null,
+  myQTimerId:null,myQDeadline:0,myQStart:0,myTotalTimerId:null,myGameActive:false,
+  myJoinTimerId:null,
 };
 const AV=['🎃','👻','🦇','🕷️','🕸️','💀','🧙‍♀️','🧛','🧟','🐺','🦉','🐈‍⬛','🐸','🦊','🐼','🐯','🦁','🐨','🐷','🐵','🐰','🐭','🐮','🐔','🦄','🐲','🦖','🤖','👽','🦈'];
 const $=(id)=>document.getElementById(id);
@@ -1774,22 +1769,86 @@ function gCode(){const c='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';let r='';for(let i=0
 function shuf(a){const r=a.slice();for(let i=r.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[r[i],r[j]]=[r[j],r[i]]}return r}
 function fmtTime(sec){const m=Math.floor(sec/60),s=sec%60;return m+':'+String(s).padStart(2,'0')}
 
-/* ═══ PEERJS OPTIONS ═══ */
-const PEER_OPTS={
-  debug:1,
-  config:{
-    iceServers:[
-      {urls:'stun:stun.l.google.com:19302'},
-      {urls:'stun:stun1.l.google.com:19302'},
-      {urls:'stun:stun2.l.google.com:19302'},
-      {urls:'stun:stun3.l.google.com:19302'},
-      {urls:'stun:stun4.l.google.com:19302'},
-      {urls:'stun:global.stun.twilio.com:3478'},
-    ],
-    iceCandidatePoolSize:10,
-  },
-  pingInterval:5000,
-};
+/* ⭐ Robust MQTT Connection */
+function connectMQTT(onConnect,onFail){
+  if(mqttClient){try{mqttClient.end(true)}catch(e){}}
+  mqttHandlers={};
+  mqttConnected=false;
+  const broker=MQTT_BROKERS[currentBrokerIdx%MQTT_BROKERS.length];
+  const cid='tug10_'+Date.now()+'_'+Math.random().toString(36).slice(2,8);
+  console.log('[MQTT] Connecting to:',broker);
+  try{
+    mqttClient=mqtt.connect(broker,{
+      clientId:cid,
+      clean:true,
+      connectTimeout:20000,
+      reconnectPeriod:2000,
+      keepalive:30,
+    });
+  }catch(e){
+    console.error('[MQTT] Connect fail:',e);
+    tryNextBroker(onConnect,onFail);
+    return;
+  }
+  let resolved=false;
+  mqttClient.on('connect',()=>{
+    resolved=true;
+    mqttConnected=true;
+    console.log('[MQTT] ✅ Connected');
+    Object.keys(mqttHandlers).forEach(topic=>{
+      mqttClient.subscribe(topic,{qos:1},(err)=>{if(err)console.error('resub err:',err)});
+    });
+    if(onConnect)onConnect();
+  });
+  mqttClient.on('message',(topic,payload)=>{
+    Object.keys(mqttHandlers).forEach(pattern=>{
+      if(topicMatches(pattern,topic)){
+        try{
+          const d=JSON.parse(payload.toString());
+          mqttHandlers[pattern](topic,d);
+        }catch(e){console.error('parse err:',e)}
+      }
+    });
+  });
+  mqttClient.on('error',(e)=>console.error('[MQTT] err:',e));
+  mqttClient.on('reconnect',()=>console.log('[MQTT] reconnecting...'));
+  setTimeout(()=>{
+    if(!resolved){
+      console.warn('[MQTT] Timeout — trying next broker');
+      try{mqttClient.end(true)}catch(e){}
+      tryNextBroker(onConnect,onFail);
+    }
+  },20000);
+}
+function tryNextBroker(onConnect,onFail){
+  currentBrokerIdx++;
+  if(currentBrokerIdx>=MQTT_BROKERS.length*2){
+    console.error('[MQTT] All brokers failed');
+    if(onFail)onFail();
+    return;
+  }
+  connectMQTT(onConnect,onFail);
+}
+function topicMatches(pattern,topic){
+  if(pattern===topic)return true;
+  if(pattern.endsWith('/#')){
+    return topic.startsWith(pattern.slice(0,-1));
+  }
+  return false;
+}
+function pub(topic,data,qos){
+  if(!mqttClient||!mqttConnected){
+    console.warn('[pub] Not connected, queuing:',topic);
+    setTimeout(()=>{if(mqttConnected)pub(topic,data,qos)},500);
+    return;
+  }
+  try{mqttClient.publish(topic,JSON.stringify(data),{qos:qos!==undefined?qos:1})}catch(e){console.error('pub err:',e)}
+}
+function sub(topic,handler){
+  mqttHandlers[topic]=handler;
+  if(!mqttClient)return;
+  try{mqttClient.subscribe(topic,{qos:1},(err)=>{if(err)console.error('sub err:',err);else console.log('[MQTT] Sub:',topic)})}catch(e){console.error('sub err:',e)}
+}
 
 /* ═══ GRADE MENU ═══ */
 const GR=[{id:'p1',name:'ป.1',c:'g1'},{id:'p2',name:'ป.2',c:'g2'},{id:'p3',name:'ป.3',c:'g3'},{id:'p4',name:'ป.4',c:'g4'},{id:'p5',name:'ป.5',c:'g5'},{id:'p6',name:'ป.6',c:'g6'},{id:'extra',name:'หมวดพิเศษ',c:'g7'}];
@@ -1807,8 +1866,6 @@ function renderGrades(){
   w.appendChild(r1);w.appendChild(r2);
 }
 function pickG(id){G.config.gradeId=id;G.selectedWords=new Set();openWP()}
-
-/* ═══ WORD PICKER ═══ */
 function openWP(){
   const gid=G.config.gradeId;const g=GR.find(x=>x.id===gid);
   $('wpTitle').textContent=g?g.name:'รวมทั้งหมด';
@@ -1870,45 +1927,58 @@ function createRoom(){
   const qi=document.createElement('img');
   qi.src=`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(jU)}`;
   qi.onerror=()=>{qr.style.display='none'};qr.appendChild(qi);
-  G.peer=new Peer('tug-'+code,PEER_OPTS);
-  G.peer.on('open',(id)=>{console.log('[H] ready:',id);toast('✅ สร้างห้องแล้ว! รหัส '+code,3000);go('scHostLobby');sJoin()});
-  G.peer.on('error',(e)=>{
-    console.error('[H] error:',e);
-    if(e.type==='unavailable-id'){toast('⚠️ รหัสซ้ำ กำลังสร้างใหม่...',2000);setTimeout(createRoom,800)}
-    else toast('❌ '+e.type,4000)
-  });
-  G.peer.on('connection',(c)=>{
-    console.log('[H] ⭐ New connection:',c.peer);
-    G.playerConns[c.peer]=c;
-    c.on('open',()=>console.log('[H] ✅ Open:',c.peer));
-    c.on('data',(d)=>hPM(c,d));
-    c.on('close',()=>{
-      console.log('[H] ❌ Close:',c.peer);
-      delete G.playerConns[c.peer];
-      if(G.players[c.peer]){G.players[c.peer].connected=false;rPL();uSB()}
+  $('hostStartBtn').textContent='⏳ กำลังเชื่อมต่อ MQTT...';
+  connectMQTT(()=>{
+    sub(`tug_kv10/${code}/#`,(topic,data)=>{
+      const parts=topic.split('/');
+      if(parts[3]==='join'||parts[3]==='ready')hostOnJoin(data);
+      else if(parts[3]==='player'&&parts[5]==='answer')hostOnAnswer(parts[4],data);
+      else if(parts[3]==='player'&&parts[5]==='leave')hostOnLeave(parts[4]);
     });
-    c.on('error',(e)=>console.error('[H] conn err:',c.peer,e));
+    toast('✅ สร้างห้องแล้ว! รหัส '+code,3000);
+    go('scHostLobby');sJoin();
+    uSB();
+  },()=>{
+    $('hostStartBtn').textContent='❌ เชื่อมต่อไม่ได้ — กดรีเฟรช';
+    toast('❌ MQTT ล้มเหลว กดรีเฟรชหน้า',5000);
   });
 }
-function hPM(c,d){
-  if(!d||typeof d!=='object')return;
-  if(d.type==='join'){
-    const name=String(d.name||'ผู้เล่น').slice(0,20),av=String(d.avatar||'🎃').slice(0,8);
-    const team=String(d.team||'').slice(0,20).trim();
-    if(G.players[c.peer]){G.players[c.peer].connected=true;G.players[c.peer].team=team}
-    else G.players[c.peer]={id:c.peer,name,avatar:av,team,score:0,streak:0,totalAnswers:0,blocked:false,connected:true};
-    try{c.send({type:'welcome',playerId:c.peer,roomCode:G.roomCode})}catch(e){}
-    rPL();uSB();sJoin();
-  }else if(d.type==='answer'){
-    const p=G.players[c.peer];if(!p)return;
-    p.score+=Number(d.points)||0;
-    p.totalAnswers=(p.totalAnswers||0)+1;
-    if(d.correct)p.streak=(p.streak||0)+1;else p.streak=0;
-    if(d.correct)sCor();else sWr();
-    renderArena();rLB();
-    const totalAns=Object.values(G.players).reduce((s,x)=>s+(x.totalAnswers||0),0);
-    $('hostTotalAnswers').textContent=totalAns;
+function hostOnJoin(d){
+  const id=d.playerId;
+  if(!id)return;
+  if(!G.players[id]){
+    G.players[id]={id,name:d.name||'ผู้เล่น',avatar:d.avatar||'🎃',team:d.team||'',score:0,streak:0,totalAnswers:0,blocked:false,connected:true};
+    console.log('[H] ⭐ Player joined:',d.name,id);
+    sJoin();
+  }else{
+    G.players[id].connected=true;
+    G.players[id].team=d.team||G.players[id].team;
   }
+  hostBroadcastLobby();
+  rPL();uSB();
+}
+function hostOnAnswer(id,d){
+  const p=G.players[id];if(!p)return;
+  p.score+=Number(d.points)||0;
+  p.totalAnswers=(p.totalAnswers||0)+1;
+  if(d.correct)p.streak=(p.streak||0)+1;else p.streak=0;
+  if(d.correct)sCor();else sWr();
+  renderArena();rLB();
+  const totalAns=Object.values(G.players).reduce((s,x)=>s+(x.totalAnswers||0),0);
+  $('hostTotalAnswers').textContent=totalAns;
+}
+function hostOnLeave(id){
+  if(G.players[id]){
+    G.players[id].connected=false;
+    rPL();uSB();
+  }
+}
+function hostBroadcastLobby(){
+  const list=Object.values(G.players).map(p=>({id:p.id,name:p.name,avatar:p.avatar,team:p.team,blocked:p.blocked}));
+  pub(`tug_kv10/${G.roomCode}/broadcast`,{type:'lobby',players:list});
+}
+function hostBroadcast(data){
+  pub(`tug_kv10/${G.roomCode}/broadcast`,data);
 }
 function rPL(){
   const g=$('playersGrid');if(!g)return;const l=Object.values(G.players);
@@ -1936,7 +2006,8 @@ function rPL(){
   g.innerHTML=html;
 }
 function togBlock(id){sc();const p=G.players[id];if(!p)return;p.blocked=!p.blocked;rPL();uSB();
-  try{const c=G.playerConns[id];if(c)c.send({type:p.blocked?'blocked':'unblocked'})}catch(e){}}
+  pub(`tug_kv10/${G.roomCode}/broadcast`,{type:p.blocked?'blocked':'unblocked',playerId:id});
+}
 function uSB(){const a=Object.values(G.players).filter(p=>!p.blocked&&p.connected);const b=$('hostStartBtn');
   b.disabled=a.length<1;b.textContent=a.length<1?'⏳ รอผู้เล่น...':`▶ เริ่มเกม! (${a.length} คน)`}
 
@@ -1953,7 +2024,7 @@ function hostStart(){
   G.gameState='playing';
   G.totalDeadline=Date.now()+G.config.totalTime*1000;
   const publicQs=qs.map(q=>({text:q.text,sub:q.sub,options:q.options.map(o=>o.text),correct:q.correct,timeLimit:q.timeLimit}));
-  Object.values(G.playerConns).forEach(c=>{try{c.send({type:'start',questions:publicQs,totalTime:G.config.totalTime})}catch(e){}});
+  hostBroadcast({type:'start',questions:publicQs,totalTime:G.config.totalTime});
   go('scHostGame');
   $('hostTotalAnswers').textContent='0';
   renderArena();rLB();
@@ -1987,7 +2058,7 @@ function hostPause(){sc();
     G.remainingMs=Math.max(0,G.totalDeadline-Date.now());
     G.gameState='paused';$('pauseBtn').textContent='▶ เล่นต่อ';
   }
-  Object.values(G.playerConns).forEach(c=>{try{c.send({type:'pause',paused:G.gameState==='paused'})}catch(e){}})
+  hostBroadcast({type:'pause',paused:G.gameState==='paused'});
 }
 function hostAddT(s){sc();G.totalDeadline+=s*1000;toast(`+${s} วินาที`,1500)}
 function hostStop(){if(!confirm('หยุดและจบเลย?'))return;hEnd()}
@@ -2055,7 +2126,7 @@ function hEnd(){
     const l=Object.values(G.players).filter(p=>!p.blocked).sort((a,b)=>b.score-a.score);
     rank=l.map((p,i)=>({name:p.name,avatar:p.avatar,score:p.score,rank:i+1}));
   }
-  Object.values(G.playerConns).forEach(c=>{try{c.send({type:'end',ranking:rank})}catch(e){}});
+  hostBroadcast({type:'end',ranking:rank});
   rPodium(rank);go('scHostPodium');sFin();
 }
 function rPodium(rank){
@@ -2080,72 +2151,57 @@ function playerJoin(){
   if(code.length!==4){$('joinMsg').textContent='⚠️ รหัส 4 ตัว';return}
   if(!name){$('joinMsg').textContent='⚠️ ใส่ชื่อด้วย';return}
   G.role='player';G.myName=name;G.myTeam=team;G.roomCode=code;
-  $('joinBtn').disabled=true;$('joinMsg').textContent='⏳ เชื่อมต่อ...';$('joinMsg').style.color='#c4b5fd';
-  let attempts=0;const maxAttempts=3;
-  function tryConnect(){
-    attempts++;
-    console.log('[P] Attempt',attempts);
-    G.peer=new Peer(PEER_OPTS);
-    let opened=false;
-    G.peer.on('open',(id)=>{
-      opened=true;
-      console.log('[P] My peer:',id);
-      G.hostConn=G.peer.connect('tug-'+code,{reliable:true});
-      let connOpened=false;
-      const connTimeout=setTimeout(()=>{
-        if(!connOpened){
-          console.warn('[P] Conn timeout');
-          try{G.hostConn.close()}catch(e){}
-          retry();
-        }
-      },8000);
-      G.hostConn.on('open',()=>{
-        connOpened=true;clearTimeout(connTimeout);
-        console.log('[P] ✅ Connected');
-        G.hostConn.send({type:'join',name,avatar:G.myAvatar,team});
-        $('joinMsg').textContent='';
-        go('scPlayerWait');
-        $('waitName').textContent=name;
-        $('waitTeam').textContent=team?`👥 ทีม: ${team}`:'';
-        $('waitAvatar').textContent=G.myAvatar;
-        sJoin();
-      });
-      G.hostConn.on('data',hHM);
-      G.hostConn.on('close',()=>{console.warn('[P] Host disconnected');toast('⚠️ ครูหลุด',4000)});
-      G.hostConn.on('error',(e)=>{console.error('[P] Conn err:',e);if(!connOpened){clearTimeout(connTimeout);retry()}});
+  G.myPlayerId='p_'+Date.now()+'_'+Math.random().toString(36).slice(2,8);
+  $('joinBtn').disabled=true;$('joinMsg').textContent='⏳ เชื่อมต่อ MQTT...';$('joinMsg').style.color='#c4b5fd';
+  connectMQTT(()=>{
+    console.log('[P] My ID:',G.myPlayerId);
+    sub(`tug_kv10/${code}/broadcast`,(topic,data)=>{
+      if(data.playerId&&data.playerId!==G.myPlayerId&&(data.type==='blocked'||data.type==='unblocked'))return;
+      pOnBroadcast(data);
     });
-    G.peer.on('error',(e)=>{
-      console.error('[P] Peer err:',e);
-      if(!opened){
-        if(e.type==='peer-unavailable'){
-          $('joinMsg').textContent='❌ ไม่พบห้อง "'+code+'" — ตรวจรหัส';
-          $('joinMsg').style.color='#f87171';
-          $('joinBtn').disabled=false;
-        }else retry();
+    const joinPayload={playerId:G.myPlayerId,name,avatar:G.myAvatar,team};
+    let joinAttempts=0;
+    const sendJoin=()=>{
+      if(!G.myGameActive&&G.gameState==='playing')return;
+      pub(`tug_kv10/${code}/join`,joinPayload,1);
+      joinAttempts++;
+      console.log('[P] Join attempt',joinAttempts);
+      if(joinAttempts<5){
+        G.myJoinTimerId=setTimeout(sendJoin,1500);
       }
-    });
-  }
-  function retry(){
-    if(attempts>=maxAttempts){
-      $('joinMsg').textContent='❌ เชื่อมต่อไม่ได้ ('+attempts+' ครั้ง) ลองรีเฟรช';
+    };
+    sendJoin();
+    $('joinMsg').textContent='';
+    go('scPlayerWait');
+    $('waitName').textContent=name;
+    $('waitTeam').textContent=team?`👥 ทีม: ${team}`:'';
+    $('waitAvatar').textContent=G.myAvatar;
+    sJoin();
+  },()=>{
+    $('joinMsg').textContent='❌ เชื่อมต่อ MQTT ไม่ได้';
+    $('joinMsg').style.color='#f87171';
+    $('joinBtn').disabled=false;
+  });
+  setTimeout(()=>{
+    if($('joinMsg').textContent&&$('joinMsg').textContent.includes('⏳')){
+      $('joinMsg').textContent='⏰ หมดเวลา ลองใหม่';
       $('joinMsg').style.color='#f87171';
       $('joinBtn').disabled=false;
-      return;
     }
-    $('joinMsg').textContent=`⏳ ลองใหม่ (${attempts}/${maxAttempts})...`;
-    setTimeout(()=>{try{G.peer&&G.peer.destroy()}catch(e){};tryConnect()},1500);
-  }
-  tryConnect();
+  },25000);
 }
-function hHM(d){
+function pOnBroadcast(d){
   if(!d)return;
   switch(d.type){
     case 'blocked':toast('🚫 ครูล็อก');break;
     case 'unblocked':toast('✅ ปลดล็อก');break;
     case 'start':
+      // ⭐ Stop joining attempts
+      if(G.myJoinTimerId){clearTimeout(G.myJoinTimerId);G.myJoinTimerId=null;}
       G.questions=d.questions;
       G.myCurrentQ=0;G.myScore=0;G.myStreak=0;G.myAnswers=[];
       G.totalDeadline=Date.now()+d.totalTime*1000;
+      G.myGameActive=true;
       pCnt(()=>{
         go('scPlayerQ');
         pStartTimer();
@@ -2154,9 +2210,18 @@ function hHM(d){
       break;
     case 'pause':
       if(d.paused){if(G.myQTimerId)clearInterval(G.myQTimerId);toast('⏸ ครูหยุด')}
-      else {pStartTimer();toast('▶ เล่นต่อ')}
+      else {pStartTimer();if(G.myGameActive&&G.questions&&G.myCurrentQ<G.questions.length)startQTimer();toast('▶ เล่นต่อ')}
       break;
-    case 'end':pEnd(d.ranking);break;
+    case 'end':
+      // ⭐ FIX #1: Stop game immediately
+      G.myGameActive=false;
+      G.gameState='ended';
+      if(G.myQTimerId){clearInterval(G.myQTimerId);G.myQTimerId=null;}
+      if(G.myTotalTimerId){clearInterval(G.myTotalTimerId);G.myTotalTimerId=null;}
+      if(G.myJoinTimerId){clearTimeout(G.myJoinTimerId);G.myJoinTimerId=null;}
+      G.questions=[];   // clear questions
+      pEnd(d.ranking);
+      break;
   }
 }
 function pCnt(cb){
@@ -2171,12 +2236,28 @@ function pCnt(cb){
 function pStartTimer(){
   if(G.myTotalTimerId)clearInterval(G.myTotalTimerId);
   G.myTotalTimerId=setInterval(()=>{
+    if(!G.myGameActive){clearInterval(G.myTotalTimerId);return}
     const r=Math.max(0,Math.ceil((G.totalDeadline-Date.now())/1000));
     const el=$('pTotalTimer');if(el)el.textContent=fmtTime(r);
     if(r<=0)clearInterval(G.myTotalTimerId);
   },500);
 }
+function startQTimer(){
+  // ⭐ FIX #2: Don't start if game not active
+  if(!G.myGameActive)return;
+  const q=G.questions[G.myCurrentQ];if(!q)return;
+  G.myQStart=Date.now();
+  G.myQDeadline=Date.now()+(q.timeLimit*1000);
+  if(G.myQTimerId)clearInterval(G.myQTimerId);
+  G.myQTimerId=setInterval(()=>{
+    if(!G.myGameActive){clearInterval(G.myQTimerId);return}
+    const r=Math.max(0,Math.ceil((G.myQDeadline-Date.now())/1000));
+    if(r<=0){clearInterval(G.myQTimerId);pAns(-1,null)}
+  },200);
+}
 function pQ(){
+  // ⭐ FIX #3: Check game active
+  if(!G.myGameActive)return;
   if(!G.questions||G.myCurrentQ>=G.questions.length){
     $('pQText').textContent='🎉 ตอบครบทุกข้อแล้ว!';
     $('pQSub').textContent='รอจบเวลา...';
@@ -2192,15 +2273,11 @@ function pQ(){
   $('pFeedback').classList.remove('show','correct','wrong');
   const g=$('pAnswersGrid');const sy=['▲','◆','●','■'],cl=['a0','a1','a2','a3'];
   g.innerHTML=q.options.map((o,i)=>`<button class="ans-btn ${cl[i]}" data-i="${i}" onclick="pAns(${i},this)"><span class="symbol">${sy[i]}</span><span>${esc(o)}</span></button>`).join('');
-  G.myQStart=Date.now();
-  G.myQDeadline=Date.now()+(q.timeLimit*1000);
-  if(G.myQTimerId)clearInterval(G.myQTimerId);
-  G.myQTimerId=setInterval(()=>{
-    const r=Math.max(0,Math.ceil((G.myQDeadline-Date.now())/1000));
-    if(r<=0){clearInterval(G.myQTimerId);pAns(-1,null)}
-  },200);
+  startQTimer();
 }
 function pAns(choice,btn){
+  // ⭐ FIX #4: Check game active before processing
+  if(!G.myGameActive)return;
   const q=G.questions[G.myCurrentQ];if(!q)return;
   if(G.myQTimerId)clearInterval(G.myQTimerId);
   const isCorrect=choice===q.correct;
@@ -2237,8 +2314,12 @@ function pAns(choice,btn){
     sWr();
   }
   $('pScore').textContent=G.myScore;
-  try{G.hostConn.send({type:'answer',qIndex:G.myCurrentQ,correct:isCorrect,points:pts})}catch(e){}
-  setTimeout(()=>{G.myCurrentQ++;pQ();},1500);
+  pub(`tug_kv10/${G.roomCode}/player/${G.myPlayerId}/answer`,{points:pts,correct:isCorrect,qIdx:G.myCurrentQ,name:G.myName,avatar:G.myAvatar,team:G.myTeam});
+  setTimeout(()=>{
+    // ⭐ FIX #5: Check game active before advancing
+    if(!G.myGameActive)return;
+    G.myCurrentQ++;pQ();
+  },1500);
 }
 function pEnd(rank){
   go('scPlayerEnd');
@@ -2263,7 +2344,8 @@ renderGrades();renderAv();
 document.addEventListener('input',(e)=>{if(e.target.id==='joinCode')e.target.value=e.target.value.toUpperCase().replace(/[^A-Z0-9]/g,'')});
 document.addEventListener('touchstart',()=>{iA();startBGM()},{once:true,passive:true});
 document.addEventListener('click',()=>{iA();startBGM()},{once:true});
-console.log('🎃 Tug of War v8 FINAL · Complete vocabulary · Independent players');
+console.log('🎃 Tug of War v10 FINAL · 5-point end-game fix · Complete vocabulary');
 </script>
 </body>
-</html>  
+</html>
+  
