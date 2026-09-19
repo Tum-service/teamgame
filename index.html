@@ -174,13 +174,11 @@ label{display:block;color:#c4b5fd;font-size:.88rem;margin-bottom:5px;font-weight
 .countdown{font-family:monospace;font-size:7rem;font-weight:900;color:#fb923c;text-align:center;text-shadow:0 0 60px rgba(249,115,22,.9);animation:cp 1s infinite}
 @keyframes cp{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
 
-/* ⭐ Host countdown overlay */
 #hostCountdown{position:fixed;inset:0;background:rgba(10,6,18,.96);z-index:9998;display:none;align-items:center;justify-content:center;flex-direction:column;gap:16px}
 #hostCountdown.on{display:flex}
 #hostCountdown .cd-num{font-family:monospace;font-size:9rem;font-weight:900;color:#fb923c;text-shadow:0 0 80px rgba(249,115,22,.9);animation:cp 1s infinite;line-height:1}
 #hostCountdown .cd-txt{color:#c4b5fd;font-size:1.3rem;font-weight:800}
 
-/* ⭐ Host back-to-main corner */
 .host-back-corner{position:fixed;top:0;right:0;width:130px;height:66px;z-index:1000;padding:8px;display:none;align-items:flex-start;justify-content:flex-end}
 .host-back-corner.on{display:flex}
 .host-back-corner button{opacity:0;pointer-events:none;transform:translateY(-10px);transition:opacity .25s,transform .25s;padding:10px 14px;font-size:.82rem;border-radius:11px;background:linear-gradient(135deg,#dc2626,#991b1b);color:#fff;border:none;font-family:inherit;font-weight:800;cursor:pointer;box-shadow:0 8px 18px -6px rgba(0,0,0,.55)}
@@ -197,7 +195,6 @@ label{display:block;color:#c4b5fd;font-size:.88rem;margin-bottom:5px;font-weight
 .conn-status.wait{color:#fbbf24;background:rgba(234,179,8,.1)}
 .conn-status.err{color:#f87171;background:rgba(220,38,38,.12)}
 
-/* ⭐ Invite action buttons */
 .invite-actions{display:flex;gap:8px;justify-content:center;margin-top:14px;flex-wrap:wrap}
 .invite-btn{padding:11px 20px;border:none;border-radius:12px;font-family:inherit;font-weight:800;font-size:.9rem;color:#fff;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:6px;box-shadow:0 6px 14px -4px rgba(0,0,0,.4)}
 .invite-btn:hover{transform:translateY(-2px)}
@@ -213,6 +210,91 @@ h1{font-size:1.7rem}.room-code{font-size:2.6rem;letter-spacing:6px}.timer-big{fo
 .answered-info{font-size:.78rem;min-width:80px}
 .podium-title{font-size:2.2rem}.podium-avatar{font-size:3rem}.podium-stage{gap:8px}.avatar-grid{grid-template-columns:repeat(5,1fr)}
 .grade{flex:0 0 150px;width:150px;min-height:96px;padding:16px 12px}.g-name{font-size:1.15rem}.g-count{font-size:.7rem}.g-all{flex:0 0 100%;width:100%}}
+
+/* ═══════════════════════════════════════════════════════════════════
+   ⭐ TUG-OF-WAR ARENA — HOST (แข่งขัน 2 ฝั่ง)
+   ใช้ CSS transform + transition เพื่อให้อนิเมชั่นลื่น 60fps
+   ═══════════════════════════════════════════════════════════════════ */
+.tug-arena{position:relative;background:linear-gradient(180deg,#1a0b2e 0%,#2d1b4e 35%,#0f0518 100%);border-radius:22px;padding:16px 18px;margin-bottom:14px;overflow:hidden;box-shadow:inset 0 0 60px rgba(0,0,0,.65),0 0 0 1.5px rgba(168,85,247,.35);will-change:transform}
+.tug-arena::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 15% 90%,rgba(146,64,14,.28),transparent 45%),radial-gradient(circle at 85% 90%,rgba(146,64,14,.28),transparent 45%),radial-gradient(circle at 50% 100%,rgba(0,0,0,.55),transparent 60%);pointer-events:none}
+.tug-header{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px;position:relative;z-index:3}
+.tug-team-info{display:flex;align-items:center;gap:8px;padding:7px 14px;border-radius:12px;font-weight:900;font-size:.95rem;backdrop-filter:blur(4px);white-space:nowrap;max-width:45%}
+.tug-team-info.left{background:linear-gradient(135deg,rgba(220,38,38,.4),rgba(127,29,29,.25));color:#fecaca;border:1.5px solid rgba(220,38,38,.65);box-shadow:0 0 18px rgba(220,38,38,.35)}
+.tug-team-info.right{background:linear-gradient(135deg,rgba(37,99,235,.4),rgba(30,58,138,.25));color:#bfdbfe;border:1.5px solid rgba(37,99,235,.65);box-shadow:0 0 18px rgba(37,99,235,.35)}
+.tug-team-info .tname{overflow:hidden;text-overflow:ellipsis;max-width:180px}
+.tug-team-info .score{font-family:monospace;font-size:1.15rem;color:#fbbf24;text-shadow:0 0 8px rgba(251,191,36,.7)}
+.tug-team-info .emblem{font-size:1.1rem;filter:drop-shadow(0 0 6px currentColor)}
+.tug-stage{position:relative;height:130px;margin:12px 0 8px;background:radial-gradient(ellipse at 20% 100%,rgba(120,53,15,.35),transparent 55%),radial-gradient(ellipse at 80% 100%,rgba(120,53,15,.35),transparent 55%),linear-gradient(180deg,transparent 45%,rgba(0,0,0,.55) 100%);border-radius:16px;overflow:hidden}
+.tug-center-line{position:absolute;left:50%;top:0;bottom:0;width:3px;background:linear-gradient(180deg,transparent,rgba(251,191,36,.85),transparent);transform:translateX(-50%);box-shadow:0 0 14px rgba(251,191,36,.85);z-index:2;pointer-events:none}
+.tug-center-line::after{content:"";position:absolute;top:6px;left:50%;transform:translateX(-50%);width:12px;height:12px;border-radius:50%;background:#fbbf24;box-shadow:0 0 22px rgba(251,191,36,1)}
+.tug-center-line::before{content:"";position:absolute;bottom:6px;left:50%;transform:translateX(-50%);width:12px;height:12px;border-radius:50%;background:#fbbf24;box-shadow:0 0 22px rgba(251,191,36,1)}
+.tug-rope{position:absolute;left:6%;right:6%;top:50%;height:14px;transform:translateY(-50%);background:repeating-linear-gradient(90deg,#92400e 0,#92400e 5px,#78350f 5px,#78350f 10px);border-radius:8px;box-shadow:0 4px 10px rgba(0,0,0,.6),inset 0 -2px 0 rgba(0,0,0,.45),inset 0 2px 0 rgba(251,191,36,.25);z-index:1}
+.tug-knot{position:absolute;top:50%;left:50%;width:28px;height:28px;transform:translate(-50%,-50%);background:radial-gradient(circle at 35% 35%,#fbbf24,#ea580c 60%,#7c2d12);border-radius:50%;box-shadow:0 0 22px rgba(251,191,36,.95),inset 0 -3px 5px rgba(0,0,0,.5);transition:left .7s cubic-bezier(.22,1.2,.36,1),box-shadow .3s;z-index:6;pointer-events:none}
+.tug-knot.urgent{animation:tugKnotPulse .55s infinite}
+@keyframes tugKnotPulse{0%,100%{box-shadow:0 0 22px rgba(251,191,36,.95),inset 0 -3px 5px rgba(0,0,0,.5)}50%{box-shadow:0 0 45px rgba(251,191,36,1),0 0 60px rgba(249,115,22,.7),inset 0 -3px 5px rgba(0,0,0,.5)}}
+.tug-players{position:absolute;top:50%;transform:translateY(-50%);display:flex;gap:6px;z-index:4;pointer-events:none}
+.tug-players.left{left:2%}
+.tug-players.right{right:2%;flex-direction:row-reverse}
+.tug-player{font-size:2.1rem;filter:drop-shadow(0 4px 8px rgba(0,0,0,.75));display:inline-block;animation:tugIdle 2.2s ease-in-out infinite;transform-origin:bottom center;line-height:1}
+.tug-players.left .tug-player{transform-origin:bottom left}
+.tug-players.right .tug-player{transform-origin:bottom right}
+.tug-player:nth-child(2){animation-delay:.28s}
+.tug-player:nth-child(3){animation-delay:.56s}
+.tug-player:nth-child(4){animation-delay:.84s}
+.tug-player:nth-child(5){animation-delay:1.12s}
+@keyframes tugIdle{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-3px) rotate(2deg)}}
+.tug-player.pulling{animation:tugPull .45s ease-out}
+@keyframes tugPull{0%{transform:rotate(0) translateX(0)}25%{transform:rotate(-18deg) translateX(-6px) scale(1.05)}55%{transform:rotate(8deg) translateX(3px) scale(1.02)}100%{transform:rotate(0) translateX(0)}}
+.tug-player.stumble{animation:tugStumble .5s ease}
+@keyframes tugStumble{0%,100%{transform:rotate(0)}25%{transform:rotate(14deg) translateY(2px)}65%{transform:rotate(-9deg) translateY(-1px)}}
+.tug-power-bars{display:flex;gap:6px;margin-top:8px;height:12px;position:relative;z-index:2}
+.tug-power-bar{flex:1;border-radius:6px;overflow:hidden;background:rgba(0,0,0,.55);position:relative;border:1px solid rgba(168,85,247,.25)}
+.tug-power-bar.left{transform:scaleX(-1)}
+.tug-power-fill{height:100%;transition:width .55s cubic-bezier(.22,1,.36,1);border-radius:6px;transform-origin:left center}
+.tug-power-bar.left .tug-power-fill{background:linear-gradient(90deg,#dc2626,#f97316);transform:scaleX(-1)}
+.tug-power-bar.right .tug-power-fill{background:linear-gradient(90deg,#2563eb,#7c3aed)}
+.tug-status-text{text-align:center;margin-top:10px;font-weight:900;font-size:1rem;color:#c4b5fd;min-height:24px;position:relative;z-index:2;transition:color .3s}
+.tug-status-text.advantage-l,.tug-status-text.advantage-r{color:#4ade80;text-shadow:0 0 10px rgba(74,222,128,.6)}
+.tug-status-text.urgent{color:#fbbf24;animation:tugShake .5s infinite;text-shadow:0 0 14px rgba(251,191,36,.9)}
+@keyframes tugShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-2px)}75%{transform:translateX(2px)}}
+
+/* ═══════════════════════════════════════════════════════════════════
+   ⭐ TUG-OF-WAR ARENA — PLAYER (compact)
+   ═══════════════════════════════════════════════════════════════════ */
+#pArenaContainer{margin-bottom:10px}
+.ptug-arena{position:relative;background:linear-gradient(180deg,#1a0b2e,#2d1b4e);border-radius:14px;padding:8px 10px 10px;border:1.5px solid rgba(168,85,247,.35);box-shadow:inset 0 0 22px rgba(0,0,0,.5);overflow:hidden}
+.ptug-arena::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 20% 100%,rgba(146,64,14,.25),transparent 50%),radial-gradient(circle at 80% 100%,rgba(146,64,14,.25),transparent 50%);pointer-events:none}
+.ptug-header{display:flex;justify-content:space-between;gap:8px;margin-bottom:6px;position:relative;z-index:3}
+.ptug-team-info{display:flex;align-items:center;gap:6px;padding:3px 9px;border-radius:8px;font-weight:900;font-size:.76rem;white-space:nowrap;max-width:46%;overflow:hidden}
+.ptug-team-info.left{background:rgba(220,38,38,.25);color:#fca5a5;border:1px solid rgba(220,38,38,.55)}
+.ptug-team-info.right{background:rgba(37,99,235,.25);color:#93c5fd;border:1px solid rgba(37,99,235,.55)}
+.ptug-tname{overflow:hidden;text-overflow:ellipsis;max-width:110px}
+.ptug-score{font-family:monospace;color:#fbbf24;font-size:.9rem}
+.ptug-stage{position:relative;height:62px;margin:4px 0;background:radial-gradient(ellipse at 50% 100%,rgba(120,53,15,.35),transparent 65%);border-radius:10px;overflow:hidden}
+.ptug-center-line{position:absolute;left:50%;top:10%;bottom:10%;width:2px;background:rgba(251,191,36,.7);transform:translateX(-50%);box-shadow:0 0 10px rgba(251,191,36,.85);z-index:2}
+.ptug-rope{position:absolute;left:6%;right:6%;top:50%;height:9px;transform:translateY(-50%);background:repeating-linear-gradient(90deg,#92400e 0,#92400e 3px,#78350f 3px,#78350f 6px);border-radius:5px;box-shadow:0 2px 5px rgba(0,0,0,.6),inset 0 -1px 0 rgba(0,0,0,.4);z-index:1}
+.ptug-knot{position:absolute;top:50%;left:50%;width:18px;height:18px;transform:translate(-50%,-50%);background:radial-gradient(circle at 35% 35%,#fbbf24,#ea580c 60%,#7c2d12);border-radius:50%;box-shadow:0 0 14px rgba(251,191,36,.95);transition:left .7s cubic-bezier(.22,1.2,.36,1);z-index:5;pointer-events:none}
+.ptug-players{position:absolute;top:50%;transform:translateY(-50%);display:flex;gap:3px;z-index:3;pointer-events:none}
+.ptug-players.left{left:3%}
+.ptug-players.right{right:3%;flex-direction:row-reverse}
+.ptug-player{font-size:1.5rem;filter:drop-shadow(0 2px 4px rgba(0,0,0,.75));display:inline-block;animation:tugIdle 2.2s ease-in-out infinite;transform-origin:bottom center;line-height:1}
+.ptug-players.left .ptug-player{transform-origin:bottom left}
+.ptug-players.right .ptug-player{transform-origin:bottom right}
+.ptug-player:nth-child(2){animation-delay:.3s}
+.ptug-player:nth-child(3){animation-delay:.6s}
+.ptug-player.pulling{animation:tugPull .45s ease-out}
+.ptug-player.stumble{animation:tugStumble .5s ease}
+.ptug-status{text-align:center;font-weight:900;font-size:.82rem;color:#c4b5fd;margin-top:5px;min-height:18px;position:relative;z-index:2;transition:color .3s}
+.ptug-status.advantage{color:#4ade80;text-shadow:0 0 8px rgba(74,222,128,.6)}
+.ptug-status.disadvantage{color:#f87171;text-shadow:0 0 8px rgba(248,113,113,.6)}
+@media(max-width:640px){
+.tug-stage{height:100px}
+.tug-player{font-size:1.6rem}
+.tug-players.left .tug-player:nth-child(n+4),.tug-players.right .tug-player:nth-child(n+4){display:none}
+.ptug-stage{height:52px}
+.ptug-player{font-size:1.25rem}
+.ptug-players.left .ptug-player:nth-child(n+3),.ptug-players.right .ptug-player:nth-child(n+3){display:none}
+}
 </style>
 </head>
 <body>
@@ -285,7 +367,6 @@ h1{font-size:1.7rem}.room-code{font-size:2.6rem;letter-spacing:6px}.timer-big{fo
       <div class="conn-status wait" id="hostConnStatus">⏳ กำลังเชื่อมต่อ...</div>
       <div id="qrcode"></div>
       <div class="room-url" id="roomUrlDisplay"></div>
-      <!-- ⭐ Copy link + Save QR -->
       <div class="invite-actions">
         <button class="invite-btn copy" onclick="copyJoinLink()">📋 คัดลอกลิงก์</button>
         <button class="invite-btn save" onclick="saveQRCode()">💾 บันทึก QR Code</button>
@@ -309,13 +390,11 @@ h1{font-size:1.7rem}.room-code{font-size:2.6rem;letter-spacing:6px}.timer-big{fo
         <button class="ctrl-circle ctrl-minus" onclick="hostAddT(-60)" title="ลบ 1 นาที">−</button>
         <button class="ctrl-circle ctrl-plus" onclick="hostAddT(60)" title="เพิ่ม 1 นาที">+</button>
         <div class="topbar-sep"></div>
-        <!-- ⭐ Sound partition: HOST -->
         <div class="snd-group host-group">
           <div class="snd-group-label"><span class="ico">🎤</span><span>Host</span></div>
           <button class="snd-circle on" id="btnHostFx" onclick="toggleHostFx()" title="Effect ของ Host"><span class="snd-ico">📢</span><span class="snd-lbl">effect</span></button>
           <button class="snd-circle on" id="btnHostBgm" onclick="toggleHostBgm()" title="Sound (BGM) ของ Host"><span class="snd-ico">📢</span><span class="snd-lbl">sound</span></button>
         </div>
-        <!-- ⭐ Sound partition: PLAYERS -->
         <div class="snd-group player-group">
           <div class="snd-group-label"><span class="ico">🎮</span><span>ผู้เล่น</span></div>
           <button class="snd-circle on" id="btnPlayersFx" onclick="togglePlayersFx()" title="Effect ของผู้เล่น"><span class="snd-ico">📢</span><span class="snd-lbl">effect</span></button>
@@ -390,6 +469,10 @@ h1{font-size:1.7rem}.room-code{font-size:2.6rem;letter-spacing:6px}.timer-big{fo
       <div style="color:#86efac;font-weight:900;font-size:.9rem">⭐ <span id="pScore">0</span></div>
       <div style="color:#c4b5fd;font-weight:800;font-size:.9rem">⏱️ <span id="pTotalTimer">5:00</span></div>
     </div>
+
+    <!-- ⭐ Tug-of-War Arena (ผู้เล่นเห็นการดึงเชือกของทีมตัวเอง) -->
+    <div id="pArenaContainer"></div>
+
     <div class="question-box">
       <div class="question-text" id="pQText">...</div>
       <div class="question-sub" id="pQSub"></div>
@@ -437,7 +520,6 @@ h1{font-size:1.7rem}.room-code{font-size:2.6rem;letter-spacing:6px}.timer-big{fo
   <div style="color:#c4b5fd;font-size:.95rem">รอสักครู่...</div>
 </div>
 
-<!-- ⭐ Host 3-2-1 countdown overlay -->
 <div id="hostCountdown">
   <div class="cd-num" id="hostCountdownNum">3</div>
   <div class="cd-txt">เตรียมตัว...</div>
@@ -461,7 +543,7 @@ h1{font-size:1.7rem}.room-code{font-size:2.6rem;letter-spacing:6px}.timer-big{fo
 
 <script src="https://unpkg.com/mqtt@4.3.7/dist/mqtt.min.js"></script>
 <script>
-/* ═══ VOCAB DATA ═══ */
+/* ═══ VOCAB DATA (เหมือนเดิม 100%) ═══ */
 const VOCAB_DATA = {
 p1:`ant|มด
 apple|แอปเปิ้ล
@@ -1790,7 +1872,7 @@ ninetieth|ลำดับที่เก้าสิบ
 one hundredth|ลำดับที่หนึ่งร้อย
 one thousandth|ลำดับที่หนึ่งพัน`
 };
-  
+
 const POOLS = {};
 for(const k in VOCAB_DATA){
   const seen = new Set();
@@ -1842,7 +1924,7 @@ function shouldPlayBGM(){
   return true;
 }
 
-/* ═══ SOUND ENGINE ═══ */
+/* ═══ SOUND ENGINE (เหมือนเดิม 100%) ═══ */
 let ac=null;
 function iA(){try{if(!ac)ac=new(window.AudioContext||window.webkitAudioContext)();if(ac.state==='suspended')ac.resume()}catch(e){}}
 function t(f,st,d,tp,v,fe){if(!shouldPlayEffect())return;if(!ac)return;const t0=ac.currentTime+st;const o=ac.createOscillator(),g=ac.createGain();o.type=tp||'sine';o.frequency.setValueAtTime(f,t0);if(fe)o.frequency.exponentialRampToValueAtTime(fe,t0+d);g.gain.setValueAtTime(0.0001,t0);g.gain.exponentialRampToValueAtTime(v||0.2,t0+0.02);g.gain.exponentialRampToValueAtTime(0.0001,t0+d);o.connect(g);g.connect(ac.destination);o.start(t0);o.stop(t0+d+0.05)}
@@ -1898,7 +1980,7 @@ function stopBGM(){
   bgm=null;bgOn=false;
 }
 
-/* ═══ MQTT — v12 method (HiveMQ → EMQX fallback) ═══ */
+/* ═══ MQTT (เหมือนเดิม 100% — ห้ามแก้) ═══ */
 const MQTT_BROKERS=[
   'wss://broker.hivemq.com:8884/mqtt',
   'wss://broker.emqx.io:8084/mqtt',
@@ -2047,7 +2129,6 @@ function delC(ev,en){ev.stopPropagation();if(!confirm(`ลบ "${en}" หรื�
 function setMode(m){sc();G.config.mode=m;document.querySelectorAll('.mode-chip').forEach(c=>c.classList.toggle('active',c.dataset.m===m));$('teamInfoWrap').style.display=m==='team'?'block':'none'}
 function adjTime(d){sc();const el=$('timeInput');let v=parseInt(el.value)||5;v=Math.max(1,Math.min(60,v+d));el.value=v}
 
-/* ⭐ Copy link + Save QR */
 function copyJoinLink(){
   const url=new URL(location.href);
   url.searchParams.set('code',G.roomCode);
@@ -2077,7 +2158,7 @@ function saveQRCode(){
   }).catch(()=>{window.open(img.src,'_blank');toast('💡 กดค้างที่รูปเพื่อบันทึก',2500);});
 }
 
-/* ═══ HOST: CREATE ROOM ═══ */
+/* ═══ HOST: CREATE ROOM (เหมือนเดิม 100%) ═══ */
 function createRoom(){
   G.config.timeLimit=20;
   G.config.totalTime=(parseInt($('timeInput').value)||5)*60;
@@ -2121,6 +2202,7 @@ function hostOnJoin(d){
   }
   hostBroadcastLobby();rPL();uSB();
 }
+/* ⭐ hostOnAnswer: เพิ่ม 2 บรรทัด animation (local เท่านั้น ไม่แตะ signal) */
 function hostOnAnswer(id,d){
   if(G.gameState==='paused')return;
   const p=G.players[id];if(!p)return;
@@ -2128,6 +2210,8 @@ function hostOnAnswer(id,d){
   p.totalAnswers=(p.totalAnswers||0)+1;
   if(d.correct)p.streak=(p.streak||0)+1;else p.streak=0;
   renderArena();rLB();
+  /* ⭐ [ADDED] local animation — ไม่กระทบ MQTT */
+  HostTugArena.animateAnswer(id, !!d.correct);
   const totalAns=Object.values(G.players).reduce((s,x)=>s+(x.totalAnswers||0),0);
   $('hostTotalAnswers').textContent=totalAns;
 }
@@ -2191,7 +2275,6 @@ function updateSoundButtons(){
   set('btnPlayersFx',G.playersEffectOn);set('btnPlayersBgm',G.playersBgmOn);
 }
 
-/* ⭐ Host countdown overlay */
 function showHostCountdown(cb){
   const ov=$('hostCountdown');
   const el=$('hostCountdownNum');
@@ -2215,7 +2298,7 @@ function showHostCountdown(cb){
   },1000);
 }
 
-/* ═══ HOST: START ═══ */
+/* ═══ HOST: START (เหมือนเดิม 100%) ═══ */
 function hostStart(){
   const a=Object.values(G.players).filter(p=>!p.blocked&&p.connected);
   if(a.length<1){toast('ต้องมีผู้เล่น');return}
@@ -2226,20 +2309,17 @@ function hostStart(){
   G.questions=qs;
   a.forEach(p=>{p.score=0;p.streak=0;p.totalAnswers=0});
   G.gameState='playing';
-  /* ⭐ Sync deadline: broadcast happens now, both sides run countdown, then same absolute deadline */
   G.totalDeadline=Date.now()+G.config.totalTime*1000;
   const publicQs=qs.map(q=>({text:q.text,sub:q.sub,options:q.options.map(o=>o.text),correct:q.correct,timeLimit:q.timeLimit}));
   hostBroadcast({type:'start',questions:publicQs,totalTime:G.config.totalTime,
     playersEffectOn:G.playersEffectOn,playersBgmOn:G.playersBgmOn});
   
-  /* Setup screen behind countdown */
   go('scHostGame');
   $('hostTotalAnswers').textContent='0';
   const pb=$('pauseBtn');pb.innerHTML='⏸';pb.title='พัก';
   updateSoundButtons();updateHostAudio();
   renderArena();rLB();
   
-  /* Start timers (run behind overlay) */
   clearInterval(G.totalTimerId);
   G.totalTimerId=setInterval(()=>{
     if(G.gameState==='ended'){clearInterval(G.totalTimerId);return}
@@ -2255,9 +2335,7 @@ function hostStart(){
   },2000);
   broadcastRanking();
   
-  /* Show 3-2-1 countdown overlay on host */
   showHostCountdown(()=>{
-    /* countdown done — game already running behind */
     toast('🚀 เริ่มเลย!',1200);
   });
 }
@@ -2309,44 +2387,194 @@ function hostBackToMain(){
   setTimeout(()=>{window.location.reload()},300);
 }
 
-/* ═══ ARENA / LEADERBOARD ═══ */
-function renderArena(){
-  const w=$('arenaWrap');if(!w)return;
-  if(G.config.mode==='team'){
-    const teams={};
-    Object.values(G.players).forEach(p=>{if(p.blocked)return;const tn=p.team||'เดี่ยว';(teams[tn]=teams[tn]||[]).push(p);});
-    const teamList=Object.keys(teams).map(tn=>({name:tn,members:teams[tn],score:teams[tn].reduce((s,p)=>s+p.score,0)}));
-    teamList.sort((a,b)=>b.score-a.score);
-    const maxS=Math.max(100,...teamList.map(t=>t.score));
-    const colors=['#22c55e','#ef4444','#3b82f6','#eab308','#a855f7','#ec4899','#06b6d4','#f97316'];
-    const rows=teamList.map((t,i)=>{
-      const pct=Math.min(100,(t.score/maxS)*100);
-      const leader=i===0&&t.score>0;
-      return `<div style="display:flex;align-items:center;gap:10px;margin:8px 0;padding:8px 10px;border-radius:12px;background:${leader?'rgba(251,191,36,.18)':'rgba(30,15,55,.5)'};border-left:4px solid ${colors[i%8]}">
-        <span style="font-size:1.05rem;font-weight:900;color:${colors[i%8]};min-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">👥 ${esc(t.name)}</span>
-        <div style="flex:1;height:26px;background:rgba(45,27,78,.6);border-radius:13px;overflow:hidden">
-          <div style="height:100%;width:${pct}%;background:linear-gradient(90deg,${colors[i%8]},${colors[(i+2)%8]});transition:width .5s"></div>
-        </div>
-        <span style="font-family:monospace;font-weight:900;color:#4ade80;min-width:70px;text-align:right;font-size:1.1rem">${t.score}</span>
-        <div style="display:flex;gap:2px;min-width:80px;justify-content:flex-end">${t.members.slice(0,5).map(p=>`<span style="font-size:1.1rem" title="${esc(p.name)}">${esc(p.avatar)}</span>`).join('')}</div>
-        ${leader?'<span style="font-size:1.4rem">👑</span>':''}
-      </div>`;
-    }).join('');
-    w.innerHTML=`<div class="arena"><h3 style="text-align:center;margin-bottom:10px">🏁 ${teamList.length} ทีมแข่งกัน</h3>${rows}</div>`;
-  }else{
-    const act=Object.values(G.players).filter(p=>!p.blocked).sort((a,b)=>b.score-a.score).slice(0,10);
-    const mx=Math.max(100,...act.map(p=>p.score));
-    const rows=act.map(p=>{const pct=Math.min(100,(p.score/mx)*100);
-      return `<div style="display:flex;align-items:center;gap:8px;margin:6px 0">
-        <span style="font-size:1.3rem;min-width:28px">${esc(p.avatar)}</span>
-        <span style="min-width:100px;font-weight:800;font-size:.85rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(p.name)}</span>
-        <div style="flex:1;height:20px;background:rgba(45,27,78,.6);border-radius:10px;overflow:hidden">
-          <div style="height:100%;width:${pct}%;background:linear-gradient(90deg,#a855f7,#f97316);transition:width .5s"></div></div>
-        <span style="font-family:monospace;font-weight:900;color:#4ade80;min-width:60px;text-align:right">${p.score}</span>
-      </div>`}).join('');
-    w.innerHTML=`<div class="arena"><h3 style="text-align:center;margin-bottom:10px">🏁 เดี่ยว · Top 10</h3>${rows||'<p style="text-align:center;color:#7c6fa8">ยังไม่มีผู้เล่น</p>'}</div>`;
+/* ═══════════════════════════════════════════════════════════════════
+   ⭐ TUG-OF-WAR — HOST (visual only · ไม่อ่าน/เขียน MQTT)
+   คำนวณจาก G.players ที่มีอยู่แล้ว
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* คำนวณการแบ่งทีม (ใช้ร่วม host + player) */
+function computeTeams(list){
+  const arr = Array.isArray(list) ? list : Object.values(list);
+  const hasTeams = arr.some(p => p.team && String(p.team).trim().length > 0);
+  if (hasTeams) {
+    const map = {};
+    arr.forEach(p => {
+      const tn = (p.team && String(p.team).trim()) || 'เดี่ยว';
+      if (!map[tn]) map[tn] = { name: tn, members: [], score: 0 };
+      map[tn].members.push(p);
+      map[tn].score += Number(p.score) || 0;
+    });
+    const teams = Object.values(map).sort((a,b) => b.score - a.score);
+    return { mode: 'team', teams };
+  } else {
+    // แบ่งสลับตาม id — deterministic ทุก client เห็นเหมือนกัน
+    const sorted = [...arr].sort((a,b) => String(a.id).localeCompare(String(b.id)));
+    const A = { name: 'ทีม A', members: [], score: 0 };
+    const B = { name: 'ทีม B', members: [], score: 0 };
+    sorted.forEach((p, i) => {
+      const t = (i % 2 === 0) ? A : B;
+      t.members.push(p);
+      t.score += Number(p.score) || 0;
+    });
+    return { mode: 'solo', teams: [A, B] };
   }
 }
+
+const HostTugArena = {
+  mounted: false,
+  els: null,
+  _teams: null,
+  _isTeamMode: false,
+  _lastSig: '',
+
+  build(container){
+    container.innerHTML = `
+      <div class="tug-arena">
+        <div class="tug-header">
+          <div class="tug-team-info left">
+            <span class="emblem">🔴</span>
+            <span class="tname">ทีมแดง</span>
+            <span class="score">0</span>
+          </div>
+          <div class="tug-team-info right">
+            <span class="score">0</span>
+            <span class="tname">ทีมน้ำเงิน</span>
+            <span class="emblem">🔵</span>
+          </div>
+        </div>
+        <div class="tug-stage">
+          <div class="tug-center-line"></div>
+          <div class="tug-rope"></div>
+          <div class="tug-knot" style="left:50%"></div>
+          <div class="tug-players left" id="hostTugLeft"></div>
+          <div class="tug-players right" id="hostTugRight"></div>
+        </div>
+        <div class="tug-power-bars">
+          <div class="tug-power-bar left"><div class="tug-power-fill" id="hostTugFillL" style="width:50%"></div></div>
+          <div class="tug-power-bar right"><div class="tug-power-fill" id="hostTugFillR" style="width:50%"></div></div>
+        </div>
+        <div class="tug-status-text" id="hostTugStatus">⚖️ สูสี</div>
+      </div>
+    `;
+    this.els = {
+      leftName:  container.querySelector('.tug-team-info.left .tname'),
+      leftScore: container.querySelector('.tug-team-info.left .score'),
+      rightName: container.querySelector('.tug-team-info.right .tname'),
+      rightScore:container.querySelector('.tug-team-info.right .score'),
+      knot:      container.querySelector('.tug-knot'),
+      leftPlayers:  container.querySelector('#hostTugLeft'),
+      rightPlayers: container.querySelector('#hostTugRight'),
+      fillL:     container.querySelector('#hostTugFillL'),
+      fillR:     container.querySelector('#hostTugFillR'),
+      status:    container.querySelector('#hostTugStatus'),
+    };
+    this.mounted = true;
+    this._lastSig = '';
+  },
+
+  update(playersObj){
+    const container = $('arenaWrap');
+    if (!container) return;
+    if (!this.mounted) this.build(container);
+
+    // กรอง blocked ออก (Host เก็บข้อมูลแบบ object)
+    const active = {};
+    Object.values(playersObj).forEach(p => { if (!p.blocked) active[p.id] = p; });
+
+    const { mode, teams } = computeTeams(active);
+    let left, right;
+    if (teams.length >= 2)      { left = teams[0]; right = teams[1]; }
+    else if (teams.length === 1){ left = teams[0]; right = { name: 'รอทีม...', members: [], score: 0 }; }
+    else                        { left = { name: 'ทีมแดง', members: [], score: 0 }; right = { name: 'ทีมน้ำเงิน', members: [], score: 0 }; }
+
+    this._teams = { left, right, mode };
+    this._isTeamMode = mode === 'team';
+
+    // Header
+    this.els.leftName.textContent  = left.name;
+    this.els.leftScore.textContent = left.score;
+    this.els.rightName.textContent = right.name;
+    this.els.rightScore.textContent= right.score;
+
+    // Knot position: ratio ในช่วง [-1, 1]
+    const total = Math.max(1, left.score + right.score);
+    const ratio = (right.score - left.score) / total;
+    const knotPercent = Math.max(12, Math.min(88, 50 + ratio * 42));
+    this.els.knot.style.left = knotPercent + '%';
+    this.els.knot.classList.toggle('urgent', Math.abs(ratio) > 0.7);
+
+    // Avatars (สูงสุด 5 ต่อฝั่ง)
+    const leftSig  = left.members.map(m => m.id + m.avatar).join('|');
+    const rightSig = right.members.map(m => m.id + m.avatar).join('|');
+    if (this.els.leftPlayers.dataset.sig !== leftSig) {
+      this.els.leftPlayers.innerHTML = left.members.slice(0,5)
+        .map(p => `<span class="tug-player" data-pid="${esc(p.id)}">${esc(p.avatar)}</span>`).join('');
+      this.els.leftPlayers.dataset.sig = leftSig;
+    }
+    if (this.els.rightPlayers.dataset.sig !== rightSig) {
+      this.els.rightPlayers.innerHTML = right.members.slice(0,5)
+        .map(p => `<span class="tug-player" data-pid="${esc(p.id)}">${esc(p.avatar)}</span>`).join('');
+      this.els.rightPlayers.dataset.sig = rightSig;
+    }
+
+    // Power bars
+    const lp = (left.score  / total) * 100;
+    const rp = (right.score / total) * 100;
+    this.els.fillL.style.width = lp + '%';
+    this.els.fillR.style.width = rp + '%';
+
+    // Status
+    const abs = Math.abs(ratio);
+    let st = '⚖️ สูสี', cls = '';
+    if (abs > 0.7) {
+      st = ratio > 0 ? '⚠️ ทีมขวาใกล้ชนะ!' : '⚠️ ทีมซ้ายใกล้ชนะ!';
+      cls = 'urgent';
+    } else if (abs > 0.35) {
+      st = ratio > 0 ? '💪 ทีมขวากำลังชนะ' : '💪 ทีมซ้ายกำลังชนะ';
+      cls = ratio > 0 ? 'advantage-r' : 'advantage-l';
+    } else if (abs > 0.12) {
+      st = ratio > 0 ? '↗️ ทีมขวาได้เปรียบ' : '↖️ ทีมซ้ายได้เปรียบ';
+    }
+    this.els.status.textContent = st;
+    this.els.status.className = 'tug-status-text ' + cls;
+  },
+
+  /* หาว่าผู้เล่นอยู่ฝั่งไหน */
+  sideOfPlayer(playerId){
+    if (!this._teams) return null;
+    const { left, right } = this._teams;
+    if (left.members.some(m => m.id === playerId))  return 'left';
+    if (right.members.some(m => m.id === playerId)) return 'right';
+    return null;
+  },
+
+  animateAnswer(playerId, isCorrect){
+    if (!this.els) return;
+    const side = this.sideOfPlayer(playerId);
+    if (!side) return;
+    const el = side === 'left' ? this.els.leftPlayers : this.els.rightPlayers;
+    if (!el) return;
+    el.querySelectorAll('.tug-player').forEach(a => {
+      a.classList.remove('pulling','stumble');
+      void a.offsetWidth;
+      a.classList.add(isCorrect ? 'pulling' : 'stumble');
+      setTimeout(() => a.classList.remove('pulling','stumble'), 550);
+    });
+  },
+
+  destroy(){
+    this.mounted = false;
+    this.els = null;
+    this._teams = null;
+    this._lastSig = '';
+  }
+};
+
+/* ⭐ แทน renderArena() — ใช้ Tug Arena ใหม่ (ยังคง signature เดิม) */
+function renderArena(){
+  HostTugArena.update(G.players);
+}
+
 function rLB(){const w=$('hostLeaderboard');if(!w)return;
   const l=Object.values(G.players).filter(p=>!p.blocked).sort((a,b)=>b.score-a.score).slice(0,10);
   w.innerHTML=l.map((p,i)=>{const r=i+1;const c=r===1?'top1':r===2?'top2':r===3?'top3':'';
@@ -2354,7 +2582,7 @@ function rLB(){const w=$('hostLeaderboard');if(!w)return;
     const t=p.team?` <span style="color:#86efac;font-size:.75rem">[${esc(p.team)}]</span>`:'';
     return `<div class="lb-row ${c}"><span class="lb-rank">${m}</span><span class="lb-av">${esc(p.avatar)}</span><span class="lb-name">${esc(p.name)}${t}</span><span class="lb-score">${p.score}</span></div>`}).join('')}
 
-/* ═══ HOST: END ═══ */
+/* ═══ HOST: END (เหมือนเดิม 100%) ═══ */
 function hEnd(){
   G.gameState='ended';clearInterval(G.totalTimerId);clearInterval(G.rankTimerId);stopBGM();
   let ranking;
@@ -2424,7 +2652,7 @@ function buildRankTable(elId,rank,mode){
   el.innerHTML=html;
 }
 
-/* ═══ PLAYER: JOIN — ไม่แก้ไขเลย ═══ */
+/* ═══ PLAYER: JOIN (เหมือนเดิม 100%) ═══ */
 function renderAv(){const g=$('avatarGrid');if(!g)return;
   g.innerHTML=AV.map((a,i)=>`<button class="avatar-btn${i===0?' active':''}" data-a="${a}" onclick="selAv(this)">${a}</button>`).join('')}
 function selAv(b){sc();document.querySelectorAll('.avatar-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');G.myAvatar=b.dataset.a}
@@ -2472,18 +2700,21 @@ function applyPlayerSoundState(){
   if(!G.playersBgmOn) stopBGM();
   else if(G.myGameActive&&!G.paused) startBGM();
 }
+/* ⭐ pOnBroadcast: เพิ่ม hook เรียก TugArenaPlayer (visual เท่านั้น) */
 function pOnBroadcast(d){
   if(!d)return;
   switch(d.type){
     case 'blocked':toast('🚫 ครูล็อก');break;
     case 'unblocked':toast('✅ ปลดล็อก');break;
-    case 'ranking':updatePlayerRanking(d.list);break;
+    case 'ranking':
+      updatePlayerRanking(d.list);
+      TugArenaPlayer.update(d.list); // ⭐ [ADDED] visual only
+      break;
     case 'sound':
       G.playersEffectOn=d.playersEffectOn!==false;
       G.playersBgmOn=d.playersBgmOn!==false;
       applyPlayerSoundState();
       break;
-    /* ⭐ FIX: addTime — update display immediately + restart timer if stopped */
     case 'addTime':{
       const ms=d.ms||0;
       if(G.paused||d.paused){
@@ -2492,7 +2723,6 @@ function pOnBroadcast(d){
         G.totalDeadline+=ms;
         const r=Math.max(0,Math.ceil((G.totalDeadline-Date.now())/1000));
         const el=$('pTotalTimer');if(el)el.textContent=fmtTime(r);
-        /* ⭐ รีสตาร์ท timer เพื่อให้แน่ใจว่ามันยังวิ่งอยู่ */
         if(G.myGameActive&&!G.paused) pStartTimer();
       }
       const disp=Math.abs(ms)%60000===0?`${Math.abs(ms)/60000} นาที`:`${Math.abs(ms)/1000} วินาที`;
@@ -2508,7 +2738,11 @@ function pOnBroadcast(d){
       G.playersEffectOn=d.playersEffectOn!==false;
       G.playersBgmOn=d.playersBgmOn!==false;
       $('pauseOverlay').classList.remove('on');
-      pCnt(()=>{go('scPlayerQ');pStartTimer();pQ();applyPlayerSoundState();});
+      pCnt(()=>{
+        go('scPlayerQ');
+        TugArenaPlayer.init($('pArenaContainer')); // ⭐ [ADDED] visual only
+        pStartTimer();pQ();applyPlayerSoundState();
+      });
       break;
     case 'pause':
       G.paused=!!d.paused;
@@ -2540,6 +2774,7 @@ function pOnBroadcast(d){
       if(G.myJoinTimerId){clearTimeout(G.myJoinTimerId);G.myJoinTimerId=null}
       G.questions=[];
       $('pauseOverlay').classList.remove('on');stopBGM();
+      TugArenaPlayer.destroy(); // ⭐ [ADDED] cleanup visual
       pEnd(d.ranking,d.mode);
       break;
     case 'silent':stopBGM();break;
@@ -2561,7 +2796,6 @@ function pStartTimer(){
     if(G.paused)return;
     const r=Math.max(0,Math.ceil((G.totalDeadline-Date.now())/1000));
     const el=$('pTotalTimer');if(el)el.textContent=fmtTime(r);
-    /* ⭐ ไม่ clearInterval เมื่อ r<=0 — ปล่อยให้ working ต่อเพื่อรองรับ addTime */
   },500);
 }
 function qTimerTick(){
@@ -2598,6 +2832,7 @@ function pQ(){
   g.innerHTML=q.options.map((o,i)=>`<button class="ans-btn ${cl[i]}" data-i="${i}" onclick="pAns(${i},this)"><span class="symbol">${sy[i]}</span><span>${esc(o)}</span></button>`).join('');
   startQTimer();
 }
+/* ⭐ pAns: เพิ่ม 2 บรรทัด local animation (ไม่แตะ pub) */
 function pAns(choice,btn){
   if(!G.myGameActive)return;
   if(G.paused){toast('⏸ รอครูกดเล่นต่อก่อน');return}
@@ -2629,14 +2864,17 @@ function pAns(choice,btn){
     $('pFbText').textContent=G.myStreak>=3?`ติดกัน x${G.myStreak}!`:'ถูก!';
     $('pFbPts').textContent=`+${pts}`;
     sCor();
+    TugArenaPlayer.triggerSelfPull();  // ⭐ [ADDED] local animation เท่านั้น
   }else{
     fb.classList.add('show','wrong');
     $('pFbEmoji').textContent='❌';
     $('pFbText').textContent='ผิด!';
     $('pFbPts').textContent='+0';
     sWr();
+    TugArenaPlayer.triggerSelfStumble(); // ⭐ [ADDED] local animation เท่านั้น
   }
   $('pScore').textContent=G.myScore;
+  /* pub() call เหมือนเดิม 100% — ห้ามแก้ */
   pub(`tug_kv10/${G.roomCode}/player/${G.myPlayerId}/answer`,{points:pts,correct:isCorrect,qIdx:G.myCurrentQ,name:G.myName,avatar:G.myAvatar,team:G.myTeam});
   setTimeout(()=>{
     if(!G.myGameActive)return;
@@ -2677,6 +2915,159 @@ function pEnd(rank,mode){
   sFin();
 }
 
+/* ═══════════════════════════════════════════════════════════════════
+   ⭐ TUG-OF-WAR — PLAYER
+   ทำงานจาก ranking broadcast เท่านั้น (ไม่แตะ MQTT)
+   ทีมของตัวเองอยู่ฝั่งซ้ายเสมอ → UX ที่ดีที่สุด
+   ═══════════════════════════════════════════════════════════════════ */
+const TugArenaPlayer = {
+  mounted: false,
+  els: null,
+
+  build(container){
+    container.innerHTML = `
+      <div class="ptug-arena">
+        <div class="ptug-header">
+          <div class="ptug-team-info left">
+            <span class="ptug-tname">ทีมคุณ</span>
+            <span class="ptug-score">0</span>
+          </div>
+          <div class="ptug-team-info right">
+            <span class="ptug-score">0</span>
+            <span class="ptug-tname">คู่แข่ง</span>
+          </div>
+        </div>
+        <div class="ptug-stage">
+          <div class="ptug-center-line"></div>
+          <div class="ptug-rope"></div>
+          <div class="ptug-knot" style="left:50%"></div>
+          <div class="ptug-players left" id="ptugLeft"></div>
+          <div class="ptug-players right" id="ptugRight"></div>
+        </div>
+        <div class="ptug-status" id="ptugStatus">⚖️ สูสี</div>
+      </div>
+    `;
+    this.els = {
+      leftName:  container.querySelector('.ptug-team-info.left .ptug-tname'),
+      leftScore: container.querySelector('.ptug-team-info.left .ptug-score'),
+      rightName: container.querySelector('.ptug-team-info.right .ptug-tname'),
+      rightScore:container.querySelector('.ptug-team-info.right .ptug-score'),
+      knot:      container.querySelector('.ptug-knot'),
+      leftPlayers:  container.querySelector('#ptugLeft'),
+      rightPlayers: container.querySelector('#ptugRight'),
+      status:    container.querySelector('#ptugStatus'),
+    };
+    this.mounted = true;
+  },
+
+  init(container){
+    if (!container) return;
+    if (this.mounted) this.destroy();
+    this.build(container);
+  },
+
+  update(list){
+    if (!this.mounted || !this.els) return;
+    if (!Array.isArray(list) || !list.length) return;
+
+    const { mode, teams } = computeTeams(list);
+    let myTeam = null, rivalTeam = null;
+
+    if (mode === 'team') {
+      const myTeamName = (G.myTeam || '').trim();
+      if (myTeamName) {
+        myTeam = teams.find(t => t.name === myTeamName) || teams[0];
+        rivalTeam = teams.find(t => t !== myTeam) || { name: 'รอคู่แข่ง...', members: [], score: 0 };
+      } else {
+        myTeam = teams[0];
+        rivalTeam = teams[1] || { name: 'รอคู่แข่ง...', members: [], score: 0 };
+      }
+    } else {
+      // Solo: หาว่าตัวเองอยู่ทีมไหน (ตาม id sort)
+      const sorted = [...list].sort((a,b) => String(a.id).localeCompare(String(b.id)));
+      const myIdx = sorted.findIndex(p => p.id === G.myPlayerId);
+      const iAmA = myIdx < 0 ? true : (myIdx % 2 === 0);
+      myTeam = iAmA ? teams[0] : teams[1];
+      rivalTeam = iAmA ? teams[1] : teams[0];
+    }
+
+    if (!myTeam)    myTeam    = { name: 'ทีมคุณ',   members: [], score: 0 };
+    if (!rivalTeam) rivalTeam = { name: 'คู่แข่ง',  members: [], score: 0 };
+
+    // Header (ทีมตัวเอง = "ทีมคุณ" เสมอ, คู่แข่ง = "คู่แข่ง")
+    this.els.leftName.textContent   = 'ทีมคุณ';
+    this.els.leftScore.textContent  = myTeam.score;
+    this.els.rightName.textContent  = 'คู่แข่ง';
+    this.els.rightScore.textContent = rivalTeam.score;
+
+    // Knot: ทีมตัวเองอยู่ซ้าย → ratio บวก = คู่แข่งนำ → knot เลื่อนขวา
+    const total = Math.max(1, myTeam.score + rivalTeam.score);
+    const ratio = (rivalTeam.score - myTeam.score) / total; // -1 ถึง 1
+    const knotPercent = Math.max(12, Math.min(88, 50 + ratio * 42));
+    this.els.knot.style.left = knotPercent + '%';
+
+    // Avatars (สูงสุด 3 ต่อฝั่ง สำหรับจอเล็ก)
+    const leftSig  = myTeam.members.map(m => m.id + m.avatar).join('|');
+    const rightSig = rivalTeam.members.map(m => m.id + m.avatar).join('|');
+    if (this.els.leftPlayers.dataset.sig !== leftSig) {
+      this.els.leftPlayers.innerHTML = myTeam.members.slice(0,3)
+        .map(p => `<span class="ptug-player" data-pid="${esc(p.id)}">${esc(p.avatar)}</span>`).join('');
+      this.els.leftPlayers.dataset.sig = leftSig;
+    }
+    if (this.els.rightPlayers.dataset.sig !== rightSig) {
+      this.els.rightPlayers.innerHTML = rivalTeam.members.slice(0,3)
+        .map(p => `<span class="ptug-player" data-pid="${esc(p.id)}">${esc(p.avatar)}</span>`).join('');
+      this.els.rightPlayers.dataset.sig = rightSig;
+    }
+
+    // Status text (จากมุมมองของตัวเอง)
+    const myWin = -ratio; // + = ตัวเองนำ
+    const abs = Math.abs(myWin);
+    let st = '⚖️ สูสี', cls = '';
+    if (abs > 0.7) {
+      st = myWin > 0 ? '🔥 ใกล้ชนะแล้ว!' : '⚠️ ใกล้แพ้!';
+      cls = myWin > 0 ? 'advantage' : 'disadvantage';
+    } else if (abs > 0.35) {
+      st = myWin > 0 ? '💪 กำลังได้เปรียบ' : '😰 กำลังเสียเปรียบ';
+      cls = myWin > 0 ? 'advantage' : 'disadvantage';
+    } else if (abs > 0.12) {
+      st = myWin > 0 ? '↗️ ได้เปรียบเล็กน้อย' : '↘️ เสียเปรียบเล็กน้อย';
+      cls = myWin > 0 ? 'advantage' : 'disadvantage';
+    }
+    this.els.status.textContent = st;
+    this.els.status.className = 'ptug-status ' + cls;
+  },
+
+  /* local animation เท่านั้น — ไม่ส่งสัญญาณ */
+  triggerSelfPull(){
+    if (!this.els) return;
+    this.els.leftPlayers.querySelectorAll('.ptug-player').forEach(a => {
+      a.classList.remove('pulling','stumble');
+      void a.offsetWidth;
+      a.classList.add('pulling');
+      setTimeout(() => a.classList.remove('pulling'), 500);
+    });
+  },
+
+  triggerSelfStumble(){
+    if (!this.els) return;
+    const me = this.els.leftPlayers.querySelector(`.ptug-player[data-pid="${G.myPlayerId}"]`);
+    if (me) {
+      me.classList.remove('pulling','stumble');
+      void me.offsetWidth;
+      me.classList.add('stumble');
+      setTimeout(() => me.classList.remove('stumble'), 500);
+    }
+  },
+
+  destroy(){
+    this.mounted = false;
+    this.els = null;
+    const c = $('pArenaContainer');
+    if (c) c.innerHTML = '';
+  }
+};
+
 /* ═══ INIT ═══ */
 renderGrades();renderAv();
 {
@@ -2700,7 +3091,7 @@ document.addEventListener('click',()=>{iA();startBGM()},{once:true});
   },{passive:true});
 })();
 
-console.log('🎃 Tug of War v12+ · v12 MQTT · Host countdown · AddTime sync · Sound partition · Copy/Save QR');
+console.log('🎃 Tug of War v13 · Tug Arena (Host + Player) · MQTT untouched');
 </script>
 </body>
 </html>
