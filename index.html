@@ -614,7 +614,7 @@ h1{font-size:1.7rem}.room-code{font-size:2.6rem}.timer-big{font-size:1.6rem;min-
         <span class="spec-vs">VS</span>
         <span class="spec-tB" id="specTeamB">ทีม B</span>
       </div>
-      <div class="spec-stage">
+      <div class="spec-stage" id="spectatorTug">
         <div class="spec-center"></div>
         <div class="spec-rope"></div>
         <div class="spec-knot" id="specKnot" style="left:50%"></div>
@@ -729,7 +729,7 @@ const G={
     bracket:{qualifier:{},semi:[],final:{}},
     matchId:null,activeTeamIds:[],
     currentMatchTeamA:null,currentMatchTeamB:null,
-    finalEndTimer:null  // ⭐ safety timeout
+    finalEndTimer:null
   },
   myCurrentQ:0,myScore:0,myStreak:0,myAnswers:[],
   myPlayerId:null,myName:'',myAvatar:'🎃',myTeam:'',myTeamId:null,
@@ -739,7 +739,6 @@ const G={
   hostEffectOn:true,hostBgmOn:true,playersEffectOn:true,playersBgmOn:true,
   lang:'th',theme:'halloween',hint:{points:3},
   sessionProg:{totalCorrect:0,totalWrong:0,bestStreak:0},replayLog:[],
-  // ⭐ v16.3 spectator
   isSpectator:false,myFinalRank:null,
   specMatchInfo:null,specTugState:{current:50,target:50,raf:null,lastTs:0}
 };
@@ -779,6 +778,16 @@ let currentBrokerIdx=0,mqttClient=null,mqttHandlers={},mqttConnected=false;
 const AV=['🎃','👻','🦇','🕷️','🕸️','💀','🧙‍♀️','🧛','🧟','🐺','🦉','🐈‍⬛','🐸','🦊','🐼','🐯','🦁','🐨','🐷','🐵','🐰','🐭','🐮','🐔','🦄','🐲','🦖','🤖','👽','🦈'];
 const $=(id)=>document.getElementById(id);
 const esc=(s)=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+/* ⭐ [FIX] ประกาศ sc() กัน ReferenceError — เคยทำให้ปุ่มกดไม่ได้ */
+function sc(){
+  try{
+    if(typeof stopBGM==='function') stopBGM();
+    if(G.myQTimerId && !G.myGameActive){clearInterval(G.myQTimerId);G.myQTimerId=null;}
+    if(G.totalTimerId && G.gameState!=='playing'){clearInterval(G.totalTimerId);G.totalTimerId=null;}
+  }catch(e){}
+}
+
 function go(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));$(id).classList.add('active');window.scrollTo(0,0)}
 function toast(m,ms){const t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),ms||2500)}
 function gCode(){const c='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';let r='';for(let i=0;i<4;i++)r+=c[Math.floor(Math.random()*c.length)];return r}
@@ -1033,7 +1042,6 @@ function startQualifier(){
   showHostCountdown('QUALIFIER',()=>{toast('🚀 เริ่มเลย!',1200);});
 }
 
-/* ⭐ [FIX v16.3] endMatch - แยกตาม n ทีม */
 function endMatch(){
   G.tournament.phase='setend';
   hostBroadcast({type:'match_end'});
@@ -1048,7 +1056,6 @@ function endMatch(){
       G.tournament.bracket.qualifier.ranking=ranked.map(t=>t.id);
 
       if(n===2){
-        // ⭐ 2 ทีม: จบทันที → podium
         G.tournament.bracket.final={
           first:{teamA:ranked[0].id,teamB:ranked[1].id,winner:ranked[0].id,loser:ranked[1].id},
           third:null
@@ -1057,17 +1064,14 @@ function endMatch(){
         setTimeout(()=>endTournament(), 2000);
       }
       else if(n===3){
-        // ⭐ 3 ทีม: อันดับ 3 ได้ที่ 3, 1 vs 2 ชิง
         G.tournament.bracket.final={
           third:{teamA:ranked[2].id,winner:ranked[2].id,auto:true,loser:null},
           first:{teamA:ranked[0].id,teamB:ranked[1].id,winner:null,loser:null}
         };
-        // ⭐ แจ้งทีมอันดับ 3 ว่าได้ที่ 3 แล้ว
         hostBroadcast({type:'rank_update',teamId:ranked[2].id,rank:3});
         showBracketResult(ranked, ()=>runFinalMatch('championship', ranked[0].id, ranked[1].id));
       }
       else if(n===4){
-        // ⭐ 4 ทีม: Semi
         G.tournament.bracket.semi=[
           {id:'semi1',teamA:ranked[0].id,teamB:ranked[3].id,winner:null,loser:null},
           {id:'semi2',teamA:ranked[1].id,teamB:ranked[2].id,winner:null,loser:null}
@@ -1090,7 +1094,6 @@ function endMatch(){
       const w=determineMatchWinner();
       G.tournament.bracket.final.third.winner=w.winner;
       G.tournament.bracket.final.third.loser=w.loser;
-      // ⭐ แจ้งทีมที่ 3 และ 4
       hostBroadcast({type:'rank_update',teamId:w.winner,rank:3});
       hostBroadcast({type:'rank_update',teamId:w.loser,rank:4});
       toast('🥉 ชิงที่ 3 จบ · ที่ 3 vs ที่ 4 ประกาศแล้ว',2000);
@@ -1100,7 +1103,6 @@ function endMatch(){
       const w=determineMatchWinner();
       G.tournament.bracket.final.first.winner=w.winner;
       G.tournament.bracket.final.first.loser=w.loser;
-      // ⭐ แจ้งทีมที่ 1 และ 2
       hostBroadcast({type:'rank_update',teamId:w.winner,rank:1});
       hostBroadcast({type:'rank_update',teamId:w.loser,rank:2});
       toast('🏆 ชิงชนะเลิศจบ! ที่ 1 vs ที่ 2 ประกาศแล้ว',2000);
@@ -1123,18 +1125,15 @@ function determineMatchWinner(){
 }
 function rankTeams(teams){return teams.sort((a,b)=>{if(b.score!==a.score)return b.score-a.score;if((b.totalCorrect||0)!==(a.totalCorrect||0))return (b.totalCorrect||0)-(a.totalCorrect||0);if((a.avgTime||0)!==(b.avgTime||0))return (a.avgTime||0)-(b.avgTime||0);return Math.random()-0.5;});}
 
-/* ⭐ [FIX v16.3] checkAllMatchesDone - ตรวจตาม n */
 function checkAllMatchesDone(){
   const n=G.tournament.teams.length;
   const f=G.tournament.bracket.final;
 
-  // ต้องมี first winner
   if(!f.first||!f.first.winner)return;
 
   if(n===2){setTimeout(()=>endTournament(),1500);return;}
   if(n===3){setTimeout(()=>endTournament(),1500);return;}
   if(n===4){
-    // 4 ทีมต้องรอ third ด้วย
     if(!f.third||!f.third.winner)return;
     setTimeout(()=>endTournament(),1500);
     return;
@@ -1222,7 +1221,6 @@ function runFinalMatch(kind,tidA,tidB){
   showHostCountdown(label+' · '+teamA.name+' vs '+teamB.name,()=>{toast(label,2000);});
 }
 
-/* ⭐ [FIX v16.3] endTournament - สร้าง ranks ถูกต้อง */
 function endTournament(){
   G.gameState='ended';
   clearInterval(G.totalTimerId);
@@ -1352,7 +1350,6 @@ function playerJoin(){
   },()=>{$('joinMsg').textContent='❌ MQTT ไม่ได้';$('joinBtn').disabled=false;});
 }
 
-/* ⭐ [FIX v16.3] Player broadcast - เพิ่ม spectator + rank_update */
 function pOnBroadcast(d){
   if(!d)return;
   switch(d.type){
@@ -1372,7 +1369,6 @@ function pOnBroadcast(d){
       break;
     }
     case 'rank_update':{
-      // ⭐ v16.3 - แจ้งอันดับที่แน่นอน
       if(d.teamId===G.myTeamId){
         G.myFinalRank=d.rank;
         if($('specTitle'))$('specTitle').textContent=`คุณได้ที่ ${d.rank} แล้ว!`;
@@ -1405,16 +1401,12 @@ function pOnBroadcast(d){
       G.tournament.activeTeamIds=[d.teamA.id,d.teamB.id];
       const isMyTeam=(d.teamA.id===G.myTeamId||d.teamB.id===G.myTeamId);
 
-      // ⭐ v16.3: ทีมอื่นแข่ง → Spectator Mode
       if(!isMyTeam){
         G.isSpectator=true;G.myGameActive=false;G.paused=false;
-        // stop any timers
         if(G.myQTimerId){clearInterval(G.myQTimerId);G.myQTimerId=null;}
         if(G.myTotalTimerId){clearInterval(G.myTotalTimerId);G.myTotalTimerId=null;}
         stopBGM();
-        // ensure we're on scPlayerQ
         go('scPlayerQ');
-        // disable + blur answer grid
         $('pAnswersGrid').style.opacity='.2';
         $('pAnswersGrid').style.pointerEvents='none';
         $('pQText').textContent='🪑 นั่งดูเพื่อนแข่ง';
@@ -1424,7 +1416,6 @@ function pOnBroadcast(d){
         return;
       }
 
-      // ทีมตัวเองแข่ง — reset spectator
       G.isSpectator=false;
       hideSpectatorOverlay();
       $('pAnswersGrid').style.opacity='1';
@@ -1586,7 +1577,7 @@ const TugArenaPlayer={
   destroy(){if(this._raf)cancelAnimationFrame(this._raf);this._raf=null;this.mounted=false;this.els=null;const c=$('pArenaContainer');if(c)c.innerHTML='';}
 };
 
-/* ⭐ [NEW v16.3] SPECTATOR ARENA */
+/* ⭐ [v16.3] SPECTATOR ARENA */
 const SpectatorArena={
   mounted:false,els:null,_raf:null,_lastTs:0,_current:50,_target:50,_teams:null,
   init(container,teamA,teamB){
@@ -1743,7 +1734,7 @@ document.addEventListener('touchstart',()=>{iA();},{once:true,passive:true});
 document.addEventListener('click',()=>{iA();},{once:true});
 (function(){const corner=$('hostBackCorner');if(!corner)return;corner.addEventListener('touchstart',function(e){if(e.target.tagName!=='BUTTON'){this.classList.add('show');setTimeout(()=>this.classList.remove('show'),4000);}},{passive:true});})();
 window.addEventListener('resize',()=>{const c=$('fireworksCanvas');if(c){c.width=window.innerWidth;c.height=window.innerHeight;}});
-console.log('🎃 Tug of War v16.3 · Tournament Flow Fixed + Spectator Mode');
+console.log('🎃 Tug of War v16.3.1 · Fixed: sc() declared');
 </script>
 </body>
 </html>
