@@ -228,16 +228,20 @@ h1{font-size:1.7rem}.room-code{font-size:2.6rem;letter-spacing:6px}.timer-big{fo
 .tug-knot{position:absolute;top:50%;left:50%;width:28px;height:28px;transform:translate(-50%,-50%);background:radial-gradient(circle at 35% 35%,#fbbf24,#ea580c 60%,#7c2d12);border-radius:50%;box-shadow:0 0 22px rgba(251,191,36,.95),inset 0 -3px 5px rgba(0,0,0,.5);transition:box-shadow .3s;z-index:6;pointer-events:none;will-change:left}
 .tug-knot.urgent{animation:tugKnotPulse .55s infinite}
 @keyframes tugKnotPulse{0%,100%{box-shadow:0 0 22px rgba(251,191,36,.95),inset 0 -3px 5px rgba(0,0,0,.5)}50%{box-shadow:0 0 45px rgba(251,191,36,1),0 0 60px rgba(249,115,22,.7),inset 0 -3px 5px rgba(0,0,0,.5)}}
-.tug-players{position:absolute;top:50%;transform:translateY(-50%);display:flex;gap:6px;z-index:4;pointer-events:none}
+/* ⭐ ใช้ font-size ของ container เป็นตัวคูณ + max-width เพื่อกันล้น */
+.tug-players{position:absolute;top:50%;transform:translateY(-50%);display:flex;gap:.18em;z-index:4;pointer-events:none;max-width:44%;font-size:2.1rem;flex-wrap:nowrap}
 .tug-players.left{left:2%}
 .tug-players.right{right:2%;flex-direction:row-reverse}
-.tug-player{font-size:2.1rem;filter:drop-shadow(0 4px 8px rgba(0,0,0,.75));display:inline-block;animation:tugIdle 2.2s ease-in-out infinite;transform-origin:bottom center;line-height:1}
+.tug-player{font-size:inherit;filter:drop-shadow(0 4px 8px rgba(0,0,0,.75));display:inline-block;animation:tugIdle 2.2s ease-in-out infinite;transform-origin:bottom center;line-height:1}
 .tug-players.left .tug-player{transform-origin:bottom left}
 .tug-players.right .tug-player{transform-origin:bottom right}
 .tug-player:nth-child(2){animation-delay:.28s}
 .tug-player:nth-child(3){animation-delay:.56s}
 .tug-player:nth-child(4){animation-delay:.84s}
 .tug-player:nth-child(5){animation-delay:1.12s}
+.tug-player:nth-child(6){animation-delay:1.4s}
+.tug-player:nth-child(7){animation-delay:1.68s}
+.tug-player:nth-child(8){animation-delay:1.96s}
 @keyframes tugIdle{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-3px) rotate(2deg)}}
 .tug-player.pulling{animation:tugPull .45s ease-out}
 @keyframes tugPull{0%{transform:rotate(0) translateX(0)}25%{transform:rotate(-18deg) translateX(-6px) scale(1.05)}55%{transform:rotate(8deg) translateX(3px) scale(1.02)}100%{transform:rotate(0) translateX(0)}}
@@ -270,10 +274,11 @@ h1{font-size:1.7rem}.room-code{font-size:2.6rem;letter-spacing:6px}.timer-big{fo
 .ptug-center-line{position:absolute;left:50%;top:10%;bottom:10%;width:2px;background:rgba(251,191,36,.7);transform:translateX(-50%);box-shadow:0 0 10px rgba(251,191,36,.85);z-index:2}
 .ptug-rope{position:absolute;left:6%;right:6%;top:50%;height:9px;transform:translateY(-50%);background:repeating-linear-gradient(90deg,#92400e 0,#92400e 3px,#78350f 3px,#78350f 6px);border-radius:5px;box-shadow:0 2px 5px rgba(0,0,0,.6),inset 0 -1px 0 rgba(0,0,0,.4);z-index:1}
 .ptug-knot{position:absolute;top:50%;left:50%;width:18px;height:18px;transform:translate(-50%,-50%);background:radial-gradient(circle at 35% 35%,#fbbf24,#ea580c 60%,#7c2d12);border-radius:50%;box-shadow:0 0 14px rgba(251,191,36,.95);z-index:5;pointer-events:none;will-change:left}
-.ptug-players{position:absolute;top:50%;transform:translateY(-50%);display:flex;gap:3px;z-index:3;pointer-events:none}
+/* ⭐ ใช้ font-size ของ container เป็นตัวคูณ + max-width เพื่อกันล้น */
+.ptug-players{position:absolute;top:50%;transform:translateY(-50%);display:flex;gap:.18em;z-index:3;pointer-events:none;max-width:44%;font-size:1.5rem;flex-wrap:nowrap}
 .ptug-players.left{left:3%}
 .ptug-players.right{right:3%;flex-direction:row-reverse}
-.ptug-player{font-size:1.5rem;filter:drop-shadow(0 2px 4px rgba(0,0,0,.75));display:inline-block;animation:tugIdle 2.2s ease-in-out infinite;transform-origin:bottom center;line-height:1}
+.ptug-player{font-size:inherit;filter:drop-shadow(0 2px 4px rgba(0,0,0,.75));display:inline-block;animation:tugIdle 2.2s ease-in-out infinite;transform-origin:bottom center;line-height:1}
 .ptug-players.left .ptug-player{transform-origin:bottom left}
 .ptug-players.right .ptug-player{transform-origin:bottom right}
 .ptug-player:nth-child(2){animation-delay:.3s}
@@ -285,11 +290,9 @@ h1{font-size:1.7rem}.room-code{font-size:2.6rem;letter-spacing:6px}.timer-big{fo
 .ptug-status.disadvantage{color:#f87171;text-shadow:0 0 8px rgba(248,113,113,.6)}
 @media(max-width:640px){
 .tug-stage{height:100px}
-.tug-player{font-size:1.6rem}
-.tug-players.left .tug-player:nth-child(n+4),.tug-players.right .tug-player:nth-child(n+4){display:none}
+.tug-players{font-size:1.6rem;max-width:42%}
 .ptug-stage{height:52px}
-.ptug-player{font-size:1.25rem}
-.ptug-players.left .ptug-player:nth-child(n+3),.ptug-players.right .ptug-player:nth-child(n+3){display:none}
+.ptug-players{font-size:1.25rem;max-width:42%}
 }
 </style>
 </head>
@@ -2383,7 +2386,7 @@ function hostBackToMain(){
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   ⭐ TUG-OF-WAR — TEAM COMPUTATION (ใช้ร่วม host + player)
+   ⭐ TUG-OF-WAR — TEAM COMPUTATION
    ═══════════════════════════════════════════════════════════════════ */
 function computeTeams(list){
   const arr = Array.isArray(list) ? list : Object.values(list);
@@ -2411,9 +2414,20 @@ function computeTeams(list){
   }
 }
 
+/* ⭐ Auto-scale ขนาด emoji ตามจำนวนคน — เห็นครบทุกคนโดยไม่ล้น */
+function pickTugFontSize(n, isSmall){
+  const table = isSmall
+    ? [[3,'1.5rem'],[5,'1.25rem'],[8,'1rem'],[12,'0.85rem'],[18,'0.7rem'],[Infinity,'0.6rem']]
+    : [[3,'2.1rem'],[5,'1.8rem'],[8,'1.5rem'],[12,'1.2rem'],[18,'1rem'],[Infinity,'0.85rem']];
+  for (const [max, size] of table) {
+    if (n <= max) return size;
+  }
+  return table[table.length-1][1];
+}
+
 /* ═══════════════════════════════════════════════════════════════════
    ⭐ TUG-OF-WAR — HOST
-   ใช้ RAF + lerp → เชือกค่อยๆ ดึงทีละนิดแบบนุ่มนวล
+   RAF + lerp → เชือกค่อยๆ ดึงทีละนิด · ทุกคนฝั่งนั้นได้แสดงครบ
    ═══════════════════════════════════════════════════════════════════ */
 const HostTugArena = {
   mounted: false,
@@ -2421,12 +2435,9 @@ const HostTugArena = {
   _teams: null,
   _raf: null,
   _lastTs: 0,
-  _current: 50,   // ตำแหน่งปมปัจจุบัน (%)
-  _target: 50,    // ตำแหน่งเป้าหมาย (%)
+  _current: 50,
+  _target: 50,
   _paused: false,
-  /* ⭐ ปรับค่านี้เพื่อความเนียนของการดึง:
-     0.0003 = ช้ามาก (TC~3.3s)  |  0.0005 = ช้า (TC~2.0s) ← default
-     0.0008 = ปานกลาง (TC~1.25s) |  0.0015 = เร็ว (TC~0.67s) */
   _lerpRate: 0.0005,
 
   build(container){
@@ -2478,7 +2489,6 @@ const HostTugArena = {
     this.startRaf();
   },
 
-  /* ⭐ RAF loop — ค่อยๆ ขยับ _current เข้าหา _target ทีละนิด */
   startRaf(){
     if (this._raf) cancelAnimationFrame(this._raf);
     const loop = (ts) => {
@@ -2489,11 +2499,10 @@ const HostTugArena = {
       if (!this._lastTs) this._lastTs = ts;
       let dt = ts - this._lastTs;
       this._lastTs = ts;
-      if (dt > 100) dt = 100; // clamp เมื่อ tab กลับมา
+      if (dt > 100) dt = 100;
 
       const diff = this._target - this._current;
       if (Math.abs(diff) > 0.01) {
-        // frame-rate independent lerp → นุ่มนวลทุก FPS
         const k = 1 - Math.exp(-this._lerpRate * dt);
         this._current += diff * k;
         if (this.els && this.els.knot) {
@@ -2525,25 +2534,28 @@ const HostTugArena = {
     this.els.rightName.textContent = right.name;
     this.els.rightScore.textContent= right.score;
 
-    // ⭐ คำนวณ "เป้าหมาย" — RAF จะค่อยๆ ดึงไปหาทีละนิด
     const total = Math.max(1, left.score + right.score);
     const ratio = (right.score - left.score) / total;
     this._target = Math.max(12, Math.min(88, 50 + ratio * 42));
 
     this.els.knot.classList.toggle('urgent', Math.abs(ratio) > 0.7);
 
+    // ⭐ ทุกคนฝั่งนั้น (ไม่ slice) — เห็นครบ
     const leftSig  = left.members.map(m => m.id + m.avatar).join('|');
     const rightSig = right.members.map(m => m.id + m.avatar).join('|');
     if (this.els.leftPlayers.dataset.sig !== leftSig) {
-      this.els.leftPlayers.innerHTML = left.members.slice(0,5)
+      this.els.leftPlayers.innerHTML = left.members
         .map(p => `<span class="tug-player" data-pid="${esc(p.id)}">${esc(p.avatar)}</span>`).join('');
       this.els.leftPlayers.dataset.sig = leftSig;
     }
     if (this.els.rightPlayers.dataset.sig !== rightSig) {
-      this.els.rightPlayers.innerHTML = right.members.slice(0,5)
+      this.els.rightPlayers.innerHTML = right.members
         .map(p => `<span class="tug-player" data-pid="${esc(p.id)}">${esc(p.avatar)}</span>`).join('');
       this.els.rightPlayers.dataset.sig = rightSig;
     }
+    // ⭐ auto-scale font ตามจำนวน
+    this.els.leftPlayers.style.fontSize  = pickTugFontSize(left.members.length, false);
+    this.els.rightPlayers.style.fontSize = pickTugFontSize(right.members.length, false);
 
     const lp = (left.score  / total) * 100;
     const rp = (right.score / total) * 100;
@@ -2947,7 +2959,7 @@ function pEnd(rank,mode){
 
 /* ═══════════════════════════════════════════════════════════════════
    ⭐ TUG-OF-WAR — PLAYER
-   ทีมตัวเองอยู่ฝั่งซ้ายเสมอ · RAF + lerp นุ่มนวล
+   ทีมตัวเองอยู่ฝั่งซ้ายเสมอ · ทุกคนฝั่งนั้นได้แสดงครบ
    ═══════════════════════════════════════════════════════════════════ */
 const TugArenaPlayer = {
   mounted: false,
@@ -2957,7 +2969,6 @@ const TugArenaPlayer = {
   _current: 50,
   _target: 50,
   _paused: false,
-  /* ⭐ player เร็วกว่า host นิดนึง เพื่อให้ feedback ตอบสนองไวกว่า */
   _lerpRate: 0.0006,
 
   init(container){
@@ -3063,23 +3074,26 @@ const TugArenaPlayer = {
     this.els.rightName.textContent  = 'คู่แข่ง';
     this.els.rightScore.textContent = rivalTeam.score;
 
-    // ⭐ คำนวณเป้าหมาย — RAF จะค่อยๆ ดึงไปหาทีละนิด
     const total = Math.max(1, myTeam.score + rivalTeam.score);
     const ratio = (rivalTeam.score - myTeam.score) / total;
     this._target = Math.max(12, Math.min(88, 50 + ratio * 42));
 
+    // ⭐ ทุกคนฝั่งนั้น (ไม่ slice) — เห็นครบ
     const leftSig  = myTeam.members.map(m => m.id + m.avatar).join('|');
     const rightSig = rivalTeam.members.map(m => m.id + m.avatar).join('|');
     if (this.els.leftPlayers.dataset.sig !== leftSig) {
-      this.els.leftPlayers.innerHTML = myTeam.members.slice(0,3)
+      this.els.leftPlayers.innerHTML = myTeam.members
         .map(p => `<span class="ptug-player" data-pid="${esc(p.id)}">${esc(p.avatar)}</span>`).join('');
       this.els.leftPlayers.dataset.sig = leftSig;
     }
     if (this.els.rightPlayers.dataset.sig !== rightSig) {
-      this.els.rightPlayers.innerHTML = rivalTeam.members.slice(0,3)
+      this.els.rightPlayers.innerHTML = rivalTeam.members
         .map(p => `<span class="ptug-player" data-pid="${esc(p.id)}">${esc(p.avatar)}</span>`).join('');
       this.els.rightPlayers.dataset.sig = rightSig;
     }
+    // ⭐ auto-scale font ตามจำนวน
+    this.els.leftPlayers.style.fontSize  = pickTugFontSize(myTeam.members.length, true);
+    this.els.rightPlayers.style.fontSize = pickTugFontSize(rivalTeam.members.length, true);
 
     const myWin = -ratio;
     const abs = Math.abs(myWin);
@@ -3158,7 +3172,7 @@ document.addEventListener('click',()=>{iA();startBGM()},{once:true});
   },{passive:true});
 })();
 
-console.log('🎃 Tug of War v14 · Smooth lerp pull · RAF-driven · MQTT untouched');
+console.log('🎃 Tug of War v15 · Full emoji display · Smooth lerp · MQTT untouched');
 </script>
 </body>
 </html>
