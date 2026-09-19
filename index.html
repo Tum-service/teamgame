@@ -1929,11 +1929,13 @@ function createRoom(){
   qi.onerror=()=>{qr.style.display='none'};qr.appendChild(qi);
   $('hostStartBtn').textContent='⏳ กำลังเชื่อมต่อ MQTT...';
   connectMQTT(()=>{
-    sub(`tug_kv10/${code}/#`,(topic,data)=>{
+        sub(`tug_kv10/${code}/#`,(topic,data)=>{
       const parts=topic.split('/');
-      if(parts[3]==='join'||parts[3]==='ready')hostOnJoin(data);
-      else if(parts[3]==='player'&&parts[5]==='answer')hostOnAnswer(parts[4],data);
-      else if(parts[3]==='player'&&parts[5]==='leave')hostOnLeave(parts[4]);
+      // topic = "tug_kv10/ABCD/join" → parts[2]='join'
+      // topic = "tug_kv10/ABCD/player/p_xxx/answer" → parts[2]='player', parts[3]=playerId, parts[4]='answer'
+      if(parts[2]==='join'||parts[2]==='ready')hostOnJoin(data);
+      else if(parts[2]==='player'&&parts[4]==='answer')hostOnAnswer(parts[3],data);
+      else if(parts[2]==='player'&&parts[4]==='leave')hostOnLeave(parts[3]);
     });
     toast('✅ สร้างห้องแล้ว! รหัส '+code,3000);
     go('scHostLobby');sJoin();
