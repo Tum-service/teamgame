@@ -144,38 +144,20 @@ label{display:block;color:#c4b5fd;font-size:.88rem;margin-bottom:5px;font-weight
 .waiting-big{text-align:center;padding:50px 20px}
 .countdown{font-family:monospace;font-size:7rem;font-weight:900;color:#fb923c;text-align:center;text-shadow:0 0 60px rgba(249,115,22,.9);animation:cp 1s infinite}
 @keyframes cp{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
-
-/* ⭐ Host back-to-main corner (hidden until hover/touch) */
-.host-back-corner{
-  position:fixed;top:0;right:0;
-  width:170px;height:100px;
-  z-index:1000;
-  padding:10px;
-  display:none;align-items:flex-start;justify-content:flex-end;
-}
+.host-back-corner{position:fixed;top:0;right:0;width:170px;height:100px;z-index:1000;padding:10px;display:none;align-items:flex-start;justify-content:flex-end}
 .host-back-corner.on{display:flex}
-.host-back-corner button{
-  opacity:0;transform:translateY(-14px);
-  transition:opacity .3s, transform .3s;
-  padding:10px 16px;font-size:.88rem;border-radius:11px;
-  background:linear-gradient(135deg,#dc2626,#991b1b);
-  color:#fff;border:none;font-family:inherit;font-weight:800;cursor:pointer;
-  box-shadow:0 8px 18px -6px rgba(0,0,0,.55);
-}
-.host-back-corner:hover button,
-.host-back-corner.show button{
-  opacity:1;transform:translateY(0);
-}
-/* Pause overlay for player */
-.pause-overlay{
-  position:fixed;inset:0;z-index:900;
-  background:rgba(5,2,15,.78);backdrop-filter:blur(6px);
-  display:none;align-items:center;justify-content:center;flex-direction:column;gap:14px;
-}
+.host-back-corner button{opacity:0;transform:translateY(-14px);transition:opacity .3s, transform .3s;padding:10px 16px;font-size:.88rem;border-radius:11px;background:linear-gradient(135deg,#dc2626,#991b1b);color:#fff;border:none;font-family:inherit;font-weight:800;cursor:pointer;box-shadow:0 8px 18px -6px rgba(0,0,0,.55)}
+.host-back-corner:hover button,.host-back-corner.show button{opacity:1;transform:translateY(0)}
+.pause-overlay{position:fixed;inset:0;z-index:900;background:rgba(5,2,15,.78);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;flex-direction:column;gap:14px}
 .pause-overlay.on{display:flex}
 .pause-overlay .ic{font-size:5rem;animation:pausePulse 1.4s infinite}
 @keyframes pausePulse{0%,100%{transform:scale(1);opacity:.9}50%{transform:scale(1.12);opacity:1}}
 .pause-overlay .tx{font-size:1.8rem;font-weight:900;color:#fbbf24}
+/* ⭐ Sound control buttons */
+.snd-btn{padding:12px 10px;border:none;border-radius:11px;font-family:inherit;font-weight:800;font-size:.83rem;cursor:pointer;color:#fff;transition:.2s;text-align:center;line-height:1.2}
+.snd-btn:hover{transform:translateY(-1px)}
+.snd-btn:active{transform:scale(.97)}
+.snd-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
 @media(max-width:640px){
 h1{font-size:1.7rem}.room-code{font-size:2.6rem;letter-spacing:6px}.timer-big{font-size:1.8rem}.podium-title{font-size:2.2rem}.podium-avatar{font-size:3rem}.podium-stage{gap:8px}.avatar-grid{grid-template-columns:repeat(5,1fr)}
 .grade{flex:0 0 150px;width:150px;min-height:96px;padding:16px 12px}.g-name{font-size:1.15rem}.g-count{font-size:.7rem}.g-all{flex:0 0 100%;width:100%}}
@@ -273,6 +255,18 @@ h1{font-size:1.7rem}.room-code{font-size:2.6rem;letter-spacing:6px}.timer-big{fo
       <div style="color:#86efac;font-weight:800;font-size:.9rem">📝 ตอบแล้ว <span id="hostTotalAnswers">0</span> ข้อ</div>
     </div>
     <div id="arenaWrap"></div>
+
+    <!-- ⭐ Sound control panel -->
+    <div class="card" style="margin-top:14px">
+      <h3 style="text-align:center;margin-bottom:4px">🔊 ควบคุมเสียง</h3>
+      <div class="snd-grid">
+        <button id="btnMuteHost" class="snd-btn" onclick="toggleHostMute()">🔊 เสียง Host: เปิด</button>
+        <button id="btnHostBgm" class="snd-btn" onclick="toggleHostBgm()">🎵 BGM Host: เปิด</button>
+        <button id="btnMutePlayers" class="snd-btn" onclick="togglePlayersMute()">🔊 เสียงผู้เล่น: เปิด</button>
+        <button id="btnPlayersBgm" class="snd-btn" onclick="togglePlayersBgm()">🎵 BGM ผู้เล่น: เปิด</button>
+      </div>
+    </div>
+
     <div class="leaderboard" style="margin-top:16px">
       <h3 style="text-align:center">🏆 Live Leaderboard</h3>
       <div id="hostLeaderboard"></div>
@@ -373,12 +367,10 @@ h1{font-size:1.7rem}.room-code{font-size:2.6rem;letter-spacing:6px}.timer-big{fo
   </div>
 </div>
 
-<!-- ⭐ Host hidden back-to-main button (top-right corner, reveal on hover/touch) -->
 <div class="host-back-corner" id="hostBackCorner">
   <button onclick="hostBackToMain()">🏠 กลับสู่หน้าหลัก</button>
 </div>
 
-<!-- ⭐ Player pause overlay -->
 <div class="pause-overlay" id="pauseOverlay">
   <div class="ic">⏸️</div>
   <div class="tx">ครูกดพักชั่วคราว</div>
@@ -1768,22 +1760,58 @@ function rebuildExtra(){
   for(const k in POOLS){if(k==='all')continue;POOLS[k].forEach(w=>{if(!s.has(w.en.toLowerCase())){s.add(w.en.toLowerCase());POOLS.all.push(w)}})}
 }
 
+/* ═══════════════════════════════════════════
+   STATE
+   ═══════════════════════════════════════════ */
+const G={
+  role:null,roomCode:'',
+  config:{gradeId:'p1',mode:'solo',timeLimit:20,totalTime:300},
+  selectedWords:new Set(),questions:[],
+  gameState:'lobby',totalDeadline:0,totalTimerId:null,remainingMs:0,
+  players:{},
+  myCurrentQ:0,myScore:0,myStreak:0,myAnswers:[],
+  myPlayerId:null,myName:'',myAvatar:'🎃',myTeam:'',
+  myQTimerId:null,myQDeadline:0,myQStart:0,myTotalTimerId:null,myGameActive:false,
+  myJoinTimerId:null,
+  rankTimerId:null,
+  paused:false,
+  myQRemain:0,
+  myTotalRemain:0,
+  /* ⭐ Sound states */
+  muteHost:false,        // host ปิดเสียงทุกอย่างของ host
+  hostBgmOn:true,        // BGM ของ host
+  muteAllPlayers:false,  // host ปิดเสียงทุกอย่างของผู้เล่น
+  playersBgmOn:true,     // BGM ของผู้เล่น
+};
+
+/* ⭐ Sound helpers */
+function shouldPlayEffect(){
+  if(G.role==='host') return !G.muteHost;
+  if(G.role==='player') return !G.muteAllPlayers;
+  return true;
+}
+function shouldPlayBGM(){
+  if(G.role==='host') return !G.muteHost && G.hostBgmOn;
+  if(G.role==='player') return !G.muteAllPlayers && G.playersBgmOn;
+  return true;
+}
+
 /* ═══ SOUND ENGINE ═══ */
 let ac=null;
 function iA(){try{if(!ac)ac=new(window.AudioContext||window.webkitAudioContext)();if(ac.state==='suspended')ac.resume()}catch(e){}}
-function t(f,st,d,tp,v,fe){if(!ac)return;const t0=ac.currentTime+st;const o=ac.createOscillator(),g=ac.createGain();o.type=tp||'sine';o.frequency.setValueAtTime(f,t0);if(fe)o.frequency.exponentialRampToValueAtTime(fe,t0+d);g.gain.setValueAtTime(0.0001,t0);g.gain.exponentialRampToValueAtTime(v||0.2,t0+0.02);g.gain.exponentialRampToValueAtTime(0.0001,t0+d);o.connect(g);g.connect(ac.destination);o.start(t0);o.stop(t0+d+0.05)}
-function org(f,st,d,v){if(!ac)return;const t0=ac.currentTime+st;[1,2,3,4].forEach((m,i)=>{const o=ac.createOscillator(),g=ac.createGain();o.type='sine';o.frequency.setValueAtTime(f*m,t0);const vv=(v||0.16)*(1/(i+1.3));g.gain.setValueAtTime(0.0001,t0);g.gain.exponentialRampToValueAtTime(vv,t0+0.05);g.gain.exponentialRampToValueAtTime(vv*0.55,t0+d*0.4);g.gain.exponentialRampToValueAtTime(0.0001,t0+d);o.connect(g);g.connect(ac.destination);o.start(t0);o.stop(t0+d+0.05)})}
-function bel(f,st,d,v){if(!ac)return;const t0=ac.currentTime+(st||0);[1,2.76,5.4,8.9].forEach((m,i)=>{const o=ac.createOscillator(),g=ac.createGain();o.type='sine';o.frequency.setValueAtTime(f*m,t0);const vv=(v||0.14)/Math.pow(1.9,i);g.gain.setValueAtTime(0.0001,t0);g.gain.exponentialRampToValueAtTime(vv,t0+0.005);g.gain.exponentialRampToValueAtTime(0.0001,t0+d*(1-i*0.14));o.connect(g);g.connect(ac.destination);o.start(t0);o.stop(t0+d+0.05)})}
-function gl(st,v){if(!ac)return;const t0=ac.currentTime+(st||0);for(let i=0;i<5;i++){const o=ac.createOscillator(),g=ac.createGain();o.type='sine';const b=400+Math.random()*80;o.frequency.setValueAtTime(b,t0+i*0.11);o.frequency.exponentialRampToValueAtTime(b*0.55,t0+i*0.11+0.14);g.gain.setValueAtTime(0.0001,t0+i*0.11);g.gain.exponentialRampToValueAtTime(v||0.12,t0+i*0.11+0.02);g.gain.exponentialRampToValueAtTime(0.0001,t0+i*0.11+0.14);o.connect(g);g.connect(ac.destination);o.start(t0+i*0.11);o.stop(t0+i*0.11+0.18)}}
-function thu(st,v){if(!ac)return;const t0=ac.currentTime+(st||0);const bs=ac.sampleRate*1.6;const buf=ac.createBuffer(1,bs,ac.sampleRate);const d=buf.getChannelData(0);for(let i=0;i<bs;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/bs,2);const sr=ac.createBufferSource();sr.buffer=buf;const lp=ac.createBiquadFilter();lp.type='lowpass';lp.frequency.setValueAtTime(220,t0);lp.frequency.exponentialRampToValueAtTime(60,t0+1.4);const g=ac.createGain();g.gain.setValueAtTime(0.0001,t0);g.gain.exponentialRampToValueAtTime(v||0.28,t0+0.06);g.gain.exponentialRampToValueAtTime(0.0001,t0+1.5);sr.connect(lp);lp.connect(g);g.connect(ac.destination);sr.start(t0);sr.stop(t0+1.7)}
-function sc(){iA();if(!ac)return;const t0=ac.currentTime;const o=ac.createOscillator(),g=ac.createGain();o.type='square';o.frequency.setValueAtTime(1400,t0);o.frequency.exponentialRampToValueAtTime(650,t0+0.05);g.gain.setValueAtTime(0.14,t0);g.gain.exponentialRampToValueAtTime(0.0001,t0+0.06);o.connect(g);g.connect(ac.destination);o.start(t0);o.stop(t0+0.08)}
-function sCor(){iA();[261.63,329.63,392,523.25].forEach((f,i)=>org(f,i*0.1,0.55,0.14));gl(0.55,0.12)}
-function sWr(){iA();org(196,0,0.45,0.16);org(130.81,0.22,0.55,0.16)}
-function sFin(){iA();[261.63,329.63,392,523.25,659.25].forEach((f,i)=>org(f,i*0.13,0.65,0.16));thu(0.55,0.28);gl(0.9,0.1)}
-function sCd(){iA();bel(880,0,0.35,0.12)}
-function sCdGo(){iA();bel(1320,0,0.5,0.16);org(440,0.05,0.4,0.14)}
-function sJoin(){iA();bel(1760,0,0.4,0.1);bel(2093,0.08,0.35,0.08)}
-function sTick(){iA();t(1200,0,0.03,'sine',0.06)}
+function t(f,st,d,tp,v,fe){if(!shouldPlayEffect())return;if(!ac)return;const t0=ac.currentTime+st;const o=ac.createOscillator(),g=ac.createGain();o.type=tp||'sine';o.frequency.setValueAtTime(f,t0);if(fe)o.frequency.exponentialRampToValueAtTime(fe,t0+d);g.gain.setValueAtTime(0.0001,t0);g.gain.exponentialRampToValueAtTime(v||0.2,t0+0.02);g.gain.exponentialRampToValueAtTime(0.0001,t0+d);o.connect(g);g.connect(ac.destination);o.start(t0);o.stop(t0+d+0.05)}
+function org(f,st,d,v){if(!shouldPlayEffect())return;if(!ac)return;const t0=ac.currentTime+st;[1,2,3,4].forEach((m,i)=>{const o=ac.createOscillator(),g=ac.createGain();o.type='sine';o.frequency.setValueAtTime(f*m,t0);const vv=(v||0.16)*(1/(i+1.3));g.gain.setValueAtTime(0.0001,t0);g.gain.exponentialRampToValueAtTime(vv,t0+0.05);g.gain.exponentialRampToValueAtTime(vv*0.55,t0+d*0.4);g.gain.exponentialRampToValueAtTime(0.0001,t0+d);o.connect(g);g.connect(ac.destination);o.start(t0);o.stop(t0+d+0.05)})}
+function bel(f,st,d,v){if(!shouldPlayEffect())return;if(!ac)return;const t0=ac.currentTime+(st||0);[1,2.76,5.4,8.9].forEach((m,i)=>{const o=ac.createOscillator(),g=ac.createGain();o.type='sine';o.frequency.setValueAtTime(f*m,t0);const vv=(v||0.14)/Math.pow(1.9,i);g.gain.setValueAtTime(0.0001,t0);g.gain.exponentialRampToValueAtTime(vv,t0+0.005);g.gain.exponentialRampToValueAtTime(0.0001,t0+d*(1-i*0.14));o.connect(g);g.connect(ac.destination);o.start(t0);o.stop(t0+d+0.05)})}
+function gl(st,v){if(!shouldPlayEffect())return;if(!ac)return;const t0=ac.currentTime+(st||0);for(let i=0;i<5;i++){const o=ac.createOscillator(),g=ac.createGain();o.type='sine';const b=400+Math.random()*80;o.frequency.setValueAtTime(b,t0+i*0.11);o.frequency.exponentialRampToValueAtTime(b*0.55,t0+i*0.11+0.14);g.gain.setValueAtTime(0.0001,t0+i*0.11);g.gain.exponentialRampToValueAtTime(v||0.12,t0+i*0.11+0.02);g.gain.exponentialRampToValueAtTime(0.0001,t0+i*0.11+0.14);o.connect(g);g.connect(ac.destination);o.start(t0+i*0.11);o.stop(t0+i*0.11+0.18)}}
+function thu(st,v){if(!shouldPlayEffect())return;if(!ac)return;const t0=ac.currentTime+(st||0);const bs=ac.sampleRate*1.6;const buf=ac.createBuffer(1,bs,ac.sampleRate);const d=buf.getChannelData(0);for(let i=0;i<bs;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/bs,2);const sr=ac.createBufferSource();sr.buffer=buf;const lp=ac.createBiquadFilter();lp.type='lowpass';lp.frequency.setValueAtTime(220,t0);lp.frequency.exponentialRampToValueAtTime(60,t0+1.4);const g=ac.createGain();g.gain.setValueAtTime(0.0001,t0);g.gain.exponentialRampToValueAtTime(v||0.28,t0+0.06);g.gain.exponentialRampToValueAtTime(0.0001,t0+1.5);sr.connect(lp);lp.connect(g);g.connect(ac.destination);sr.start(t0);sr.stop(t0+1.7)}
+function sc(){if(!shouldPlayEffect())return;iA();if(!ac)return;const t0=ac.currentTime;const o=ac.createOscillator(),g=ac.createGain();o.type='square';o.frequency.setValueAtTime(1400,t0);o.frequency.exponentialRampToValueAtTime(650,t0+0.05);g.gain.setValueAtTime(0.14,t0);g.gain.exponentialRampToValueAtTime(0.0001,t0+0.06);o.connect(g);g.connect(ac.destination);o.start(t0);o.stop(t0+0.08)}
+function sCor(){if(!shouldPlayEffect())return;iA();[261.63,329.63,392,523.25].forEach((f,i)=>org(f,i*0.1,0.55,0.14));gl(0.55,0.12)}
+function sWr(){if(!shouldPlayEffect())return;iA();org(196,0,0.45,0.16);org(130.81,0.22,0.55,0.16)}
+function sFin(){if(!shouldPlayEffect())return;iA();[261.63,329.63,392,523.25,659.25].forEach((f,i)=>org(f,i*0.13,0.65,0.16));thu(0.55,0.28);gl(0.9,0.1)}
+function sCd(){if(!shouldPlayEffect())return;iA();bel(880,0,0.35,0.12)}
+function sCdGo(){if(!shouldPlayEffect())return;iA();bel(1320,0,0.5,0.16);org(440,0.05,0.4,0.14)}
+function sJoin(){if(!shouldPlayEffect())return;iA();bel(1760,0,0.4,0.1);bel(2093,0.08,0.35,0.08)}
+function sTick(){if(!shouldPlayEffect())return;iA();t(1200,0,0.03,'sine',0.06)}
 const BT=[440,392,440,349.23,329.63,349.23,392,440,392,349.23,329.63,293.66,329.63,349.23,329.63,293.66,261.63,293.66,329.63,349.23,329.63,293.66,261.63,246.94,220,246.94,261.63,293.66,329.63,293.66,261.63,246.94];
 const BB=[110,87.31,98,82.41];
 let bgm=null,bgT=null,bgS=0,bgOn=false;
@@ -1795,6 +1823,7 @@ function bgmTick(){
   bgS++;
 }
 function startBGM(){
+  if(!shouldPlayBGM())return;  // ⭐ ตรวจสอบสิทธิ์ก่อนเล่น
   iA();
   if(!ac||bgOn)return;
   bgOn=true;
@@ -1808,7 +1837,6 @@ function startBGM(){
     bgmTick();
   }catch(e){bgm=null;bgOn=false}
 }
-/* ⭐ Stop BGM immediately (fade out in 0.4s) */
 function stopBGM(){
   if(bgT){clearInterval(bgT);bgT=null}
   if(bgm&&ac){
@@ -1826,7 +1854,7 @@ function stopBGM(){
 }
 
 /* ═══════════════════════════════════════════
-   MQTT CONNECTION
+   MQTT
    ═══════════════════════════════════════════ */
 const MQTT_BROKERS=[
   'wss://broker.hivemq.com:8884/mqtt',
@@ -1837,20 +1865,6 @@ let mqttClient=null;
 let mqttHandlers={};
 let mqttConnected=false;
 
-const G={
-  role:null,roomCode:'',
-  config:{gradeId:'p1',mode:'solo',timeLimit:20,totalTime:300},
-  selectedWords:new Set(),questions:[],
-  gameState:'lobby',totalDeadline:0,totalTimerId:null,remainingMs:0,
-  players:{},
-  myCurrentQ:0,myScore:0,myStreak:0,myAnswers:[],
-  myPlayerId:null,myName:'',myAvatar:'🎃',myTeam:'',
-  myQTimerId:null,myQDeadline:0,myQStart:0,myTotalTimerId:null,myGameActive:false,
-  myJoinTimerId:null,
-  rankTimerId:null,
-  paused:false,      // ⭐ player paused state
-  myQRemain:0,       // ⭐ remaining ms of current question when paused
-};
 const AV=['🎃','👻','🦇','🕷️','🕸️','💀','🧙‍♀️','🧛','🧟','🐺','🦉','🐈‍⬛','🐸','🦊','🐼','🐯','🦁','🐨','🐷','🐵','🐰','🐭','🐮','🐔','🦄','🐲','🦖','🤖','👽','🦈'];
 const $=(id)=>document.getElementById(id);
 const esc=(s)=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -1868,70 +1882,37 @@ function connectMQTT(onConnect,onFail){
   const cid='tug10_'+Date.now()+'_'+Math.random().toString(36).slice(2,8);
   console.log('[MQTT] Connecting to:',broker);
   try{
-    mqttClient=mqtt.connect(broker,{
-      clientId:cid,
-      clean:true,
-      connectTimeout:20000,
-      reconnectPeriod:2000,
-      keepalive:30,
-    });
-  }catch(e){
-    console.error('[MQTT] Connect fail:',e);
-    tryNextBroker(onConnect,onFail);
-    return;
-  }
+    mqttClient=mqtt.connect(broker,{clientId:cid,clean:true,connectTimeout:20000,reconnectPeriod:2000,keepalive:30});
+  }catch(e){console.error('[MQTT] Connect fail:',e);tryNextBroker(onConnect,onFail);return;}
   let resolved=false;
   mqttClient.on('connect',()=>{
-    resolved=true;
-    mqttConnected=true;
-    console.log('[MQTT] ✅ Connected');
-    Object.keys(mqttHandlers).forEach(topic=>{
-      mqttClient.subscribe(topic,{qos:1},(err)=>{if(err)console.error('resub err:',err)});
-    });
+    resolved=true;mqttConnected=true;console.log('[MQTT] ✅ Connected');
+    Object.keys(mqttHandlers).forEach(topic=>{mqttClient.subscribe(topic,{qos:1},(err)=>{if(err)console.error('resub err:',err)})});
     if(onConnect)onConnect();
   });
   mqttClient.on('message',(topic,payload)=>{
     Object.keys(mqttHandlers).forEach(pattern=>{
       if(topicMatches(pattern,topic)){
-        try{
-          const d=JSON.parse(payload.toString());
-          mqttHandlers[pattern](topic,d);
-        }catch(e){console.error('parse err:',e)}
+        try{const d=JSON.parse(payload.toString());mqttHandlers[pattern](topic,d);}catch(e){console.error('parse err:',e)}
       }
     });
   });
   mqttClient.on('error',(e)=>console.error('[MQTT] err:',e));
   mqttClient.on('reconnect',()=>console.log('[MQTT] reconnecting...'));
-  setTimeout(()=>{
-    if(!resolved){
-      console.warn('[MQTT] Timeout — trying next broker');
-      try{mqttClient.end(true)}catch(e){}
-      tryNextBroker(onConnect,onFail);
-    }
-  },20000);
+  setTimeout(()=>{if(!resolved){console.warn('[MQTT] Timeout — trying next broker');try{mqttClient.end(true)}catch(e){}tryNextBroker(onConnect,onFail);}},20000);
 }
 function tryNextBroker(onConnect,onFail){
   currentBrokerIdx++;
-  if(currentBrokerIdx>=MQTT_BROKERS.length*2){
-    console.error('[MQTT] All brokers failed');
-    if(onFail)onFail();
-    return;
-  }
+  if(currentBrokerIdx>=MQTT_BROKERS.length*2){console.error('[MQTT] All brokers failed');if(onFail)onFail();return;}
   connectMQTT(onConnect,onFail);
 }
 function topicMatches(pattern,topic){
   if(pattern===topic)return true;
-  if(pattern.endsWith('/#')){
-    return topic.startsWith(pattern.slice(0,-1));
-  }
+  if(pattern.endsWith('/#'))return topic.startsWith(pattern.slice(0,-1));
   return false;
 }
 function pub(topic,data,qos){
-  if(!mqttClient||!mqttConnected){
-    console.warn('[pub] Not connected, queuing:',topic);
-    setTimeout(()=>{if(mqttConnected)pub(topic,data,qos)},500);
-    return;
-  }
+  if(!mqttClient||!mqttConnected){setTimeout(()=>{if(mqttConnected)pub(topic,data,qos)},500);return;}
   try{mqttClient.publish(topic,JSON.stringify(data),{qos:qos!==undefined?qos:1})}catch(e){console.error('pub err:',e)}
 }
 function sub(topic,handler){
@@ -2034,49 +2015,37 @@ function createRoom(){
   });
 }
 function hostOnJoin(d){
-  const id=d.playerId;
-  if(!id)return;
+  const id=d.playerId;if(!id)return;
   if(!G.players[id]){
     G.players[id]={id,name:d.name||'ผู้เล่น',avatar:d.avatar||'🎃',team:d.team||'',score:0,streak:0,totalAnswers:0,blocked:false,connected:true};
-    console.log('[H] ⭐ Player joined:',d.name,id);
     sJoin();
-  }else{
-    G.players[id].connected=true;
-    G.players[id].team=d.team||G.players[id].team;
-  }
-  hostBroadcastLobby();
-  rPL();uSB();
+  }else{G.players[id].connected=true;G.players[id].team=d.team||G.players[id].team;}
+  hostBroadcastLobby();rPL();uSB();
 }
 function hostOnAnswer(id,d){
-  // ⭐ Block scores while paused
   if(G.gameState==='paused')return;
   const p=G.players[id];if(!p)return;
   p.score+=Number(d.points)||0;
   p.totalAnswers=(p.totalAnswers||0)+1;
   if(d.correct)p.streak=(p.streak||0)+1;else p.streak=0;
-  if(d.correct)sCor();else sWr();
+  // ⭐ ไม่เล่น effect ที่ host อีกแล้ว — ปล่อยให้เล่นเฉพาะที่เครื่องผู้เล่น
   renderArena();rLB();
   const totalAns=Object.values(G.players).reduce((s,x)=>s+(x.totalAnswers||0),0);
   $('hostTotalAnswers').textContent=totalAns;
 }
-function hostOnLeave(id){
-  if(G.players[id]){
-    G.players[id].connected=false;
-    rPL();uSB();
-  }
-}
+function hostOnLeave(id){if(G.players[id]){G.players[id].connected=false;rPL();uSB();}}
 function hostBroadcastLobby(){
   const list=Object.values(G.players).map(p=>({id:p.id,name:p.name,avatar:p.avatar,team:p.team,blocked:p.blocked}));
   pub(`tug_kv10/${G.roomCode}/broadcast`,{type:'lobby',players:list});
 }
-function hostBroadcast(data){
-  pub(`tug_kv10/${G.roomCode}/broadcast`,data);
-}
+function hostBroadcast(data){pub(`tug_kv10/${G.roomCode}/broadcast`,data);}
 function broadcastRanking(){
-  const list=Object.values(G.players).filter(p=>!p.blocked)
-    .sort((a,b)=>b.score-a.score)
+  const list=Object.values(G.players).filter(p=>!p.blocked).sort((a,b)=>b.score-a.score)
     .map(p=>({id:p.id,name:p.name,avatar:p.avatar,team:p.team,score:p.score}));
   hostBroadcast({type:'ranking',list});
+}
+function broadcastSoundState(){
+  hostBroadcast({type:'sound',muteAllPlayers:G.muteAllPlayers,playersBgmOn:G.playersBgmOn});
 }
 function rPL(){
   const g=$('playersGrid');if(!g)return;const l=Object.values(G.players);
@@ -2109,6 +2078,51 @@ function togBlock(id){sc();const p=G.players[id];if(!p)return;p.blocked=!p.block
 function uSB(){const a=Object.values(G.players).filter(p=>!p.blocked&&p.connected);const b=$('hostStartBtn');
   b.disabled=a.length<1;b.textContent=a.length<1?'⏳ รอผู้เล่น...':`▶ เริ่มเกม! (${a.length} คน)`}
 
+/* ⭐ Sound control toggles */
+function toggleHostMute(){
+  G.muteHost=!G.muteHost;
+  updateHostAudio();
+  updateSoundButtons();
+  toast(G.muteHost?'🔇 ปิดเสียง Host':'🔊 เปิดเสียง Host',1500);
+}
+function toggleHostBgm(){
+  G.hostBgmOn=!G.hostBgmOn;
+  updateHostAudio();
+  updateSoundButtons();
+  toast(G.hostBgmOn?'🎵 เปิด BGM Host':'🎵 ปิด BGM Host',1500);
+}
+function togglePlayersMute(){
+  G.muteAllPlayers=!G.muteAllPlayers;
+  broadcastSoundState();
+  updateSoundButtons();
+  toast(G.muteAllPlayers?'🔇 ปิดเสียงผู้เล่นทั้งหมด':'🔊 เปิดเสียงผู้เล่น',1500);
+}
+function togglePlayersBgm(){
+  G.playersBgmOn=!G.playersBgmOn;
+  broadcastSoundState();
+  updateSoundButtons();
+  toast(G.playersBgmOn?'🎵 เปิด BGM ผู้เล่น':'🎵 ปิด BGM ผู้เล่น',1500);
+}
+function updateHostAudio(){
+  if(G.muteHost || !G.hostBgmOn) stopBGM();
+  else if(G.gameState==='playing') startBGM();
+}
+function updateSoundButtons(){
+  const set=(id,on,onTxt,offTxt,onBg,offBg)=>{
+    const el=$(id);if(!el)return;
+    el.textContent=on?onTxt:offTxt;
+    el.style.background=on?onBg:offBg;
+    el.style.color='#fff';
+  };
+  const gOn='linear-gradient(135deg,#22c55e,#15803d)';
+  const rOff='linear-gradient(135deg,#dc2626,#991b1b)';
+  const grayOff='linear-gradient(135deg,#6b7280,#374151)';
+  set('btnMuteHost',!G.muteHost,'🔊 เสียง Host: เปิด','🔇 เสียง Host: ปิด',gOn,rOff);
+  set('btnHostBgm',G.hostBgmOn&&!G.muteHost,'🎵 BGM Host: เปิด','🎵 BGM Host: ปิด',gOn,grayOff);
+  set('btnMutePlayers',!G.muteAllPlayers,'🔊 เสียงผู้เล่น: เปิด','🔇 เสียงผู้เล่น: ปิด',gOn,rOff);
+  set('btnPlayersBgm',G.playersBgmOn&&!G.muteAllPlayers,'🎵 BGM ผู้เล่น: เปิด','🎵 BGM ผู้เล่น: ปิด',gOn,grayOff);
+}
+
 /* ═══ HOST: START ═══ */
 function hostStart(){
   const a=Object.values(G.players).filter(p=>!p.blocked&&p.connected);
@@ -2122,10 +2136,14 @@ function hostStart(){
   G.gameState='playing';
   G.totalDeadline=Date.now()+G.config.totalTime*1000;
   const publicQs=qs.map(q=>({text:q.text,sub:q.sub,options:q.options.map(o=>o.text),correct:q.correct,timeLimit:q.timeLimit}));
-  hostBroadcast({type:'start',questions:publicQs,totalTime:G.config.totalTime});
+  // ⭐ ส่ง sound state ไปพร้อม start
+  hostBroadcast({type:'start',questions:publicQs,totalTime:G.config.totalTime,
+    muteAllPlayers:G.muteAllPlayers,playersBgmOn:G.playersBgmOn});
   go('scHostGame');
   $('hostTotalAnswers').textContent='0';
   $('pauseBtn').textContent='⏸ พัก';
+  updateSoundButtons();
+  updateHostAudio();
   renderArena();rLB();
   clearInterval(G.totalTimerId);
   G.totalTimerId=setInterval(()=>{
@@ -2145,18 +2163,14 @@ function hostStart(){
 function bQ(pool){
   if(pool.length<4)return[];
   const qTarget=Math.max(100,Math.min(500,Math.ceil(G.config.totalTime/2)+50));
-  const qs=[];
-  let bag=shuf(pool),bi=0;
+  const qs=[];let bag=shuf(pool),bi=0;
   for(let k=0;k<qTarget;k++){
     if(bi>=bag.length){bag=shuf(pool);bi=0}
-    const t=bag[bi++];
-    const rv=Math.random()<0.5;
+    const t=bag[bi++];const rv=Math.random()<0.5;
     const oth=pool.filter(w=>w.en!==t.en&&w.th!==t.th);
     const dis=shuf(oth).slice(0,3);
     if(dis.length<3){k--;continue}
-    const opts=rv
-      ?shuf([t,...dis]).map(w=>({text:w.en,ok:w.en===t.en}))
-      :shuf([t,...dis]).map(w=>({text:w.th,ok:w.th===t.th}));
+    const opts=rv?shuf([t,...dis]).map(w=>({text:w.en,ok:w.en===t.en})):shuf([t,...dis]).map(w=>({text:w.th,ok:w.th===t.th}));
     const ci=opts.findIndex(o=>o.ok);
     qs.push({text:rv?t.th:t.en,sub:rv?'คำภาษาอังกฤษคือ?':'คำนี้แปลว่าอะไร?',options:opts,correct:ci,timeLimit:G.config.timeLimit});
   }
@@ -2165,29 +2179,34 @@ function bQ(pool){
 function hostPause(){
   sc();
   if(G.gameState==='paused'){
-    G.gameState='playing';
-    G.totalDeadline=Date.now()+(G.remainingMs||0);
+    G.gameState='playing';G.totalDeadline=Date.now()+(G.remainingMs||0);
     $('pauseBtn').textContent='⏸ พัก';
-    startBGM(); // ⭐ resume music
+    if(!G.muteHost && G.hostBgmOn) startBGM();
   }else{
     G.remainingMs=Math.max(0,G.totalDeadline-Date.now());
-    G.gameState='paused';
-    $('pauseBtn').textContent='▶ เล่นต่อ';
-    stopBGM(); // ⭐ silence music
+    G.gameState='paused';$('pauseBtn').textContent='▶ เล่นต่อ';
+    stopBGM();
   }
   hostBroadcast({type:'pause',paused:G.gameState==='paused'});
 }
-function hostAddT(s){sc();G.totalDeadline+=s*1000;toast(`+${s} วินาที`,1500)}
+/* ⭐ hostAddT: broadcast ให้ผู้เล่น sync เวลาด้วย */
+function hostAddT(s){
+  sc();
+  const ms=s*1000;
+  if(G.gameState==='paused'){
+    G.remainingMs=(G.remainingMs||0)+ms;
+  }else{
+    G.totalDeadline+=ms;
+  }
+  hostBroadcast({type:'addTime',ms,paused:G.gameState==='paused'});
+  toast(`+${s} วินาที`,1500);
+}
 function hostStop(){
   if(!confirm('หยุดและจบเลย?'))return;
-  clearInterval(G.rankTimerId);
-  stopBGM(); // ⭐ silence music
-  hEnd();
+  clearInterval(G.rankTimerId);stopBGM();hEnd();
 }
-
-/* ⭐ Host back to main (called from hidden corner button) */
 function hostBackToMain(){
-  hostBroadcast({type:'silent'}); // ⭐ tell players to silence BGM
+  hostBroadcast({type:'silent'});
   stopBGM();
   setTimeout(()=>{window.location.reload()},300);
 }
@@ -2197,11 +2216,7 @@ function renderArena(){
   const w=$('arenaWrap');if(!w)return;
   if(G.config.mode==='team'){
     const teams={};
-    Object.values(G.players).forEach(p=>{
-      if(p.blocked)return;
-      const tn=p.team||'เดี่ยว';
-      (teams[tn]=teams[tn]||[]).push(p);
-    });
+    Object.values(G.players).forEach(p=>{if(p.blocked)return;const tn=p.team||'เดี่ยว';(teams[tn]=teams[tn]||[]).push(p);});
     const teamList=Object.keys(teams).map(tn=>({name:tn,members:teams[tn],score:teams[tn].reduce((s,p)=>s+p.score,0)}));
     teamList.sort((a,b)=>b.score-a.score);
     const maxS=Math.max(100,...teamList.map(t=>t.score));
@@ -2243,22 +2258,13 @@ function rLB(){const w=$('hostLeaderboard');if(!w)return;
 
 /* ═══ HOST: END ═══ */
 function hEnd(){
-  G.gameState='ended';
-  clearInterval(G.totalTimerId);
-  clearInterval(G.rankTimerId);
-  stopBGM(); // ⭐ silence music on end
+  G.gameState='ended';clearInterval(G.totalTimerId);clearInterval(G.rankTimerId);stopBGM();
   let ranking;
   if(G.config.mode==='team'){
     const teams={};
-    Object.values(G.players).forEach(p=>{
-      if(p.blocked)return;
-      const tn=p.team||'เดี่ยว';
-      (teams[tn]=teams[tn]||[]).push(p);
-    });
+    Object.values(G.players).forEach(p=>{if(p.blocked)return;const tn=p.team||'เดี่ยว';(teams[tn]=teams[tn]||[]).push(p);});
     const tl=Object.keys(teams).map(tn=>({
-      name:'ทีม '+tn,
-      teamName:tn,
-      avatar:teams[tn][0]?teams[tn][0].avatar:'🎃',
+      name:'ทีม '+tn,teamName:tn,avatar:teams[tn][0]?teams[tn][0].avatar:'🎃',
       score:teams[tn].reduce((s,p)=>s+p.score,0),
       members:teams[tn].map(p=>({name:p.name,avatar:p.avatar,score:p.score})).sort((a,b)=>b.score-a.score)
     }));
@@ -2271,11 +2277,9 @@ function hEnd(){
   hostBroadcast({type:'end',ranking,mode:G.config.mode});
   rPodium(ranking,G.config.mode);
   go('scHostPodium');
-  $('hostBackCorner').classList.add('on'); // ⭐ show hidden back button
+  $('hostBackCorner').classList.add('on');
   sFin();
 }
-
-/* ⭐ Unified podium renderer — usable by both host and player */
 function renderPodium(stageId,honId,rank){
   const st=$(stageId);if(!st)return;
   const t3=rank.slice(0,3);
@@ -2295,8 +2299,6 @@ function rPodium(rank,mode){
   renderPodium('podiumStage','honorableList',rank);
   buildRankTable('fullRankTableHost',rank,mode);
 }
-
-/* ⭐ Full ranking table (rank 6+) — used by both host and player */
 function buildRankTable(elId,rank,mode){
   const el=$(elId);if(!el)return;
   if(rank.length<=5){el.innerHTML='';return}
@@ -2337,7 +2339,6 @@ function playerJoin(){
   G.myPlayerId='p_'+Date.now()+'_'+Math.random().toString(36).slice(2,8);
   $('joinBtn').disabled=true;$('joinMsg').textContent='⏳ เชื่อมต่อ MQTT...';$('joinMsg').style.color='#c4b5fd';
   connectMQTT(()=>{
-    console.log('[P] My ID:',G.myPlayerId);
     sub(`tug_kv10/${code}/broadcast`,(topic,data)=>{
       if(data.playerId&&data.playerId!==G.myPlayerId&&(data.type==='blocked'||data.type==='unblocked'))return;
       pOnBroadcast(data);
@@ -2348,10 +2349,7 @@ function playerJoin(){
       if(!G.myGameActive&&G.gameState==='playing')return;
       pub(`tug_kv10/${code}/join`,joinPayload,1);
       joinAttempts++;
-      console.log('[P] Join attempt',joinAttempts);
-      if(joinAttempts<5){
-        G.myJoinTimerId=setTimeout(sendJoin,1500);
-      }
+      if(joinAttempts<5){G.myJoinTimerId=setTimeout(sendJoin,1500);}
     };
     sendJoin();
     $('joinMsg').textContent='';
@@ -2373,42 +2371,65 @@ function playerJoin(){
     }
   },25000);
 }
+/* ⭐ apply sound state on player side */
+function applyPlayerSoundState(){
+  if(G.muteAllPlayers||!G.playersBgmOn) stopBGM();
+  else if(G.myGameActive&&!G.paused) startBGM();
+}
 function pOnBroadcast(d){
   if(!d)return;
   switch(d.type){
     case 'blocked':toast('🚫 ครูล็อก');break;
     case 'unblocked':toast('✅ ปลดล็อก');break;
-    case 'ranking':
-      updatePlayerRanking(d.list);
+    case 'ranking':updatePlayerRanking(d.list);break;
+    /* ⭐ รับ sound state จาก host */
+    case 'sound':
+      G.muteAllPlayers=!!d.muteAllPlayers;
+      G.playersBgmOn=d.playersBgmOn!==false;
+      applyPlayerSoundState();
       break;
+    /* ⭐ รับเวลาที่ host เพิ่ม → sync realtime */
+    case 'addTime':{
+      const ms=d.ms||0;
+      if(G.paused||d.paused){
+        G.myTotalRemain=(G.myTotalRemain||0)+ms;
+      }else{
+        G.totalDeadline+=ms;
+        const r=Math.max(0,Math.ceil((G.totalDeadline-Date.now())/1000));
+        const el=$('pTotalTimer');if(el)el.textContent=fmtTime(r);
+      }
+      toast(`⏱️ ครูเพิ่มเวลา +${Math.round(ms/1000)} วินาที`,1500);
+      break;
+    }
     case 'start':
       if(G.myJoinTimerId){clearTimeout(G.myJoinTimerId);G.myJoinTimerId=null;}
       G.questions=d.questions;
       G.myCurrentQ=0;G.myScore=0;G.myStreak=0;G.myAnswers=[];
       G.totalDeadline=Date.now()+d.totalTime*1000;
-      G.myGameActive=true;
-      G.paused=false;
-      G.myQRemain=0;
+      G.myGameActive=true;G.paused=false;G.myQRemain=0;G.myTotalRemain=0;
+      G.muteAllPlayers=!!d.muteAllPlayers;
+      G.playersBgmOn=d.playersBgmOn!==false;
       $('pauseOverlay').classList.remove('on');
       pCnt(()=>{
         go('scPlayerQ');
         pStartTimer();
         pQ();
+        applyPlayerSoundState();
       });
       break;
     case 'pause':
       G.paused=!!d.paused;
       if(d.paused){
-        // ⭐ pause: stop timer, remember remaining time, stop music, show overlay
         if(G.myQTimerId){clearInterval(G.myQTimerId);G.myQTimerId=null}
         G.myQRemain=Math.max(0,G.myQDeadline-Date.now());
+        G.myTotalRemain=Math.max(0,G.totalDeadline-Date.now());
         stopBGM();
         $('pauseOverlay').classList.add('on');
         toast('⏸ ครูกดพัก');
       }else{
-        // ⭐ resume: restore deadline, restart timer, resume music, hide overlay
         G.paused=false;
         $('pauseOverlay').classList.remove('on');
+        G.totalDeadline=Date.now()+(G.myTotalRemain||0);
         if(G.myGameActive&&G.questions&&G.myCurrentQ<G.questions.length){
           G.myQDeadline=Date.now()+(G.myQRemain||0);
           G.myQRemain=0;
@@ -2416,26 +2437,21 @@ function pOnBroadcast(d){
           G.myQTimerId=setInterval(qTimerTick,200);
         }
         pStartTimer();
-        startBGM();
+        applyPlayerSoundState();
         toast('▶ เล่นต่อ');
       }
       break;
     case 'end':
-      G.myGameActive=false;
-      G.paused=false;
-      G.gameState='ended';
+      G.myGameActive=false;G.paused=false;G.gameState='ended';
       if(G.myQTimerId){clearInterval(G.myQTimerId);G.myQTimerId=null}
       if(G.myTotalTimerId){clearInterval(G.myTotalTimerId);G.myTotalTimerId=null}
       if(G.myJoinTimerId){clearTimeout(G.myJoinTimerId);G.myJoinTimerId=null}
       G.questions=[];
       $('pauseOverlay').classList.remove('on');
-      stopBGM(); // ⭐ silence music on end
+      stopBGM();
       pEnd(d.ranking,d.mode);
       break;
-    case 'silent':
-      // ⭐ host pressed back-to-main → silence BGM immediately
-      stopBGM();
-      break;
+    case 'silent':stopBGM();break;
   }
 }
 function pCnt(cb){
@@ -2493,7 +2509,7 @@ function pQ(){
 }
 function pAns(choice,btn){
   if(!G.myGameActive)return;
-  if(G.paused){toast('⏸ รอครูกดเล่นต่อก่อน');return} // ⭐ block while paused
+  if(G.paused){toast('⏸ รอครูกดเล่นต่อก่อน');return}
   const q=G.questions[G.myCurrentQ];if(!q)return;
   if(G.myQTimerId)clearInterval(G.myQTimerId);
   G.myQTimerId=null;
@@ -2534,7 +2550,7 @@ function pAns(choice,btn){
   pub(`tug_kv10/${G.roomCode}/player/${G.myPlayerId}/answer`,{points:pts,correct:isCorrect,qIdx:G.myCurrentQ,name:G.myName,avatar:G.myAvatar,team:G.myTeam});
   setTimeout(()=>{
     if(!G.myGameActive)return;
-    if(G.paused)return; // don't advance while paused
+    if(G.paused)return;
     G.myCurrentQ++;pQ();
   },1500);
 }
@@ -2560,7 +2576,6 @@ function updatePlayerRanking(list){
   }).join('');
   $('pRankList').innerHTML=rows||'<p style="color:#7c6fa8;text-align:center;font-size:.8rem;padding:8px">-</p>';
 }
-/* ⭐ Player end — same podium + honorable + table as host */
 function pEnd(rank,mode){
   go('scPlayerEnd');
   const mm=mode||G.config.mode;
@@ -2577,18 +2592,13 @@ renderGrades();renderAv();
 {
   const p=new URLSearchParams(location.search);const c=p.get('code');
   if(c&&c.length===4){
-    setTimeout(()=>{
-      const el=$('joinCode');
-      if(el)el.value=c.toUpperCase();
-      go('scPlayerJoin');
-    },100);
+    setTimeout(()=>{const el=$('joinCode');if(el)el.value=c.toUpperCase();go('scPlayerJoin');},100);
   }
 }
 document.addEventListener('input',(e)=>{if(e.target.id==='joinCode')e.target.value=e.target.value.toUpperCase().replace(/[^A-Z0-9]/g,'')});
 document.addEventListener('touchstart',()=>{iA();startBGM()},{once:true,passive:true});
 document.addEventListener('click',()=>{iA();startBGM()},{once:true});
 
-/* ⭐ Host hidden corner button: reveal on hover (desktop) or touch (mobile) */
 (function(){
   const corner=$('hostBackCorner');
   if(!corner)return;
@@ -2600,7 +2610,7 @@ document.addEventListener('click',()=>{iA();startBGM()},{once:true});
   },{passive:true});
 })();
 
-console.log('🎃 Tug of War v12 · Pause fixes · Unified leaderboard · Hidden host back button · Silent on back');
+console.log('🎃 Tug of War v13 · AddTime sync · Sound controls · Effect isolation');
 </script>
 </body>
 </html>
