@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-<title>🎃 ชักกะเย่อคำศัพท์ · Tournament v16.3</title>
+<title>🎃 ชักกะเย่อคำศัพท์ · Tournament v16.3.2</title>
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;700;800;900&family=Creepster&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -32,6 +32,25 @@ label{display:block;color:#c4b5fd;font-size:.88rem;margin-bottom:5px;font-weight
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
 .chip{padding:11px 14px;border:2px solid rgba(168,85,247,.4);border-radius:13px;background:rgba(30,15,55,.6);color:#c4b5fd;cursor:pointer;text-align:center;font-weight:700;transition:.2s;font-family:inherit;font-size:.9rem}
 .chip.active,.chip:hover{border-color:#f97316;background:rgba(249,115,22,.25);color:#fff;transform:translateY(-2px)}
+
+/* ⭐ [v16.3.2] Mode selection cards */
+.mode-section-title{font-size:1.05rem;color:#c4b5fd;font-weight:800;margin-bottom:12px;text-align:center}
+.mode-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:22px}
+.mode-card{padding:18px 12px 14px;border:2px solid rgba(168,85,247,.4);border-radius:16px;background:linear-gradient(180deg,rgba(45,27,78,.7),rgba(20,10,40,.9));color:#fff;font-family:inherit;font-weight:800;cursor:pointer;text-align:center;transition:.2s;position:relative;overflow:hidden}
+.mode-card:hover{transform:translateY(-3px);border-color:#f97316}
+.mode-card.active{border-color:#22c55e;background:linear-gradient(180deg,rgba(34,197,94,.3),rgba(20,83,45,.5));box-shadow:0 0 24px rgba(34,197,94,.5)}
+.mode-card.active::before{content:"✓";position:absolute;top:6px;right:8px;background:#22c55e;color:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:900}
+.mode-card.locked{opacity:.55;cursor:not-allowed;filter:grayscale(.4)}
+.mode-card.locked:hover{transform:none;border-color:rgba(168,85,247,.4)}
+.mode-card .mode-emoji{font-size:2.4rem;margin-bottom:6px;display:block;line-height:1}
+.mode-card .mode-name{font-size:1rem;color:#ffedd5;margin-bottom:8px;line-height:1.2}
+.mode-card .mode-badge{display:inline-block;font-size:.68rem;padding:3px 10px;border-radius:999px;font-weight:900;letter-spacing:.3px}
+.mode-card .mode-badge.ready{background:#22c55e;color:#fff}
+.mode-card .mode-badge.coming{background:rgba(251,191,36,.25);color:#fbbf24;border:1px solid rgba(251,191,36,.5)}
+.mode-selected-info{background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.35);border-radius:12px;padding:10px 14px;margin-bottom:14px;color:#bbf7d0;font-size:.85rem;text-align:center;font-weight:800}
+.mode-selected-info span{color:#fbbf24}
+@media(max-width:520px){.mode-grid{grid-template-columns:repeat(2,1fr);gap:8px}.mode-card{padding:14px 8px 10px}.mode-card .mode-emoji{font-size:1.9rem}.mode-card .mode-name{font-size:.85rem}}
+
 .grades{display:flex;flex-direction:column;gap:14px;margin-top:6px}
 .grade-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
 .grade{flex:0 0 178px;width:178px;min-height:110px;border-radius:50% 50% 46% 46%/42% 42% 30% 30%;border:none;cursor:pointer;font-family:inherit;color:#fff;position:relative;padding:20px 18px 16px;display:flex;flex-direction:column;justify-content:center;gap:5px;text-align:center;transition:.22s;background:radial-gradient(ellipse at 30% 22%,#fb923c,#ea580c 45%,#9a3412)}
@@ -258,8 +277,6 @@ label{display:block;color:#c4b5fd;font-size:.88rem;margin-bottom:5px;font-weight
 .ptug-status{text-align:center;font-weight:900;font-size:.82rem;color:#c4b5fd;margin-top:5px;min-height:18px}
 .ptug-status.advantage{color:#4ade80}
 .ptug-status.disadvantage{color:#f87171}
-
-/* ⭐ [v16.3] Spectator Overlay */
 .spectator-overlay{position:fixed;inset:0;z-index:800;background:rgba(5,2,15,.82);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:16px;overflow-y:auto}
 .spectator-overlay[hidden]{display:none!important}
 .spectator-badge{background:linear-gradient(180deg,#1e0f38,#0f0518);border:2px solid rgba(251,191,36,.5);border-radius:22px;padding:20px;max-width:700px;width:100%;box-shadow:0 0 60px rgba(251,191,36,.35),inset 0 0 30px rgba(0,0,0,.5);text-align:center;position:relative}
@@ -287,7 +304,6 @@ label{display:block;color:#c4b5fd;font-size:.88rem;margin-bottom:5px;font-weight
 .spec-lb-row{display:flex;gap:8px;padding:5px 8px;border-radius:6px;margin:3px 0;align-items:center;background:rgba(0,0,0,.25);font-size:.82rem}
 .spec-lb-row .n{flex:1;font-weight:800;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .spec-lb-row .s{font-family:monospace;font-weight:900;color:#4ade80}
-
 .combo-counter{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);z-index:200;pointer-events:none;transition:transform .3s;font-family:'Creepster',cursive;font-size:6rem;background:linear-gradient(135deg,#fbbf24,#f97316,#dc2626);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 30px rgba(249,115,22,1))}
 .combo-counter.show{transform:translate(-50%,-50%) scale(1)}
 .ult-ready-banner{position:fixed;bottom:20%;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#fbbf24,#dc2626);color:#fff;font-weight:900;font-size:1.1rem;padding:10px 22px;border-radius:999px;box-shadow:0 0 30px rgba(251,191,36,.9);z-index:150;cursor:pointer;border:none;font-family:inherit}
@@ -339,9 +355,10 @@ h1{font-size:1.7rem}.room-code{font-size:2.6rem}.timer-big{font-size:1.6rem;min-
 <div class="screen active" id="scLanding">
   <div style="max-width:520px;margin:30px auto">
     <h1>🎃 ชักกะเย่อคำศัพท์ 🦇</h1>
-    <p style="text-align:center;color:#fb923c;font-weight:900;font-size:.95rem;margin-bottom:20px">Tournament v16.3 · ระบบสุ่มทีม</p>
+    <p style="text-align:center;color:#fb923c;font-weight:900;font-size:.95rem;margin-bottom:20px">Tournament v16.3.2 · หลายโหมด</p>
     <div class="card" style="margin-top:24px">
-      <button class="btn btn-primary" onclick="go('scGradeSelect')">🎤 สร้างห้อง (Host)</button>
+      <button class="btn btn-primary" onclick="go('scGradeSelect')" style="margin-bottom:12px">🎤 สร้างห้อง (Host)</button>
+      <button class="btn btn-success" onclick="go('scPlayerJoin')">🎮 เข้าร่วมเกม (Player)</button>
     </div>
   </div>
 </div>
@@ -349,7 +366,39 @@ h1{font-size:1.7rem}.room-code{font-size:2.6rem}.timer-big{font-size:1.6rem;min-
 <div class="screen" id="scGradeSelect">
   <div style="max-width:900px;margin:20px auto">
     <button class="btn-small btn-secondary" onclick="go('scLanding')">← กลับ</button>
-    <h1>📚 เลือกระดับชั้น</h1>
+    <h1>🎮 เลือกโหมดและระดับชั้น</h1>
+
+    <!-- ⭐ [v16.3.2] Mode selection -->
+    <div class="card">
+      <div class="mode-section-title">🎯 เลือกโหมดเกม</div>
+      <div class="mode-grid">
+        <button class="mode-card active" data-mode="tug" onclick="selectGameMode('tug')">
+          <span class="mode-emoji">🎯</span>
+          <div class="mode-name">ชักกะเย่อ</div>
+          <span class="mode-badge ready">พร้อมเล่น</span>
+        </button>
+        <button class="mode-card locked" data-mode="attack" onclick="selectGameMode('attack')">
+          <span class="mode-emoji">🏰</span>
+          <div class="mode-name">โจมตี-ป้องกัน</div>
+          <span class="mode-badge coming">🚧 เร็วๆ นี้</span>
+        </button>
+        <button class="mode-card locked" data-mode="boss" onclick="selectGameMode('boss')">
+          <span class="mode-emoji">👹</span>
+          <div class="mode-name">สู้บอส</div>
+          <span class="mode-badge coming">🚧 เร็วๆ นี้</span>
+        </button>
+        <button class="mode-card locked" data-mode="other" onclick="selectGameMode('other')">
+          <span class="mode-emoji">🎮</span>
+          <div class="mode-name">อื่นๆ</div>
+          <span class="mode-badge coming">🚧 เร็วๆ นี้</span>
+        </button>
+      </div>
+      <div class="mode-selected-info" id="modeSelectedInfo">
+        🎯 โหมดที่เลือก: <span>ชักกะเย่อ</span> · ทีมแข่งดึงเชือกคำศัพท์
+      </div>
+    </div>
+
+    <h3 style="text-align:center;color:#fb923c;margin:16px 0 12px">📖 เลือกระดับชั้น</h3>
     <div class="grades" id="gradeList"></div>
   </div>
 </div>
@@ -373,6 +422,11 @@ h1{font-size:1.7rem}.room-code{font-size:2.6rem}.timer-big{font-size:1.6rem;min-
   <div style="max-width:800px;margin:20px auto">
     <button class="btn-small btn-secondary" onclick="go('scWordPicker')">← กลับ</button>
     <h1>⚙️ ตั้งค่าทัวร์นาเมนต์</h1>
+
+    <div class="card" style="text-align:center;background:linear-gradient(180deg,rgba(34,197,94,.15),rgba(20,83,45,.3));border-color:rgba(34,197,94,.4)">
+      <div style="font-size:2.2rem;line-height:1" id="configModeEmoji">🎯</div>
+      <div style="font-weight:900;color:#4ade80;font-size:1.1rem;margin-top:4px" id="configModeName">ชักกะเย่อ</div>
+    </div>
 
     <div class="card">
       <h3>👥 จำนวนทีม</h3>
@@ -602,19 +656,18 @@ h1{font-size:1.7rem}.room-code{font-size:2.6rem}.timer-big{font-size:1.6rem;min-
   </div>
 </div>
 
-<!-- ⭐ [v16.3] Spectator Overlay -->
 <div class="spectator-overlay" id="spectatorOverlay" hidden>
   <div class="spectator-badge">
     <span class="spec-emoji" id="specEmoji">🪑</span>
     <div class="spec-title" id="specTitle">คุณได้ที่ 3 แล้ว!</div>
     <div class="spec-sub" id="specSub">นั่งดูเพื่อนแข่งกันน้าาา</div>
-    <div class="spec-tug">
+    <div class="spec-tug" id="spectatorTug">
       <div class="spec-tug-head">
         <span class="spec-tA" id="specTeamA">ทีม A</span>
         <span class="spec-vs">VS</span>
         <span class="spec-tB" id="specTeamB">ทีม B</span>
       </div>
-      <div class="spec-stage" id="spectatorTug">
+      <div class="spec-stage">
         <div class="spec-center"></div>
         <div class="spec-rope"></div>
         <div class="spec-knot" id="specKnot" style="left:50%"></div>
@@ -699,8 +752,8 @@ const VOCAB_DATA={
 p1:`ant|มด,apple|แอ๊ปเปิ้ล,bag|กระเป๋า,ball|ลูกบอล,banana|กล้วย,bat|ค้างคาว,bear|หมี,bee|ผึ้ง,big|ใหญ่,bin|ถังขยะ,bird|นก,birthday|วันเกิด,book|หนังสือ,box|กล่อง,boy|เด็กชาย,bread|ขนมปัง,broom|ไม้กวาด,brother|พี่ชาย,bus|รถประจำทาง,cake|เค้ก,candle|เทียน,car|รถยนต์,cat|แมว,chair|เก้าอี้,class|ชั้นเรียน,close|ปิด,count|นับ,cry|ร้องไห้,crayon|สีเทียน,cup|ถ้วย,cut|ตัด,dad|พ่อ,dance|เต้น,desk|โต๊ะ,dog|หมา,door|ประตู,ear|หู,egg|ไข่,eraser|ยางลบ,eye|ตา,face|หน้า,fan|พัดลม,fish|ปลา,flower|ดอกไม้,food|อาหาร,foot|เท้า,fox|สุนัขจิ้งจอก,fruit|ผลไม้,fun|สนุก,giraffe|ยีราฟ,girl|เด็กหญิง,glass|แก้ว,go|ไป,goat|แพะ,good|ดี,goodbye|ลาก่อน,hair|ผม,ham|แฮม,happy|สุข,head|หัว,hello|หวัดดี,house|บ้าน,ice|น้ำแข็ง,ice cream|ไอศกรีม,jar|โอ่ง,key|กุญแจ,kick|เตะ,king|ราชา,kid|เด็ก,leg|ขา,lemon|มะนาว,line|เส้น,lion|สิงโต,listen|ฟัง,long|ยาว,look|ดู,love|รัก,man|ชาย,map|แผนที่,milk|นม,mom|แม่,monkey|ลิง,moon|จันทร์,mother|มารดา,mouth|ปาก,name|ชื่อ,nose|จมูก,open|เปิด,orange|ส้ม,owl|นกฮูก,pan|กระทะ,panda|แพนด้า,papaya|มะละกอ,park|สวน,pear|ลูกแพร์,pen|ปากกา,pencil|ดินสอ,pet|สัตว์เลี้ยง,play|เล่น,point|ชี้,pool|สระ,queen|ราชินี,rabbit|กระต่าย,rat|หนู,ring|แหวน,roof|หลังคา,room|ห้อง,ruler|ไม้บรรทัด,sad|เศร้า,salad|สลัด,say|พูด,school|โรงเรียน,see|เห็น,sheep|แกะ,ship|เรือ,short|สั้น,show|แสดง,sing|ร้อง,sister|พี่สาว,sit|นั่ง,small|เล็ก,smell|กลิ่น,snake|งู,song|เพลง,stand|ยืน,star|ดาว,start|เริ่ม,stop|หยุด,student|นักเรียน,sun|ตะวัน,tall|สูง,tea|ชา,teacher|ครู,thank you|ขอบคุณ,tomato|มะเขือเทศ,top|ข่าง,toy|ของเล่น,tree|ต้นไม้,ugly|น่าเกลียด,van|รถตู้,walk|เดิน,water|น้ำ,wig|ผมปลอม,woman|หญิง,zebra|ม้าลาย,zoo|สวนสัตว์`,
 p2:`again|อีก,animal|สัตว์,answer|ตอบ,arm|แขน,artist|ศิลปิน,ask|ถาม,aunt|ป้า,balloon|ลูกโป่ง,bank|ธนาคาร,bed|เตียง,board|กระดาน,boat|เรือ,bottle|ขวด,bowl|ชาม,butterfly|ผีเสื้อ,candy|ลูกอม,cap|หมวก,card|บัตร,cheese|ชีส,cherry|เชอร์รี่,chicken|ไก่,children|เด็กๆ,circle|วงกลม,clean|สะอาด,clock|นาฬิกา,cook|ทำอาหาร,cookie|ขนม,cool|เย็น,cow|วัว,dish|จาน,doctor|หมอ,donkey|ลา,elephant|ช้าง,family|ครอบครัว,far|ไกล,fat|อ้วน,finish|เสร็จ,floor|พื้น,fly|บิน,friend|เพื่อน,frog|กบ,garden|สวน,gloves|ถุงมือ,grape|องุ่น,group|กลุ่ม,hand|มือ,hat|หมวก,help|ช่วย,hen|ไก่,hot|ร้อน,hungry|หิว,juice|น้ำผลไม้,kite|ว่าว,knee|เข่า,knife|มีด,letter|จดหมาย,magic|มนตร์,mango|มะม่วง,music|ดนตรี,new|ใหม่,notebook|สมุด,number|เลข,old|แก่,page|หน้า,paint|สี,paper|กระดาษ,peach|พีช,people|คน,picture|รูป,pig|หมู,pillow|หมอน,pineapple|สับปะรด,puppy|ลูกหมา,quiet|เงียบ,radio|วิทยุ,rain|ฝน,rice|ข้าว,right|ถูก,robot|หุ่นยนต์,rope|เชือก,round|กลม,socks|ถุงเท้า,spell|สะกด,story|เรื่อง,strawberry|สตรอเบอร์รี่,subject|วิชา,sweet|หวาน,tennis|เทนนิส,today|วันนี้,touch|สัมผัส,town|เมือง,umbrella|ร่ม,uncle|ลุง,video|วิดีโอ,watermelon|แตงโม,week|สัปดาห์,whale|วาฬ,window|หน้าต่าง,young|น้อย`,
 p3:`air|อากาศ,airplane|เครื่องบิน,around|รอบ,basket|ตะกร้า,bathroom|ห้องน้ำ,beautiful|สวย,bedroom|ห้องนอน,beef|เนื้อวัว,bell|กระดิ่ง,bicycle|จักรยาน,body|ร่างกาย,breakfast|อาหารเช้า,buy|ซื้อ,cabbage|กะหล่ำ,carrot|แครอท,castle|ปราสาท,chance|โอกาส,classroom|ห้องเรียน,coffee|กาแฟ,computer|คอมพิวเตอร์,correct|ถูก,cucumber|แตงกวา,daughter|ลูกสาว,dice|เต๋า,dinner|อาหารเย็น,dirty|สกปรก,double|สองเท่า,drink|ดื่ม,drum|กลอง,duck|เป็ด,durian|ทุเรียน,eat|กิน,English|อังกฤษ,finger|นิ้ว,fishing|ตกปลา,flag|ธง,give|ให้,goldfish|ปลาทอง,golf|กอล์ฟ,grandfather|ปู่,grandmother|ย่า,grass|หญ้า,guitar|กีตาร์,hippo|ฮิปโป,hit|ตี,homework|การบ้าน,honey|น้ำผึ้ง,horse|ม้า,hut|กระท่อม,jacket|แจ็คเก็ต,jeans|ยีนส์,join|เข้าร่วม,keep|เก็บ,kitten|ลูกแมว,lock|ล็อก,lunch|กลางวัน,math|คณิต,meat|เนื้อ,mirror|กระจก,month|เดือน,move|ขยับ,musician|นักดนตรี,neck|คอ,nest|รัง,noodle|ก๋วยเตี๋ยว,noon|เที่ยง,nurse|พยาบาล,pair|คู่,parrot|นกแก้ว,path|ทาง,penguin|เพนกวิน,photo|รูป,piano|เปียโน,pie|พาย,pizza|พิซซ่า,plastic|พลาสติก,pork|หมู,postman|ไปรษณีย์,potato|มันฝรั่ง,question|คำถาม,rainy|ฝนตก,read|อ่าน,river|แม่น้ำ,salt|เกลือ,sand|ทราย,sausage|ไส้กรอก,seal|แมวน้ำ,shampoo|แชมพู,shorts|กางเกงขาสั้น,shoulder|ไหล่,sleep|นอน,smile|ยิ้ม,snail|หอยทาก,soap|สบู่,sofa|โซฟา,son|ลูกชาย,soup|ซุป,speak|พูด,study|เรียน,swing|ชิงช้า,telephone|โทรศัพท์,thirsty|กระหาย,tiger|เสือ,toothbrush|แปรงสีฟัน,toothpaste|ยาสีฟัน,truck|รถบรรทุก,turtle|เต่า,use|ใช้,violin|ไวโอลิน,want|ต้องการ,wash|ซัก,watch|ดู,wing|ปีก,wolf|หมาป่า,wood|ไม้,write|เขียน,wrong|ผิด`,
-p4:`ache|ปวด,afternoon|บ่าย,airport|สนามบิน,autumn|ใบไม้ร่วง,clothes|เสื้อผ้า,cloudy|มีเมฆ,clown|ตัวตลก,coat|โค้ท,coconut|มะพร้าว,coin|เหรียญ,cold|หนาว,comb|หวี,copy|คัดลอก,cousin|ลูกพี่ลูกน้อง,cover|ปก,cupcake|คัพเค้ก,dark|มืด,deep|ลึก,dentist|หมอฟัน,diary|ไดอารี่,dictionary|พจนานุกรม,dolphin|โลมา,drive|ขับ,dust|ฝุ่น,earth|โลก,easy|ง่าย,evening|เย็น,example|ตัวอย่าง,exercise|ออกกำลังกาย,expensive|แพง,fall|ร่วง,feed|ให้อาหาร,feel|รู้สึก,female|หญิง,fence|รั้ว,festival|เทศกาล,fill|เติม,film|หนัง,find|หา,flash|แฟลช,flour|แป้ง,fork|ส้อม,funny|ตลก,game|เกม,garage|โรงรถ,ghost|ผี,gift|ของขวัญ,glasses|แว่น,grow|โต,gym|โรงยิม,hall|โถง,health|สุขภาพ,heart|หัวใจ,hill|เนิน,holiday|วันหยุด,hospital|โรงพยาบาล,hotel|โรงแรม,internet|เน็ต,jungle|ป่า,kangaroo|จิงโจ้,kitchen|ครัว,know|รู้,leaf|ใบไม้,lemonade|น้ำมะนาว,library|ห้องสมุด,life|ชีวิต,lips|ปาก,longan|ลำไย,lotus|บัว,mall|ห้าง,medicine|ยา,melon|แคนตาลูป,member|สมาชิก,midnight|เที่ยงคืน,monk|พระ,monster|มอน, morning|เช้า,mountain|ภูเขา,movie|หนัง,nail|เล็บ,nice|ดี,night|คืน,octopus|ปลาหมึก,office|ออฟฟิศ,omelet|ไข่เจียว,onion|หัวหอม,pants|กางเกง,parents|พ่อแม่,pepper|พริกไทย,pill|ยา,planet|ดาวเคราะห์,plant|พืช,playground|สนามเด็กเล่น,pocket|กระเป๋า,poem|กลอน,practice|ฝึก,prawn|กุ้ง,present|ของขวัญ,pretty|สวย,price|ราคา,print|พิมพ์,pull|ดึง,push|ผลัก,quick|เร็ว,rainbow|รุ้ง,rescue|ช่วย,restaurant|ร้านอาหาร,ride|ขี่,road|ถนน,rocket|จรวด,root|ราก,rose|กุหลาบ,satellite|ดาวเทียม,scarf|ผ้าพันคอ,science|วิทย์,sea|ทะเล,seed|เมล็ด,sell|ขาย,send|ส่ง,shelf|ชั้น,shop|ร้าน,sick|ป่วย,ski|สกี,slow|ช้า,smoke|ควัน,snack|ของว่าง,snowy|หิมะ,soda|โซดา,sore|เจ็บ,sour|เปรี้ยว,space|อวกาศ,special|พิเศษ,spend|จ่าย,spicy|เผ็ด,spoon|ช้อน,spring|ใบไม้ผลิ,square|สี่เหลี่ยม,station|สถานี,summer|ร้อน,sunny|แดด,sweater|กันหนาว,tail|หาง,talk|คุย,teach|สอน,team|ทีม,theater|ละคร,thin|ผอม,ticket|ตั๋ว,time|เวลา,tomorrow|พรุ่งนี้,tonight|คืนนี้,tour|ทัวร์,uniform|ชุด,vegetable|ผัก,wear|สวม,weather|อากาศ,wet|เปียก,wife|เมีย,windy|ลม,winter|หนาว,work|งาน,year|ปี,yesterday|เมื่อวาน,yogurt|โยเกิร์ต,yummy|อร่อย`,
-p5:`actor|นักแสดง,actress|ดาราหญิง,adventure|ผจญภัย,area|พื้นที่,author|นักเขียน,bridge|สะพาน,build|สร้าง,burn|เผา,busy|ยุ่ง,button|กระดุม,calculator|คิดเลข,calendar|ปฏิทิน,camera|กล้อง,canal|คลอง,careful|ระวัง,career|อาชีพ,carpet|พรม,carry|ถือ,center|กลาง,chopsticks|ตะเกียบ,clinic|คลินิก,collect|สะสม,company|บริษัท,complete|สมบูรณ์,container|ภาชนะ,control|ควบคุม,conversation|สนทนา,country|ประเทศ,crocodile|จระเข้,curly|หยิก,curry|แกง,curtain|ม่าน,dangerous|อันตราย,delicious|อร่อย,dialogue|บทสนทนา,diet|อาหาร,different|ต่าง,dinosaur|ไดโน, director|ผู้กำกับ,downstairs|ชั้นล่าง,dream|ฝัน,driver|คนขับ,eggplant|มะเขือยาว,envelope|ซอง,factory|โรงงาน,famous|ดัง,fitness|ฟิตเนส,float|ลอย,follow|ตาม,forest|ป่า,guava|ฝรั่ง,guide|ไกด์,habit|นิสัย,haircut|ตัดผม,half|ครึ่ง,heavy|หนัก,hero|ฮีโร่,history|ประวัติ,hobby|อดิเรก,hole|หลุม,iron|เหล็ก,jackfruit|ขนุน,jewelry|เครื่องประดับ,kind|ใจดี,kiwi|กีวี,knock|เคาะ,koala|โคอาลา,lake|ทะเลสาบ,laugh|หัวเราะ,law|กฎหมาย,learn|เรียน,leave|ออก,lend|ให้ยืม,light|แสง,magazine|นิตยสาร,marry|แต่งงาน,meal|มื้อ,menu|เมนู,meter|เมตร,minute|นาที,miss|คิดถึง,mix|ผสม,model|นางแบบ,money|เงิน,mosquito|ยุง,museum|พิพิธภัณฑ์,necklace|สร้อย,newspaper|หนังสือพิมพ์,noise|เสียง,ocean|มหาสมุทร,oven|เตาอบ,pajamas|ชุดนอน,parade|ขบวน,part|ส่วน,pay|จ่าย,peacock|นกยูง,pharmacy|ขายยา,picnic|ปิกนิก,pilot|นักบิน,plan|แผน,plate|จาน,poor|จน,popular|นิยม,poster|โปสเตอร์,pour|เท,power|พลัง,pray|สวด,purse|กระเป๋า,queue|คิว,rent|เช่า,reporter|ผู้สื่อข่าว,rest|พัก,return|กลับ,rich|รวย,roll|ม้วน,rug|พรม,safe|ปลอดภัย,sailor|กะลาสี,salon|ร้านเสริมสวย,scare|กลัว,season|ฤดู,seat|ที่นั่ง,secretary|เลขา,sharp|คม,shout|ตะโกน,shrimp|กุ้ง,silent|เงียบ,single|โสด,sink|อ่าง,skip|กระโดด,slippers|แตะ,slippery|ลื่น,smart|ฉลาด,sound|เสียง,staff|พนักงาน,storm|พายุ,stove|เตา,strange|แปลก,strong|แข็งแรง,sunflower|ทานตะวัน,sure|แน่,surname|นามสกุล,surprise|เซอร์ไพรส์,sweep|กวาด,take|เอา,tape|เทป,television|ทีวี,tent|เต็นท์,term|เทอม,thick|หนา,think|คิด,tissue|ทิชชู่,towel|ผ้าเช็ดตัว,trash|ขยะ,trip|เที่ยว,trouble|ปัญหา,upstairs|ชั้นบน,vacation|วันหยุด,value|คุณค่า,visit|เยี่ยม,voice|เสียง,wait|รอ,waiter|บริกร,waitress|บริกรหญิง,wallet|กระเป๋า,wave|คลื่น,weight|น้ำหนัก,win|ชนะ,wheel|ล้อ,world|โลก,yawn|หาว`,
+p4:`ache|ปวด,afternoon|บ่าย,airport|สนามบิน,autumn|ใบไม้ร่วง,clothes|เสื้อผ้า,cloudy|มีเมฆ,clown|ตัวตลก,coat|โค้ท,coconut|มะพร้าว,coin|เหรียญ,cold|หนาว,comb|หวี,copy|คัดลอก,cousin|ลูกพี่ลูกน้อง,cover|ปก,cupcake|คัพเค้ก,dark|มืด,deep|ลึก,dentist|หมอฟัน,diary|ไดอารี่,dictionary|พจนานุกรม,dolphin|โลมา,drive|ขับ,dust|ฝุ่น,earth|โลก,easy|ง่าย,evening|เย็น,example|ตัวอย่าง,exercise|ออกกำลังกาย,expensive|แพง,fall|ร่วง,feed|ให้อาหาร,feel|รู้สึก,female|หญิง,fence|รั้ว,festival|เทศกาล,fill|เติม,film|หนัง,find|หา,flash|แฟลช,flour|แป้ง,fork|ส้อม,funny|ตลก,game|เกม,garage|โรงรถ,ghost|ผี,gift|ของขวัญ,glasses|แว่น,grow|โต,gym|โรงยิม,hall|โถง,health|สุขภาพ,heart|หัวใจ,hill|เนิน,holiday|วันหยุด,hospital|โรงพยาบาล,hotel|โรงแรม,internet|เน็ต,jungle|ป่า,kangaroo|จิงโจ้,kitchen|ครัว,know|รู้,leaf|ใบไม้,lemonade|น้ำมะนาว,library|ห้องสมุด,life|ชีวิต,lips|ปาก,longan|ลำไย,lotus|บัว,mall|ห้าง,medicine|ยา,melon|แคนตาลูป,member|สมาชิก,midnight|เที่ยงคืน,monk|พระ,monster|มอน,morning|เช้า,mountain|ภูเขา,movie|หนัง,nail|เล็บ,nice|ดี,night|คืน,octopus|ปลาหมึก,office|ออฟฟิศ,omelet|ไข่เจียว,onion|หัวหอม,pants|กางเกง,parents|พ่อแม่,pepper|พริกไทย,pill|ยา,planet|ดาวเคราะห์,plant|พืช,playground|สนามเด็กเล่น,pocket|กระเป๋า,poem|กลอน,practice|ฝึก,prawn|กุ้ง,present|ของขวัญ,pretty|สวย,price|ราคา,print|พิมพ์,pull|ดึง,push|ผลัก,quick|เร็ว,rainbow|รุ้ง,rescue|ช่วย,restaurant|ร้านอาหาร,ride|ขี่,road|ถนน,rocket|จรวด,root|ราก,rose|กุหลาบ,satellite|ดาวเทียม,scarf|ผ้าพันคอ,science|วิทย์,sea|ทะเล,seed|เมล็ด,sell|ขาย,send|ส่ง,shelf|ชั้น,shop|ร้าน,sick|ป่วย,ski|สกี,slow|ช้า,smoke|ควัน,snack|ของว่าง,snowy|หิมะ,soda|โซดา,sore|เจ็บ,sour|เปรี้ยว,space|อวกาศ,special|พิเศษ,spend|จ่าย,spicy|เผ็ด,spoon|ช้อน,spring|ใบไม้ผลิ,square|สี่เหลี่ยม,station|สถานี,summer|ร้อน,sunny|แดด,sweater|กันหนาว,tail|หาง,talk|คุย,teach|สอน,team|ทีม,theater|ละคร,thin|ผอม,ticket|ตั๋ว,time|เวลา,tomorrow|พรุ่งนี้,tonight|คืนนี้,tour|ทัวร์,uniform|ชุด,vegetable|ผัก,wear|สวม,weather|อากาศ,wet|เปียก,wife|เมีย,windy|ลม,winter|หนาว,work|งาน,year|ปี,yesterday|เมื่อวาน,yogurt|โยเกิร์ต,yummy|อร่อย`,
+p5:`actor|นักแสดง,actress|ดาราหญิง,adventure|ผจญภัย,area|พื้นที่,author|นักเขียน,bridge|สะพาน,build|สร้าง,burn|เผา,busy|ยุ่ง,button|กระดุม,calculator|คิดเลข,calendar|ปฏิทิน,camera|กล้อง,canal|คลอง,careful|ระวัง,career|อาชีพ,carpet|พรม,carry|ถือ,center|กลาง,chopsticks|ตะเกียบ,clinic|คลินิก,collect|สะสม,company|บริษัท,complete|สมบูรณ์,container|ภาชนะ,control|ควบคุม,conversation|สนทนา,country|ประเทศ,crocodile|จระเข้,curly|หยิก,curry|แกง,curtain|ม่าน,dangerous|อันตราย,delicious|อร่อย,dialogue|บทสนทนา,diet|อาหาร,different|ต่าง,dinosaur|ไดโน,director|ผู้กำกับ,downstairs|ชั้นล่าง,dream|ฝัน,driver|คนขับ,eggplant|มะเขือยาว,envelope|ซอง,factory|โรงงาน,famous|ดัง,fitness|ฟิตเนส,float|ลอย,follow|ตาม,forest|ป่า,guava|ฝรั่ง,guide|ไกด์,habit|นิสัย,haircut|ตัดผม,half|ครึ่ง,heavy|หนัก,hero|ฮีโร่,history|ประวัติ,hobby|อดิเรก,hole|หลุม,iron|เหล็ก,jackfruit|ขนุน,jewelry|เครื่องประดับ,kind|ใจดี,kiwi|กีวี,knock|เคาะ,koala|โคอาลา,lake|ทะเลสาบ,laugh|หัวเราะ,law|กฎหมาย,learn|เรียน,leave|ออก,lend|ให้ยืม,light|แสง,magazine|นิตยสาร,marry|แต่งงาน,meal|มื้อ,menu|เมนู,meter|เมตร,minute|นาที,miss|คิดถึง,mix|ผสม,model|นางแบบ,money|เงิน,mosquito|ยุง,museum|พิพิธภัณฑ์,necklace|สร้อย,newspaper|หนังสือพิมพ์,noise|เสียง,ocean|มหาสมุทร,oven|เตาอบ,pajamas|ชุดนอน,parade|ขบวน,part|ส่วน,pay|จ่าย,peacock|นกยูง,pharmacy|ขายยา,picnic|ปิกนิก,pilot|นักบิน,plan|แผน,plate|จาน,poor|จน,popular|นิยม,poster|โปสเตอร์,pour|เท,power|พลัง,pray|สวด,purse|กระเป๋า,queue|คิว,rent|เช่า,reporter|ผู้สื่อข่าว,rest|พัก,return|กลับ,rich|รวย,roll|ม้วน,rug|พรม,safe|ปลอดภัย,sailor|กะลาสี,salon|ร้านเสริมสวย,scare|กลัว,season|ฤดู,seat|ที่นั่ง,secretary|เลขา,sharp|คม,shout|ตะโกน,shrimp|กุ้ง,silent|เงียบ,single|โสด,sink|อ่าง,skip|กระโดด,slippers|แตะ,slippery|ลื่น,smart|ฉลาด,sound|เสียง,staff|พนักงาน,storm|พายุ,stove|เตา,strange|แปลก,strong|แข็งแรง,sunflower|ทานตะวัน,sure|แน่,surname|นามสกุล,surprise|เซอร์ไพรส์,sweep|กวาด,take|เอา,tape|เทป,television|ทีวี,tent|เต็นท์,term|เทอม,thick|หนา,think|คิด,tissue|ทิชชู่,towel|ผ้าเช็ดตัว,trash|ขยะ,trip|เที่ยว,trouble|ปัญหา,upstairs|ชั้นบน,vacation|วันหยุด,value|คุณค่า,visit|เยี่ยม,voice|เสียง,wait|รอ,waiter|บริกร,waitress|บริกรหญิง,wallet|กระเป๋า,wave|คลื่น,weight|น้ำหนัก,win|ชนะ,wheel|ล้อ,world|โลก,yawn|หาว`,
 p6:`aeroplane|เครื่องบิน,afraid|กลัว,ancient|โบราณ,aquarium|อควาเรี่ยม,architect|สถาปนิก,arrive|ถึง,astronaut|นักบินอวกาศ,attraction|ท่องเที่ยว,backpack|เป้,biography|ชีวประวัติ,bracelet|กำไล,cash|เงินสด,catch|จับ,celebrate|ฉลอง,century|ศตวรรษ,ceremony|พิธี,character|ตัวละคร,charity|กุศล,classmate|เพื่อนร่วมชั้น,community|ชุมชน,competition|แข่ง,concert|คอนเสิร์ต,confident|มั่นใจ,contact|ติดต่อ,costume|เครื่องแต่งกาย,cough|ไอ,creative|สร้างสรรค์,crosswalk|ทางม้าลาย,crowd|ฝูงชน,crown|มงกุฎ,culture|วัฒนธรรม,decide|ตัดสินใจ,decorate|ตกแต่ง,difficult|ยาก,direction|ทิศ,discuss|อภิปราย,distance|ระยะ,donate|บริจาค,dragonfly|แมลงปอ,education|ศึกษา,electricity|ไฟ,energy|พลังงาน,engineer|วิศวกร,entrance|ทางเข้า,environment|สิ่งแวดล้อม,escape|หนี,excellent|เยี่ยม,exciting|ตื่นเต้น,exhibition|นิทรรศการ,exit|ออก,expect|คาด,explore|สำรวจ,fantastic|สุดยอด,fashion|แฟชั่น,feather|ขนนก,ferry|เรือข้ามฟาก,fever|ไข้,flood|น้ำท่วม,freeze|แช่แข็ง,fresh|สด,gallery|หอศิลป์,garbage|ขยะ,garlic|กระเทียม,geography|ภูมิศาสตร์,handsome|หล่อ,helmet|หมวกกันน็อค,honor|เกียรติ,important|สำคัญ,improve|ปรับปรุง,information|ข้อมูล,ingredient|ส่วนผสม,instruction|คำแนะนำ,interview|สัมภาษณ์,introduce|แนะนำ,invent|ประดิษฐ์,invite|เชิญ,journey|เดินทาง,kingdom|อาณาจักร,knowledge|ความรู้,language|ภาษา,leather|หนัง,liquid|ของเหลว,location|ที่ตั้ง,message|ข้อความ,mistake|ผิด,narrow|แคบ,neighbor|เพื่อนบ้าน,notice|สังเกต,opinion|คิด,opposite|ตรงข้าม,palace|วัง,paragraph|ย่อหน้า,passport|พาสปอร์ต,peace|สันติภาพ,personality|บุคลิก,photographer|ช่างภาพ,poison|พิษ,polite|สุภาพ,pollution|มลพิษ,president|ประธานาธิบดี,prince|เจ้าชาย,princess|เจ้าหญิง,prize|รางวัล,problem|ปัญหา,professional|มืออาชีพ,pronounce|ออกเสียง,publish|ตีพิมพ์,quiz|แบบทดสอบ,reason|เหตุผล,recipe|สูตร,reduce|ลด,refrigerator|ตู้เย็น,region|ภูมิภาค,regular|ปกติ,relative|ญาติ,remember|จำ,review|ทบทวน,route|เส้นทาง,rubbish|ขยะ,rule|กฎ,scream|กรีดร้อง,search|ค้น,situation|สถานการณ์,smooth|เรียบ,sneeze|จาม,soft|นุ่ม,soil|ดิน,solve|แก้,souvenir|ของที่ระลึก,sparrow|นกกระจอก,sponge|ฟองน้ำ,string|เชือก,survey|สำรวจ,thief|ขโมย,tidy|เรียบร้อย,timetable|ตารางเวลา,tongue|ลิ้น,tourist|ท่องเที่ยว,traffic|จราจร,transport|ขนส่ง,useful|มีประโยชน์,valuable|มีค่า,vehicle|ยานพาหนะ,vision|วิสัยทัศน์,volcano|ภูเขาไฟ,whisper|กระซิบ,wide|กว้าง,wonderful|ยอดเยี่ยม,worry|กังวล`,
 extra:`white|ขาว,green|เขียว,pink|ชมพู,black|ดำ,red|แดง,grey|เทา,blue|น้ำเงิน,brown|น้ำตาล,violet|ม่วง,orange|ส้ม,yellow|เหลือง,triangle|สามเหลี่ยม,rectangle|สี่เหลี่ยมผืนผ้า,oval|วงรี,crescent|เสี้ยว,diamond|ข้าวหลามตัด,Sunday|อาทิตย์,Monday|จันทร์,Tuesday|อังคาร,Wednesday|พุธ,Thursday|พฤหัสบดี,Friday|ศุกร์,Saturday|เสาร์,January|มกราคม,February|กุมภาพันธ์,March|มีนาคม,April|เมษายน,May|พฤษภาคม,June|มิถุนายน,July|กรกฎาคม,August|สิงหาคม,September|กันยายน,October|ตุลาคม,November|พฤศจิกายน,December|ธันวาคม,one|หนึ่ง,two|สอง,three|สาม,four|สี่,five|ห้า,six|หก,seven|เจ็ด,eight|แปด,nine|เก้า,ten|สิบ,eleven|สิบเอ็ด,twelve|สิบสอง,thirteen|สิบสาม,fourteen|สิบสี่,fifteen|สิบห้า,twenty|ยี่สิบ,thirty|สามสิบ,forty|สี่สิบ,fifty|ห้าสิบ,hundred|ร้อย,thousand|พัน,first|ที่หนึ่ง,second|ที่สอง,third|ที่สาม`
 };
@@ -720,7 +773,7 @@ POOLS.all=[];
 /* ═══ STATE ═══ */
 const G={
   role:null,roomCode:'',
-  config:{gradeId:'p1',timeLimit:15,setDuration:180,theme:'halloween',teamCount:4},
+  config:{gradeId:'p1',timeLimit:15,setDuration:180,theme:'halloween',teamCount:4,gameMode:'tug'},
   selectedWords:new Set(),questions:[],
   gameState:'lobby',totalDeadline:0,totalTimerId:null,remainingMs:0,
   players:{},
@@ -728,8 +781,7 @@ const G={
     teams:[],currentRound:0,phase:'idle',
     bracket:{qualifier:{},semi:[],final:{}},
     matchId:null,activeTeamIds:[],
-    currentMatchTeamA:null,currentMatchTeamB:null,
-    finalEndTimer:null
+    currentMatchTeamA:null,currentMatchTeamB:null
   },
   myCurrentQ:0,myScore:0,myStreak:0,myAnswers:[],
   myPlayerId:null,myName:'',myAvatar:'🎃',myTeam:'',myTeamId:null,
@@ -739,8 +791,7 @@ const G={
   hostEffectOn:true,hostBgmOn:true,playersEffectOn:true,playersBgmOn:true,
   lang:'th',theme:'halloween',hint:{points:3},
   sessionProg:{totalCorrect:0,totalWrong:0,bestStreak:0},replayLog:[],
-  isSpectator:false,myFinalRank:null,
-  specMatchInfo:null,specTugState:{current:50,target:50,raf:null,lastTs:0}
+  isSpectator:false,myFinalRank:null
 };
 const TEAMS_DEF=[
   {id:'t1',name:'ทีมแดง',emoji:'🎃',color:'#dc2626',cls:'t1'},
@@ -751,9 +802,13 @@ const TEAMS_DEF=[
 function shouldPlayEffect(){if(G.role==='host')return G.hostEffectOn;if(G.role==='player')return G.playersEffectOn;return true;}
 function shouldPlayBGM(){if(G.role==='host')return G.hostBgmOn;if(G.role==='player')return G.playersBgmOn;return true;}
 
-/* ═══ SOUND ENGINE (compact) ═══ */
+/* ═══ SOUND ENGINE ═══ */
 let ac=null;
 function iA(){try{if(!ac)ac=new(window.AudioContext||window.webkitAudioContext)();if(ac.state==='suspended')ac.resume()}catch(e){}}
+
+/* ⭐ [FIX v16.3.1] ปุ่ม click sound — ฟังก์ชันแยกอิสระ อยู่บนสุด */
+function sc(){if(!shouldPlayEffect())return;iA();if(!ac)return;const t0=ac.currentTime;const o=ac.createOscillator(),g=ac.createGain();o.type='square';o.frequency.setValueAtTime(1400,t0);o.frequency.exponentialRampToValueAtTime(650,t0+0.05);g.gain.setValueAtTime(0.14,t0);g.gain.exponentialRampToValueAtTime(0.0001,t0+0.06);o.connect(g);g.connect(ac.destination);o.start(t0);o.stop(t0+0.08)}
+
 function org(f,st,d,v){if(!shouldPlayEffect()||!ac)return;const t0=ac.currentTime+st;[1,2,3,4].forEach((m,i)=>{const o=ac.createOscillator(),g=ac.createGain();o.type='sine';o.frequency.setValueAtTime(f*m,t0);const vv=(v||0.16)*(1/(i+1.3));g.gain.setValueAtTime(0.0001,t0);g.gain.exponentialRampToValueAtTime(vv,t0+0.05);g.gain.exponentialRampToValueAtTime(vv*0.55,t0+d*0.4);g.gain.exponentialRampToValueAtTime(0.0001,t0+d);o.connect(g);g.connect(ac.destination);o.start(t0);o.stop(t0+d+0.05)})}
 function bel(f,st,d,v){if(!shouldPlayEffect()||!ac)return;const t0=ac.currentTime+(st||0);[1,2.76,5.4,8.9].forEach((m,i)=>{const o=ac.createOscillator(),g=ac.createGain();o.type='sine';o.frequency.setValueAtTime(f*m,t0);const vv=(v||0.14)/Math.pow(1.9,i);g.gain.setValueAtTime(0.0001,t0);g.gain.exponentialRampToValueAtTime(vv,t0+0.005);g.gain.exponentialRampToValueAtTime(0.0001,t0+d);o.connect(g);g.connect(ac.destination);o.start(t0);o.stop(t0+d+0.05)})}
 function gl(st,v){if(!shouldPlayEffect()||!ac)return;const t0=ac.currentTime+(st||0);for(let i=0;i<5;i++){const o=ac.createOscillator(),g=ac.createGain();o.type='sine';const b=400+Math.random()*80;o.frequency.setValueAtTime(b,t0+i*0.11);o.frequency.exponentialRampToValueAtTime(b*0.55,t0+i*0.11+0.14);g.gain.setValueAtTime(0.0001,t0+i*0.11);g.gain.exponentialRampToValueAtTime(v||0.12,t0+i*0.11+0.02);g.gain.exponentialRampToValueAtTime(0.0001,t0+i*0.11+0.14);o.connect(g);g.connect(ac.destination);o.start(t0+i*0.11);o.stop(t0+i*0.11+0.18)}}
@@ -765,6 +820,7 @@ function sCd(){if(!shouldPlayEffect())return;iA();bel(880,0,0.35,0.12)}
 function sCdGo(){if(!shouldPlayEffect())return;iA();bel(1320,0,0.5,0.16);org(440,0.05,0.4,0.14)}
 function sJoin(){if(!shouldPlayEffect())return;iA();bel(1760,0,0.4,0.1);bel(2093,0.08,0.35,0.08)}
 function sUlt(){if(!shouldPlayEffect())return;iA();const t0=ac.currentTime;const o=ac.createOscillator();o.type='sawtooth';o.frequency.setValueAtTime(80,t0);o.frequency.exponentialRampToValueAtTime(400,t0+0.8);const g=ac.createGain();g.gain.setValueAtTime(0.0001,t0);g.gain.exponentialRampToValueAtTime(0.3,t0+0.1);g.gain.exponentialRampToValueAtTime(0.0001,t0+1.0);o.connect(g);g.connect(ac.destination);o.start(t0);o.stop(t0+1.05);thu(0.5,0.35)}
+
 const BT=[440,392,440,349.23,329.63,349.23,392,440,392,349.23,329.63,293.66,329.63,349.23,329.63,293.66,261.63,293.66,329.63,349.23,329.63,293.66,261.63,246.94,220,246.94,261.63,293.66,329.63,293.66,261.63,246.94];
 const BB=[110,87.31,98,82.41];
 let bgm=null,bgT=null,bgS=0,bgOn=false;
@@ -778,16 +834,6 @@ let currentBrokerIdx=0,mqttClient=null,mqttHandlers={},mqttConnected=false;
 const AV=['🎃','👻','🦇','🕷️','🕸️','💀','🧙‍♀️','🧛','🧟','🐺','🦉','🐈‍⬛','🐸','🦊','🐼','🐯','🦁','🐨','🐷','🐵','🐰','🐭','🐮','🐔','🦄','🐲','🦖','🤖','👽','🦈'];
 const $=(id)=>document.getElementById(id);
 const esc=(s)=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-
-/* ⭐ [FIX] ประกาศ sc() กัน ReferenceError — เคยทำให้ปุ่มกดไม่ได้ */
-function sc(){
-  try{
-    if(typeof stopBGM==='function') stopBGM();
-    if(G.myQTimerId && !G.myGameActive){clearInterval(G.myQTimerId);G.myQTimerId=null;}
-    if(G.totalTimerId && G.gameState!=='playing'){clearInterval(G.totalTimerId);G.totalTimerId=null;}
-  }catch(e){}
-}
-
 function go(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));$(id).classList.add('active');window.scrollTo(0,0)}
 function toast(m,ms){const t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),ms||2500)}
 function gCode(){const c='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';let r='';for(let i=0;i<4;i++)r+=c[Math.floor(Math.random()*c.length)];return r}
@@ -827,6 +873,26 @@ function broadcastSoundState(){hostBroadcast({type:'sound',playersEffectOn:G.pla
 
 /* ═══ GRADE / WP ═══ */
 const GR=[{id:'p1',name:'ป.1',c:'g1'},{id:'p2',name:'ป.2',c:'g2'},{id:'p3',name:'ป.3',c:'g3'},{id:'p4',name:'ป.4',c:'g4'},{id:'p5',name:'ป.5',c:'g5'},{id:'p6',name:'ป.6',c:'g6'},{id:'extra',name:'พิเศษ',c:'g7'}];
+
+/* ⭐ [v16.3.2] Game mode selection */
+const GAME_MODES={
+  tug:    {name:'ชักกะเย่อ',      emoji:'🎯', ready:true,  desc:'ทีมแข่งดึงเชือกคำศัพท์'},
+  attack: {name:'โจมตี-ป้องกัน', emoji:'🏰', ready:false, desc:'ทีมโจมตี vs ทีมป้องกัน'},
+  boss:   {name:'สู้บอส',        emoji:'👹', ready:false, desc:'รวมทีมสู้บอส'},
+  other:  {name:'อื่นๆ',          emoji:'🎮', ready:false, desc:'โหมดอื่นๆ ที่กำลังจะมา'}
+};
+function selectGameMode(mode){
+  sc();
+  const info=GAME_MODES[mode];
+  if(!info) return;
+  if(!info.ready){ toast(`🚧 โหมด "${info.name}" กำลังพัฒนา`, 2500); return; }
+  G.config.gameMode=mode;
+  document.querySelectorAll('.mode-card').forEach(c=>{ c.classList.toggle('active', c.dataset.mode===mode); });
+  const infoEl=$('modeSelectedInfo');
+  if(infoEl){ infoEl.innerHTML=`${info.emoji} โหมดที่เลือก: <span>${info.name}</span> · ${info.desc}`; }
+  toast(`✅ เลือกโหมด: ${info.emoji} ${info.name}`, 1500);
+}
+
 function renderGrades(){const w=$('gradeList');w.innerHTML='';const r0=document.createElement('div');r0.className='grade-row';const a=document.createElement('button');a.className='grade g-all';a.innerHTML=`<div class="g-name">🌟 รวม</div><div class="g-count">${POOLS.all.length} คำ</div>`;a.onclick=()=>{sc();pickG('all')};r0.appendChild(a);w.appendChild(r0);const r1=document.createElement('div');r1.className='grade-row';const r2=document.createElement('div');r2.className='grade-row';GR.forEach((g,i)=>{const b=document.createElement('button');b.className='grade '+g.c;const cnt=POOLS[g.id]?POOLS[g.id].length:0;b.innerHTML=`<div class="g-name">${g.name}</div><div class="g-count">${cnt} คำ</div>`;b.onclick=()=>{sc();pickG(g.id)};if(i<4)r1.appendChild(b);else r2.appendChild(b)});w.appendChild(r1);w.appendChild(r2);}
 function pickG(id){G.config.gradeId=id;G.selectedWords=new Set();openWP()}
 function openWP(){const gid=G.config.gradeId;const g=GR.find(x=>x.id===gid);$('wpTitle').textContent=g?g.name:'รวม';const pool=POOLS[gid]||[];$('wpTotal').textContent=pool.length;if(G.selectedWords.size===0){pool.slice(0,Math.min(20,pool.length)).forEach(w=>G.selectedWords.add(w.en))}const w=$('wpActions');w.innerHTML='';const SS=20;const nS=Math.ceil(pool.length/SS);for(let i=0;i<Math.min(nS,30);i++){const c=document.createElement('button');c.className='wp-chip';c.textContent=i+1;c.onclick=()=>{sc();setSet(pool.slice(i*SS,(i+1)*SS))};w.appendChild(c)}const ab=document.createElement('button');ab.className='wp-chip all';ab.textContent='ทั้งหมด';ab.onclick=()=>{sc();pool.forEach(x=>G.selectedWords.add(x.en));renderGrid()};w.appendChild(ab);const cl=document.createElement('button');cl.className='wp-chip clear';cl.textContent='🗑';cl.onclick=()=>{sc();G.selectedWords.clear();renderGrid()};w.appendChild(cl);renderGrid();go('scWordPicker');}
@@ -1056,10 +1122,7 @@ function endMatch(){
       G.tournament.bracket.qualifier.ranking=ranked.map(t=>t.id);
 
       if(n===2){
-        G.tournament.bracket.final={
-          first:{teamA:ranked[0].id,teamB:ranked[1].id,winner:ranked[0].id,loser:ranked[1].id},
-          third:null
-        };
+        G.tournament.bracket.final={first:{teamA:ranked[0].id,teamB:ranked[1].id,winner:ranked[0].id,loser:ranked[1].id},third:null};
         toast('🏆 จบการแข่งขัน! ประกาศผล...', 2500);
         setTimeout(()=>endTournament(), 2000);
       }
@@ -1083,7 +1146,6 @@ function endMatch(){
       const w=determineMatchWinner();
       const m=G.tournament.bracket.semi.find(x=>x.id===G.tournament.matchId);
       m.winner=w.winner;m.loser=w.loser;
-
       if(G.tournament.matchId==='semi1'){
         setTimeout(()=>runSemiMatch('semi2'), 2500);
       } else {
@@ -1128,9 +1190,7 @@ function rankTeams(teams){return teams.sort((a,b)=>{if(b.score!==a.score)return 
 function checkAllMatchesDone(){
   const n=G.tournament.teams.length;
   const f=G.tournament.bracket.final;
-
   if(!f.first||!f.first.winner)return;
-
   if(n===2){setTimeout(()=>endTournament(),1500);return;}
   if(n===3){setTimeout(()=>endTournament(),1500);return;}
   if(n===4){
@@ -1359,6 +1419,7 @@ function pOnBroadcast(d){
       TugArenaPlayer.update(d.list);
       updatePlayerRanking(d.list);
       if(G.isSpectator)SpectatorArena.updateFromRanking(d.teams);
+      renderSpecLb();
       break;
     case 'sound':G.playersEffectOn=d.playersEffectOn!==false;G.playersBgmOn=d.playersBgmOn!==false;break;
     case 'addTime':{
@@ -1372,6 +1433,7 @@ function pOnBroadcast(d){
       if(d.teamId===G.myTeamId){
         G.myFinalRank=d.rank;
         if($('specTitle'))$('specTitle').textContent=`คุณได้ที่ ${d.rank} แล้ว!`;
+        if($('specEmoji'))$('specEmoji').textContent=['','🏆','🥈','🥉','🪑'][d.rank]||'🪑';
         toast(`🏆 ทีมคุณได้ที่ ${d.rank}`, 3000);
       }
       break;
@@ -1391,6 +1453,8 @@ function pOnBroadcast(d){
       $('pauseOverlay').classList.remove('on');
       pCnt('เตรียมตัว...',()=>{
         go('scPlayerQ');
+        $('pAnswersGrid').style.opacity='1';
+        $('pAnswersGrid').style.pointerEvents='auto';
         TugArenaPlayer.init($('pArenaContainer'));
         pStartTimer();pQ();
         if(G.voiceEnabled)startVoiceRecognition();
@@ -1577,7 +1641,7 @@ const TugArenaPlayer={
   destroy(){if(this._raf)cancelAnimationFrame(this._raf);this._raf=null;this.mounted=false;this.els=null;const c=$('pArenaContainer');if(c)c.innerHTML='';}
 };
 
-/* ⭐ [v16.3] SPECTATOR ARENA */
+/* ═══ SPECTATOR ARENA ═══ */
 const SpectatorArena={
   mounted:false,els:null,_raf:null,_lastTs:0,_current:50,_target:50,_teams:null,
   init(container,teamA,teamB){
@@ -1734,7 +1798,7 @@ document.addEventListener('touchstart',()=>{iA();},{once:true,passive:true});
 document.addEventListener('click',()=>{iA();},{once:true});
 (function(){const corner=$('hostBackCorner');if(!corner)return;corner.addEventListener('touchstart',function(e){if(e.target.tagName!=='BUTTON'){this.classList.add('show');setTimeout(()=>this.classList.remove('show'),4000);}},{passive:true});})();
 window.addEventListener('resize',()=>{const c=$('fireworksCanvas');if(c){c.width=window.innerWidth;c.height=window.innerHeight;}});
-console.log('🎃 Tug of War v16.3.1 · Fixed: sc() declared');
+console.log('🎃 Tug of War v16.3.2 · Multi-Mode Menu · sc() restored');
 </script>
 </body>
 </html>
