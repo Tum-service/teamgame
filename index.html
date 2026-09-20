@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-<title>🎃 ชักกะเย่อคำศัพท์ · Tournament v16.3.2</title>
+<title>🎃 ชักกะเย่อคำศัพท์ · Tournament v16.3.3</title>
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;700;800;900&family=Creepster&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -43,13 +43,16 @@ label{display:block;color:#c4b5fd;font-size:.88rem;margin-bottom:5px;font-weight
 .mode-card.locked{opacity:.55;cursor:not-allowed;filter:grayscale(.4)}
 .mode-card.locked:hover{transform:none;border-color:rgba(168,85,247,.4)}
 .mode-card .mode-emoji{font-size:2.4rem;margin-bottom:6px;display:block;line-height:1}
+/* ⭐ [v16.3.3] Custom image instead of emoji */
+.mode-card .mode-emoji-img{width:2.4rem;height:2.4rem;margin:0 auto 6px;display:block;object-fit:contain;filter:drop-shadow(0 3px 6px rgba(0,0,0,.5));border-radius:6px}
+.mode-emoji-img-inline{width:1.4rem;height:1.4rem;display:inline-block;object-fit:contain;vertical-align:-.3em;border-radius:4px}
 .mode-card .mode-name{font-size:1rem;color:#ffedd5;margin-bottom:8px;line-height:1.2}
 .mode-card .mode-badge{display:inline-block;font-size:.68rem;padding:3px 10px;border-radius:999px;font-weight:900;letter-spacing:.3px}
 .mode-card .mode-badge.ready{background:#22c55e;color:#fff}
 .mode-card .mode-badge.coming{background:rgba(251,191,36,.25);color:#fbbf24;border:1px solid rgba(251,191,36,.5)}
 .mode-selected-info{background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.35);border-radius:12px;padding:10px 14px;margin-bottom:14px;color:#bbf7d0;font-size:.85rem;text-align:center;font-weight:800}
 .mode-selected-info span{color:#fbbf24}
-@media(max-width:520px){.mode-grid{grid-template-columns:repeat(2,1fr);gap:8px}.mode-card{padding:14px 8px 10px}.mode-card .mode-emoji{font-size:1.9rem}.mode-card .mode-name{font-size:.85rem}}
+@media(max-width:520px){.mode-grid{grid-template-columns:repeat(2,1fr);gap:8px}.mode-card{padding:14px 8px 10px}.mode-card .mode-emoji{font-size:1.9rem}.mode-card .mode-emoji-img{width:calc(100% + 16px);height:4rem;margin:-14px -8px 8px}.mode-card .mode-name{font-size:.85rem}}
 
 .grades{display:flex;flex-direction:column;gap:14px;margin-top:6px}
 .grade-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
@@ -355,7 +358,7 @@ h1{font-size:1.7rem}.room-code{font-size:2.6rem}.timer-big{font-size:1.6rem;min-
 <div class="screen active" id="scLanding">
   <div style="max-width:520px;margin:30px auto">
     <h1>🎃 ชักกะเย่อคำศัพท์ 🦇</h1>
-    <p style="text-align:center;color:#fb923c;font-weight:900;font-size:.95rem;margin-bottom:20px">Tournament v16.3.2 · หลายโหมด</p>
+    <p style="text-align:center;color:#fb923c;font-weight:900;font-size:.95rem;margin-bottom:20px">Tournament v16.3.3 · หลายโหมด</p>
     <div class="card" style="margin-top:24px">
       <button class="btn btn-primary" onclick="go('scGradeSelect')" style="margin-bottom:12px">🎤 สร้างห้อง (Host)</button>
       <button class="btn btn-success" onclick="go('scPlayerJoin')">🎮 เข้าร่วมเกม (Player)</button>
@@ -368,12 +371,12 @@ h1{font-size:1.7rem}.room-code{font-size:2.6rem}.timer-big{font-size:1.6rem;min-
     <button class="btn-small btn-secondary" onclick="go('scLanding')">← กลับ</button>
     <h1>🎮 เลือกโหมดและระดับชั้น</h1>
 
-    <!-- ⭐ [v16.3.2] Mode selection -->
+    <!-- ⭐ [v16.3.3] Mode selection with custom image for tug -->
     <div class="card">
       <div class="mode-section-title">🎯 เลือกโหมดเกม</div>
       <div class="mode-grid">
         <button class="mode-card active" data-mode="tug" onclick="selectGameMode('tug')">
-          <span class="mode-emoji">🎯</span>
+          <img class="mode-emoji-img" src="https://tum-service.github.io/1111/tug%20of%20war.jpg" alt="ชักกะเย่อ" onerror="this.outerHTML='<span class=\'mode-emoji\'>🎯</span>'">
           <div class="mode-name">ชักกะเย่อ</div>
           <span class="mode-badge ready">พร้อมเล่น</span>
         </button>
@@ -394,7 +397,7 @@ h1{font-size:1.7rem}.room-code{font-size:2.6rem}.timer-big{font-size:1.6rem;min-
         </button>
       </div>
       <div class="mode-selected-info" id="modeSelectedInfo">
-        🎯 โหมดที่เลือก: <span>ชักกะเย่อ</span> · ทีมแข่งดึงเชือกคำศัพท์
+        <img class="mode-emoji-img-inline" src="https://tum-service.github.io/1111/tug%20of%20war.jpg" alt="" onerror="this.outerHTML='🎯'"> โหมดที่เลือก: <span>ชักกะเย่อ</span> · ทีมแข่งดึงเชือกคำศัพท์
       </div>
     </div>
 
@@ -424,7 +427,9 @@ h1{font-size:1.7rem}.room-code{font-size:2.6rem}.timer-big{font-size:1.6rem;min-
     <h1>⚙️ ตั้งค่าทัวร์นาเมนต์</h1>
 
     <div class="card" style="text-align:center;background:linear-gradient(180deg,rgba(34,197,94,.15),rgba(20,83,45,.3));border-color:rgba(34,197,94,.4)">
-      <div style="font-size:2.2rem;line-height:1" id="configModeEmoji">🎯</div>
+      <div style="line-height:1" id="configModeEmoji">
+        <img src="https://tum-service.github.io/1111/tug%20of%20war.jpg" alt="" style="width:3rem;height:3rem;object-fit:contain;filter:drop-shadow(0 3px 8px rgba(0,0,0,.5));border-radius:8px" onerror="this.outerHTML='<span style=\'font-size:2.2rem\'>🎯</span>'">
+      </div>
       <div style="font-weight:900;color:#4ade80;font-size:1.1rem;margin-top:4px" id="configModeName">ชักกะเย่อ</div>
     </div>
 
@@ -750,7 +755,7 @@ h1{font-size:1.7rem}.room-code{font-size:2.6rem}.timer-big{font-size:1.6rem;min-
 /* ═══ VOCAB (compact) ═══ */
 const VOCAB_DATA={
 p1:`ant|มด,apple|แอ๊ปเปิ้ล,bag|กระเป๋า,ball|ลูกบอล,banana|กล้วย,bat|ค้างคาว,bear|หมี,bee|ผึ้ง,big|ใหญ่,bin|ถังขยะ,bird|นก,birthday|วันเกิด,book|หนังสือ,box|กล่อง,boy|เด็กชาย,bread|ขนมปัง,broom|ไม้กวาด,brother|พี่ชาย,bus|รถประจำทาง,cake|เค้ก,candle|เทียน,car|รถยนต์,cat|แมว,chair|เก้าอี้,class|ชั้นเรียน,close|ปิด,count|นับ,cry|ร้องไห้,crayon|สีเทียน,cup|ถ้วย,cut|ตัด,dad|พ่อ,dance|เต้น,desk|โต๊ะ,dog|หมา,door|ประตู,ear|หู,egg|ไข่,eraser|ยางลบ,eye|ตา,face|หน้า,fan|พัดลม,fish|ปลา,flower|ดอกไม้,food|อาหาร,foot|เท้า,fox|สุนัขจิ้งจอก,fruit|ผลไม้,fun|สนุก,giraffe|ยีราฟ,girl|เด็กหญิง,glass|แก้ว,go|ไป,goat|แพะ,good|ดี,goodbye|ลาก่อน,hair|ผม,ham|แฮม,happy|สุข,head|หัว,hello|หวัดดี,house|บ้าน,ice|น้ำแข็ง,ice cream|ไอศกรีม,jar|โอ่ง,key|กุญแจ,kick|เตะ,king|ราชา,kid|เด็ก,leg|ขา,lemon|มะนาว,line|เส้น,lion|สิงโต,listen|ฟัง,long|ยาว,look|ดู,love|รัก,man|ชาย,map|แผนที่,milk|นม,mom|แม่,monkey|ลิง,moon|จันทร์,mother|มารดา,mouth|ปาก,name|ชื่อ,nose|จมูก,open|เปิด,orange|ส้ม,owl|นกฮูก,pan|กระทะ,panda|แพนด้า,papaya|มะละกอ,park|สวน,pear|ลูกแพร์,pen|ปากกา,pencil|ดินสอ,pet|สัตว์เลี้ยง,play|เล่น,point|ชี้,pool|สระ,queen|ราชินี,rabbit|กระต่าย,rat|หนู,ring|แหวน,roof|หลังคา,room|ห้อง,ruler|ไม้บรรทัด,sad|เศร้า,salad|สลัด,say|พูด,school|โรงเรียน,see|เห็น,sheep|แกะ,ship|เรือ,short|สั้น,show|แสดง,sing|ร้อง,sister|พี่สาว,sit|นั่ง,small|เล็ก,smell|กลิ่น,snake|งู,song|เพลง,stand|ยืน,star|ดาว,start|เริ่ม,stop|หยุด,student|นักเรียน,sun|ตะวัน,tall|สูง,tea|ชา,teacher|ครู,thank you|ขอบคุณ,tomato|มะเขือเทศ,top|ข่าง,toy|ของเล่น,tree|ต้นไม้,ugly|น่าเกลียด,van|รถตู้,walk|เดิน,water|น้ำ,wig|ผมปลอม,woman|หญิง,zebra|ม้าลาย,zoo|สวนสัตว์`,
-p2:`again|อีก,animal|สัตว์,answer|ตอบ,arm|แขน,artist|ศิลปิน,ask|ถาม,aunt|ป้า,balloon|ลูกโป่ง,bank|ธนาคาร,bed|เตียง,board|กระดาน,boat|เรือ,bottle|ขวด,bowl|ชาม,butterfly|ผีเสื้อ,candy|ลูกอม,cap|หมวก,card|บัตร,cheese|ชีส,cherry|เชอร์รี่,chicken|ไก่,children|เด็กๆ,circle|วงกลม,clean|สะอาด,clock|นาฬิกา,cook|ทำอาหาร,cookie|ขนม,cool|เย็น,cow|วัว,dish|จาน,doctor|หมอ,donkey|ลา,elephant|ช้าง,family|ครอบครัว,far|ไกล,fat|อ้วน,finish|เสร็จ,floor|พื้น,fly|บิน,friend|เพื่อน,frog|กบ,garden|สวน,gloves|ถุงมือ,grape|องุ่น,group|กลุ่ม,hand|มือ,hat|หมวก,help|ช่วย,hen|ไก่,hot|ร้อน,hungry|หิว,juice|น้ำผลไม้,kite|ว่าว,knee|เข่า,knife|มีด,letter|จดหมาย,magic|มนตร์,mango|มะม่วง,music|ดนตรี,new|ใหม่,notebook|สมุด,number|เลข,old|แก่,page|หน้า,paint|สี,paper|กระดาษ,peach|พีช,people|คน,picture|รูป,pig|หมู,pillow|หมอน,pineapple|สับปะรด,puppy|ลูกหมา,quiet|เงียบ,radio|วิทยุ,rain|ฝน,rice|ข้าว,right|ถูก,robot|หุ่นยนต์,rope|เชือก,round|กลม,socks|ถุงเท้า,spell|สะกด,story|เรื่อง,strawberry|สตรอเบอร์รี่,subject|วิชา,sweet|หวาน,tennis|เทนนิส,today|วันนี้,touch|สัมผัส,town|เมือง,umbrella|ร่ม,uncle|ลุง,video|วิดีโอ,watermelon|แตงโม,week|สัปดาห์,whale|วาฬ,window|หน้าต่าง,young|น้อย`,
+p2:`again|อีก,animal|สัตว์,answer|ตอบ,arm|แขน,artist|ศิลปิน,ask|ถาม,aunt|ป้า,balloon|ลูกโป่ง,bank|ธนาคาร,bed|เตียง,board|กระดาน,boat|เรือ,bottle|ขวด,bowl|ชาม,butterfly|ผีเสื้อ,candy|ลูกอม,cap|หมวก,card|บัตร,cheese|ชีส,cherry|เชอร์รี่,chicken|ไก่,children|เด็กๆ,circle|วงกลม,clean|สะอาด,clock|นาฬิกา,cook|ทำอาหาร,cookie|ขนม,cool|เย็น,cow|วัว,dish|จาน,doctor|หมอ,donkey|ลา,elephant|ช้าง,family|ครอบครัว,far|ไกล,fat|อ้วน,finish|เสร็จ,floor|พื้น,fly|บิน,friend|เพื่อน,frog|กบ,garden|สวน,gloves|ถุงมือ,grape|องุ่น,group|กลุ่ม,hand|มือ,hat|หมวก,help|ช่วย,hen|ไก่,hot|ร้อน,hungry|หิว,juice|น้ำผลไม้,kite|ว่าว,knee|เข่า,knife|มีด,letter|จดหมาย,magic|มนตร์,mango|มะม่วง,music|ดนตรี,new|ใหม่,notebook|สมุด,number|เลข,old|แก่,page|หน้า,paint|สี,paper|กระดาษ,peach|พีช,people|คน,picture|รูป,pig|หมู,pillow|หมอน,pineapple|สัปปะรด,puppy|ลูกหมา,quiet|เงียบ,radio|วิทยุ,rain|ฝน,rice|ข้าว,right|ถูก,robot|หุ่นยนต์,rope|เชือก,round|กลม,socks|ถุงเท้า,spell|สะกด,story|เรื่อง,strawberry|สตรอเบอร์รี่,subject|วิชา,sweet|หวาน,tennis|เทนนิส,today|วันนี้,touch|สัมผัส,town|เมือง,umbrella|ร่ม,uncle|ลุง,video|วิดีโอ,watermelon|แตงโม,week|สัปดาห์,whale|วาฬ,window|หน้าต่าง,young|น้อย`,
 p3:`air|อากาศ,airplane|เครื่องบิน,around|รอบ,basket|ตะกร้า,bathroom|ห้องน้ำ,beautiful|สวย,bedroom|ห้องนอน,beef|เนื้อวัว,bell|กระดิ่ง,bicycle|จักรยาน,body|ร่างกาย,breakfast|อาหารเช้า,buy|ซื้อ,cabbage|กะหล่ำ,carrot|แครอท,castle|ปราสาท,chance|โอกาส,classroom|ห้องเรียน,coffee|กาแฟ,computer|คอมพิวเตอร์,correct|ถูก,cucumber|แตงกวา,daughter|ลูกสาว,dice|เต๋า,dinner|อาหารเย็น,dirty|สกปรก,double|สองเท่า,drink|ดื่ม,drum|กลอง,duck|เป็ด,durian|ทุเรียน,eat|กิน,English|อังกฤษ,finger|นิ้ว,fishing|ตกปลา,flag|ธง,give|ให้,goldfish|ปลาทอง,golf|กอล์ฟ,grandfather|ปู่,grandmother|ย่า,grass|หญ้า,guitar|กีตาร์,hippo|ฮิปโป,hit|ตี,homework|การบ้าน,honey|น้ำผึ้ง,horse|ม้า,hut|กระท่อม,jacket|แจ็คเก็ต,jeans|ยีนส์,join|เข้าร่วม,keep|เก็บ,kitten|ลูกแมว,lock|ล็อก,lunch|กลางวัน,math|คณิต,meat|เนื้อ,mirror|กระจก,month|เดือน,move|ขยับ,musician|นักดนตรี,neck|คอ,nest|รัง,noodle|ก๋วยเตี๋ยว,noon|เที่ยง,nurse|พยาบาล,pair|คู่,parrot|นกแก้ว,path|ทาง,penguin|เพนกวิน,photo|รูป,piano|เปียโน,pie|พาย,pizza|พิซซ่า,plastic|พลาสติก,pork|หมู,postman|ไปรษณีย์,potato|มันฝรั่ง,question|คำถาม,rainy|ฝนตก,read|อ่าน,river|แม่น้ำ,salt|เกลือ,sand|ทราย,sausage|ไส้กรอก,seal|แมวน้ำ,shampoo|แชมพู,shorts|กางเกงขาสั้น,shoulder|ไหล่,sleep|นอน,smile|ยิ้ม,snail|หอยทาก,soap|สบู่,sofa|โซฟา,son|ลูกชาย,soup|ซุป,speak|พูด,study|เรียน,swing|ชิงช้า,telephone|โทรศัพท์,thirsty|กระหาย,tiger|เสือ,toothbrush|แปรงสีฟัน,toothpaste|ยาสีฟัน,truck|รถบรรทุก,turtle|เต่า,use|ใช้,violin|ไวโอลิน,want|ต้องการ,wash|ซัก,watch|ดู,wing|ปีก,wolf|หมาป่า,wood|ไม้,write|เขียน,wrong|ผิด`,
 p4:`ache|ปวด,afternoon|บ่าย,airport|สนามบิน,autumn|ใบไม้ร่วง,clothes|เสื้อผ้า,cloudy|มีเมฆ,clown|ตัวตลก,coat|โค้ท,coconut|มะพร้าว,coin|เหรียญ,cold|หนาว,comb|หวี,copy|คัดลอก,cousin|ลูกพี่ลูกน้อง,cover|ปก,cupcake|คัพเค้ก,dark|มืด,deep|ลึก,dentist|หมอฟัน,diary|ไดอารี่,dictionary|พจนานุกรม,dolphin|โลมา,drive|ขับ,dust|ฝุ่น,earth|โลก,easy|ง่าย,evening|เย็น,example|ตัวอย่าง,exercise|ออกกำลังกาย,expensive|แพง,fall|ร่วง,feed|ให้อาหาร,feel|รู้สึก,female|หญิง,fence|รั้ว,festival|เทศกาล,fill|เติม,film|หนัง,find|หา,flash|แฟลช,flour|แป้ง,fork|ส้อม,funny|ตลก,game|เกม,garage|โรงรถ,ghost|ผี,gift|ของขวัญ,glasses|แว่น,grow|โต,gym|โรงยิม,hall|โถง,health|สุขภาพ,heart|หัวใจ,hill|เนิน,holiday|วันหยุด,hospital|โรงพยาบาล,hotel|โรงแรม,internet|เน็ต,jungle|ป่า,kangaroo|จิงโจ้,kitchen|ครัว,know|รู้,leaf|ใบไม้,lemonade|น้ำมะนาว,library|ห้องสมุด,life|ชีวิต,lips|ปาก,longan|ลำไย,lotus|บัว,mall|ห้าง,medicine|ยา,melon|แคนตาลูป,member|สมาชิก,midnight|เที่ยงคืน,monk|พระ,monster|มอน,morning|เช้า,mountain|ภูเขา,movie|หนัง,nail|เล็บ,nice|ดี,night|คืน,octopus|ปลาหมึก,office|ออฟฟิศ,omelet|ไข่เจียว,onion|หัวหอม,pants|กางเกง,parents|พ่อแม่,pepper|พริกไทย,pill|ยา,planet|ดาวเคราะห์,plant|พืช,playground|สนามเด็กเล่น,pocket|กระเป๋า,poem|กลอน,practice|ฝึก,prawn|กุ้ง,present|ของขวัญ,pretty|สวย,price|ราคา,print|พิมพ์,pull|ดึง,push|ผลัก,quick|เร็ว,rainbow|รุ้ง,rescue|ช่วย,restaurant|ร้านอาหาร,ride|ขี่,road|ถนน,rocket|จรวด,root|ราก,rose|กุหลาบ,satellite|ดาวเทียม,scarf|ผ้าพันคอ,science|วิทย์,sea|ทะเล,seed|เมล็ด,sell|ขาย,send|ส่ง,shelf|ชั้น,shop|ร้าน,sick|ป่วย,ski|สกี,slow|ช้า,smoke|ควัน,snack|ของว่าง,snowy|หิมะ,soda|โซดา,sore|เจ็บ,sour|เปรี้ยว,space|อวกาศ,special|พิเศษ,spend|จ่าย,spicy|เผ็ด,spoon|ช้อน,spring|ใบไม้ผลิ,square|สี่เหลี่ยม,station|สถานี,summer|ร้อน,sunny|แดด,sweater|กันหนาว,tail|หาง,talk|คุย,teach|สอน,team|ทีม,theater|ละคร,thin|ผอม,ticket|ตั๋ว,time|เวลา,tomorrow|พรุ่งนี้,tonight|คืนนี้,tour|ทัวร์,uniform|ชุด,vegetable|ผัก,wear|สวม,weather|อากาศ,wet|เปียก,wife|เมีย,windy|ลม,winter|หนาว,work|งาน,year|ปี,yesterday|เมื่อวาน,yogurt|โยเกิร์ต,yummy|อร่อย`,
 p5:`actor|นักแสดง,actress|ดาราหญิง,adventure|ผจญภัย,area|พื้นที่,author|นักเขียน,bridge|สะพาน,build|สร้าง,burn|เผา,busy|ยุ่ง,button|กระดุม,calculator|คิดเลข,calendar|ปฏิทิน,camera|กล้อง,canal|คลอง,careful|ระวัง,career|อาชีพ,carpet|พรม,carry|ถือ,center|กลาง,chopsticks|ตะเกียบ,clinic|คลินิก,collect|สะสม,company|บริษัท,complete|สมบูรณ์,container|ภาชนะ,control|ควบคุม,conversation|สนทนา,country|ประเทศ,crocodile|จระเข้,curly|หยิก,curry|แกง,curtain|ม่าน,dangerous|อันตราย,delicious|อร่อย,dialogue|บทสนทนา,diet|อาหาร,different|ต่าง,dinosaur|ไดโน,director|ผู้กำกับ,downstairs|ชั้นล่าง,dream|ฝัน,driver|คนขับ,eggplant|มะเขือยาว,envelope|ซอง,factory|โรงงาน,famous|ดัง,fitness|ฟิตเนส,float|ลอย,follow|ตาม,forest|ป่า,guava|ฝรั่ง,guide|ไกด์,habit|นิสัย,haircut|ตัดผม,half|ครึ่ง,heavy|หนัก,hero|ฮีโร่,history|ประวัติ,hobby|อดิเรก,hole|หลุม,iron|เหล็ก,jackfruit|ขนุน,jewelry|เครื่องประดับ,kind|ใจดี,kiwi|กีวี,knock|เคาะ,koala|โคอาลา,lake|ทะเลสาบ,laugh|หัวเราะ,law|กฎหมาย,learn|เรียน,leave|ออก,lend|ให้ยืม,light|แสง,magazine|นิตยสาร,marry|แต่งงาน,meal|มื้อ,menu|เมนู,meter|เมตร,minute|นาที,miss|คิดถึง,mix|ผสม,model|นางแบบ,money|เงิน,mosquito|ยุง,museum|พิพิธภัณฑ์,necklace|สร้อย,newspaper|หนังสือพิมพ์,noise|เสียง,ocean|มหาสมุทร,oven|เตาอบ,pajamas|ชุดนอน,parade|ขบวน,part|ส่วน,pay|จ่าย,peacock|นกยูง,pharmacy|ขายยา,picnic|ปิกนิก,pilot|นักบิน,plan|แผน,plate|จาน,poor|จน,popular|นิยม,poster|โปสเตอร์,pour|เท,power|พลัง,pray|สวด,purse|กระเป๋า,queue|คิว,rent|เช่า,reporter|ผู้สื่อข่าว,rest|พัก,return|กลับ,rich|รวย,roll|ม้วน,rug|พรม,safe|ปลอดภัย,sailor|กะลาสี,salon|ร้านเสริมสวย,scare|กลัว,season|ฤดู,seat|ที่นั่ง,secretary|เลขา,sharp|คม,shout|ตะโกน,shrimp|กุ้ง,silent|เงียบ,single|โสด,sink|อ่าง,skip|กระโดด,slippers|แตะ,slippery|ลื่น,smart|ฉลาด,sound|เสียง,staff|พนักงาน,storm|พายุ,stove|เตา,strange|แปลก,strong|แข็งแรง,sunflower|ทานตะวัน,sure|แน่,surname|นามสกุล,surprise|เซอร์ไพรส์,sweep|กวาด,take|เอา,tape|เทป,television|ทีวี,tent|เต็นท์,term|เทอม,thick|หนา,think|คิด,tissue|ทิชชู่,towel|ผ้าเช็ดตัว,trash|ขยะ,trip|เที่ยว,trouble|ปัญหา,upstairs|ชั้นบน,vacation|วันหยุด,value|คุณค่า,visit|เยี่ยม,voice|เสียง,wait|รอ,waiter|บริกร,waitress|บริกรหญิง,wallet|กระเป๋า,wave|คลื่น,weight|น้ำหนัก,win|ชนะ,wheel|ล้อ,world|โลก,yawn|หาว`,
@@ -799,6 +804,8 @@ const TEAMS_DEF=[
   {id:'t3',name:'ทีมเขียว',emoji:'🦇',color:'#16a34a',cls:'t3'},
   {id:'t4',name:'ทีมเหลือง',emoji:'🕷️',color:'#eab308',cls:'t4'}
 ];
+/* ⭐ [v16.3.3] Custom image for tug mode */
+const TUG_IMG='https://tum-service.github.io/1111/tug%20of%20war.jpg';
 function shouldPlayEffect(){if(G.role==='host')return G.hostEffectOn;if(G.role==='player')return G.playersEffectOn;return true;}
 function shouldPlayBGM(){if(G.role==='host')return G.hostBgmOn;if(G.role==='player')return G.playersBgmOn;return true;}
 
@@ -874,12 +881,12 @@ function broadcastSoundState(){hostBroadcast({type:'sound',playersEffectOn:G.pla
 /* ═══ GRADE / WP ═══ */
 const GR=[{id:'p1',name:'ป.1',c:'g1'},{id:'p2',name:'ป.2',c:'g2'},{id:'p3',name:'ป.3',c:'g3'},{id:'p4',name:'ป.4',c:'g4'},{id:'p5',name:'ป.5',c:'g5'},{id:'p6',name:'ป.6',c:'g6'},{id:'extra',name:'พิเศษ',c:'g7'}];
 
-/* ⭐ [v16.3.2] Game mode selection */
+/* ⭐ [v16.3.3] GAME_MODES with html property */
 const GAME_MODES={
-  tug:    {name:'ชักกะเย่อ',      emoji:'🎯', ready:true,  desc:'ทีมแข่งดึงเชือกคำศัพท์'},
-  attack: {name:'โจมตี-ป้องกัน', emoji:'🏰', ready:false, desc:'ทีมโจมตี vs ทีมป้องกัน'},
-  boss:   {name:'สู้บอส',        emoji:'👹', ready:false, desc:'รวมทีมสู้บอส'},
-  other:  {name:'อื่นๆ',          emoji:'🎮', ready:false, desc:'โหมดอื่นๆ ที่กำลังจะมา'}
+  tug:    {name:'ชักกะเย่อ',      emoji:'🎯', html:`<img class="mode-emoji-img-inline" src="${TUG_IMG}" alt="" onerror="this.outerHTML='🎯'">`, ready:true,  desc:'ทีมแข่งดึงเชือกคำศัพท์'},
+  attack: {name:'โจมตี-ป้องกัน', emoji:'🏰', html:'🏰', ready:false, desc:'ทีมโจมตี vs ทีมป้องกัน'},
+  boss:   {name:'สู้บอส',        emoji:'👹', html:'👹', ready:false, desc:'รวมทีมสู้บอส'},
+  other:  {name:'อื่นๆ',          emoji:'🎮', html:'🎮', ready:false, desc:'โหมดอื่นๆ ที่กำลังจะมา'}
 };
 function selectGameMode(mode){
   sc();
@@ -889,8 +896,23 @@ function selectGameMode(mode){
   G.config.gameMode=mode;
   document.querySelectorAll('.mode-card').forEach(c=>{ c.classList.toggle('active', c.dataset.mode===mode); });
   const infoEl=$('modeSelectedInfo');
-  if(infoEl){ infoEl.innerHTML=`${info.emoji} โหมดที่เลือก: <span>${info.name}</span> · ${info.desc}`; }
-  toast(`✅ เลือกโหมด: ${info.emoji} ${info.name}`, 1500);
+  if(infoEl){ infoEl.innerHTML=`${info.html} โหมดที่เลือก: <span>${info.name}</span> · ${info.desc}`; }
+  toast(`✅ เลือกโหมด: ${info.name}`, 1500);
+  updateConfigModeDisplay();
+}
+function updateConfigModeDisplay(){
+  const mode=G.config.gameMode;
+  const info=GAME_MODES[mode];
+  const emojiEl=$('configModeEmoji');
+  const nameEl=$('configModeName');
+  if(emojiEl && info){
+    if(mode==='tug'){
+      emojiEl.innerHTML=`<img src="${TUG_IMG}" alt="" style="width:3rem;height:3rem;object-fit:contain;filter:drop-shadow(0 3px 8px rgba(0,0,0,.5));border-radius:8px" onerror="this.outerHTML='<span style=\\'font-size:2.2rem\\'>🎯</span>'">`;
+    } else {
+      emojiEl.textContent=info.emoji;
+    }
+  }
+  if(nameEl && info) nameEl.textContent=info.name;
 }
 
 function renderGrades(){const w=$('gradeList');w.innerHTML='';const r0=document.createElement('div');r0.className='grade-row';const a=document.createElement('button');a.className='grade g-all';a.innerHTML=`<div class="g-name">🌟 รวม</div><div class="g-count">${POOLS.all.length} คำ</div>`;a.onclick=()=>{sc();pickG('all')};r0.appendChild(a);w.appendChild(r0);const r1=document.createElement('div');r1.className='grade-row';const r2=document.createElement('div');r2.className='grade-row';GR.forEach((g,i)=>{const b=document.createElement('button');b.className='grade '+g.c;const cnt=POOLS[g.id]?POOLS[g.id].length:0;b.innerHTML=`<div class="g-name">${g.name}</div><div class="g-count">${cnt} คำ</div>`;b.onclick=()=>{sc();pickG(g.id)};if(i<4)r1.appendChild(b);else r2.appendChild(b)});w.appendChild(r1);w.appendChild(r2);}
@@ -1786,7 +1808,7 @@ function exportPlayerReport(){exportPDF();}
 function toggleLang(){G.lang=G.lang==='th'?'en':'th';$('langToggle').textContent='🌐 '+G.lang.toUpperCase();}
 
 /* ═══ INIT ═══ */
-renderGrades();renderAv();applyTheme('halloween');renderTeamInputs();
+renderGrades();renderAv();applyTheme('halloween');renderTeamInputs();updateConfigModeDisplay();
 $('langToggle').textContent='🌐 TH';
 {
   const p=new URLSearchParams(location.search);
@@ -1798,7 +1820,7 @@ document.addEventListener('touchstart',()=>{iA();},{once:true,passive:true});
 document.addEventListener('click',()=>{iA();},{once:true});
 (function(){const corner=$('hostBackCorner');if(!corner)return;corner.addEventListener('touchstart',function(e){if(e.target.tagName!=='BUTTON'){this.classList.add('show');setTimeout(()=>this.classList.remove('show'),4000);}},{passive:true});})();
 window.addEventListener('resize',()=>{const c=$('fireworksCanvas');if(c){c.width=window.innerWidth;c.height=window.innerHeight;}});
-console.log('🎃 Tug of War v16.3.2 · Multi-Mode Menu · sc() restored');
+console.log('🎃 Tug of War v16.3.3 · Custom image for tug mode');
 </script>
 </body>
 </html>
